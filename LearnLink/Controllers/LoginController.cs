@@ -4,12 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace LearnLink.Controllers
 {
-    public class StudentController : Controller
+    public class LoginController : Controller
     {
-     
-        public ActionResult Index()
+        // GET: Login
+        public ActionResult Login()
         {
             return View();
         }

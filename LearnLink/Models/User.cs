@@ -5,7 +5,7 @@ using System.Web;
 
 namespace LearnLink.Models
 {
-    public class Student
+    public class User
     {
 
         public string Username { get; set; }
