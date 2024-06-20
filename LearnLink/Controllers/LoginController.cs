@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.SqlClient;
 
 
 namespace LearnLink.Controllers
 {
+    
     public class LoginController : Controller
     {
         public ActionResult Login()
@@ -20,7 +22,7 @@ namespace LearnLink.Controllers
         {
             if (user.Email.Equals("abc@gmail.com") && user.Password.Equals("1234"))
             {
-                Session["User"] = user.Username;
+                Session["User"] = user.Name;
                 return RedirectToAction("Dashboard", "Dashboard");
 
             }
