@@ -125,8 +125,8 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\Passwordhasher.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
-    <Compile Include="Controllers\StudentController.cs" />
-    <Compile Include="Controllers\TeacherController.cs" />
+    <Compile Include="Controllers\StudentDashboardController.cs" />
+    <Compile Include="Controllers\TeacherDashboardController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -190,8 +190,8 @@
     <Content Include="Views\Login\login.cshtml" />
     <Content Include="Views\registration\reg.cshtml" />
     <Content Include="Views\Dashboard\Dashboard.cshtml" />
-    <Content Include="Views\Student\Dashboard.cshtml" />
-    <Content Include="Views\Teacher\Dashboard.cshtml" />
+    <Content Include="Views\TeacherDashboard\Dashboard.cshtml" />
+    <Content Include="Views\StudentDashboard\Dashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

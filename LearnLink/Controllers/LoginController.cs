@@ -10,7 +10,7 @@ using System.Web.Helpers;
 
 namespace LearnLink.Controllers
 {
-    
+
     public class LoginController : Controller
     {
         public ActionResult Login()
@@ -28,28 +28,29 @@ namespace LearnLink.Controllers
                 try
                 {
                     conn.Open();
-                   
-                    string query = "SELECT name,password,userID FROM "+role+" WHERE Email = @Email";
+
+                    string query = "SELECT name,password,userID FROM " + role + " WHERE Email = @Email";
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@Email", user.Email);
-                      
+
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            if (reader.Read() && PasswordHasher.VerifyPassword(user.Password,reader["Password"].ToString()))
+                            if (reader.Read() && PasswordHasher.VerifyPassword(user.Password, reader["Password"].ToString()))
                             {
                                 Session["UserRole"] = role;
                                 Session["UserName"] = reader["Name"].ToString();
+                                Session["UserEmail"] = user.Email;
                                 Session["UserID"] = reader["UserID"].ToString();
                                 Response.Write("<script>alert('Login successful!');</script>");
-                           
+
                                 if (role.Equals("teacher", StringComparison.OrdinalIgnoreCase))
                                 {
-                                    return RedirectToAction("Dashboard", "Dashboard");
+                                    return RedirectToAction("Dashboard", "TeacherDashboard");
                                 }
                                 else if (role.Equals("student", StringComparison.OrdinalIgnoreCase))
                                 {
-                                    return RedirectToAction("Dashboard", "Dashboard");
+                                    return RedirectToAction("Dashboard", "StudentDashboard");
                                 }
                             }
                             else
@@ -62,7 +63,7 @@ namespace LearnLink.Controllers
                 }
                 catch (Exception ex)
                 {
-                    Response.Write("<script>alert('Try Again ');</script>");
+                    Response.Write("<script>alert('"+ex.Message+"');</script>");
                 }
             }
 

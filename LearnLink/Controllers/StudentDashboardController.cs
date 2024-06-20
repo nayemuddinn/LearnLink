@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace LearnLink.Controllers
 {
-    public class StudentController : Controller
+    public class StudentDashboardController : Controller
     {
         public ActionResult Dashboard()
         {

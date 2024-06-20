@@ -3,7 +3,7 @@ using System.Web.Mvc;
 
 namespace LearnLink.Controllers
 {
-    public class TeacherController : Controller
+    public class TeacherDashboardController : Controller
     {
         public ActionResult Dashboard()
         {

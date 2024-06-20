@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Student Dashboard";
+    ViewBag.Title = "Teacher Dashboard";
 }
 
 <!DOCTYPE html>
@@ -21,7 +21,7 @@
 <body>
     <div class="dashboard-container">
         <header>
-            <h1>Welcome, @Session["User"]</h1>
+            <h1>Welcome, @Session["UserName"]</h1>
             <div class="menu">
                 <div class="dropdown">
                     <button class="dropbtn">Menu</button>
@@ -42,7 +42,7 @@
 
         <div class="profile-summary">
             <h2>Profile Summary</h2>
-            <p>Name: @Session["User"]</p>
+            <p>Name: @Session["UserName"]</p>
             <p>Email: @Session["UserEmail"]</p>
         </div>
 
@@ -57,6 +57,7 @@
                             <div class="dropdown-content">
                                 <a href="#">View Details</a>
                                 <a href="#">Resources</a>
+                                <a href="#">Assignments</a>
                             </div>
                         </li>
                     }
@@ -64,15 +65,15 @@
             </div>
 
             <div class="section">
-                <h2>Upcoming Assignments</h2>
+                <h2>Tasks</h2>
                 <ul>
-                    @foreach (var assignment in ViewBag.Assignments)
+                    @foreach (var task in ViewBag.Tasks)
                     {
                         <li class="dropdown">
-                            <a href="#">@assignment</a>
+                            <a href="#">@task</a>
                             <div class="dropdown-content">
                                 <a href="#">Details</a>
-                                <a href="#">Submit</a>
+                                <a href="#">Mark as Completed</a>
                             </div>
                         </li>
                     }
@@ -97,4 +98,4 @@
         </div>
     </div>
 </body>
-</html>
+</htm
