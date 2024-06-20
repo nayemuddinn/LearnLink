@@ -49,7 +49,7 @@ namespace LearnLink.Controllers
                 }
                 catch (Exception ex)
                 {
-                    Response.Write("<script>alert('Error: " + ex.Message + "');</script>");
+                    Response.Write("<script>alert('Try again');</script>");
                 }
                 return View();
             }
