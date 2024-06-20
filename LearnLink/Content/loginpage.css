@@ -43,7 +43,7 @@ header {
     position: relative;
     width: 400px;
     height: 440px;
-    margin-left: 400px;
+    margin-left: 450px;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, .5);
     border-radius: 20px;
@@ -54,11 +54,32 @@ header {
 
 
 
+.registration-wrapper {
+    color: #fff;
+    position: relative;
+    width: 400px;
+    height: 600px;
+    margin-left: 450px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 .login-wrapper .form-box {
     width: 100%;
     padding: 30px;
 }
 
+.registration-wrapper .form-box {
+    width: 100%;
+    padding: 30px;
+}
 
 .form-box h2 {
     font-size: 2em;
