@@ -28,18 +28,16 @@ namespace LearnLink.Controllers
                 try
                 {
                     conn.Open();
-
-                    string query = "SELECT name,userID FROM "+role+" WHERE Email = @Email AND Password = @Password";
+                   
+                    string query = "SELECT name,password,userID FROM "+role+" WHERE Email = @Email";
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@Email", user.Email);
-                        cmd.Parameters.AddWithValue("@Password", user.Password);
-
+                      
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            if (reader.Read())
+                            if (reader.Read() && PasswordHasher.VerifyPassword(user.Password,reader["Password"].ToString()))
                             {
-                       
                                 Session["UserRole"] = role;
                                 Session["UserName"] = reader["Name"].ToString();
                                 Session["UserID"] = reader["UserID"].ToString();
