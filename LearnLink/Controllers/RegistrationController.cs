@@ -32,9 +32,9 @@ namespace LearnLink.Controllers
             {
                 try
                 {
-                
+                    string role = user.Role;
                     conn.Open();
-                    string query = "INSERT INTO student (Name, Email, Password, Phone, Address, Institution) " +
+                    string query = "INSERT INTO "+role+" (Name, Email, Password, Phone, Address, Institution) " +
                                    "VALUES (@Name, @Email, @Password, @Phone, @Address, @Institution)";
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@Name", user.Name);
@@ -45,7 +45,7 @@ namespace LearnLink.Controllers
                     cmd.Parameters.AddWithValue("@Institution", user.Institution);
 
                     cmd.ExecuteNonQuery();
-                     Response.Write("<script>alert('Registration successful!');</script>");
+                    Response.Write("<script>alert('Registration successful!');</script>");
                 }
                 catch (Exception ex)
                 {
