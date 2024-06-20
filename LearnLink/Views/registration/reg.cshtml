@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "reg";
+}
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnLink<</title>
+    <link href="@Url.Content("/Content/loginpage.css")" rel="stylesheet" />
+</head>
+    <div class="registration-wrapper">
+        <div class="form-box login">
+                    <h2>Registration</h2>
+                    <form action="" method="post">
+
+                        <div class="input-box">
+                            <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+                            <input type="text" name="name" id="name" autocomplete="off" required>
+                            <label>Name</labe1>
+                        </div>
+
+                        <div class="input-box">
+                            <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
+                            <input type="email" name="email" id="email" autocomplete="off" required>
+                            <label>Email</label>
+                        </div>
+
+                        <div class="input-box">
+                            <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+                            <input type="password" name="password" id="password" autocomplete="off" required>
+                            <label>Password</label>
+                        </div>
+
+                        <div class="input-box">
+                            <span class="icon"><ion-icon name="call-outline"></ion-icon></ion-icon></span>
+                            <input type="text" name="phone" id="phone" autocomplete="off" required>
+                            <label>Phone</label>
+                        </div>
+
+                        <div class="input-box">
+                            <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                            <input type="text" name="address" id="address" autocomplete="off" required>
+                            <label>Address</label>
+                        </div>
+
+                        <div class="input-box">
+                            <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                            <input type="password" name="pin" id="pin" autocomplete="off" required>
+                            <label>Pin</label>
+                        </div>
+
+                        <div>
+                            <input type="submit" class="btn" name="register" value="Register" required>
+                        </div>
+
+
+                    </form>
+
+                    <div class="register-link">
+                        <a href="#" class="register-link"> Already have an account?</a>
+                    </div>
+        </div>
+    </div>
+
+
