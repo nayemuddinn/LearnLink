@@ -46,6 +46,12 @@
                 <input type="text" name="Institution" id="Institution" autocomplete="off" required>
                 <label>Institution</label>
             </div>
+            <div class="rdio-btn">
+                <input type="radio" id="teacher" name="Role" value="teacher" checked>
+                <label for="teacher">Teacher</label>
+                <input type="radio" id="student" name="Role" value="student">
+                <label for="student">Student</label>
+            </div>
 
             <div>
                 <input type="submit" class="btn" name="Register" value="Register" required>
@@ -55,7 +61,7 @@
         </form>
 
         <div class="register-link">
-            <a href="#" class="register-link"> Already have an account?</a>
+            <a class="register-link" onclick="location.href='@Url.Action("login", "Login")';">Already have an account?</a>
         </div>
     </div>
 </div>

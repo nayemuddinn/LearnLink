@@ -1,8 +1,16 @@
 ﻿using LearnLink.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.Web.Mvc;
+using System.Data.SqlClient;
+using System.Web.Helpers;
+
 
 namespace LearnLink.Controllers
 {
+    
     public class LoginController : Controller
     {
         public ActionResult Login()
@@ -13,28 +21,49 @@ namespace LearnLink.Controllers
         [HttpPost]
         public ActionResult Login(User user)
         {
-            // Dummy check for demonstration
-            if (user.Email.Equals("student@gmail.com") && user.Password.Equals("1234"))
+            string connStr = "Data Source = DAREDEVIL\\SQLEXPRESS; Initial Catalog = learnlink; Integrated Security = True; TrustServerCertificate = True";
+            string role = user.Role;
+            using (SqlConnection conn = new SqlConnection(connStr))
             {
-                user.Name = "Student Name";
-                user.UserRole = "Student";
-                Session["User"] = user.Name;
-                Session["UserRole"] = user.UserRole;
-                Session["UserEmail"] = user.Email;
-                return RedirectToAction("Dashboard", "Student");
-            }
-            else if (user.Email.Equals("teacher@gmail.com") && user.Password.Equals("1234"))
-            {
-                user.Name = "Teacher Name";
-                user.UserRole = "Teacher";
-                Session["User"] = user.Name;
-                Session["UserRole"] = user.UserRole;
-                Session["UserEmail"] = user.Email;
-                return RedirectToAction("Dashboard", "Teacher");
-            }
-            else
-            {
-                ViewBag.Log = "Login Failed";
+                try
+                {
+                    conn.Open();
+                   
+                    string query = "SELECT name,password,userID FROM "+role+" WHERE Email = @Email";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Email", user.Email);
+                      
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read() && PasswordHasher.VerifyPassword(user.Password,reader["Password"].ToString()))
+                            {
+                                Session["UserRole"] = role;
+                                Session["UserName"] = reader["Name"].ToString();
+                                Session["UserID"] = reader["UserID"].ToString();
+                                Response.Write("<script>alert('Login successful!');</script>");
+                           
+                                if (role.Equals("teacher", StringComparison.OrdinalIgnoreCase))
+                                {
+                                    return RedirectToAction("Dashboard", "Dashboard");
+                                }
+                                else if (role.Equals("student", StringComparison.OrdinalIgnoreCase))
+                                {
+                                    return RedirectToAction("Dashboard", "Dashboard");
+                                }
+                            }
+                            else
+                            {
+                                Response.Write("<script>alert('Wrong credential.');</script>");
+                                return View();
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Response.Write("<script>alert('Try Again ');</script>");
+                }
             }
 
             return View();

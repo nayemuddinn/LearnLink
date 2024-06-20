@@ -190,5 +190,14 @@ header {
         color: black;
     }
 
+.rdio-btn {
+    width: 400px;
+    height: 40px;
+    margin-top:20px;
+    margin-left:10px;
+    justify-content:space-between;
+  
+}
+
 
 
