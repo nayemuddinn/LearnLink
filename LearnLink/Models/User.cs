@@ -14,5 +14,7 @@ namespace LearnLink.Models
         public string Address { get; set; }
         public string Institution { get; set; }
 
+        public string UserRole { get; set; } // new
+
     }
 }
