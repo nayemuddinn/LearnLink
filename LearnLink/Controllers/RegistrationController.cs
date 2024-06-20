@@ -33,13 +33,14 @@ namespace LearnLink.Controllers
                 try
                 {
                     string role = user.Role;
+                    string Hashpass = PasswordHasher.HashPassword(user.Password);
                     conn.Open();
                     string query = "INSERT INTO "+role+" (Name, Email, Password, Phone, Address, Institution) " +
                                    "VALUES (@Name, @Email, @Password, @Phone, @Address, @Institution)";
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@Name", user.Name);
                     cmd.Parameters.AddWithValue("@Email", user.Email);
-                    cmd.Parameters.AddWithValue("@Password", user.Password);
+                    cmd.Parameters.AddWithValue("@Password", Hashpass);
                     cmd.Parameters.AddWithValue("@Phone", user.Phone);
                     cmd.Parameters.AddWithValue("@Address", user.Address);
                     cmd.Parameters.AddWithValue("@Institution", user.Institution);
@@ -49,7 +50,7 @@ namespace LearnLink.Controllers
                 }
                 catch (Exception ex)
                 {
-                    Response.Write("<script>alert('Try again');</script>");
+                    Response.Write("<script>alert('"+ex.Message+"');</script>");
                 }
                 return View();
             }
