@@ -32,19 +32,20 @@ namespace LearnLink.Controllers
             {
                 try
                 {
-                    // Response.Write("<script>alert('Ashlo!');</script>");
+                
                     conn.Open();
-                    string query = "INSERT INTO student (Name, Email, Password, Phone, Address, Institution) VALUES('" + user.Name + "','" + user.Email + "','" + user.Password + "','" + user.Phone + "','" + user.Address + "','" + user.Institution + "')";
+                    string query = "INSERT INTO student (Name, Email, Password, Phone, Address, Institution) " +
+                                   "VALUES (@Name, @Email, @Password, @Phone, @Address, @Institution)";
                     SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("Name", user.Name);
-                    cmd.Parameters.AddWithValue("Email", user.Email);
-                    cmd.Parameters.AddWithValue("Password", user.Password);
-                    cmd.Parameters.AddWithValue("Phone", user.Phone);
-                    cmd.Parameters.AddWithValue("Address", user.Phone);
-                    cmd.Parameters.AddWithValue("Institution", user.Institution);
+                    cmd.Parameters.AddWithValue("@Name", user.Name);
+                    cmd.Parameters.AddWithValue("@Email", user.Email);
+                    cmd.Parameters.AddWithValue("@Password", user.Password);
+                    cmd.Parameters.AddWithValue("@Phone", user.Phone);
+                    cmd.Parameters.AddWithValue("@Address", user.Address);
+                    cmd.Parameters.AddWithValue("@Institution", user.Institution);
 
                     cmd.ExecuteNonQuery();
-                    Response.Write("<script>alert('Registration successful!');</script>");
+                     Response.Write("<script>alert('Registration successful!');</script>");
                 }
                 catch (Exception ex)
                 {

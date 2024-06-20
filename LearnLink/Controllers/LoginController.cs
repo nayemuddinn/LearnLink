@@ -20,6 +20,7 @@ namespace LearnLink.Controllers
         [HttpPost]
         public ActionResult Login(User user)
         {
+           
             if (user.Email.Equals("abc@gmail.com") && user.Password.Equals("1234"))
             {
                 Session["User"] = user.Name;
