@@ -1,0 +1,28 @@
+﻿@model List<Course>
+
+@{
+    ViewBag.Title = "Manage Courses";
+}
+
+<h2>Manage Courses</h2>
+
+<p>
+    @Html.ActionLink("Create New Course", "Create", "Teacher")
+</p>
+
+<table class="table">
+    <tr>
+        <th>Course Name</th>
+        <th>Actions</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.CourseName</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CourseID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.CourseID })
+            </td>
+        </tr>
+    }
+</table>

@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿// RouteConfig.cs
+
 using System.Web.Mvc;
 using System.Web.Routing;
 
@@ -13,6 +11,7 @@ namespace LearnLink
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            // Default route for home page or login page
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

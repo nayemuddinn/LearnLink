@@ -1,0 +1,19 @@
+﻿@model List<Course>
+
+@{
+    ViewBag.Title = "Available Courses";
+}
+
+<h2>Available Courses</h2>
+
+<table class="table">
+    <tr>
+        <th>Course Name</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.CourseName</td>
+        </tr>
+    }
+</table>
