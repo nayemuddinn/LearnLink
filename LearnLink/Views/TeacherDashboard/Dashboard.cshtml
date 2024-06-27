@@ -50,6 +50,7 @@
             <div class="section">
                 <h2>Your Courses</h2>
                 <ul>
+                    <a class="register-link" onclick="location.href='@Url.Action("teacherCourse", "teacherCourse")';">GO</a>
                     @foreach (var course in ViewBag.Courses)
                     {
                         <li class="dropdown">

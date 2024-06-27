@@ -1,0 +1,26 @@
+﻿
+@using LearnLink.Models;
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnLink</title>
+    <link href="@Url.Content("/Content/loginpage.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/course.css")" rel="stylesheet" />
+</head>
+<body>
+    <div class="login-wrapper">
+        <div class="form-box login">
+            <h2>Manage Courses</h2>
+            <div class="course-list">
+                <!-- Placeholder for future course items -->
+                <button class="btn course-btn" style="margin-bottom: 10px;  text-align: center;">Course 1</button>
+                <button class="btn course-btn" style="margin-bottom: 10px;  text-align: center;">Course 2</button>
+                <button class="btn course-btn" style="margin-bottom: 10px;  text-align: center;">Course 3</button>
+           </div>
+            <div class="add_course">
+                <a class="add_course-btn" onclick="location.href='@Url.Action("Create", "Courses")';">Add Courses</a>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
