@@ -1,35 +1,164 @@
-﻿@using LearnLink.Models;
+﻿@model LearnLink.Models.User
 
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LearnLink</title>
-    <link href="@Url.Content("/Content/loginpage.css")" rel="stylesheet" />
-    <link href="@Url.Content("/Content/course.css")" rel="stylesheet" />
-
+    <title>Student Dashboard - LearnLink</title>
+    <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
 </head>
 <body>
-
-
-    <div class="login-wrapper">
-        <div class="form-box login">
-            <header>
-                <h1>@Session["UserName"]</h1>
-            </header>
-            <br /> <br />
-            <h2>Manage Courses</h2>
-            <div class="course-list">
-                <!-- Placeholder for future course items -->
-                <button class="btn course-btn" style="margin-bottom: 10px; text-align: center;">Courses</button>
-                <button class="btn course-btn" style="margin-bottom: 10px; text-align: center;">Enrolled</button>
-                <button class="btn course-btn" style="margin-bottom: 10px; text-align: center;">Assessments</button>
-                <button class="btn course-btn" style="margin-bottom: 10px; text-align: center;">Grades</button>
-                <button class="btn course-btn" style="margin-bottom: 10px; text-align: center;">Progress</button>
-                <button class="btn course-btn" style="margin-bottom: 10px; text-align: center;">Profile</button>
-                <button class="btn course-btn" style="margin-bottom: 10px; text-align: center;">LogOut</button>
+    <div class="responsive-wrapper">
+        <div class="app">
+            <div class="app-header">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <ion-icon name="school-outline"></ion-icon>
+                    </div>
+                    <div class="logo-title">
+                        <span>LearnLink</span>
+                        <span>Student Dashboard</span>
+                    </div>
+                </div>
+                <div class="app-header-navigation">
+                    <!-- Add any additional navigation items here if needed -->
+                </div>
+                <div class="app-header-actions">
+                    <div class="app-header-actions-buttons">
+                        <!-- Add any header action buttons here if needed -->
+                    </div>
+                </div>
+                <div class="app-header-mobile">
+                    <!-- Add mobile-specific header items here if needed -->
+                </div>
             </div>
 
+            <div class="app-body">
+                <div class="app-body-navigation">
+                    <nav class="navigation">
+                        <a href="@Url.Action("studentCourse", "studentCourse")">
+                            <i class="icon ion-md-book"></i>
+                            <span>All Courses</span>
+                        </a>
+                        <a href="@Url.Action("enrolledCourses", "enrolledCourses")">
+                            <i class="icon ion-md-person-add"></i>
+                            <span>Enrolled Courses</span>
+                        </a>
+                        <a href="@Url.Action("giveAssessments", "giveAssessments")">
+                            <i class="icon ion-md-checkmark-circle"></i>
+                            <span>Take Assessments</span>
+                        </a>
+                        <a href="@Url.Action("seeFeedback", "seeFeedback")">
+                            <i class="icon ion-md-text"></i>
+                            <span>See Feedback</span>
+                        </a>
+                        <a href="@Url.Action("editProfile", "editProfile")">
+                            <i class="icon ion-md-person"></i>
+                            <span>Edit Profile</span>
+                        </a>
+                        <a href="@Url.Action("login", "Login")">
+                            <i class="icon ion-md-exit"></i>
+                            <span>Log Out</span>
+                        </a>
+                    </nav>
+                </div>
+
+
+
+                <div class="app-body-content">
+                    <div class="tiles">
+                        <div class="tile">
+                            <div class="tile-header">
+                                <i class="icon ion-md-book"></i>
+                                <h3>
+                                    <span>My Courses</span>
+                                    <span>Overview and actions</span>
+                                </h3>
+                            </div>
+                            <a href="@Url.Action("studentCourse", "studentCourse")">
+                                <span>Go to Courses</span>
+                                <button class="icon-button">
+                                    <i class="icon ion-md-arrow-forward"></i>
+                                </button>
+                            </a>
+                        </div>
+                        
+                        <div class="tile">
+                            <div class="tile-header">
+                                <i class="icon ion-md-person-add"></i>
+                                <h3>
+                                    <span>Enrolled Courses</span>
+                                    <span>See Enrolled courses</span>
+                                </h3>
+                            </div>
+                            <a href="@Url.Action("enrolledCourses", "enrolledCourses")">
+                                <span>See Your Courses</span>
+                                <button class="icon-button">
+                                    <i class="icon ion-md-arrow-forward"></i>
+                                </button>
+                            </a>
+                        </div>
+                        <div class="tile">
+                            <div class="tile-header">
+                                <i class="icon ion-md-checkmark-circle"></i>
+                                <h3>
+                                    <span>Quiz</span>
+                                    <span>Take Assessments</span>
+                                </h3>
+                            </div>
+                            <a href="@Url.Action("takeAssessments", "takeAssessments")">
+                                <span>Assess Yourself</span>
+                                <button class="icon-button">
+                                    <i class="icon ion-md-arrow-forward"></i>
+                                </button>
+                            </a>
+                        </div>
+                        <div class="tile">
+                            <div class="tile-header">
+                                <i class="icon ion-md-text"></i>
+                                <h3>
+                                    <span>Feedback</span>
+                                    <span>Teacher's feedback</span>
+                                </h3>
+                            </div>
+                            <a href="@Url.Action("seeFeedback", "seeFeedback")">
+                                <span>See Feedback</span>
+                                <button class="icon-button">
+                                    <i class="icon ion-md-arrow-forward"></i>
+                                </button>
+                            </a>
+                        </div>
+                        <div class="tile">
+                            <div class="tile-header">
+                                <i class="icon ion-md-person"></i>
+                                <h3>
+                                    <span>Edit Profile</span>
+                                    <span>Update your information</span>
+                                </h3>
+                            </div>
+                            <a href="@Url.Action("editProfile", "editProfile")">
+                                <span>Edit Now</span>
+                                <button class="icon-button">
+                                    <i class="icon ion-md-arrow-forward"></i>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <h1>
+                    LearnLink
+                    <small>Student Dashboard</small>
+                </h1>
+                <div>
+                    &copy; 2024 LearnLink. All rights reserved.
+                </div>
+            </div>
         </div>
     </div>
     <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
+</html>
