@@ -1,101 +1,35 @@
-﻿﻿@{
-    ViewBag.Title = "Student Dashboard";
-}
+﻿@using LearnLink.Models;
 
-<!DOCTYPE html>
-<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title</title>
-    <link href="@Url.Content("~/Content/dashboard.css")" rel="stylesheet" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $(".toggle-dark-mode").click(function () {
-                $("body").toggleClass("dark-mode");
-            });
-        });
-    </script>
+    <title>LearnLink</title>
+    <link href="@Url.Content("/Content/loginpage.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/course.css")" rel="stylesheet" />
+
 </head>
 <body>
-    <div class="dashboard-container">
-        <header>
-            <h1>Welcome, @Session["UserName"]</h1>
-            <div class="menu">
-                <div class="dropdown">
-                    <button class="dropbtn">Menu</button>
-                    <div class="dropdown-content">
-                        <a href="#">Profile</a>
-                        <a href="#">Settings</a>
-                        <a href="#">Logout</a>
-                    </div>
-                </div>
-                <div class="notifications">Notifications</div>
-                <div class="chat">Chat</div>
-                <label class="switch">
-                    <input type="checkbox" class="toggle-dark-mode">
-                    <span class="slider"></span>
-                </label>
-            </div>
-        </header>
 
-        <div class="profile-summary">
-            <h2>Profile Summary</h2>
-            <p>Name: @Session["UserName"]</p>
-            <p>Email: @Session["UserEmail"]</p>
-        </div>
 
-        <div class="content">
-            <div class="section">
-                <h2>Your Courses</h2>
-                <ul>
-                    <a class="register-link" onclick="location.href='@Url.Action("studentCourse", "studentCourse")';">GO</a>
-                    @foreach (var course in ViewBag.Courses)
-                    {
-                        <li class="dropdown">
-                            <a href="#">@course</a>
-                            <div class="dropdown-content">
-                                <a href="#">View Details</a>
-                                <a href="#">Resources</a>
-                            </div>
-                        </li>
-                    }
-                </ul>
+    <div class="login-wrapper">
+        <div class="form-box login">
+            <header>
+                <h1>@Session["UserName"]</h1>
+            </header>
+            <br /> <br />
+            <h2>Manage Courses</h2>
+            <div class="course-list">
+                <!-- Placeholder for future course items -->
+                <button class="btn course-btn" style="margin-bottom: 10px; text-align: center;">Courses</button>
+                <button class="btn course-btn" style="margin-bottom: 10px; text-align: center;">Enrolled</button>
+                <button class="btn course-btn" style="margin-bottom: 10px; text-align: center;">Assessments</button>
+                <button class="btn course-btn" style="margin-bottom: 10px; text-align: center;">Grades</button>
+                <button class="btn course-btn" style="margin-bottom: 10px; text-align: center;">Progress</button>
+                <button class="btn course-btn" style="margin-bottom: 10px; text-align: center;">Profile</button>
+                <button class="btn course-btn" style="margin-bottom: 10px; text-align: center;">LogOut</button>
             </div>
 
-            <div class="section">
-                <h2>Upcoming Assignments</h2>
-                <ul>
-                    @foreach (var assignment in ViewBag.Assignments)
-                    {
-                        <li class="dropdown">
-                            <a href="#">@assignment</a>
-                            <div class="dropdown-content">
-                                <a href="#">Details</a>
-                                <a href="#">Submit</a>
-                            </div>
-                        </li>
-                    }
-                </ul>
-            </div>
-
-            <div class="section">
-                <h2>Announcements</h2>
-                <ul>
-                    @foreach (var announcement in ViewBag.Announcements)
-                    {
-                        <li class="dropdown">
-                            <a href="#">@announcement</a>
-                            <div class="dropdown-content">
-                                <a href="#">Details</a>
-                                <a href="#">Acknowledge</a>
-                            </div>
-                        </li>
-                    }
-                </ul>
-            </div>
         </div>
     </div>
+    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
-</html>

@@ -156,6 +156,7 @@
     <Content Include="Content\Image\bg.jpg" />
     <Content Include="Content\loginpage.css" />
     <Content Include="Content\dashboard.css" />
+    <Content Include="Content\teacherDashboard.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
