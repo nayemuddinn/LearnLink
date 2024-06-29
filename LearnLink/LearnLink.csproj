@@ -120,11 +120,20 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\createCourseController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\editStudentController.cs" />
+    <Compile Include="Controllers\editteacherController.cs" />
+    <Compile Include="Controllers\enrolledCoursesController.cs" />
+    <Compile Include="Controllers\enrollStudentsController.cs" />
+    <Compile Include="Controllers\giveAssessmentsController.cs" />
+    <Compile Include="Controllers\giveFeedbackController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\Passwordhasher.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
+    <Compile Include="Controllers\reviewAssessmentsController.cs" />
+    <Compile Include="Controllers\seeFeedbackController.cs" />
     <Compile Include="Controllers\studentCourseController.cs" />
     <Compile Include="Controllers\StudentDashboardController.cs" />
     <Compile Include="Controllers\teacherCourseController.cs" />
@@ -199,6 +208,15 @@
     <Content Include="Views\teacherCourse.cshtml" />
     <Content Include="Views\teacherCourse\teacherCourse.cshtml" />
     <Content Include="Views\studentCourse\studentCourse.cshtml" />
+    <Content Include="Views\createCourse\createCourse.cshtml" />
+    <Content Include="Views\giveFeedback\giveFeedback.cshtml" />
+    <Content Include="Views\enrollStudents\enrollStudents.cshtml" />
+    <Content Include="Views\reviewAssessments\reviewAssessments.cshtml" />
+    <Content Include="Views\editteacher\editProfile.cshtml" />
+    <Content Include="Views\enrolledCourses\enrolledCourses.cshtml" />
+    <Content Include="Views\giveAssessments\giveAssessments.cshtml" />
+    <Content Include="Views\seeFeedback\seeFeedback.cshtml" />
+    <Content Include="Views\editStudent\editStudent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
