@@ -53,7 +53,7 @@
                             <i class="icon ion-md-text"></i>
                             <span>See Feedback</span>
                         </a>
-                        <a href="@Url.Action("editStudent", "editStudent")">
+                        <a href="@Url.Action("editProfile", "editStudent")">
                             <i class="icon ion-md-person"></i>
                             <span>Edit Profile</span>
                         </a>
@@ -72,57 +72,11 @@
                             <div class="tile-header">
                                 <i class="icon ion-md-book"></i>
                                 <h3>
-                                    <span>My Courses</span>
-                                    <span>Overview and actions</span>
+                                    <span>Course 1</span>
+                                    <span></span>
                                 </h3>
                             </div>
-                            <a href="@Url.Action("studentCourse", "studentCourse")">
-                                <span>Go to Courses</span>
-                                <button class="icon-button">
-                                    <i class="icon ion-md-arrow-forward"></i>
-                                </button>
-                            </a>
-                        </div>
-                        
-                        <div class="tile">
-                            <div class="tile-header">
-                                <i class="icon ion-md-person-add"></i>
-                                <h3>
-                                    <span>Enrolled Courses</span>
-                                    <span>See Enrolled courses</span>
-                                </h3>
-                            </div>
-                            <a href="@Url.Action("enrolledCourses", "enrolledCourses")">
-                                <span>See Your Courses</span>
-                                <button class="icon-button">
-                                    <i class="icon ion-md-arrow-forward"></i>
-                                </button>
-                            </a>
-                        </div>
-                        <div class="tile">
-                            <div class="tile-header">
-                                <i class="icon ion-md-checkmark-circle"></i>
-                                <h3>
-                                    <span>Quiz</span>
-                                    <span>Take Assessments</span>
-                                </h3>
-                            </div>
-                            <a href="@Url.Action("giveAssessments", "giveAssessments")">
-                                <span>Assess Yourself</span>
-                                <button class="icon-button">
-                                    <i class="icon ion-md-arrow-forward"></i>
-                                </button>
-                            </a>
-                        </div>
-                        <div class="tile">
-                            <div class="tile-header">
-                                <i class="icon ion-md-text"></i>
-                                <h3>
-                                    <span>Feedback</span>
-                                    <span>Teacher's feedback</span>
-                                </h3>
-                            </div>
-                            <a href="@Url.Action("seeFeedback", "seeFeedback")">
+                            <a href="@Url.Action("teacherCourse", "teacherCourse")">
                                 <span>See Feedback</span>
                                 <button class="icon-button">
                                     <i class="icon ion-md-arrow-forward"></i>
@@ -131,19 +85,49 @@
                         </div>
                         <div class="tile">
                             <div class="tile-header">
-                                <i class="icon ion-md-person"></i>
+                                <i class="icon ion-md-add-circle"></i>
                                 <h3>
-                                    <span>Edit Profile</span>
-                                    <span>Update your information</span>
+                                    <span>Couse 2</span>
+                                    <span></span>
                                 </h3>
                             </div>
-                            <a href="@Url.Action("editStudent", "editStudent")">
-                                <span>Edit Now</span>
+                            <a href="@Url.Action("createCourse", "createCourse")">
+                                <span>See Feedback</span>
                                 <button class="icon-button">
                                     <i class="icon ion-md-arrow-forward"></i>
                                 </button>
                             </a>
                         </div>
+                        <div class="tile">
+                            <div class="tile-header">
+                                <i class="icon ion-md-person-add"></i>
+                                <h3>
+                                    <span>Course 3</span>
+                                    <span></span>
+                                </h3>
+                            </div>
+                            <a href="@Url.Action("enrollStudents", "enrollStudents")">
+                                <span>See Feedback</span>
+                                <button class="icon-button">
+                                    <i class="icon ion-md-arrow-forward"></i>
+                                </button>
+                            </a>
+
+                        </div>
+                        <div class="tile">
+                            <div class="tile-header">
+                                <i class="icon ion-md-person-add"></i>
+                                <h3>
+                                    <span>Back</span>
+
+                                </h3>
+                            </div>
+                            <a href="@Url.Action("Dashboard", "StudentDashboard")">
+                            </a>
+
+                        </div>
+
+
                     </div>
                 </div>
             </div>

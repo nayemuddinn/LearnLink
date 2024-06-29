@@ -26,7 +26,7 @@ namespace LearnLink.Controllers
         [HttpPost]
         public ActionResult reg(User user)
         {
-            string connStr = "Data Source = DAREDEVIL\\SQLEXPRESS; Initial Catalog = learnlink; Integrated Security = True; TrustServerCertificate = True";
+            string connStr = "Data Source=DESKTOP-E4E4R1B\\SQLEXPRESS02;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
          
             using (SqlConnection conn = new SqlConnection(connStr))
             {
