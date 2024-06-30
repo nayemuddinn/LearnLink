@@ -26,11 +26,11 @@
                 </div>
                 <div class="app-header-actions">
                     <div class="app-header-actions-buttons">
-                        <!-- Add any header action buttons here if needed -->
+                        <h1>@HttpContext.Current.Session["UserName"]</h1>
                     </div>
                 </div>
                 <div class="app-header-mobile">
-                    <!-- Add mobile-specific header items here if needed -->
+                    <h1>@HttpContext.Current.Session["UserName"]</h1>
                 </div>
             </div>
 
@@ -81,7 +81,7 @@
                                 </h3>
                             </div>
                             <a href="@Url.Action("teacherCourse", "teacherCourse")">
-                                <span>Go to Course</span>
+                                <span>Review Course</span>
                                 <button class="icon-button">
                                     <i class="icon ion-md-arrow-forward"></i>
                                 </button>
@@ -96,7 +96,7 @@
                                 </h3>
                             </div>
                             <a href="@Url.Action("createCourse", "createCourse")">
-                                <span>Go to Course</span>
+                                <span>Review Course</span>
                                 <button class="icon-button">
                                     <i class="icon ion-md-arrow-forward"></i>
                                 </button>
@@ -111,7 +111,7 @@
                                 </h3>
                             </div>
                             <a href="@Url.Action("enrollStudents", "enrollStudents")">
-                                <span>Go To Course</span>
+                                <span>Review Course</span>
                                 <button class="icon-button">
                                     <i class="icon ion-md-arrow-forward"></i>
                                 </button>
@@ -123,7 +123,7 @@
                                 <i class="icon ion-md-person-add"></i>
                                 <h3>
                                     <span>Back</span>
-                                   
+
                                 </h3>
                             </div>
                             <a href="@Url.Action("Dashboard", "TeacherDashboard")">
