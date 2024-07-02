@@ -119,14 +119,23 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ApplicationDbContext.cs" />
+
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\editStudentController.cs" />
+    <Compile Include="Controllers\editteacherController.cs" />
+    <Compile Include="Controllers\enrolledCoursesController.cs" />
+    <Compile Include="Controllers\enrollStudentsController.cs" />
+    <Compile Include="Controllers\giveAssessmentsController.cs" />
+    <Compile Include="Controllers\giveFeedbackController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\Passwordhasher.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
+
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\StudentDashboardController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
+
     <Compile Include="Controllers\TeacherDashboardController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -152,9 +161,11 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\course.css" />
     <Content Include="Content\Image\bg.jpg" />
     <Content Include="Content\loginpage.css" />
     <Content Include="Content\dashboard.css" />
+    <Content Include="Content\teacherDashboard.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -194,8 +205,10 @@
     <Content Include="Views\Dashboard\Dashboard.cshtml" />
     <Content Include="Views\TeacherDashboard\Dashboard.cshtml" />
     <Content Include="Views\StudentDashboard\Dashboard.cshtml" />
+
     <Content Include="Views\Teacher\Courses.cshtml" />
     <Content Include="Views\Student\Courses.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

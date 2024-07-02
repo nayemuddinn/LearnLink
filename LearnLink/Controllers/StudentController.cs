@@ -12,8 +12,10 @@ namespace LearnLink.Controllers
         // GET: Student/Courses
         public ActionResult Courses()
         {
+
             var courses = db.Courses.ToList();
             return View(courses);
+
         }
 
         // Other actions for students can be added here
