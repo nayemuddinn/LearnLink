@@ -120,6 +120,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Content\DBconnection.cs" />
     <Compile Include="Controllers\createCourseController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\editStudentController.cs" />
@@ -134,6 +135,7 @@
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Controllers\reviewAssessmentsController.cs" />
     <Compile Include="Controllers\seeFeedbackController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\studentCourseController.cs" />
     <Compile Include="Controllers\StudentDashboardController.cs" />
     <Compile Include="Controllers\teacherCourseController.cs" />

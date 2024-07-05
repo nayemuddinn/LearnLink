@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.SqlClient;
 using System.Web.Helpers;
+using LearnLink.Content;
 
 
 namespace LearnLink.Controllers
@@ -21,7 +22,7 @@ namespace LearnLink.Controllers
         [HttpPost]
         public ActionResult Login(User user)
         {
-            string connStr = "Data Source=DESKTOP-E4E4R1B\\SQLEXPRESS02;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
+            string connStr = DBconnection.connStr;
             string role = user.Role;
             using (SqlConnection conn = new SqlConnection(connStr))
             {

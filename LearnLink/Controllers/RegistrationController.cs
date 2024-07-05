@@ -1,4 +1,5 @@
-﻿using LearnLink.Models;
+﻿using LearnLink.Content;
+using LearnLink.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -26,8 +27,8 @@ namespace LearnLink.Controllers
         [HttpPost]
         public ActionResult reg(User user)
         {
-            string connStr = "Data Source=DESKTOP-E4E4R1B\\SQLEXPRESS02;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
-         
+            string connStr = DBconnection.connStr;
+
             using (SqlConnection conn = new SqlConnection(connStr))
             {
                 try
