@@ -42,7 +42,7 @@ namespace LearnLink.Controllers
                                 Session["UserRole"] = role;
                                 Session["UserName"] = reader["Name"].ToString();
                                 Session["UserEmail"] = user.Email;
-                                Session["UserID"] = reader["UserID"].ToString();
+                                Session["UserID"] = reader["UserID"];
                                 Response.Write("<script>alert('Login successful!');</script>");
 
                                 if (role.Equals("teacher", StringComparison.OrdinalIgnoreCase))
