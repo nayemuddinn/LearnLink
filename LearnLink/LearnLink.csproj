@@ -8,7 +8,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{29925A29-6C88-410F-97DA-4E779AFBC70D}</ProjectGuid>
+    <ProjectGuid>{61248A00-EA0A-4E85-8B1E-A2345CE96521}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -18,7 +18,7 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44397</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -123,8 +123,8 @@
     <Compile Include="Content\DBconnection.cs" />
     <Compile Include="Controllers\createCourseController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
-    <Compile Include="Controllers\editStudentController.cs" />
-    <Compile Include="Controllers\editteacherController.cs" />
+    <Compile Include="Controllers\editStudentProfileController.cs" />
+    <Compile Include="Controllers\editteacherProfileController.cs" />
     <Compile Include="Controllers\enrolledCoursesController.cs" />
     <Compile Include="Controllers\enrollStudentsController.cs" />
     <Compile Include="Controllers\giveAssessmentsController.cs" />
@@ -164,11 +164,9 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\course.css" />
+    <Content Include="Content\dashboard.css" />
     <Content Include="Content\Image\bg.jpg" />
     <Content Include="Content\loginpage.css" />
-    <Content Include="Content\dashboard.css" />
-    <Content Include="Content\teacherCourse.css" />
-    <Content Include="Content\teacherDashboard.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -202,24 +200,20 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\index.cshtml" />
-    <Content Include="Views\Login\login.cshtml" />
-    <Content Include="Views\registration\reg.cshtml" />
-    <Content Include="Views\Dashboard\Dashboard.cshtml" />
-    <Content Include="Views\TeacherDashboard\Dashboard.cshtml" />
-    <Content Include="Views\StudentDashboard\Dashboard.cshtml" />
-    <Content Include="Views\teacherCourse.cshtml" />
-    <Content Include="Views\teacherCourse\teacherCourse.cshtml" />
-    <Content Include="Views\studentCourse\studentCourse.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\createCourse\createCourse.cshtml" />
-    <Content Include="Views\giveFeedback\giveFeedback.cshtml" />
-    <Content Include="Views\enrollStudents\enrollStudents.cshtml" />
-    <Content Include="Views\reviewAssessments\reviewAssessments.cshtml" />
-    <Content Include="Views\editteacher\editProfile.cshtml" />
+    <Content Include="Views\editStudentProfile\editStudentProfile.cshtml" />
+    <Content Include="Views\editteacherProfile\editteacherProfile.cshtml" />
     <Content Include="Views\enrolledCourses\enrolledCourses.cshtml" />
+    <Content Include="Views\enrollStudents\enrollStudents.cshtml" />
     <Content Include="Views\giveAssessments\giveAssessments.cshtml" />
+    <Content Include="Views\giveFeedback\giveFeedback.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Registration\reg.cshtml" />
     <Content Include="Views\seeFeedback\seeFeedback.cshtml" />
-    <Content Include="Views\editStudent\editStudent.cshtml" />
+    <Content Include="Views\StudentDashboard\Dashboard.cshtml" />
+    <Content Include="Views\teacherCourse\teacherCourse.cshtml" />
+    <Content Include="Views\TeacherDashboard\Dashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -267,9 +261,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>50255</DevelopmentServerPort>
+          <DevelopmentServerPort>51505</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:50255/</IISUrl>
+          <IISUrl>https://localhost:44397/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

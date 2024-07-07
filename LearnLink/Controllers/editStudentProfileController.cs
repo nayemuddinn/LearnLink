@@ -6,10 +6,10 @@ using System.Web.Mvc;
 
 namespace LearnLink.Controllers
 {
-    public class editteacherController : Controller
+    public class editStudentProfileController : Controller
     {
-        // GET: editteacher
-        public ActionResult editProfile()
+        // GET: editStudent
+        public ActionResult editStudentProfile()
         {
             return View();
         }

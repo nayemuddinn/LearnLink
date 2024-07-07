@@ -7,7 +7,7 @@ namespace LearnLink.Controllers
 {
     public class StudentController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        //private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Student/Courses
         public ActionResult Courses()
@@ -20,10 +20,10 @@ namespace LearnLink.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
+           /* if (disposing)
             {
                 db.Dispose();
-            }
+            }*/
             base.Dispose(disposing);
         }
     }

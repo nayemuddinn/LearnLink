@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34814.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearnLink", "LearnLink\LearnLink.csproj", "{29925A29-6C88-410F-97DA-4E779AFBC70D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearnLink", "LearnLink\LearnLink.csproj", "{61248A00-EA0A-4E85-8B1E-A2345CE96521}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{29925A29-6C88-410F-97DA-4E779AFBC70D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{29925A29-6C88-410F-97DA-4E779AFBC70D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{29925A29-6C88-410F-97DA-4E779AFBC70D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{29925A29-6C88-410F-97DA-4E779AFBC70D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61248A00-EA0A-4E85-8B1E-A2345CE96521}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61248A00-EA0A-4E85-8B1E-A2345CE96521}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61248A00-EA0A-4E85-8B1E-A2345CE96521}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61248A00-EA0A-4E85-8B1E-A2345CE96521}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {C566FAF0-A936-4DB8-A098-142B258E92CB}
+		SolutionGuid = {01F7BA82-B213-4A47-B2DD-A14B161D589F}
 	EndGlobalSection
 EndGlobal
