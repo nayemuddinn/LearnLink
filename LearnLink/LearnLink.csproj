@@ -121,6 +121,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Content\DBconnection.cs" />
+    <Compile Include="Controllers\courseMaterialsController.cs" />
     <Compile Include="Controllers\createCourseController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\editStudentProfileController.cs" />
@@ -138,12 +139,13 @@
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\studentCourseController.cs" />
     <Compile Include="Controllers\StudentDashboardController.cs" />
-    <Compile Include="Controllers\teacherCourseController.cs" />
+    <Compile Include="Controllers\ManageCourseController.cs" />
     <Compile Include="Controllers\TeacherDashboardController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\CourseMaterials.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -213,11 +215,16 @@
     <Content Include="Views\Registration\reg.cshtml" />
     <Content Include="Views\seeFeedback\seeFeedback.cshtml" />
     <Content Include="Views\StudentDashboard\Dashboard.cshtml" />
-    <Content Include="Views\teacherCourse\teacherCourse.cshtml" />
+    <Content Include="Views\ManageCourse\ManageCourse.cshtml" />
     <Content Include="Views\TeacherDashboard\Dashboard.cshtml" />
+    <Content Include="Views\courseMaterials\CourseMaterials.cshtml" />
+    <Content Include="Views\ManageCourse\ShowCourseMaterials.cshtml" />
+    <Content Include="Views\ManageCourse\ViewMaterial.cshtml" />
+    <Content Include="Views\ManageCourse\DownloadMaterial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="files\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
