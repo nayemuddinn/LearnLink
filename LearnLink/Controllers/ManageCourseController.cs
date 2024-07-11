@@ -74,5 +74,41 @@ namespace LearnLink.Controllers
 
             return View(materials);
         }
+        public ActionResult ViewMaterial(int fileId)
+        {
+            CourseMaterials material = null;
+
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                string query = "SELECT FileID, CourseID, Name, ContentType, Data FROM CourseMaterials WHERE FileID = @FileID";
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("FileID", fileId);
+                    con.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            material = new CourseMaterials
+                            {
+                                FileID = reader["FileID"] != DBNull.Value ? Convert.ToInt32(reader["FileID"]) : 0,
+                                CourseID = reader["CourseID"] != DBNull.Value ? Convert.ToInt32(reader["CourseID"]) : 0,
+                                Name = reader["Name"] != DBNull.Value ? reader["Name"].ToString() : "No Name",
+                                ContentType = reader["ContentType"] != DBNull.Value ? reader["ContentType"].ToString() : "Unknown",
+                                Data = reader["Data"] != DBNull.Value ? (byte[])reader["Data"] : null
+                            };
+                        }
+                    }
+                    con.Close();
+                }
+            }
+
+            if (material == null)
+            {
+                return HttpNotFound();
+            }
+
+            return File(material.Data, material.ContentType, material.Name);
+        }
     }
 }

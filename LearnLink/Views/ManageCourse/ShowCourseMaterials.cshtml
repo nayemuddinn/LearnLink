@@ -82,6 +82,12 @@
                                             <span><ion-icon name="information-circle-outline"></ion-icon> Content Type: @material.ContentType</span><br />
                                             <span><ion-icon name="calendar-outline"></ion-icon> Upload Date: @material.UploadDate.ToString("yyyy-MM-dd")</span>
                                         </h4>
+                                        <a href="@Url.Action("ViewMaterial", "ManageCourse", new { fileId = material.FileID })">
+                                            <span>View Material</span>
+                                            <button class="icon-button">
+                                                <i class="icon ion-md-arrow-forward"></i>
+                                            </button>
+                                        </a>
                                     </div>
                                 </div>
                             }
