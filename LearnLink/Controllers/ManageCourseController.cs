@@ -9,15 +9,16 @@ namespace LearnLink.Controllers
 {
     public class ManageCourseController : Controller
     {
+
         public ActionResult ManageCourse()
         {
-            int teacherID = Convert.ToInt32(Session["UserID"]); 
-            List<CourseMaterials> courses = new List<CourseMaterials>();
+            int teacherID = (int)Session["UserID"];
+            List<Course> courses = new List<Course>();
 
             string constr = DBconnection.connStr;
             using (SqlConnection con = new SqlConnection(constr))
             {
-                string query = "SELECT CourseID, Name, ContentType, UploadDate FROM courseMaterials WHERE TeacherID = @TeacherID";
+                string query = "SELECT CourseID, CourseName FROM Courses WHERE TeacherID = @TeacherID";
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
                     cmd.Parameters.AddWithValue("@TeacherID", teacherID);
@@ -26,12 +27,10 @@ namespace LearnLink.Controllers
                     {
                         while (reader.Read())
                         {
-                            courses.Add(new CourseMaterials
+                            courses.Add(new Course
                             {
-                                CourseID = Convert.ToInt32(reader["CourseID"]),
-                                Name = reader["Name"].ToString(),
-                                ContentType = reader["ContentType"].ToString(),
-                                UploadDate = Convert.ToDateTime(reader["UploadDate"])
+                                CourseID = reader["CourseID"] != DBNull.Value ? Convert.ToInt32(reader["CourseID"]) : 0,
+                                CourseName = reader["CourseName"] != DBNull.Value ? reader["CourseName"].ToString() : "No Name"
                             });
                         }
                     }
@@ -39,7 +38,10 @@ namespace LearnLink.Controllers
                 }
             }
 
-            return View(courses);
+            return View(courses); 
         }
+
+
     }
-    }
+}
+  
