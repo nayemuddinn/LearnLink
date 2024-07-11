@@ -49,10 +49,27 @@ namespace LearnLink.Controllers
 
                                 string constr = DBconnection.connStr;
 
-   
-                                using (SqlConnection con = new SqlConnection(constr))
+                            bool courseExists = false;
+                            using (SqlConnection con = new SqlConnection(constr))
+                            {
+                                string checkQuery = "SELECT COUNT(1) FROM Courses WHERE CourseID = @CourseID";
+                                using (SqlCommand cmd = new SqlCommand(checkQuery, con))
                                 {
-       
+                                    cmd.Parameters.AddWithValue("@CourseID", courseID);
+                                    con.Open();
+                                    courseExists = (int)cmd.ExecuteScalar() > 0;
+                                    con.Close();
+                                }
+                            }
+
+                            if (!courseExists)
+                            {
+                                Response.Write("<script>alert('No Courses Found!');</script>");         
+                                return View();
+                            }
+
+                            using (SqlConnection con = new SqlConnection(constr))
+                                {
                                     string query = "INSERT INTO courseMaterials (CourseID, TeacherID, Name, ContentType, Data, UploadDate) VALUES (@CourseID, @TeacherID, @Name, @ContentType, @Data, @UploadDate)";
 
                   
