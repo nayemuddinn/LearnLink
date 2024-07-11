@@ -139,7 +139,7 @@
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\studentCourseController.cs" />
     <Compile Include="Controllers\StudentDashboardController.cs" />
-    <Compile Include="Controllers\teacherCourseController.cs" />
+    <Compile Include="Controllers\ManageCourseController.cs" />
     <Compile Include="Controllers\TeacherDashboardController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -215,7 +215,7 @@
     <Content Include="Views\Registration\reg.cshtml" />
     <Content Include="Views\seeFeedback\seeFeedback.cshtml" />
     <Content Include="Views\StudentDashboard\Dashboard.cshtml" />
-    <Content Include="Views\teacherCourse\teacherCourse.cshtml" />
+    <Content Include="Views\ManageCourse\ManageCourse.cshtml" />
     <Content Include="Views\TeacherDashboard\Dashboard.cshtml" />
     <Content Include="Views\courseMaterials\CourseMaterials.cshtml" />
   </ItemGroup>

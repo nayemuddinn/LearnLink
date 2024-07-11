@@ -1,11 +1,11 @@
-﻿@model LearnLink.Models.User
+﻿@model List<LearnLink.Models.CourseMaterials>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teacher Dashboard - LearnLink</title>
+    <title>Manage Courses - LearnLink</title>
     <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
 </head>
 <body>
@@ -37,7 +37,7 @@
             <div class="app-body">
                 <div class="app-body-navigation">
                     <nav class="navigation">
-                        <a href="@Url.Action("teacherCourse", "teacherCourse")">
+                        <a href="@Url.Action("ManageCourse", "ManageCourse")">
                             <i class="icon ion-md-book"></i>
                             <span>Manage Courses</span>
                         </a>
@@ -68,81 +68,27 @@
                     </nav>
                 </div>
 
-
-
                 <div class="app-body-content">
                     <div class="tiles">
-                        <div class="tile">
-                            <div class="tile-header">
-                                <i class="icon ion-md-book"></i>
-                                <h3>
-                                    <span>Course 1</span>
-                                    <span></span>
-                                </h3>
+                        @foreach (var course in Model)
+                        {
+                            <div class="tile">
+                                <div class="tile-header">
+                                    <i class="icon ion-md-book"></i>
+                                    <h3>
+                                        <span>@course.Name</span>
+                                        <span>Uploaded on @course.UploadDate.ToString("MM/dd/yyyy")</span>
+                                    </h3>
+                                </div>
+                                <a href="@Url.Action("teacherCourse", "teacherCourse", new { courseId = course.CourseID })">
+                                    <span>Courses</span>
+                                    <button class="icon-button">
+                                        <i class="icon ion-md-arrow-forward"></i>
+                                    </button>
+                                </a>
                             </div>
-                            <a href="@Url.Action("teacherCourse", "teacherCourse")">
-                                <span>Review Course</span>
-                                <button class="icon-button">
-                                    <i class="icon ion-md-arrow-forward"></i>
-                                </button>
-                            </a>
-                        </div>
-                        <div class="tile">
-                            <div class="tile-header">
-                                <i class="icon ion-md-add-circle"></i>
-                                <h3>
-                                    <span>Couse 2</span>
-                                    <span></span>
-                                </h3>
-                            </div>
-                            <a href="@Url.Action("createCourse", "createCourse")">
-                                <span>Review Course</span>
-                                <button class="icon-button">
-                                    <i class="icon ion-md-arrow-forward"></i>
-                                </button>
-                            </a>
-                        </div>
-                        <div class="tile">
-                            <div class="tile-header">
-                                <i class="icon ion-md-person-add"></i>
-                                <h3>
-                                    <span>Course 3</span>
-                                    <span></span>
-                                </h3>
-                            </div>
-                            <a href="@Url.Action("enrollStudents", "enrollStudents")">
-                                <span>Review Course</span>
-                                <button class="icon-button">
-                                    <i class="icon ion-md-arrow-forward"></i>
-                                </button>
-                            </a>
-
-                        </div>
-                        <div class="tile">
-                            <div class="tile-header">
-                                <i class="icon ion-md-person-add"></i>
-                                <h3>
-                                    <span>Back</span>
-
-                                </h3>
-                            </div>
-                            <a href="@Url.Action("Dashboard", "TeacherDashboard")">
-                            </a>
-
-                        </div>
-
-
+                        }
                     </div>
-                </div>
-            </div>
-
-            <div class="footer">
-                <h1>
-                    LearnLink
-                    <small>Teacher Dashboard</small>
-                </h1>
-                <div>
-                    &copy; 2024 LearnLink. All rights reserved.
                 </div>
             </div>
         </div>
