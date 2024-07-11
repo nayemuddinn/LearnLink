@@ -62,7 +62,7 @@
                             <i class="icon ion-md-text"></i>
                             <span>Provide Feedback</span>
                         </a>
-                        <a href="@Url.Action("editProfile", "editteacher")">
+                        <a href="@Url.Action("editteacherProfile", "editteacherProfile")">
                             <i class="icon ion-md-person"></i>
                             <span>Edit Profile</span>
                         </a>
@@ -93,9 +93,9 @@
                                         <a href="@Url.Action("ViewMaterial", "ManageCourse", new { fileId = material.FileID })" class="btn btn-view">
                                             <span>View</span>
                                         </a>
-                                       @* <a href="@Url.Action("DownloadMaterial", "ManageCourse", new { fileId = material.FileID })" class="btn btn-download">
-                                            <span>Download</span>
-                                        </a>*@
+                                        @* <a href="@Url.Action("DownloadMaterial", "ManageCourse", new { fileId = material.FileID })" class="btn btn-download">
+                                        <span>Download</span>
+                                    </a>*@
                                     </div>
                                 </div>
                             }
@@ -112,6 +112,18 @@
                             </div>
                         }
                     </div>
+                </div>
+            </div>
+            <div class="footer">
+
+                <br /><br />
+
+                <h1>
+                    LearnLink
+                    <small>Teacher Dashboard</small>
+                </h1>
+                <div>
+                    &copy; 2024 LearnLink. All rights reserved.
                 </div>
             </div>
         </div>
