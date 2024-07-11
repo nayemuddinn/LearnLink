@@ -108,7 +108,10 @@ namespace LearnLink.Controllers
                 return HttpNotFound();
             }
 
-            return File(material.Data, material.ContentType, material.Name);
+            string contentType = material.ContentType;
+
+            Response.AppendHeader("Content-Disposition", "inline; filename=" + material.Name);
+            return File(material.Data, contentType);
         }
     }
 }
