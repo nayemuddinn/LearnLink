@@ -218,6 +218,7 @@
     <Content Include="Views\ManageCourse\ManageCourse.cshtml" />
     <Content Include="Views\TeacherDashboard\Dashboard.cshtml" />
     <Content Include="Views\courseMaterials\CourseMaterials.cshtml" />
+    <Content Include="Views\ManageCourse\ShowCourseMaterials.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
