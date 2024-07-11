@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teacher Dashboard - LearnLink</title>
-    <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
-    <link href="@Url.Content("/Content/teacherCourse.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/CourseManage.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/textfield.css")" rel="stylesheet" />
+
 </head>
 <div class="responsive-wrapper">
     <div class="app">
@@ -71,41 +72,44 @@
             </div>
 
 
+            <div class="auth-container">
+                <div class="login-wrapper">
+                    <div class="form-box login">
+                        <form action="" method="post">
+                            <div class="input-box">
+                                <input type="text" name="CourseName" required>
+                                <label for="Course">Course Name</label>
+                            </div>
+                            <div class="input-box">
+                                <input type="text" class="input-box" name="CourseDescription" required>
+                                <label for="Course">Course Description</label>
+                            </div>
 
-            <div class="login-wrapper">
-                <div class="form-box login">
-                    <form action="" method="post">
-                        <div class="input-box">
-                            <input type="text" name="CourseName" required>
-                            <label for="Course">Course Name</label>
-                        </div>
-                        <div class="input-box">
-                            <input type="text" class="input-box" name="CourseDescription" required>
-                            <label for="Course">Course Description</label>
-                        </div>
+                            <div class="input-box">
+                                <input type="text" class="input-box" name="CoursePrerequisite" required>
+                                <label for="Course">Course Prerequisite</label>
+                            </div>
 
-                        <div class="input-box">
-                            <input type="text" class="input-box" name="CoursePrerequisite" required>
-                            <label for="Course">Course Prerequisite</label>
-                        </div>
+                            <div class="input-box">
+                                <input type="number" class="input-box" name="CourseFee" required>
+                                <label for="Course">Course Fee</label>
+                            </div>
 
-                        <div class="input-box">
-                            <input type="number" class="input-box" name="CourseFee" required>
-                            <label for="Course">Course Fee</label>
-                        </div>
+                            <div class="button-container text-center">
+                                <input type="submit" class="btn" name="create" value="Create" required>
+                                <button type="button" class="btn btn-back" onclick="window.location.href='/TeacherDashboard/Dashboard'">Back</button>
+                            </div>
 
-                        <div>
-                            <input type="submit" class="btn" name="create" value="Create" required>
-                        </div>
-                        <button type="button" class="btn btn-back" onclick="window.location.href='/TeacherDashboard/Dashboard'">Back</button>
-                    </form>
 
+
+                        </form>
+
+
+                    </div>
+                </div>
 
                 </div>
             </div>
-
-
-        </div>
         <div class="footer">
 
             <br /><br />
