@@ -121,6 +121,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Content\DBconnection.cs" />
+    <Compile Include="Controllers\courseMaterialsController.cs" />
     <Compile Include="Controllers\createCourseController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\editStudentProfileController.cs" />
@@ -144,7 +145,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Course.cs" />
-    <Compile Include="Models\CourseMaterial.cs" />
+    <Compile Include="Models\CourseMaterials.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -216,9 +217,11 @@
     <Content Include="Views\StudentDashboard\Dashboard.cshtml" />
     <Content Include="Views\teacherCourse\teacherCourse.cshtml" />
     <Content Include="Views\TeacherDashboard\Dashboard.cshtml" />
+    <Content Include="Views\courseMaterials\CourseMaterials.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="files\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
