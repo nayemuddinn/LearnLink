@@ -80,15 +80,15 @@
                                         <h4>
                                             <span><ion-icon name="book-outline"></ion-icon> Course Name: @course.CourseName</span><br />
                                             <span><ion-icon name="id-card-outline"></ion-icon> Course ID: @course.CourseID</span><br />
-                                            <span><ion-icon name="alarm-outline"></ion-icon> Created On: @course.CourseCreateDate</span>
+                                            <span><ion-icon name="alarm-outline"></ion-icon> Created On: @course.CourseCreateDate</span><br />
                                         </h4>
-                                        <a href="@Url.Action("ShowCourseMaterials", "ManageCourse", new { courseid = course.CourseID })">
-                                            <span>View Materials</span>
-                                            <button class="icon-button">
-                                                <i class="icon ion-md-arrow-forward"></i>
-                                            </button>
-                                        </a>
                                     </div>
+                                    <a href="@Url.Action("ShowCourseMaterials", "ManageCourse", new { courseid = course.CourseID })">
+                                        <br />  <span>View Materials</span>
+                                        <button class="icon-button">
+                                            <i class="icon ion-md-arrow-forward"></i>
+                                        </button>
+                                    </a>
                                 </div>
                             }
                         }
