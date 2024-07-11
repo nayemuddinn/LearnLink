@@ -18,7 +18,7 @@ namespace LearnLink.Controllers
             string constr = DBconnection.connStr;
             using (SqlConnection con = new SqlConnection(constr))
             {
-                string query = "SELECT CourseID, CourseName FROM Courses WHERE TeacherID = @TeacherID";
+                string query = "SELECT CourseID, CourseName,CourseCreateDate FROM Courses WHERE TeacherID = @TeacherID";
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
                     cmd.Parameters.AddWithValue("@TeacherID", teacherID);
@@ -30,7 +30,8 @@ namespace LearnLink.Controllers
                             courses.Add(new Course
                             {
                                 CourseID = reader["CourseID"] != DBNull.Value ? Convert.ToInt32(reader["CourseID"]) : 0,
-                                CourseName = reader["CourseName"] != DBNull.Value ? reader["CourseName"].ToString() : "No Name"
+                                CourseName = reader["CourseName"] != DBNull.Value ? reader["CourseName"].ToString() : "No Name",
+                                CourseCreateDate = reader["CourseCreateDate"] != DBNull.Value ? Convert.ToDateTime(reader["CourseCreateDate"]) : DateTime.MinValue
                             });
                         }
                     }
