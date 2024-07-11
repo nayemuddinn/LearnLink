@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Courses - LearnLink</title>
     <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
+
 </head>
 <body>
     <div class="responsive-wrapper">
@@ -82,12 +83,15 @@
                                             <span><ion-icon name="information-circle-outline"></ion-icon> Content Type: @material.ContentType</span><br />
                                             <span><ion-icon name="calendar-outline"></ion-icon> Upload Date: @material.UploadDate.ToString("yyyy-MM-dd")</span>
                                         </h4>
-                                        <a href="@Url.Action("ViewMaterial", "ManageCourse", new { fileId = material.FileID })">
-                                            <span>View Material</span>
-                                            <button class="icon-button">
-                                                <i class="icon ion-md-arrow-forward"></i>
-                                            </button>
+
+                                    </div>
+                                    <div>
+                                        <a href="@Url.Action("ViewMaterial", "ManageCourse", new { fileId = material.FileID })" class="btn btn-view">
+                                            <span>View</span>
                                         </a>
+                                       @* <a href="@Url.Action("DownloadMaterial", "ManageCourse", new { fileId = material.FileID })" class="btn btn-download">
+                                            <span>Download</span>
+                                        </a>*@
                                     </div>
                                 </div>
                             }

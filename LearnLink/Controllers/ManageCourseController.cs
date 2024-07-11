@@ -74,10 +74,10 @@ namespace LearnLink.Controllers
 
             return View(materials);
         }
-        public ActionResult ViewMaterial(int fileId)
+
+        public CourseMaterials getMaterial(int fileId)
         {
             CourseMaterials material = null;
-
             using (SqlConnection con = new SqlConnection(constr))
             {
                 string query = "SELECT FileID, CourseID, Name, ContentType, Data FROM CourseMaterials WHERE FileID = @FileID";
@@ -103,6 +103,14 @@ namespace LearnLink.Controllers
                 }
             }
 
+            return material;
+        }
+
+        public ActionResult ViewMaterial(int fileId)
+        {
+            CourseMaterials material = getMaterial(fileId);
+
+
             if (material == null)
             {
                 return HttpNotFound();
@@ -112,6 +120,13 @@ namespace LearnLink.Controllers
 
             Response.AppendHeader("Content-Disposition", "inline; filename=" + material.Name);
             return File(material.Data, contentType);
+
+           
+        }
+        public ActionResult DownloadMaterial(int fileId)
+        {
+            CourseMaterials material = getMaterial(fileId);
+            return File(material.Data, material.ContentType, material.Name);
         }
     }
 }
