@@ -31,9 +31,6 @@ namespace LearnLink.Controllers
                 {
                     string filename = Path.GetFileName(fileUpload.FileName);
                     string contentType = fileUpload.ContentType;
-
-                    if (Path.GetExtension(filename).ToLower() == ".pdf")
-                    {
                         using (Stream fs = fileUpload.InputStream)
                         {
                             using (BinaryReader br = new BinaryReader(fs))
@@ -44,7 +41,7 @@ namespace LearnLink.Controllers
                                 {
                                     CourseID = courseID,
                                     Name = filename,
-                                    TeacherID = Session["UserID"],
+                                    TeacherID = (int)Session["UserID"],
                                     ContentType = contentType,
                                     Data = bytes,
                                     UploadDate = DateTime.Now
@@ -71,24 +68,26 @@ namespace LearnLink.Controllers
                                         con.Open();
                                         cmd.ExecuteNonQuery();
                                         con.Close();
-                                    }
+                                        Response.Write("<script>alert('File Uploaded Successfully');</script>");
+                                }
                                 }
                             }
                         }
-                        Response.Write("<script>alert('File Uploaded Successfully');</script>");
-                    }
-                    else
-                    {  Response.Write("<script>alert('Please Choose a File');</script>");
-                    }
+                      
+                 
+                }
+                catch (SqlException sqlEx)
+                {
+                    Response.Write("<script>alert('Error uploading file to the database. Please try again');</script>");
                 }
                 catch (Exception ex)
                 {
-                    Response.Write("<script>alert('"+"AShe na "+ex.Message+"');</script>");
+                    Response.Write("<script>alert('File Uploading Failed, Try Again !');</script>");
                 }
             }
             else
             {
-                Response.Write("<script>alert('Uploadddd Failed');</script>");
+                Response.Write("<script>alert('Upload a valid File');</script>");
   
             }
 
