@@ -1,0 +1,123 @@
+﻿.clicktile {
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: var(--c-olive-500);
+    color: var(--c-gray-900);
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    transition: 0.25s ease;
+}
+
+    .clicktile:hover {
+        transform: translateY(-5px);
+    }
+
+    .clicktile:focus-within {
+        box-shadow: 0 0 0 2px var(--c-gray-800), 0 0 0 4px var(--c-olive-500);
+    }
+
+    .clicktile:nth-child(2) {
+        background-color: var(--c-green-500);
+    }
+
+        .clicktile:nth-child(2):focus-within {
+            box-shadow: 0 0 0 2px var(--c-gray-800), 0 0 0 4px var(--c-green-500);
+        }
+
+    .clicktile:nth-child(3) {
+        background-color: var(--c-gray-300);
+    }
+
+        .clicktile:nth-child(3):focus-within {
+            box-shadow: 0 0 0 2px var(--c-gray-800), 0 0 0 4px var(--c-gray-300);
+        }
+
+a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 600;
+}
+
+.icon-button {
+    color: inherit;
+    border-color: inherit;
+}
+
+    .icon-button:hover, .icon-button:focus {
+        background-color: transparent;
+    }
+
+    .icon-button i {
+        transform: none;
+    }
+
+a:focus {
+    box-shadow: none;
+}
+
+a:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tile-buttons {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border: 2px solid;
+    line-height: 1.2;
+}
+
+    .tile-buttons.view {
+        background-color: #4CAF50;
+        color: #fff;
+        border-color: #4CAF50;
+    }
+
+        .tile-buttons.view:hover {
+            background-color: #45a049;
+            border-color: #45a049;
+        }
+
+    .tile-buttons.download {
+        background-color: #2196F3;
+        color: #fff;
+        border-color: #2196F3;
+    }
+
+        .tile-buttons.download:hover {
+            background-color: #1976D2;
+            border-color: #1976D2;
+        }
+
+    .tile-buttons.enrolled {
+        background-color: #FFC107;
+        color: #fff;
+        border-color: #FFC107;
+    }
+
+        .tile-buttons.enrolled:hover {
+            background-color: #FFA000;
+            border-color: #FFA000;
+        }

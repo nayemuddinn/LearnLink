@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Courses - LearnLink</title>
+    <link href="@Url.Content("/Content/ShowCourseMaterials.css")" rel="stylesheet" />
     <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
 
 </head>
@@ -19,7 +20,7 @@
                     </div>
                     <div class="logo-title">
                         <span>LearnLink</span>
-                        <span>Teacher Dashboard</span>
+                        <span>Course Materials</span>
                     </div>
                 </div>
                 <div class="app-header-navigation">
@@ -79,7 +80,7 @@
                         {
                             foreach (var material in Model)
                             {
-                                <div class="tile">
+                                <div class="clicktile">
                                     <div class="tile-header">
                                         <i class="icon ion-md-document"></i>
                                         <h5>
@@ -89,13 +90,18 @@
                                         </h5>
 
                                     </div>
-                                    <div>
-                                        <a href="@Url.Action("ViewMaterial", "ManageCourse", new { fileId = material.FileID })" class="btn btn-view">
+                                    <div class="button-container">
+                                        <a href="@Url.Action("ViewMaterial", "ManageCourse", new { fileId = material.FileID })" class="tile-buttons view">
                                             <span>View</span>
+                                                <i class="fas fa-eye"></i>
                                         </a>
-                                        @* <a href="@Url.Action("DownloadMaterial", "ManageCourse", new { fileId = material.FileID })" class="btn btn-download">
-                                        <span>Download</span>
-                                    </a>*@
+                                        <a href="@Url.Action("DownloadMaterial", "ManageCourse", new { fileId = material.FileID })" class="tile-buttons download">
+                                            <span>Download</span>
+                                                <i class="fas fa-download"></i>
+                                        </a>
+                                        <a href="@Url.Action("ViewEnrolledStudents", "enrolledCourses", new { fileId = material.FileID })" class="tile-buttons enrolled">
+                                            <span>Enrolled Students</span>
+                                        </a>
                                     </div>
                                 </div>
                             }

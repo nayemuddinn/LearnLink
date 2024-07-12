@@ -169,6 +169,7 @@
     <Content Include="Content\dashboard.css" />
     <Content Include="Content\Image\bg.jpg" />
     <Content Include="Content\loginpage.css" />
+    <Content Include="Content\ShowCourseMaterials.css" />
     <Content Include="Content\textfield.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -207,7 +208,6 @@
     <Content Include="Views\createCourse\createCourse.cshtml" />
     <Content Include="Views\editStudentProfile\editStudentProfile.cshtml" />
     <Content Include="Views\editteacherProfile\editteacherProfile.cshtml" />
-    <Content Include="Views\enrolledCourses\enrolledCourses.cshtml" />
     <Content Include="Views\enrollStudents\enrollStudents.cshtml" />
     <Content Include="Views\giveAssessments\giveAssessments.cshtml" />
     <Content Include="Views\giveFeedback\giveFeedback.cshtml" />
@@ -222,6 +222,7 @@
     <Content Include="Views\ManageCourse\ViewMaterial.cshtml" />
     <Content Include="Views\ManageCourse\DownloadMaterial.cshtml" />
     <Content Include="Views\reviewAssessments\reviewAssessments.cshtml" />
+    <Content Include="Views\enrolledCourses\ViewEnrolledStudents.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
