@@ -6,8 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teacher Dashboard - LearnLink</title>
-    <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
-    <link href="@Url.Content("/Content/teacherCourse.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/CourseManage.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/textfield.css")" rel="stylesheet" />
 </head>
 <div class="responsive-wrapper">
     <div class="app">
@@ -73,41 +73,46 @@
             </div>
 
 
+            <div class="auth-container">
+                <div class="login-wrapper">
+                    <div class="form-box login">
 
-            <div class="login-wrapper">
-                <div class="form-box login">
+                        @{
+                            ViewBag.Title = "Upload File";
 
-                    @{
-                        ViewBag.Title = "Upload File";
-                    }
+                        }
 
-                    <h2>Upload File</h2>
+                        <h2>Upload File</h2>
+                        <br /><br />
 
-                    @using (Html.BeginForm("CourseMaterials", "CourseMaterials", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
-                        <div class="form-group">
-                            @Html.Label("CourseID")
-                            @Html.TextBox("courseID", null, new { @class = "form-control", placeholder = "Enter Course ID" })
-                            @Html.ValidationMessage("courseID")
-                        </div>
+                        @using (Html.BeginForm("CourseMaterials", "CourseMaterials", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <div class="form-group">
+                                @Html.Label("CourseID")
+                                @Html.TextBox("courseID", null, new { @class = "form-control", placeholder = "Enter Course ID" })
+                                @Html.ValidationMessage("courseID")
+                            </div>
+                            <br /><br />
+                            <div class="form-group">
+                                @Html.Label("FileUpload")
+                                <br />
+                                <input type="file" name="fileUpload" required />
+                                @Html.ValidationMessage("fileUpload")
+                            </div>
+                            <br /><br />
+                            <div class="form-group d-flex justify-content-between">
+                                <button type="submit" class="btn btn-primary">Upload</button>
+                                <button type="button" class="btn btn-back" onclick="window.location.href='/TeacherDashboard/Dashboard'">Back</button>
+                            </div>
 
-                        <div class="form-group">
-                            @Html.Label("FileUpload")
-                            <input type="file" name="fileUpload" required />
-                            @Html.ValidationMessage("fileUpload")
-                        </div>
-
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Upload</button>
-                        </div>
-
-                    }
+                        }
 
 
 
+                    </div>
                 </div>
-            </div>
 
+            </div>
         </div>
 
     </div>

@@ -1,32 +1,27 @@
 ﻿using LearnLink.Content;
 using LearnLink.Models;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Xml.Linq;
 
 namespace LearnLink.Controllers
 {
-
     public class RegistrationController : Controller
     {
-
-
         public ActionResult reg()
         {
-
             return View();
         }
 
         [HttpPost]
         public ActionResult reg(User user)
         {
+            if (user.Password != user.ConfirmPassword)
+            {
+                ViewBag.ErrorMessage = "Passwords do not match!";
+                return View();
+            }
+
             string connStr = DBconnection.connStr;
 
             using (SqlConnection conn = new SqlConnection(connStr))
@@ -36,7 +31,7 @@ namespace LearnLink.Controllers
                     string role = user.Role;
                     string Hashpass = PasswordHasher.HashPassword(user.Password);
                     conn.Open();
-                    string query = "INSERT INTO "+role+" (Name, Email, Password, Phone, Address, Institution) " +
+                    string query = "INSERT INTO " + role + " (Name, Email, Password, Phone, Address, Institution) " +
                                    "VALUES (@Name, @Email, @Password, @Phone, @Address, @Institution)";
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@Name", user.Name);
@@ -47,11 +42,15 @@ namespace LearnLink.Controllers
                     cmd.Parameters.AddWithValue("@Institution", user.Institution);
 
                     cmd.ExecuteNonQuery();
-                    Response.Write("<script>alert('Registration successful!');</script>");
+                    ViewBag.SuccessMessage = "Registration successful!";
+                }
+                catch (SqlException sqlEx)
+                {
+                    ViewBag.ErrorMessage = "SQL Error: " + sqlEx.Message;
                 }
                 catch (Exception ex)
                 {
-                    Response.Write("<script>alert('"+ex.Message+"');</script>");
+                    ViewBag.ErrorMessage = "Error: " + ex.Message;
                 }
                 return View();
             }
