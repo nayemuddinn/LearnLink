@@ -170,6 +170,7 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\course.css" />
+    <Content Include="Content\courseDescription.css" />
     <Content Include="Content\CourseManage.css" />
     <Content Include="Content\dashboard.css" />
     <Content Include="Content\forgotPassword.css" />

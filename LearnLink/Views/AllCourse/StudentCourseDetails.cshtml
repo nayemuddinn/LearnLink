@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Dashboard - LearnLink</title>
-    <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/courseDescription.css")" rel="stylesheet" />
 </head>
 <body>
     <div class="responsive-wrapper">
@@ -25,11 +25,13 @@
                     <!-- Add any additional navigation items here if needed -->
                 </div>
                 <div class="app-header-actions">
+                    <div><h2 style="color:red;">@Model.CourseName</h2></div>
                     <div class="app-header-actions-buttons">
                         <h1>@HttpContext.Current.Session["UserName"]</h1>
                     </div>
                 </div>
                 <div class="app-header-mobile">
+                    <div><h2 style="color:red;">@Model.CourseName</h2></div>
                     <h1>@HttpContext.Current.Session["UserName"]</h1>
                 </div>
             </div>
@@ -41,7 +43,7 @@
                             <i class="icon ion-md-book"></i>
                             <span>All Courses</span>
                         </a>
-                        <a href="@Url.Action("EnrollCourses", "enrollCourses")">
+                        <a href="@Url.Action("EnrollCourse", "enrollCourses")">
                             <i class="icon ion-md-person-add"></i>
                             <span>Enroll Courses</span>
                         </a>
@@ -64,21 +66,27 @@
                     </nav>
                 </div>
 
-                <div class="app-body">
-                    <div class="app-body-content">
-                        <div class="course-details">
-                            <h2>@Model.CourseName</h2>
-                            <p><strong>Description:</strong> @Model.CourseDescription</p>
-                            <p><strong>Prerequisites:</strong> @Model.CoursePrerequisite</p>
-                            <p><strong>Course Fee:</strong> @Model.CourseFee</p>
-                            <p><strong>Teacher:</strong> @Model.TeacherName</p>
-
-                            <a href="@Url.Action("EnrollCourse", "enrollCourses", new {  Id = Model.CourseID })" class="tile-buttons view">
-                                <span class="view-button">Enroll</span>
-                            </a>
-
-                        </div>
+                <div class="app-body-content">
+                    <div class="course-details">
+                        <p><strong>Description:</strong> @Model.CourseDescription</p>
+                        <p><strong>Prerequisites:</strong> @Model.CoursePrerequisite</p>
+                        <p><strong>Course Fee:</strong> @Model.CourseFee</p>
+                        <p><strong>Teacher:</strong> @Model.TeacherName</p>
+                        <a href="@Url.Action("EnrollCourse", "enrollCourses", new { Id = Model.CourseID })" class="tile-buttons view">
+                            <span class="view-button">Enroll</span>
+                        </a>
                     </div>
+                </div>
+            </div>
+
+            <br /><br />
+            <div class="footer">
+                <h1>
+                    LearnLink
+                    <small>Student Dashboard</small>
+                </h1>
+                <div>
+                    &copy; 2024 LearnLink. All rights reserved.
                 </div>
             </div>
         </div>
