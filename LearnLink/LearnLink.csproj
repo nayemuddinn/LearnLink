@@ -52,6 +52,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -122,8 +123,8 @@
     <Compile Include="Controllers\courseMaterialsController.cs" />
     <Compile Include="Controllers\createCourseController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
-    <Compile Include="Controllers\editStudentProfileController.cs" />
-    <Compile Include="Controllers\editteacherProfileController.cs" />
+    <Compile Include="Controllers\EditStudentProfileController.cs" />
+    <Compile Include="Controllers\EditTeacherProfileController.cs" />
     <Compile Include="Controllers\enrolledCoursesController.cs" />
     <Compile Include="Controllers\enrollStudentsController.cs" />
     <Compile Include="Controllers\giveAssessmentsController.cs" />
@@ -142,8 +143,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\CourseMaterials.cs" />
+    <Compile Include="Models\EditProfileViewModel.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -228,6 +231,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="files\" />
+    <Folder Include="Views\Profile\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
