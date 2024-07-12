@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Courses - LearnLink</title>
-    <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/ShowCourseMaterials.css")" rel="stylesheet" />
 
 </head>
 <body>
@@ -19,7 +19,7 @@
                     </div>
                     <div class="logo-title">
                         <span>LearnLink</span>
-                        <span>Teacher Dashboard</span>
+                        <span>Course Materials</span>
                     </div>
                 </div>
                 <div class="app-header-navigation">
@@ -90,12 +90,31 @@
 
                                     </div>
                                     <div>
-                                        <a href="@Url.Action("ViewMaterial", "ManageCourse", new { fileId = material.FileID })" class="btn btn-view">
+                                        <a href="@Url.Action("ViewMaterial", "ManageCourse", new { fileId = material.FileID })" class="tile-buttons">
                                             <span>View</span>
+                                            <button class="icon-button">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
                                         </a>
-                                        @* <a href="@Url.Action("DownloadMaterial", "ManageCourse", new { fileId = material.FileID })" class="btn btn-download">
-                                        <span>Download</span>
-                                    </a>*@
+                                        <a href="@Url.Action("DownloadMaterial", "ManageCourse", new { fileId = material.FileID })" class="tile-buttons">
+                                            <span>Download</span>
+                                            <button class="icon-button">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                        </a>
+
+                                       @* <a href="@Url.Action("ViewMaterial", "ManageCourse", new { fileId = material.FileID })">
+                                            <br />  <span>View</span>
+                                            <button class="icon-button">
+                                                <i class="icon ion-md-arrow-forward"></i>
+                                            </button>
+                                        </a>
+                                        <a href="@Url.Action("DownloadMaterial", "ManageCourse", new { fileId = material.FileID })">
+                                            <br />  <span>Download</span>
+                                            <button class="icon-button">
+                                                <i class="icon ion-md-arrow-forward"></i>
+                                            </button>
+                                        </a>*@
                                     </div>
                                 </div>
                             }

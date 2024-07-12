@@ -169,6 +169,7 @@
     <Content Include="Content\dashboard.css" />
     <Content Include="Content\Image\bg.jpg" />
     <Content Include="Content\loginpage.css" />
+    <Content Include="Content\ShowCourseMaterials.css" />
     <Content Include="Content\textfield.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
