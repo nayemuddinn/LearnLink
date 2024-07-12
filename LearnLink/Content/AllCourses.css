@@ -1,0 +1,48 @@
+﻿.transparent-table {
+    margin-left:150px;
+    width: 100%;
+    border-collapse: collapse;
+    background-color: rgba(255, 255, 255, 0.5); 
+}
+
+    .transparent-table th, .transparent-table td {
+        border: 1px solid #ddd;
+        padding: 12px; 
+        text-align: left;
+        font-size: 14px; 
+    }
+
+    .transparent-table th {
+        background-color: #10407b;
+    }
+
+    .transparent-table tbody tr:nth-child(odd) td {
+        background-color: #47718b;
+    }
+
+    .transparent-table tbody tr:nth-child(even) td {
+        background-color: #245b7c;
+    }
+
+    .transparent-table tbody tr:hover td {
+        background-color: #36414d; 
+    }
+
+.view-button {
+    background-color: #10407b;
+    color: white;
+    border: none;
+    padding: 6px 12px; 
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px; 
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: background-color 0.3s ease;
+}
+
+    .enroll-button:hover {
+        background-color: #45a049;
+    }

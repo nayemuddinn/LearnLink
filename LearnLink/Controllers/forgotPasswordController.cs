@@ -6,10 +6,10 @@ using System.Web.Mvc;
 
 namespace LearnLink.Controllers
 {
-    public class enrolledCoursesController : Controller
+    public class forgotPasswordController : Controller
     {
-        // GET: enrolledCourses
-        public ActionResult EnrolledCourses()
+        // GET: forgotPassword
+        public ActionResult forgotPassword()
         {
             return View();
         }
