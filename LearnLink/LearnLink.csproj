@@ -167,6 +167,7 @@
     <Content Include="Content\course.css" />
     <Content Include="Content\CourseManage.css" />
     <Content Include="Content\dashboard.css" />
+    <Content Include="Content\enrollCourses.css" />
     <Content Include="Content\Image\bg.jpg" />
     <Content Include="Content\loginpage.css" />
     <Content Include="Content\ShowCourseMaterials.css" />

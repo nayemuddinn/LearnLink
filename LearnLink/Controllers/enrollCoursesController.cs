@@ -19,7 +19,11 @@ namespace LearnLink.Controllers
       
             using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
             {
-                string query = "SELECT TOP 5 * FROM Courses ORDER BY CourseID DESC";
+                string query = @"
+                    SELECT TOP 5 c.CourseID, c.CourseName,c.courseFee, c.TeacherID, t.Name
+                    FROM Courses c
+                    JOIN Teacher t ON c.TeacherID = t.UserID
+                    ORDER BY c.CourseID DESC";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -30,8 +34,10 @@ namespace LearnLink.Controllers
                     {
                         CourseID = (int)reader["CourseID"],
                         CourseName = (string)reader["CourseName"],
-                        TeacherID = (int)reader["TeacherID"]
-                       
+                        CourseFee = (int)reader["CourseFee"],
+                        TeacherID = (int)reader["TeacherID"],
+                        TeacherName = (string)reader["Name"]
+
                     });
                 }
             }
