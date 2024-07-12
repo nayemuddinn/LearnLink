@@ -1,5 +1,7 @@
-﻿using LearnLink.Models;
+﻿using LearnLink.Content;
+using LearnLink.Models;
 using System;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Web.Mvc;
 
@@ -38,10 +40,10 @@ namespace LearnLink.Controllers
 
         private User GetStudentById(int userId)
         {
-            string connStr = DBConnection.ConnStr;
+         //   string connStr = DBConnection.ConnStr;
             User user = null;
 
-            using (SqlConnection conn = new SqlConnection(connStr))
+            using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
             {
                 string query = "SELECT Name, Email, Phone, Address, Institution FROM Student WHERE UserID = @UserID";
                 SqlCommand cmd = new SqlCommand(query, conn);
@@ -68,9 +70,9 @@ namespace LearnLink.Controllers
 
         private void UpdateStudentProfile(int userId, EditProfileViewModel model)
         {
-            string connStr = DBConnection.ConnStr;
+            
 
-            using (SqlConnection conn = new SqlConnection(connStr))
+            using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
             {
                 string query = "UPDATE Student SET Name = @Name, Email = @Email, Phone = @Phone, Address = @Address, Institution = @Institution WHERE UserID = @UserID";
                 SqlCommand cmd = new SqlCommand(query, conn);
