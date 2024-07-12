@@ -1,5 +1,5 @@
 ﻿/* Global Styles */
-* {
+.auth-container * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -7,25 +7,24 @@
     text-decoration: none;
 }
 
-html {
+.auth-container html {
     background-color: #ffffff;
     font-size: 60%;
     font-family: "Roboto", sans-serif;
     scroll-behavior: smooth;
 }
 
-body {
+.auth-container body {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url('../Content/Image/bg.jpg') no-repeat;
     background-size: cover;
     background-position: center;
 }
 
 /* Header Styles */
-header {
+.auth-container header {
     position: fixed;
     top: 0;
     left: 0;
@@ -38,8 +37,8 @@ header {
 }
 
 /* Login/Registration Wrapper Styles */
-.login-wrapper,
-.registration-wrapper {
+.auth-container .login-wrapper,
+.auth-container .registration-wrapper {
     color: #fff;
     position: relative;
     width: 400px;
@@ -53,71 +52,73 @@ header {
     align-items: center;
 }
 
-.login-wrapper {
+.auth-container .login-wrapper {
     height: 440px;
     margin: 0 auto;
 }
 
-.registration-wrapper {
+.auth-container .registration-wrapper {
     height: 600px;
     margin: 0 auto;
 }
 
-.form-box {
+.auth-container .form-box {
     width: 100%;
     padding: 30px;
 }
 
-    .form-box h2 {
-        font-size: 2em;
-        text-align: center;
-    }
+.auth-container .form-box h2 {
+    font-size: 2em;
+    text-align: center;
+}
 
 /* Input Box Styles */
-.input-box {
+.auth-container .input-box {
     position: relative;
     width: 100%;
     height: 50px;
     border-bottom: 2px solid #fafafa;
     margin: 10px;
+    font-size: 1em;
 }
 
-    .input-box label {
+    .auth-container .input-box label {
         position: absolute;
         top: 50%;
         left: 5px;
+        font-size: 1em;
         transform: translateY(-50%);
-        font-size: 1.2em;
+        font-size: 1em;
         font-weight: 500;
         pointer-events: none;
         transition: .5s;
     }
 
-    .input-box input:focus ~ label,
-    .input-box input:valid ~ label {
-        top: -4px;
-    }
+.auth-container .input-box input:focus ~ label,
+.auth-container .input-box input:valid ~ label {
+    top: -4px;
+}
 
-    .input-box input {
-        width: 100%;
-        height: 100%;
-        background: transparent;
-        color: whitesmoke;
-        border: none;
-        font-size: 1.2em;
-        outline: none;
-        padding: 0 35px 0 5px;
-    }
+.auth-container .input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    color: whitesmoke;
+    border:medium;
+    font-size: 1em;
+    outline: none;
+    padding: 0 35px 0 5px;
+}
 
-    .input-box .icon {
-        position: absolute;
-        right: 8px;
-        font-size: 1.2em;
-        line-height: 50px;
-    }
+.auth-container .input-box .icon {
+    position: absolute;
+    right: 8px;
+    font-size: 1em;
+    line-height: 50px;
+}
 
 /* Remember/Forgot Styles */
-.remember-forgot {
+.auth-container .remember-forgot {
     font-size: 1.2em;
     color: #fafafa;
     font-weight: 600;
@@ -126,23 +127,23 @@ header {
     justify-content: space-between;
 }
 
-    .remember-forgot label input {
-        accent-color: #cfd5d8;
-        margin-right: 3px;
-    }
+.auth-container .remember-forgot label input {
+    accent-color: #cfd5d8;
+    margin-right: 3px;
+}
 
-    .remember-forgot a {
-        font-weight: 1;
-        margin-left: 5px;
-        color: #ffffff;
-    }
+.auth-container .remember-forgot a {
+    font-weight: 1;
+    margin-left: 5px;
+    color: #ffffff;
+}
 
-        .remember-forgot a:hover {
-            text-decoration: underline;
-        }
+.auth-container .remember-forgot a:hover {
+    text-decoration: underline;
+}
 
 /* Register Link Styles */
-.register-link {
+.auth-container .register-link {
     font-weight: 1;
     color: #ffffff;
     font-family: arial;
@@ -151,31 +152,51 @@ header {
     padding-left: 30px;
 }
 
-    .register-link a:hover {
-        text-decoration: underline;
-    }
+.auth-container .register-link a:hover {
+    text-decoration: underline;
+}
 
 /* Button Styles */
-.btn {
-    width: 100px;
-    height: 30px;
+
+.auth-container .button-container {
+    display: flex;
+    justify-content: space-between; /* Adjust spacing between buttons */
+    margin-bottom: 20px; /* Optional margin to separate from other content */
+    text-align: center;
+    margin-top: 20px;
+}
+
+.auth-container .btn {
+    width: 160px;
+    height: 60px;
     background: transparent;
     border: 2px solid white;
     outline: none;
-    border-radius: 6px;
+    text-align: center;
+    border-radius: 10px;
     cursor: pointer;
-    font-size: 1.5em;
+    font-size: 1em; /* Adjusted font size */
     color: whitesmoke;
     font-weight: 500;
-    margin-left: 120px;
+    display: flex;
+    justify-content: center; /* Center align text horizontally */
+    align-items: center; /* Center align text vertically */
 }
 
-    .btn:hover {
-        background: #fff;
-        color: black;
+
+
+
+    .auth-container .btn.btn-back {
+        margin-left: 30px; /* Adjust the margin as needed */
     }
 
-.rdio-btn {
+
+.auth-container .btn:hover {
+    background: #fff;
+    color: black;
+}
+
+.auth-container .rdio-btn {
     width: 400px;
     height: 40px;
     margin-top: 20px;
@@ -185,48 +206,48 @@ header {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-    .login-wrapper,
-    .registration-wrapper {
+    .auth-container .login-wrapper,
+    .auth-container .registration-wrapper {
         width: 90%;
         margin: 0 auto;
     }
 
-    .btn {
+    .auth-container .btn {
         margin-left: 0;
     }
 }
 
 @media (max-width: 480px) {
-    .login-wrapper,
-    .registration-wrapper {
+    .auth-container .login-wrapper,
+    .auth-container .registration-wrapper {
         width: 95%;
         height: auto;
         padding: 20px;
     }
 
-    .form-box {
+    .auth-container .form-box {
         padding: 20px;
     }
 
-    .input-box {
+    .auth-container .input-box {
         margin: 5px;
     }
 
-    .remember-forgot {
+    .auth-container .remember-forgot {
         font-size: 1em;
     }
 
-    .register-link {
+    .auth-container .register-link {
         font-size: 8px;
     }
 
-    .btn {
+    .auth-container .btn {
         width: 80px;
         height: 25px;
         font-size: 1.2em;
     }
 
-    .rdio-btn {
+    .auth-container .rdio-btn {
         width: 100%;
         height: auto;
         margin-top: 10px;

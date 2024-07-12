@@ -29,6 +29,7 @@ body {
     padding-bottom: 3vw;
     justify-content: center;
 }
+
 .button-group {
     display: flex;
     gap: 10px;
@@ -93,7 +94,7 @@ a {
 .app {
     min-height: 80vh;
     width: 100%;
-    max-width:contain;
+    max-width: contain;
     background-color: var(--c-gray-800);
     padding: 2vw 4vw 6vw;
     display: flex;
@@ -152,7 +153,7 @@ a {
 
 .app-body {
     height: 100%;
-    display:flex;
+    display: flex;
     grid-template-columns: minmax(min-content, 175px) minmax(max-content, 1fr) minmax( min-content, 400px );
     column-gap: 4rem;
     padding-top: 2.5rem;
@@ -992,6 +993,4 @@ button {
     outline: 0;
     box-shadow: 0 0 0 2px var(--c-gray-800), 0 0 0 4px var(--c-gray-300);
 }
-
 }
-
