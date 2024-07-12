@@ -9,7 +9,7 @@ namespace LearnLink.Controllers
     public class enrolledCoursesController : Controller
     {
         // GET: enrolledCourses
-        public ActionResult enrolledCourses()
+        public ActionResult ViewEnrolledStudents()
         {
             return View();
         }
