@@ -6,8 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Courses - LearnLink</title>
-    <link href="@Url.Content("/Content/ShowCourseMaterials.css")" rel="stylesheet" />
     <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/ShowCourseMaterials.css")" rel="stylesheet" />
 
 </head>
 <body>
@@ -93,16 +93,24 @@
                                     <div class="button-container">
                                         <a href="@Url.Action("ViewMaterial", "ManageCourse", new { fileId = material.FileID })" class="tile-buttons view">
                                             <span>View</span>
+                                            <button class="icon-button">
                                                 <i class="fas fa-eye"></i>
+                                            </button>
                                         </a>
                                         <a href="@Url.Action("DownloadMaterial", "ManageCourse", new { fileId = material.FileID })" class="tile-buttons download">
                                             <span>Download</span>
+                                            <button class="icon-button">
                                                 <i class="fas fa-download"></i>
+                                            </button>
                                         </a>
-                                        <a href="@Url.Action("ViewEnrolledStudents", "enrolledCourses", new { fileId = material.FileID })" class="tile-buttons enrolled">
+                                        <a href="@Url.Action("ViewEnrolledStudents", "enrollStudents", new { fileId = material.FileID })" class="tile-buttons enrolled">
                                             <span>Enrolled Students</span>
+                                            <button class="icon-button">
+                                                <i class="fas fa-users"></i> <!-- Changed to users icon for clarity -->
+                                            </button>
                                         </a>
                                     </div>
+
                                 </div>
                             }
                         }
