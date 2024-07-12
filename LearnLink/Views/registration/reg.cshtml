@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LearnLink<</title>
+    <title>LearnLink</title>
     <link href="@Url.Content("/Content/loginpage.css")" rel="stylesheet" />
 </head>
 <div class="registration-wrapper">
     <div class="form-box login">
+        <br /><br />
+
         <h2>Registration</h2>
         <form action="" method="post">
 
@@ -27,6 +29,12 @@
                 <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
                 <input type="password" name="Password" id="Password" autocomplete="off" required>
                 <label>Password</label>
+            </div>
+
+            <div class="input-box">
+                <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+                <input type="password" name="ConfirmPassword" id="ConfirmPassword" autocomplete="off" required>
+                <label>Confirm Password</label>
             </div>
 
             <div class="input-box">
@@ -57,7 +65,6 @@
                 <input type="submit" class="btn" name="Register" value="Register" required>
             </div>
 
-
         </form>
 
         <div class="register-link">
@@ -65,5 +72,3 @@
         </div>
     </div>
 </div>
-
-
