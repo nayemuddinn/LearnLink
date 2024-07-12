@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -120,12 +120,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Content\DBconnection.cs" />
+    <Compile Include="Controllers\AllCourseController.cs" />
     <Compile Include="Controllers\courseMaterialsController.cs" />
     <Compile Include="Controllers\createCourseController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\EditStudentProfileController.cs" />
     <Compile Include="Controllers\EditTeacherProfileController.cs" />
-    <Compile Include="Controllers\enrolledCoursesController.cs" />
+    <Compile Include="Controllers\enrollCoursesController.cs" />
     <Compile Include="Controllers\enrollStudentsController.cs" />
     <Compile Include="Controllers\forgotPasswordController.cs" />
     <Compile Include="Controllers\giveAssessmentsController.cs" />
@@ -137,7 +138,6 @@
     <Compile Include="Controllers\reviewAssessmentsController.cs" />
     <Compile Include="Controllers\seeFeedbackController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
-    <Compile Include="Controllers\studentCourseController.cs" />
     <Compile Include="Controllers\StudentDashboardController.cs" />
     <Compile Include="Controllers\ManageCourseController.cs" />
     <Compile Include="Controllers\TeacherDashboardController.cs" />
@@ -231,6 +231,9 @@
     <Content Include="Views\enrollStudents\enrollStudents.cshtml" />
     <Content Include="Views\studentCourse\studentCourse.cshtml" />
     <Content Include="Views\forgotPassword\forgotPassword.cshtml" />
+    <Content Include="Views\AllCourse\AllCourse.cshtml" />
+    <Content Include="Views\AllCourse\StudentCourseDetails.cshtml" />
+    <Content Include="Views\enrollCourses\EnrollCourse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
