@@ -16,7 +16,7 @@ namespace LearnLink.Controllers
 
         public ActionResult AllCourse(string searchTerm)
         {
-            List<Course> topCourses = new List<Course>();
+            List<Course> courses = new List<Course>();
 
             using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
             {
@@ -45,7 +45,7 @@ namespace LearnLink.Controllers
 
                 while (reader.Read())
                 {
-                    topCourses.Add(new Course
+                    courses.Add(new Course
                     {
                         CourseID = (int)reader["CourseID"],
                         CourseName = (string)reader["CourseName"],
@@ -57,7 +57,7 @@ namespace LearnLink.Controllers
             }
 
             ViewBag.SearchTerm = searchTerm;
-            return View(topCourses);
+            return View(courses);
 
         }
 
@@ -97,5 +97,7 @@ namespace LearnLink.Controllers
             }
 
         }
+
+
     }
 }

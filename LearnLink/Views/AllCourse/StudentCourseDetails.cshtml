@@ -73,10 +73,10 @@
                             <p><strong>Course Fee:</strong> @Model.CourseFee</p>
                             <p><strong>Teacher:</strong> @Model.TeacherName</p>
 
-                            <form action="@Url.Action("Enroll", "StudentDashboard")" method="post">
-                                <input type="hidden" name="courseId" value="@Model.CourseID" />
-                                <button type="submit" class="enroll-button">Enroll</button>
-                            </form>
+                            <a href="@Url.Action("EnrollCourse", "enrollCourses", new {  Id = Model.CourseID })" class="tile-buttons view">
+                                <span class="view-button">Enroll</span>
+                            </a>
+
                         </div>
                     </div>
                 </div>

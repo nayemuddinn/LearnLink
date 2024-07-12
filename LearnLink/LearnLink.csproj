@@ -223,9 +223,9 @@
     <Content Include="Views\ManageCourse\DownloadMaterial.cshtml" />
     <Content Include="Views\reviewAssessments\reviewAssessments.cshtml" />
     <Content Include="Views\enrollStudents\enrollStudents.cshtml" />
-    <Content Include="Views\enrollCourses\EnrollCourses.cshtml" />
     <Content Include="Views\AllCourse\AllCourse.cshtml" />
     <Content Include="Views\AllCourse\StudentCourseDetails.cshtml" />
+    <Content Include="Views\enrollCourses\EnrollCourse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
