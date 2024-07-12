@@ -124,7 +124,7 @@
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\editStudentProfileController.cs" />
     <Compile Include="Controllers\editteacherProfileController.cs" />
-    <Compile Include="Controllers\enrolledCoursesController.cs" />
+    <Compile Include="Controllers\enrollCoursesController.cs" />
     <Compile Include="Controllers\enrollStudentsController.cs" />
     <Compile Include="Controllers\giveAssessmentsController.cs" />
     <Compile Include="Controllers\giveFeedbackController.cs" />
@@ -221,9 +221,9 @@
     <Content Include="Views\ManageCourse\ViewMaterial.cshtml" />
     <Content Include="Views\ManageCourse\DownloadMaterial.cshtml" />
     <Content Include="Views\reviewAssessments\reviewAssessments.cshtml" />
-    <Content Include="Views\enrolledCourses\EnrolledCourses.cshtml" />
     <Content Include="Views\enrollStudents\enrollStudents.cshtml" />
     <Content Include="Views\studentCourse\studentCourse.cshtml" />
+    <Content Include="Views\enrollCourses\EnrollCourses.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
