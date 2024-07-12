@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Dashboard - LearnLink</title>
+    <title>Teacher Dashboard - LearnLink</title>
     <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
 </head>
 <body>
@@ -18,7 +18,7 @@
                     </div>
                     <div class="logo-title">
                         <span>LearnLink</span>
-                        <span>Student Dashboard</span>
+                        <span>Teacher Dashboard</span>
                     </div>
                 </div>
                 <div class="app-header-navigation">
@@ -37,23 +37,31 @@
             <div class="app-body">
                 <div class="app-body-navigation">
                     <nav class="navigation">
-                        <a href="@Url.Action("studentCourse", "studentCourse")">
+                        <a href="@Url.Action("ManageCourse", "ManageCourse")">
                             <i class="icon ion-md-book"></i>
-                            <span>All Courses</span>
+                            <span>Manage Courses</span>
                         </a>
-                        <a href="@Url.Action("enrolledCourses", "enrolledCourses")">
+                        <a href="@Url.Action("createCourse", "createCourse")">
+                            <i class="icon ion-md-add-circle"></i>
+                            <span>Create Courses</span>
+                        </a>
+                        <a href="@Url.Action("courseMaterials", "courseMaterials")">
+                            <i class="icon ion-md-add-circle"></i>
+                            <span>CourseMaterials</span>
+                        </a>
+                        <a href="@Url.Action("enrollStudents", "enrollStudents")">
                             <i class="icon ion-md-person-add"></i>
-                            <span>Enrolled Courses</span>
+                            <span>Enroll Students</span>
                         </a>
-                        <a href="@Url.Action("giveAssessments", "giveAssessments")">
+                        <a href="@Url.Action("reviewAssessments", "reviewAssessments")">
                             <i class="icon ion-md-checkmark-circle"></i>
-                            <span>Take Assessments</span>
+                            <span>Review Courses</span>
                         </a>
-                        <a href="@Url.Action("seeFeedback", "seeFeedback")">
+                        <a href="@Url.Action("giveFeedback", "giveFeedback")">
                             <i class="icon ion-md-text"></i>
-                            <span>See Feedback</span>
+                            <span>Provide Feedback</span>
                         </a>
-                        <a href="@Url.Action("editStudentProfile", "editStudentProfile")">
+                        <a href="@Url.Action("editteacherProfile", "editteacherProfile")">
                             <i class="icon ion-md-person"></i>
                             <span>Edit Profile</span>
                         </a>
@@ -72,11 +80,11 @@
                             <div class="tile-header">
                                 <i class="icon ion-md-book"></i>
                                 <h3>
-                                    <span>Edit It Later</span>
+                                    <span>Enroll New Student</span>
                                     <span></span>
                                 </h3>
                             </div>
-                            <a href="@Url.Action("studentCourse", "studentCourse")">
+                            <a href="@Url.Action("teacherCourse", "teacherCourse")">
                                 <span></span>
                                 <button class="icon-button">
                                     <i class="icon ion-md-arrow-forward"></i>
@@ -92,7 +100,7 @@
 
                                 </h3>
                             </div>
-                            <a href="@Url.Action("Dashboard", "StudentDashboard")">
+                            <a href="@Url.Action("Dashboard", "TeacherDashboard")">
                             </a>
 
                         </div>
@@ -103,9 +111,10 @@
             </div>
 
             <div class="footer">
+                <br /><br />
                 <h1>
                     LearnLink
-                    <small>Student Dashboard</small>
+                    <small>Teacher Dashboard</small>
                 </h1>
                 <div>
                     &copy; 2024 LearnLink. All rights reserved.
