@@ -1,41 +1,42 @@
 ﻿.transparent-table {
+    margin-left:150px;
     width: 100%;
     border-collapse: collapse;
-    background-color: rgba(255, 255, 255, 0.5); /* Transparent background */
+    background-color: rgba(255, 255, 255, 0.5); 
 }
 
     .transparent-table th, .transparent-table td {
         border: 1px solid #ddd;
-        padding: 12px; /* Increased padding for wider cells */
+        padding: 12px; 
         text-align: left;
-        font-size: 14px; /* Smaller font size */
+        font-size: 14px; 
     }
 
     .transparent-table th {
-        background-color: rgba(0, 0, 0, 0.1);
+        background-color: #10407b;
     }
 
     .transparent-table tbody tr:nth-child(odd) td {
-        background-color: rgba(255, 0, 0, 0.1); /* Light red for odd rows */
+        background-color: #47718b;
     }
 
     .transparent-table tbody tr:nth-child(even) td {
-        background-color: rgba(255, 255, 0, 0.1); /* Light yellow for even rows */
+        background-color: #245b7c;
     }
 
     .transparent-table tbody tr:hover td {
-        background-color: rgba(0, 0, 0, 0.1); /* Hover effect */
+        background-color: #36414d; 
     }
 
 .enroll-button {
-    background-color: #4CAF50;
+    background-color: #10407b;
     color: white;
     border: none;
-    padding: 6px 12px; /* Smaller padding for a smaller button */
+    padding: 6px 12px; 
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 12px; /* Smaller font size */
+    font-size: 12px; 
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 12px;
