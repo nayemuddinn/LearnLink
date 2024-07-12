@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -12,14 +13,13 @@ namespace LearnLink.Controllers
 {
     public class AllCourseController : Controller
     {
-      
+
         public ActionResult AllCourse(string searchTerm)
         {
             List<Course> topCourses = new List<Course>();
 
             using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
             {
-                // Check if search term is null or empty
                 string query = searchTerm == null || searchTerm.Trim() == ""
                     ? @"
                         SELECT TOP 5 c.CourseID, c.CourseName,c.CourseFee, c.TeacherID, t.Name
@@ -58,6 +58,43 @@ namespace LearnLink.Controllers
 
             ViewBag.SearchTerm = searchTerm;
             return View(topCourses);
+
+        }
+
+
+
+        public ActionResult StudentCourseDetails(int courseId) 
+        {
+       
+            {
+                Course courseDetails = new Course();
+
+                using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
+                {
+                    conn.Open();
+                    string query = @"
+                SELECT c.CourseID, c.CourseName, c.CourseDescription, c.CoursePrerequisite, c.CourseFee, t.Name
+                FROM Courses c
+                JOIN Teacher t ON c.TeacherID = t.UserID
+                WHERE c.CourseID = @CourseID";
+
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@CourseID", courseId);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        courseDetails.CourseID = (int)reader["CourseID"];
+                        courseDetails.CourseName = (string)reader["CourseName"];
+                        courseDetails.CourseDescription = (string)reader["CourseDescription"];
+                        courseDetails.CoursePrerequisite = (string)reader["CoursePrerequisite"];
+                        courseDetails.CourseFee = (int)reader["CourseFee"];
+                        courseDetails.TeacherName = (string)reader["Name"];
+                    }
+                }
+
+                return View(courseDetails);
+            }
 
         }
     }
