@@ -102,10 +102,10 @@
                                     <td>@request.StudentName</td>
                                     <td>@request.StudentInstitution</td>
                                     <td>
-                                        <a href="@Url.Action("UpdateRequest", "EnrollmentRequests", new { enrollmentID = request.EnrollmentID, actionType = "accept" })" class="tile-buttons view">
+                                        <a href="@Url.Action("UpdateRequest", "enrollStudents", new { enrollmentID = request.EnrollmentID, actionType = "accept" })" class="view-ac-button">
                                             <span class="view-button">Accept</span>
                                         </a>
-                                        <a href="@Url.Action("UpdateRequest", "EnrollmentRequests", new { enrollmentID = request.EnrollmentID, actionType = "reject" })" class="tile-buttons view">
+                                        <a href="@Url.Action("UpdateRequest", "enrollStudents", new { enrollmentID = request.EnrollmentID, actionType = "reject" })" class="view-dl-button">
                                             <span class="view-button">Reject</span>
                                         </a>
                                     </td>

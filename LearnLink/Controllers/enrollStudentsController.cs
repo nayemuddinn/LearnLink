@@ -54,6 +54,37 @@ namespace LearnLink.Controllers
 
         }
 
+        public ActionResult UpdateRequest(int enrollmentID, string actionType)
+        {
+            string status = "";
+
+            if (actionType.ToLower() == "accept")
+            {
+                status = "Accepted";
+            }
+            else if (actionType.ToLower() == "reject")
+            {
+                status = "Rejected";
+            }
+          
+
+            using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
+            {
+                string query = "UPDATE Enrollment SET Status = @Status WHERE enrollmentID = @enrollmentID";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@enrollmentID", enrollmentID);
+                cmd.Parameters.AddWithValue("@Status", status);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+
+
+            return RedirectToAction("enrollNewStudents", "enrollStudents");
+        }
+
+
+
         public ActionResult ViewEnrolledStudents()
         {
             return View();
