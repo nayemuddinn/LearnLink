@@ -73,7 +73,7 @@
                             <p><strong>Course Fee:</strong> @Model.CourseFee</p>
                             <p><strong>Teacher:</strong> @Model.TeacherName</p>
 
-                            <a href="@Url.Action("EnrollCourse", "enrollCourses", new {  Id = Model.CourseID })" class="tile-buttons view">
+                            <a href="@Url.Action("EnrollCourse", "enrollCourses", new {  courseId = Model.CourseID,teacherId=Model.TeacherID })" class="tile-buttons view">
                                 <span class="view-button">Enroll</span>
                             </a>
 

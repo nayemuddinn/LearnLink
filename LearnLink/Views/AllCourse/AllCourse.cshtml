@@ -80,6 +80,7 @@
                                 <th>Name</th>
                                 <th>Instructor</th>
                                 <th>Fee</th>
+                                <th>ID</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -90,8 +91,9 @@
                                     <td>@course.CourseName</td>
                                     <td>@course.TeacherName</td>
                                     <td>@course.CourseFee</td>
+                                    <td>@course.CourseID</td>
                                     <td>
-                                        <a href="@Url.Action("StudentCourseDetails", "AllCourse", new { courseId = course.CourseID })" class="tile-buttons view">
+                                        <a href="@Url.Action("StudentCourseDetails", "AllCourse", new { cId =course.CourseID })" class="tile-buttons view">
                                             <span class="view-button">View</span>
                                         </a>
 
