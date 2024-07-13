@@ -138,6 +138,17 @@ a {
             border-color: #FFA000;
         }
 
+    .tile-buttons.delete {
+        background-color: #882020;
+        color: #882020;
+        border-color: #FFC107;
+    }
+
+        .tile-buttons.delete:hover {
+            background-color: #FFA000;
+            border-color: #FFA000;
+        }
+
 .icon-button {
     background: none;
     border: none;
