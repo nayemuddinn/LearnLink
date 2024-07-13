@@ -5,85 +5,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Student Profile - LearnLink</title>
+    <title>Student Dashboard - LearnLink</title>
+    <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
     <link href="@Url.Content("/Content/editprofile.css")" rel="stylesheet" />
 </head>
 <body>
-    <div class="profile-wrapper student-profile">
-        <header class="profile-header">
-            <div class="logo">
-                <ion-icon name="school-outline"></ion-icon>
-                <span>LearnLink</span>
-            </div>
-         
-        </header>
-
-        <main class="profile-content">
-            <div class="form-wrapper">
-                @using (Html.BeginForm())
-                {
-                    @Html.AntiForgeryToken()
-
-                    <div class="form-horizontal">
-                        <h2>Edit Student Profile</h2>
-                        <hr />
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.Name, htmlAttributes: new { @class = "control-label" })
-                            <div class="input-group">
-                                @Html.EditorFor(m => m.Name, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.Email, htmlAttributes: new { @class = "control-label" })
-                            <div class="input-group">
-                                @Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.Phone, htmlAttributes: new { @class = "control-label" })
-                            <div class="input-group">
-                                @Html.EditorFor(m => m.Phone, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.Address, htmlAttributes: new { @class = "control-label" })
-                            <div class="input-group">
-                                @Html.EditorFor(m => m.Address, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.Institution, htmlAttributes: new { @class = "control-label" })
-                            <div class="input-group">
-                                @Html.EditorFor(m => m.Institution, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(m => m.Institution, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="input-group">
-                                <input type="submit" value="Save" class="btn btn-primary" />
-                            </div>
-                        </div>
+    <div class="responsive-wrapper">
+        <div class="app">
+            <div class="app-header">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <ion-icon name="school-outline"></ion-icon>
                     </div>
-                }
+                    <div class="logo-title">
+                        <span>LearnLink</span>
+                        <span>Student Dashboard</span>
+                    </div>
+                </div>
+                <div class="app-header-navigation">
+                    <!-- Add any additional navigation items here if needed -->
+                </div>
+                <div class="app-header-actions">
+                    <h3>Edit Student Profile</h3>
+                    <div class="app-header-actions-buttons">
+                        <ion-icon size="large" name="person-circle"></ion-icon>
+                        <h3>@HttpContext.Current.Session["UserName"]</h3>
+                    </div>
+                </div>
+                <div class="app-header-mobile">
+                    <h3>Edit Student Profile</h3>
+                    <ion-icon size="large" name="person-circle"></ion-icon>
+                    <h3>@HttpContext.Current.Session["UserName"]</h3>
+                </div>
             </div>
-        </main>
 
-        <footer class="profile-footer">
-            <div>
-                LearnLink &copy; 2024. All rights reserved.
+            <div class="app-body">
+                <div class="app-body-navigation">
+                    <nav class="navigation">
+                        <a href="@Url.Action("AllCourse", "AllCourse")">
+                            <i class="icon ion-md-book"></i>
+                            <span>All Courses</span>
+                        </a>
+                        <a href="@Url.Action("EnrollCourses", "enrollCourses")">
+                            <i class="icon ion-md-person-add"></i>
+                            <span>Enroll Courses</span>
+                        </a>
+                        <a href="@Url.Action("giveAssessments", "giveAssessments")">
+                            <i class="icon ion-md-checkmark-circle"></i>
+                            <span>Take Assessments</span>
+                        </a>
+                        <a href="@Url.Action("seeFeedback", "seeFeedback")">
+                            <i class="icon ion-md-text"></i>
+                            <span>See Feedback</span>
+                        </a>
+                        <a href="@Url.Action("editStudentProfile", "editStudentProfile")">
+                            <i class="icon ion-md-person"></i>
+                            <span>Edit Profile</span>
+                        </a>
+                        <a href="@Url.Action("login", "Login")">
+                            <i class="icon ion-md-exit"></i>
+                            <span>Log Out</span>
+                        </a>
+                    </nav>
+                </div>
+
+                <main class="profile-content">
+                    <div class="form-wrapper">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-horizontal">
+                                
+                                <hr />
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Name, htmlAttributes: new { @class = "control-label" })
+                                    <div class="input-group">
+                                        @Html.EditorFor(m => m.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Email, htmlAttributes: new { @class = "control-label" })
+                                    <div class="input-group">
+                                        @Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Phone, htmlAttributes: new { @class = "control-label" })
+                                    <div class="input-group">
+                                        @Html.EditorFor(m => m.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Address, htmlAttributes: new { @class = "control-label" })
+                                    <div class="input-group">
+                                        @Html.EditorFor(m => m.Address, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Institution, htmlAttributes: new { @class = "control-label" })
+                                    <div class="input-group">
+                                        @Html.EditorFor(m => m.Institution, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(m => m.Institution, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input type="submit" value="Save" class="btn btn-primary" />
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </main>
+
             </div>
-        </footer>
-    </div>
 </body>
+<script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </html>
+
