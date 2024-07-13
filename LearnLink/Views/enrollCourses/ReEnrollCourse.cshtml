@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Dashboard - LearnLink</title>
     <link href="@Url.Content("/Content/courseDescription.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/backbutton2.css")" rel="stylesheet" />
 </head>
 <body>
     <div class="responsive-wrapper">
@@ -62,13 +63,16 @@
                         </a>
                     </nav>
                 </div>
+                <div>
+                    <div class="app-body">
+                        <div class="app-body-content">
 
-                <div class="app-body">
-                    <div class="app-body-content">
-                      
                             <p>@ViewBag.Message</p>
-                        
+
+                        </div>
                     </div>
+                    <br />
+                    <button type="button" class="btn btn-back" onclick="window.location.href='/AllCourse/AllCourse'">Back</button>
                 </div>
             </div>
 
