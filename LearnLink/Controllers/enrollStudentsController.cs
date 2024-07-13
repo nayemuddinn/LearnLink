@@ -91,11 +91,10 @@ namespace LearnLink.Controllers
 
             using (SqlConnection con = new SqlConnection(DBconnection.connStr))
             {
-                string query = @"
-            SELECT s.UserID, s.Name, s.Institution, s.Phone
-            FROM student s
-            JOIN Enrollment e ON s.UserID = e.StudentID
-            WHERE e.CourseID = @CourseID AND e.Status = 'Accepted'";
+                string query = @"SELECT s.UserID, s.Name, s.Institution, s.Phone FROM student s
+                    JOIN Enrollment e ON s.UserID = e.StudentID
+                WHERE e.CourseID = @CourseID AND e.Status = 'Accepted'";
+
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
                     cmd.Parameters.AddWithValue("@CourseID", courseID);
