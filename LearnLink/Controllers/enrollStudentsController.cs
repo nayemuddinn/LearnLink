@@ -120,7 +120,7 @@ namespace LearnLink.Controllers
             return View(enrolledStudents);
         }
 
-        public ActionResult UnenrollStudent(int studentId, int courseId)
+        public ActionResult UnenrollStudent(int studentId, int courseId,int page)
         {
             using (SqlConnection con = new SqlConnection(DBconnection.connStr))
             {
@@ -134,7 +134,55 @@ namespace LearnLink.Controllers
                     con.Close();
                 }
             }
+
+            if(page==1)
+                return RedirectToAction("AllEnrolledStudents");
+            else
             return RedirectToAction("ViewEnrolledStudents", new { courseID = courseId });
         }
+
+        public ActionResult AllEnrolledStudents()
+        {
+            List<EnrolledStudentCourse> enrolledStudentsCourses = new List<EnrolledStudentCourse>();
+
+            int teacherId = Convert.ToInt32(Session["UserID"]);
+
+            using (SqlConnection con = new SqlConnection(DBconnection.connStr))
+            {
+                string query = @"
+            SELECT c.CourseID, c.CourseName, s.UserID AS StudentID, s.Name AS StudentName, s.Institution, s.Phone
+            FROM Enrollment e
+            JOIN Courses c ON e.CourseID = c.CourseID
+            JOIN Student s ON e.StudentID = s.UserID
+            WHERE c.TeacherID = @TeacherID
+            AND e.Status = 'Accepted'
+            ORDER BY c.CourseID, s.Name";
+
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@TeacherID", teacherId);
+                    con.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            enrolledStudentsCourses.Add(new EnrolledStudentCourse
+                            {
+                                CourseID = Convert.ToInt32(reader["CourseID"]),
+                                CourseName = reader["CourseName"].ToString(),
+                                StudentID = Convert.ToInt32(reader["StudentID"]),
+                                StudentName = reader["StudentName"].ToString(),
+                                Institution = reader["Institution"].ToString(),
+                                Phone = reader["Phone"].ToString()
+                            });
+                        }
+                    }
+                    con.Close();
+                }
+            }
+            return View(enrolledStudentsCourses);
+        }
+
+
     }
 }

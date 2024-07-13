@@ -131,7 +131,7 @@ namespace LearnLink.Controllers
 
 
 
-       /* public ActionResult DeleteMaterial(int fileId, int courseId)
+        public ActionResult DeleteMaterial(int fileId, int courseId)
         {
             using (SqlConnection con = new SqlConnection(DBconnection.connStr))
             {
@@ -145,7 +145,7 @@ namespace LearnLink.Controllers
                 }
             }
             return RedirectToAction("ShowCourseMaterials", new { courseid = courseId });
-        }*/
+        }
 
 
     }
