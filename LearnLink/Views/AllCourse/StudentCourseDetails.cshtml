@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Dashboard - LearnLink</title>
     <link href="@Url.Content("/Content/courseDescription.css")" rel="stylesheet" />
+
 </head>
 <body>
     <div class="responsive-wrapper">
@@ -22,17 +23,17 @@
                     </div>
                 </div>
                 <div class="app-header-navigation">
-                    <!-- Add any additional navigation items here if needed -->
+                    <div><h3>Course Description</h3></div>
                 </div>
                 <div class="app-header-actions">
-                    <div><h2 style="color:red;">@Model.CourseName</h2></div>
+                    
                     <div class="app-header-actions-buttons">
-                        <h1>@HttpContext.Current.Session["UserName"]</h1>
+                        <h3>@HttpContext.Current.Session["UserName"]</h3>
                     </div>
                 </div>
                 <div class="app-header-mobile">
-                    <div><h2 style="color:red;">@Model.CourseName</h2></div>
-                    <h1>@HttpContext.Current.Session["UserName"]</h1>
+                    
+                    <h3>@HttpContext.Current.Session["UserName"]</h3>
                 </div>
             </div>
 
@@ -65,11 +66,11 @@
                         </a>
                     </nav>
                 </div>
-
                 <div class="app-body">
+                    <div>                    </div>
                     <div class="app-body-content">
                         <div class="course-details">
-                            <h2>@Model.CourseName</h2>
+                            <h3>@Model.CourseName</h3>
                             <p><strong>Description:</strong> @Model.CourseDescription</p>
                             <p><strong>Prerequisites:</strong> @Model.CoursePrerequisite</p>
                             <p><strong>Course Fee:</strong> @Model.CourseFee</p>
