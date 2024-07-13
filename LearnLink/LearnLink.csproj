@@ -171,6 +171,7 @@
     <Content Include="Content\course.css" />
     <Content Include="Content\CourseManage.css" />
     <Content Include="Content\dashboard.css" />
+    <Content Include="Content\editprofile.css" />
     <Content Include="Content\forgotPassword.css" />
     <Content Include="Content\Image\bg.jpg" />
     <Content Include="Content\loginpage.css" />

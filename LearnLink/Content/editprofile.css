@@ -1,0 +1,98 @@
+﻿/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1e1e1e; /* Dark background color */
+    color: #fff; /* Light text color */
+}
+
+.profile-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #121212; /* Darker header background */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header .logo {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+.profile-navigation ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.profile-navigation ul li {
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+.profile-navigation ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.profile-navigation ul li a:hover {
+    color: #4caf50; /* Hover color */
+}
+
+.profile-navigation ul li a.active {
+    font-weight: bold; /* Example of active link styling */
+}
+
+.profile-content {
+    flex: 1;
+    padding: 1rem;
+}
+
+.form-wrapper {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-horizontal {
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.input-group {
+    width: 100%;
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    background-color: #4caf50; /* Button background color */
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #45a049; /* Darker button background color on hover */
+}
+
+.profile-footer {
+    padding: 1rem;
+    background-color: #121212; /* Darker footer background */
+    text-align: center;
+    color: #fff;
+}
