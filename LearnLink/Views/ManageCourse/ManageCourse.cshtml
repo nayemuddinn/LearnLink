@@ -98,17 +98,13 @@
                                             <span><ion-icon name="alarm-outline"></ion-icon> Created On: @course.CourseCreateDate</span><br />
                                         </h5>
                                     </div>
-                                    <a href="@Url.Action("ShowCourseMaterials", "ManageCourse", new { courseid = course.CourseID })">
+                                    <a href="@Url.Action("ShowCourseMaterials", "ManageCourse", new { courseid = course.CourseID })" class="tile-buttons view">
                                         <br />  <span>View </span>
-                                        <button class="icon-button">
-                                            <i class="icon ion-md-arrow-forward"></i>
-                                        </button>
                                     </a>
                                     @if (Session["UserRole"] != null && Session["UserRole"].Equals("teacher"))
                                     {
                                         <a href="@Url.Action("ViewEnrolledStudents", "enrollStudents", new { courseID = course.CourseID })" class="tile-buttons enrolled">
                                             <span>Enrolled Students</span>
-
                                         </a>                   
                                     }
 
