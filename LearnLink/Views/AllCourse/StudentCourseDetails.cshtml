@@ -1,0 +1,88 @@
+﻿@model LearnLink.Models.Course
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - LearnLink</title>
+    <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
+</head>
+<body>
+    <div class="responsive-wrapper">
+        <div class="app">
+            <div class="app-header">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <ion-icon name="school-outline"></ion-icon>
+                    </div>
+                    <div class="logo-title">
+                        <span>LearnLink</span>
+                        <span>Student Dashboard</span>
+                    </div>
+                </div>
+                <div class="app-header-navigation">
+                    <!-- Add any additional navigation items here if needed -->
+                </div>
+                <div class="app-header-actions">
+                    <div class="app-header-actions-buttons">
+                        <h1>@HttpContext.Current.Session["UserName"]</h1>
+                    </div>
+                </div>
+                <div class="app-header-mobile">
+                    <h1>@HttpContext.Current.Session["UserName"]</h1>
+                </div>
+            </div>
+
+            <div class="app-body">
+                <div class="app-body-navigation">
+                    <nav class="navigation">
+                        <a href="@Url.Action("AllCourse", "AllCourse")">
+                            <i class="icon ion-md-book"></i>
+                            <span>All Courses</span>
+                        </a>
+                        <a href="@Url.Action("EnrollCourses", "enrollCourses")">
+                            <i class="icon ion-md-person-add"></i>
+                            <span>Enroll Courses</span>
+                        </a>
+                        <a href="@Url.Action("giveAssessments", "giveAssessments")">
+                            <i class="icon ion-md-checkmark-circle"></i>
+                            <span>Take Assessments</span>
+                        </a>
+                        <a href="@Url.Action("seeFeedback", "seeFeedback")">
+                            <i class="icon ion-md-text"></i>
+                            <span>See Feedback</span>
+                        </a>
+                        <a href="@Url.Action("editStudentProfile", "editStudentProfile")">
+                            <i class="icon ion-md-person"></i>
+                            <span>Edit Profile</span>
+                        </a>
+                        <a href="@Url.Action("login", "Login")">
+                            <i class="icon ion-md-exit"></i>
+                            <span>Log Out</span>
+                        </a>
+                    </nav>
+                </div>
+
+                <div class="app-body">
+                    <div class="app-body-content">
+                        <div class="course-details">
+                            <h2>@Model.CourseName</h2>
+                            <p><strong>Description:</strong> @Model.CourseDescription</p>
+                            <p><strong>Prerequisites:</strong> @Model.CoursePrerequisite</p>
+                            <p><strong>Course Fee:</strong> @Model.CourseFee</p>
+                            <p><strong>Teacher:</strong> @Model.TeacherName</p>
+
+                            <a href="@Url.Action("EnrollCourse", "enrollCourses", new {  courseId = Model.CourseID,teacherId=Model.TeacherID })" class="tile-buttons view">
+                                <span class="view-button">Enroll</span>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

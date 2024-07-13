@@ -13,6 +13,7 @@ namespace LearnLink.Models
         public string CoursePrerequisite { get; set; }
         public int CourseFee { get; set; }
         public int TeacherID { get; set; }
+        public string TeacherName { get; set; }
         public DateTime CourseCreateDate { get; set; }
     }
 }

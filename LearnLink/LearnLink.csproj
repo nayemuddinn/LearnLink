@@ -120,13 +120,15 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Content\DBconnection.cs" />
+    <Compile Include="Controllers\AllCourseController.cs" />
     <Compile Include="Controllers\courseMaterialsController.cs" />
     <Compile Include="Controllers\createCourseController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\EditStudentProfileController.cs" />
     <Compile Include="Controllers\EditTeacherProfileController.cs" />
-    <Compile Include="Controllers\enrolledCoursesController.cs" />
+    <Compile Include="Controllers\enrollCoursesController.cs" />
     <Compile Include="Controllers\enrollStudentsController.cs" />
+    <Compile Include="Controllers\forgotPasswordController.cs" />
     <Compile Include="Controllers\giveAssessmentsController.cs" />
     <Compile Include="Controllers\giveFeedbackController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -136,14 +138,12 @@
     <Compile Include="Controllers\reviewAssessmentsController.cs" />
     <Compile Include="Controllers\seeFeedbackController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
-    <Compile Include="Controllers\studentCourseController.cs" />
     <Compile Include="Controllers\StudentDashboardController.cs" />
     <Compile Include="Controllers\ManageCourseController.cs" />
     <Compile Include="Controllers\TeacherDashboardController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\CourseMaterials.cs" />
     <Compile Include="Models\EditProfileViewModel.cs" />
@@ -151,6 +151,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\BackButton.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -171,6 +172,7 @@
     <Content Include="Content\CourseManage.css" />
     <Content Include="Content\dashboard.css" />
     <Content Include="Content\editprofile.css" />
+    <Content Include="Content\forgotPassword.css" />
     <Content Include="Content\Image\bg.jpg" />
     <Content Include="Content\loginpage.css" />
     <Content Include="Content\ShowCourseMaterials.css" />
@@ -228,6 +230,10 @@
     <Content Include="Views\enrolledCourses\EnrolledCourses.cshtml" />
     <Content Include="Views\enrollStudents\enrollStudents.cshtml" />
     <Content Include="Views\studentCourse\studentCourse.cshtml" />
+    <Content Include="Views\forgotPassword\forgotPassword.cshtml" />
+    <Content Include="Views\AllCourse\AllCourse.cshtml" />
+    <Content Include="Views\AllCourse\StudentCourseDetails.cshtml" />
+    <Content Include="Views\enrollCourses\EnrollCourse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
