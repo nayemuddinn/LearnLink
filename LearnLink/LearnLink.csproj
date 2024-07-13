@@ -153,6 +153,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\backbutton2.css" />
+    <Content Include="Content\backbutton3.css" />
     <Content Include="Content\Enroll_Student.css" />
     <Content Include="Content\AllCourses.css" />
     <Content Include="Content\BackButton.css" />

@@ -6,8 +6,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enrolled Students</title>
-    <link href="@Url.Content("/Content/Enroll_Student.css")" rel="stylesheet" />
     <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/Enroll_Student.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/backbutton2.css")" rel="stylesheet" />
 
 </head>
 <body>
@@ -95,7 +96,7 @@
                                     <td>@student.Institution</td>
                                     <td>@student.Phone</td>
                                     <td>
-                                      
+
                                         <a href="@Url.Action("UnenrollStudent", "enrollStudents", new { studentID = student.UserID, courseID = ViewBag.CourseID ,page=0})" class="view-ac-button">
                                             <span class="view-button">Unenroll</span>
                                         </a>
@@ -104,13 +105,19 @@
                             }
                         </tbody>
                     </table>
+                    <br /><br />
+                    <div>
+                        
+                        <button type="button" class="btn btn-back" onclick="window.location.href='/ManageCourse/ManageCourse'">Back</button>
+                    </div>
                 </div>
+
             </div>
 
             <div class="footer">
                 <h1>
                     LearnLink
-                    <small>Teacher Dashboard</small>
+                    <small>Teacher</small>
                 </h1>
                 <div>
                     &copy; 2024 LearnLink. All rights reserved.

@@ -140,13 +140,13 @@ a {
         }
 
     .tile-buttons.delete {
-        background-color: #882020;
-        color: #882020;
+        background-color: #ff0000;
+        color: #fff;
         border-color: #FFC107;
     }
 
         .tile-buttons.delete:hover {
-            background-color: #FFA000;
+            background-color: #990101;
             border-color: #FFA000;
         }
 

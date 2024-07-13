@@ -8,6 +8,7 @@
     <title>Teacher LearnLink</title>
     <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
     <link href="@Url.Content("/Content/editprofile.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/backbutton2.css")" rel="stylesheet" />
 
 </head>
 <body>
@@ -132,9 +133,15 @@
                                         @Html.ValidationMessageFor(m => m.Institution, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
-
+                                <br />
                                 <div class="form-group">
                                     <div class="input-group">
+
+                                        <button type="button" class="btn btn-back" onclick="window.location.href='/TeacherDashboard/Dashboard'">Back</button>
+
+
+                                        <div style="width: 150px;"></div>
+
                                         <input type="submit" value="Save" class="btn btn-primary" />
                                     </div>
                                 </div>
