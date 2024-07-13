@@ -1,4 +1,4 @@
-﻿@model LearnLink.Models.User
+﻿@model List<LearnLink.Models.Enrollment>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teacher LearnLink</title>
     <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/AllCourses.css")" rel="stylesheet" />
 </head>
 <body>
     <div class="responsive-wrapper">
@@ -82,53 +83,59 @@
 
 
                 <div class="app-body-content">
-                    <div class="tiles">
-                        <div class="tile">
-                            <div class="tile-header">
-                                <i class="icon ion-md-book"></i>
-                                <h3>
-                                    <span>Enroll New Student</span>
-                                    <span></span>
-                                </h3>
-                            </div>
-                            <a href="@Url.Action("teacherCourse", "teacherCourse")">
-                                <span></span>
-                                <button class="icon-button">
-                                    <i class="icon ion-md-arrow-forward"></i>
-                                </button>
-                            </a>
-                        </div>
 
-                        <div class="tile">
-                            <div class="tile-header">
-                                <i class="icon ion-md-person-add"></i>
-                                <h3>
-                                    <span>View Enrolled Student</span>
-
-                                </h3>
-                            </div>
-                            <a href="@Url.Action("Dashboard", "TeacherDashboard")">
-                            </a>
-
-                        </div>
-
-
-                    </div>
+                    <table class="transparent-table">
+                        <thead>
+                            <tr>
+                                <th>Enrollment ID</th>
+                                <th>Course ID</th>
+                                <th>Course Name</th>
+                                <th>Student ID</th>
+                                <th>Student Name</th>
+                                <th>Student Institution</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var request in Model)
+                            {
+                                <tr>
+                                    <td>@request.EnrollmentID</td>
+                                    <td>@request.CourseID</td>
+                                    <td>@request.CourseName</td>
+                                    <td>@request.StudentID</td>
+                                    <td>@request.StudentName</td>
+                                    <td>@request.StudentInstitution</td>
+                                    <td>
+                                        <a href="@Url.Action("UpdateRequest", "EnrollmentRequests", new { enrollmentID = request.EnrollmentID, actionType = "accept" })" class="tile-buttons view">
+                                            <span class="view-button">Accept</span>
+                                        </a>
+                                        <a href="@Url.Action("UpdateRequest", "EnrollmentRequests", new { enrollmentID = request.EnrollmentID, actionType = "reject" })" class="tile-buttons view">
+                                            <span class="view-button">Reject</span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
                 </div>
-            </div>
 
-            <div class="footer">
-                <br /><br />
-                <h1>
-                    LearnLink
-                    <small>Teacher Dashboard</small>
-                </h1>
-                <div>
-                    &copy; 2024 LearnLink. All rights reserved.
-                </div>
             </div>
         </div>
         
     </div>
+    <div class="footer">
+        <br /><br />
+        <h1>
+            LearnLink
+            <small>Teacher Dashboard</small>
+        </h1>
+        <div>
+            &copy; 2024 LearnLink. All rights reserved.
+        </div>
+    </div>
+    </div>
+    </div>
+    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

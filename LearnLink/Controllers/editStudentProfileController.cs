@@ -14,7 +14,7 @@ namespace LearnLink.Controllers
         {
             int userId = (int)Session["UserID"];
             User user = GetStudentById(userId);
-            EditProfileViewModel model = new EditProfileViewModel
+            User model = new User
             {
                 Name = user.Name,
                 Email = user.Email,
@@ -26,7 +26,7 @@ namespace LearnLink.Controllers
         }
 
         [HttpPost]
-        public ActionResult editStudentProfile(EditProfileViewModel model)
+        public ActionResult editStudentProfile(User model)
         {
             if (ModelState.IsValid)
             {
@@ -68,7 +68,7 @@ namespace LearnLink.Controllers
             return user;
         }
 
-        private void UpdateStudentProfile(int userId, EditProfileViewModel model)
+        private void UpdateStudentProfile(int userId, User model)
         {
             
 
