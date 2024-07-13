@@ -115,7 +115,7 @@
                                                 <span>Enrolled Students</span>
                                                 
                                             </a>
-                                            <a href="@Url.Action("ViewEnrolledStudents", "enrollStudents", new { fileId = material.FileID })" class="tile-buttons delete">
+                                            <a href="@Url.Action("DeleteMaterial", "ManageCourse", new { fileId = material.FileID,courseId=material.CourseID })" class="tile-buttons delete">
                                                 <span>Delete</span>
                                                
                                             </a>

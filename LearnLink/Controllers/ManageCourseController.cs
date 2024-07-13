@@ -128,5 +128,25 @@ namespace LearnLink.Controllers
             CourseMaterials material = getMaterial(fileId);
             return File(material.Data, material.ContentType, material.Name);
         }
+
+
+
+        public ActionResult DeleteMaterial(int fileId, int courseId)
+        {
+            using (SqlConnection con = new SqlConnection(DBconnection.connStr))
+            {
+                string query = "DELETE FROM CourseMaterials WHERE FileID = @FileID";
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@FileID", fileId);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+            return RedirectToAction("ShowCourseMaterials", new { courseid = courseId });
+        }
+
+
     }
 }
