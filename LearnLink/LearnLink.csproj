@@ -140,6 +140,7 @@
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\StudentDashboardController.cs" />
     <Compile Include="Controllers\ManageCourseController.cs" />
+    <Compile Include="Controllers\StudentEnrolledCoursesController.cs" />
     <Compile Include="Controllers\TeacherDashboardController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -151,7 +152,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-
     <Content Include="Content\Enroll_Student.css" />
     <Content Include="Content\AllCourses.css" />
     <Content Include="Content\BackButton.css" />
@@ -232,7 +232,6 @@
     <Content Include="Views\ManageCourse\ViewMaterial.cshtml" />
     <Content Include="Views\ManageCourse\DownloadMaterial.cshtml" />
     <Content Include="Views\reviewAssessments\reviewAssessments.cshtml" />
-    <Content Include="Views\enrolledCourses\EnrolledCourses.cshtml" />
     <Content Include="Views\enrollStudents\enrollStudents.cshtml" />
     <Content Include="Views\studentCourse\studentCourse.cshtml" />
     <Content Include="Views\forgotPassword\forgotPassword.cshtml" />
@@ -242,6 +241,7 @@
     <Content Include="Views\enrollStudents\ViewEnrolledStudents.cshtml" />
     <Content Include="Views\enrollCourses\ReEnrollCourse.cshtml" />
     <Content Include="Views\enrollCourses\EnrollCourse.cshtml" />
+    <Content Include="Views\StudentEnrolledCourses\ViewEnrolledCourses.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
