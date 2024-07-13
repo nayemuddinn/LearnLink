@@ -75,8 +75,11 @@
                         {
                             <script type="text/javascript">
                                 if (confirm("Your previous request was rejected. Do you want to re-enroll?")) {
-                              window.location.href = '@Url.Action("ReEnrollCourse", "enrollCourses", new { courseId = ViewBag.CourseID, teacherId = ViewBag.TeacherID })';
-                          }
+                                    window.location.href = '@Url.Action("ReEnrollCourse", "enrollCourses", new { courseId = ViewBag.CourseID, teacherId = ViewBag.TeacherID })';
+                                }
+                                else {
+                                     window.location.href = '@Url.Action("Dashboard", "StudentDashboard")';
+                                }
                             </script>
                         }
                         else
