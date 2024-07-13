@@ -62,7 +62,7 @@ namespace LearnLink.Controllers
                     con.Close();
                 }
             }
-            return RedirectToAction("ViewEnrolledStudents");
+            return RedirectToAction("ViewEnrolledCourses", "StudentEnrolledCourses");
         }
 
 

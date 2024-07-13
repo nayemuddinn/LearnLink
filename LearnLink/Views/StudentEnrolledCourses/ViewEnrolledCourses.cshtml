@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student LearnLink</title>
     <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/ShowCourseMaterials.css")" rel="stylesheet" />
 </head>
 <body>
     <div class="responsive-wrapper">
@@ -80,7 +81,7 @@
                         {
                             foreach (var course in Model)
                             {
-                                <div class="tile">
+                                <div class="clicktile">
                                     <div class="tile-header">
                                         <i class="icon ion-md-book"></i>
                                         <h5>
@@ -90,18 +91,14 @@
 
                                         </h5>
                                     </div>
-                                    <a href="@Url.Action("ShowCourseMaterials", "ManageCourse", new { courseid = course.CourseID })">
+                                    <a href="@Url.Action("ShowCourseMaterials", "ManageCourse", new { courseid = course.CourseID })" class="tile-buttons view">
                                         <br />  <span>View </span>
-                                        <button class="icon-button">
-                                            <i class="icon ion-md-arrow-forward"></i>
-                                        </button>
+
                                     </a>
-                                    <a href="@Url.Action("Unenroll", " StudentEnrolledCourses", new { courseid = course.CourseID })">
-                                        <br />  <span>View </span>
-                                        <button class="icon-button">
-                                            <i class="icon ion-md-arrow-forward"></i>
-                                        </button>
-                                    </a>
+                                    <a href="@Url.Action("Unenroll", "StudentEnrolledCourses", new { courseid = course.CourseID })" class="tile-buttons view">                     
+                                            <br />  <span>Unenroll </span>
+
+                                        </a>
                                 </div>
                             }
                         }
