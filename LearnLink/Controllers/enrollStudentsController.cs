@@ -27,7 +27,7 @@ namespace LearnLink.Controllers
                     FROM Enrollment r
                     INNER JOIN Courses c ON r.CourseID = c.CourseID
                     INNER JOIN Student s ON r.StudentID = s.UserID
-                    WHERE r.TeacherID = @TeacherID AND r.Status = 'Pending'";
+                    WHERE r.TeacherID = @TeacherID AND r.Status = 'Requested'";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@TeacherID", Session["UserID"]);
