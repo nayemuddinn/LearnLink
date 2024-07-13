@@ -96,7 +96,7 @@
                                     <td>@student.Phone</td>
                                     <td>
                                       
-                                        <a href="@Url.Action("UnenrollStudent", "enrollStudents", new { studentID = student.UserID, courseID = ViewBag.CourseID })" class="view-ac-button">
+                                        <a href="@Url.Action("UnenrollStudent", "enrollStudents", new { studentID = student.UserID, courseID = ViewBag.CourseID ,page=0})" class="view-ac-button">
                                             <span class="view-button">Unenroll</span>
                                         </a>
                                     </td>

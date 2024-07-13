@@ -1,4 +1,4 @@
-﻿@model LearnLink.Models.User
+﻿@model List<LearnLink.Models.EnrolledStudentCourse>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teacher LearnLink</title>
     <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/Enroll_Student.css")" rel="stylesheet" />
 </head>
 <body>
     <div class="responsive-wrapper">
@@ -27,14 +28,14 @@
 
 
                 <div class="app-header-actions">
-                    <h3>Enroll Students</h3>
+                    <h3>Enroll New Students</h3>
                     <div class="app-header-actions-buttons">
                         <ion-icon size="large" name="person-circle"></ion-icon>
                         <h3>@HttpContext.Current.Session["UserName"]</h3>
                     </div>
                 </div>
                 <div class="app-header-mobile">
-                    <h3>Enroll Students</h3>
+                    <h3>Enroll New Students</h3>
                     <ion-icon size="large" name="person-circle"></ion-icon>
                     <h3>@HttpContext.Current.Session["UserName"]</h3>
                 </div>
@@ -82,52 +83,55 @@
 
 
                 <div class="app-body-content">
-                    <div class="tiles">
-                        <div class="tile">
-                            <div class="tile-header">
-                                <i class="icon ion-md-book"></i>
-                                <h3>
-                                    <span>Enroll New Student</span>
-                                    <span></span>
-                                </h3>
-                            </div>
-                            <a href="@Url.Action("enrollNewStudents", "enrollStudents")">
-                                <span></span>
-                                <button class="icon-button">
-                                    <i class="icon ion-md-arrow-forward"></i>
-                                </button>
-                            </a>
-                        </div>
 
-                        <div class="tile">
-                            <div class="tile-header">
-                                <i class="icon ion-md-person-add"></i>
-                                <h3>
-                                    <span>View All Enrolled Student</span>
-
-                                </h3>
-                            </div>
-                            <a href="@Url.Action("AllEnrolledStudents", "enrollStudents")">
-                            </a>
-
-                        </div>
-
-
-                    </div>
+                    <table class="transparent-table">
+                        <thead>
+                            <tr>
+                                <th>Course ID</th>
+                                <th>Course Name</th>
+                                <th>Student ID</th>
+                                <th>Student Name</th>
+                                <th>Institution</th>
+                                <th>Phone Number</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.CourseID</td>
+                                    <td>@item.CourseName</td>
+                                    <td>@item.StudentID</td>
+                                    <td>@item.StudentName</td>
+                                    <td>@item.Institution</td>
+                                    <td>@item.Phone</td>
+                                    <td>
+                                        <a href="@Url.Action("UnenrollStudent", "enrollStudents", new { studentId = item.StudentID, courseId = item.CourseID ,page=1})" class="btn btn-dl">
+                                            Unenroll
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
                 </div>
-            </div>
 
-            <div class="footer">
-                <br /><br />
-                <h1>
-                    LearnLink
-                    <small>Teacher Dashboard</small>
-                </h1>
-                <div>
-                    &copy; 2024 LearnLink. All rights reserved.
-                </div>
             </div>
         </div>
+
+    </div>
+    <div class="footer">
+        <br /><br />
+        <h1>
+            LearnLink
+            <small>Teacher Dashboard</small>
+        </h1>
+        <div>
+            &copy; 2024 LearnLink. All rights reserved.
+        </div>
+    </div>
+    </div>
     </div>
     <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>

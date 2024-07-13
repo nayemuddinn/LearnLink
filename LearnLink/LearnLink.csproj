@@ -147,6 +147,7 @@
     </Compile>
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\CourseMaterials.cs" />
+    <Compile Include="Models\EnrolledStudentCourse.cs" />
     <Compile Include="Models\Enrollment.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -243,6 +244,7 @@
     <Content Include="Views\enrollCourses\EnrollCourse.cshtml" />
     <Content Include="Views\StudentEnrolledCourses\ViewEnrolledCourses.cshtml" />
     <Content Include="Views\StudentEnrolledCourses\Unenroll.cshtml" />
+    <Content Include="Views\enrollStudents\AllEnrolledStudents.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
