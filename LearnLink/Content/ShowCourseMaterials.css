@@ -128,6 +128,7 @@ a {
 
    
     .tile-buttons.enrolled {
+        display:flex;
         background-color: #FFC107; 
         color: #fff; 
         border-color: #FFC107; 
@@ -135,6 +136,17 @@ a {
 
         .tile-buttons.enrolled:hover {
             background-color: #FFA000; 
+            border-color: #FFA000;
+        }
+
+    .tile-buttons.delete {
+        background-color: #882020;
+        color: #882020;
+        border-color: #FFC107;
+    }
+
+        .tile-buttons.delete:hover {
+            background-color: #FFA000;
             border-color: #FFA000;
         }
 

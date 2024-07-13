@@ -242,6 +242,7 @@
     <Content Include="Views\enrollCourses\ReEnrollCourse.cshtml" />
     <Content Include="Views\enrollCourses\EnrollCourse.cshtml" />
     <Content Include="Views\StudentEnrolledCourses\ViewEnrolledCourses.cshtml" />
+    <Content Include="Views\StudentEnrolledCourses\Unenroll.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
