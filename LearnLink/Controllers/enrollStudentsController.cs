@@ -85,9 +85,40 @@ namespace LearnLink.Controllers
 
 
 
-        public ActionResult ViewEnrolledStudents()
+        public ActionResult ViewEnrolledStudents(int courseID)
         {
-            return View();
+            List<User> enrolledStudents = new List<User>();
+
+            using (SqlConnection con = new SqlConnection(DBconnection.connStr))
+            {
+                string query = @"
+            SELECT s.UserID, s.Name, s.Institution, s.Phone
+            FROM student s
+            JOIN Enrollment e ON s.UserID = e.StudentID
+            WHERE e.CourseID = @CourseID AND e.Status = 'Accepted'";
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@CourseID", courseID);
+                    con.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            enrolledStudents.Add(new User
+                            {
+                                UserID = Convert.ToInt32(reader["UserID"]),
+                                Name = reader["Name"].ToString(),
+                                Institution = reader["Institution"].ToString(),
+                                Phone = reader["Phone"].ToString()
+                            });
+                        }
+                    }
+                    con.Close();
+                }
+            }
+
+            ViewBag.CourseID = courseID; 
+            return View(enrolledStudents);
         }
     }
 }

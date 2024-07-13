@@ -111,7 +111,7 @@
                                         </a>
                                         @if (Session["UserRole"] != null && Session["UserRole"].Equals("teacher"))
                                         {
-                                            <a href="@Url.Action("ViewEnrolledStudents", "enrollStudents", new { fileId = material.FileID })" class="tile-buttons enrolled">
+                                            <a href="@Url.Action("ViewEnrolledStudents", "enrollStudents", new { courseID = material.CourseID })" class="tile-buttons enrolled">
                                                 <span>Enrolled Students</span>
                                                 
                                             </a>
