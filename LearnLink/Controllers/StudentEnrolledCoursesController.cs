@@ -48,5 +48,23 @@ namespace LearnLink.Controllers
             return View(courses);
         }
 
+        public ActionResult Unenroll( int courseid)
+        {
+            using (SqlConnection con = new SqlConnection(DBconnection.connStr))
+            {
+                string query = "DELETE FROM enrollment WHERE StudentID = @StudentID AND CourseID = @CourseID";
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@StudentID", Session["UserID"]);
+                    cmd.Parameters.AddWithValue("@CourseID", courseid);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+            return RedirectToAction("ViewEnrolledStudents");
+        }
+
+
     }
 }
