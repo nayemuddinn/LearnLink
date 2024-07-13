@@ -1,0 +1,45 @@
+﻿.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.btn-dl {
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}
+
+.btn-red {
+    background-color: #ff0000;
+    border-color: #cc0000;
+}
+
+.btn-dl:hover,
+.btn-dl:focus,
+.btn-dl:active,
+.btn-dl.active,
+.open > .dropdown-toggle.btn-dl {
+    color: #fff;
+    background-color: #c9302c;
+    border-color: #ac2925;
+}
+
+.btn-red:hover,
+.btn-red:focus,
+.btn-red:active,
+.btn-red.active,
+.open > .dropdown-toggle.btn-red {
+    background-color: #cc0000;
+    border-color: #990000;
+}

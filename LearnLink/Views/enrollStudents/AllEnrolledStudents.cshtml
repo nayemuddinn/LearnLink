@@ -9,6 +9,7 @@
     <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
     <link href="@Url.Content("/Content/Enroll_Student.css")" rel="stylesheet" />
     <link href="@Url.Content("/Content/backbutton2.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/unenroll.css")" rel="stylesheet" />
 </head>
 <body>
     <div class="responsive-wrapper">
@@ -108,7 +109,7 @@
                                     <td>@item.Institution</td>
                                     <td>@item.Phone</td>
                                     <td>
-                                        <a href="@Url.Action("UnenrollStudent", "enrollStudents", new { studentId = item.StudentID, courseId = item.CourseID ,page=1})" class="btn btn-dl">
+                                        <a href="@Url.Action("UnenrollStudent", "enrollStudents", new { studentId = item.StudentID, courseId = item.CourseID ,page=1})" class="btn btn-dl btn-red">
                                             Unenroll
                                         </a>
                                     </td>

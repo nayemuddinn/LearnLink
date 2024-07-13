@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teacher LearnLink</title>
     <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
-    <link href="@Url.Content("/Content/ShowCourseMaterials.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/viewbutton.css")" rel="stylesheet" />
     <link href="@Url.Content("/Content/backbutton2.css")" rel="stylesheet" />
 </head>
 <body>
@@ -99,15 +99,17 @@
                                             <span><ion-icon name="alarm-outline"></ion-icon> Created On: @course.CourseCreateDate</span><br />
                                         </h5>
                                     </div>
-                                    <a href="@Url.Action("ShowCourseMaterials", "ManageCourse", new { courseid = course.CourseID })" class="tile-buttons view">
-                                        <br />  <span>View </span>
-                                    </a>
-                                    @if (Session["UserRole"] != null && Session["UserRole"].Equals("teacher"))
-                                    {
-                                        <a href="@Url.Action("ViewEnrolledStudents", "enrollStudents", new { courseID = course.CourseID })" class="tile-buttons enrolled">
-                                            <span>Enrolled Students</span>
+                                    <div class="button-container">
+                                        <a href="@Url.Action("ShowCourseMaterials", "ManageCourse", new { courseid = course.CourseID })" class="tile-buttons view">
+                                            <br />  <span>View </span>
                                         </a>
-                                    }
+                                        @if (Session["UserRole"] != null && Session["UserRole"].Equals("teacher"))
+                                        {
+                                            <a href="@Url.Action("ViewEnrolledStudents", "enrollStudents", new { courseID = course.CourseID })" class="tile-buttons enrolled">
+                                                <span>Enrolled Students</span>
+                                            </a>
+                                        }
+                                    </div>
 
                                 </div>
                             }

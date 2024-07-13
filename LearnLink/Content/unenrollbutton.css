@@ -1,15 +1,15 @@
 ﻿.transparent-table {
-    margin-left:30px;
+    margin-left: 30px;
     width: 100%;
     border-collapse: collapse;
-    background-color: rgba(255, 255, 255, 0.5); 
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
     .transparent-table th, .transparent-table td {
         border: 1px solid #ddd;
-        padding: 12px; 
+        padding: 12px;
         text-align: left;
-        font-size: 14px; 
+        font-size: 14px;
     }
 
     .transparent-table th {
@@ -25,8 +25,9 @@
     }
 
     .transparent-table tbody tr:hover td {
-        background-color: #36414d; 
+        background-color: #36414d;
     }
+
 .btn-back {
     padding: 0.5rem 1rem;
     background-color: #4caf50;
@@ -39,27 +40,28 @@
     .btn-back:hover {
         background-color: #45a049;
     }
+
 .view-button {
-    background-color: #45a049;
+    background-color: #ff0000;
     color: white;
     border: none;
-    padding: 6px 12px; 
+    padding: 6px 12px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 12px; 
+    font-size: 12px;
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 12px;
     transition: background-color 0.3s ease;
 }
 
-    .enroll-button:hover {
-        background-color: #45a049;
-    }
+.enroll-button:hover {
+    background-color: #740303;
+}
 
 .view-ac-button {
-    color: #45a049;
+    color: #ff0000;
     border: none;
     padding: 4px 6px;
     text-align: center;
@@ -71,32 +73,26 @@
     border-radius: 5px;
     transition: background-color 0.3s ease;
 }
+
+.enroll-button:hover {
+    background-color: #740303;
+}
+
+
 .view-dl-button {
-    background-color: #f44336; /* Red background color */
-    color: white;
+    color: #ff0000;
     border: none;
-    padding: 2px 6px;
+    padding: 4px 6px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 12px;
+    font-size: 8px;
     margin: 4px 2px;
     cursor: pointer;
-    border-radius: 12px;
+    border-radius: 5px;
     transition: background-color 0.3s ease;
 }
 
-    .view-dl-button:hover {
-        background-color: #d32f2f; /* Darker red on hover */
-    }
-
 .enroll-button:hover {
-    background-color: #45a049;
-}
-
-
-
-
-.enroll-button:hover {
-    background-color: #45a049;
+    background-color: #740303;
 }

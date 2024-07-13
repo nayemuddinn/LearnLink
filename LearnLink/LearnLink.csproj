@@ -185,6 +185,9 @@
     <Content Include="Content\loginpage.css" />
     <Content Include="Content\ShowCourseMaterials.css" />
     <Content Include="Content\textfield.css" />
+    <Content Include="Content\unenroll.css" />
+    <Content Include="Content\unenrollbutton.css" />
+    <Content Include="Content\viewbutton.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
