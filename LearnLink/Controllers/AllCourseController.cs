@@ -65,8 +65,7 @@ namespace LearnLink.Controllers
 
         public ActionResult StudentCourseDetails(int cId) 
         {
-            int courseID = (int)cId;
-            Response.Write("<script>alert('"+courseID+"');</script>");
+           
 
             Course courseDetails = new Course();
 
