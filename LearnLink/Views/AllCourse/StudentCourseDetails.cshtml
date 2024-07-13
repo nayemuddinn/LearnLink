@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Dashboard - LearnLink</title>
-    <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/courseDescription.css")" rel="stylesheet" />
 </head>
 <body>
     <div class="responsive-wrapper">
@@ -25,11 +25,13 @@
                     <!-- Add any additional navigation items here if needed -->
                 </div>
                 <div class="app-header-actions">
+                    <div><h2 style="color:red;">@Model.CourseName</h2></div>
                     <div class="app-header-actions-buttons">
                         <h1>@HttpContext.Current.Session["UserName"]</h1>
                     </div>
                 </div>
                 <div class="app-header-mobile">
+                    <div><h2 style="color:red;">@Model.CourseName</h2></div>
                     <h1>@HttpContext.Current.Session["UserName"]</h1>
                 </div>
             </div>
@@ -41,7 +43,7 @@
                             <i class="icon ion-md-book"></i>
                             <span>All Courses</span>
                         </a>
-                        <a href="@Url.Action("EnrollCourses", "enrollCourses")">
+                        <a href="@Url.Action("EnrollCourse", "enrollCourses")">
                             <i class="icon ion-md-person-add"></i>
                             <span>Enroll Courses</span>
                         </a>
@@ -79,6 +81,17 @@
 
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <br /><br />
+            <div class="footer">
+                <h1>
+                    LearnLink
+                    <small>Student Dashboard</small>
+                </h1>
+                <div>
+                    &copy; 2024 LearnLink. All rights reserved.
                 </div>
             </div>
         </div>

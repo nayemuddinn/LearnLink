@@ -26,12 +26,21 @@
                     <!-- Add any additional navigation items here if needed -->
                 </div>
                 <div class="app-header-actions">
+                    <form method="get" action="@Url.Action("AllCourse", "AllCourse")" class="search-form">
+                        <input type="text" name="searchTerm" placeholder="ID, name, or teacher" value="@ViewBag.SearchTerm" />
+                        <button type="submit">Search</button>
+                    </form>
                     <div class="app-header-actions-buttons">
-                        <!-- Add any header action buttons here if needed -->
+
+                        <h1>@HttpContext.Current.Session["UserName"]</h1>
                     </div>
                 </div>
                 <div class="app-header-mobile">
-                    <!-- Add mobile-specific header items here if needed -->
+                    <form method="get" action="@Url.Action("AllCourse", "AllCourse")" class="search-form">
+                        <input type="text" name="searchTerm" placeholder="ID, name, or teacher" value="@ViewBag.SearchTerm" />
+                        <button type="submit">Search</button>
+                    </form>
+                    <h1>@HttpContext.Current.Session["UserName"]</h1>
                 </div>
             </div>
 
@@ -67,12 +76,9 @@
 
 
 
+
                 <div class="app-body-content">
 
-                    <form method="get" action="@Url.Action("AllCourse", "AllCourse")" class="search-form">
-                        <input type="text" name="searchTerm" placeholder="Search by ID, name, or teacher" value="@ViewBag.SearchTerm" />
-                        <button type="submit">Search</button>
-                    </form>
 
                     <table class="transparent-table">
                         <thead>
@@ -105,17 +111,19 @@
 
                 </div>
             </div>
-        </div>
-
-        <div class="footer">
-            <h1>
-                LearnLink
-                <small>Student Dashboard</small>
-            </h1>
-            <div>
-                &copy; 2024 LearnLink. All rights reserved.
+            <br /><br />
+            <div class="footer">
+                <h1>
+                    LearnLink
+                    <small>Student Dashboard</small>
+                </h1>
+                <div>
+                    &copy; 2024 LearnLink. All rights reserved.
+                </div>
             </div>
         </div>
+
+        
     </div>
     </div>
     <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
