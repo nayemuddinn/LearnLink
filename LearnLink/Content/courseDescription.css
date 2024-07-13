@@ -996,7 +996,9 @@ button {
 
 }
 
-
+.course-name {
+    color: red;
+}
 
 .app-body {
     display:flex;

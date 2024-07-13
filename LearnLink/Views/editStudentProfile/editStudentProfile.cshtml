@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Dashboard - LearnLink</title>
+    <title>Student LearnLink</title>
     <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
     <link href="@Url.Content("/Content/editprofile.css")" rel="stylesheet" />
 </head>
@@ -19,7 +19,7 @@
                     </div>
                     <div class="logo-title">
                         <span>LearnLink</span>
-                        <span>Student Dashboard</span>
+                        <span>Student</span>
                     </div>
                 </div>
                 <div class="app-header-navigation">
@@ -69,6 +69,8 @@
                     </nav>
                 </div>
 
+                <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
                 <main class="profile-content">
                     <div class="form-wrapper">
                         @using (Html.BeginForm())
@@ -76,7 +78,7 @@
                             @Html.AntiForgeryToken()
 
                             <div class="form-horizontal">
-                                
+
                                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                                 <div class="form-group">
@@ -129,6 +131,16 @@
                     </div>
                 </main>
 
+            </div>
+            <br /><br />
+            <div class="footer">
+                <h1>
+                    LearnLink
+                    <small>Student Dashboard</small>
+                </h1>
+                <div>
+                    &copy; 2024 LearnLink. All rights reserved.
+                </div>
             </div>
 </body>
 <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
