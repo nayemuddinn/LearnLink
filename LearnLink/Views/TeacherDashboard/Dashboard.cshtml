@@ -27,12 +27,16 @@
 
 
                 <div class="app-header-actions">
+                    <h3>Dashboard</h3>
                     <div class="app-header-actions-buttons">
-                        <h1>@HttpContext.Current.Session["UserName"]</h1>
+                        <ion-icon size="large" name="person-circle"></ion-icon>
+                        <h3>@HttpContext.Current.Session["UserName"]</h3>
                     </div>
                 </div>
                 <div class="app-header-mobile">
-                    <h1>@HttpContext.Current.Session["UserName"]</h1>
+                    <h3>Dashboard</h3>
+                    <ion-icon size="large" name="person-circle"></ion-icon>
+                    <h3>@HttpContext.Current.Session["UserName"]</h3>
                 </div>
             </div>
 
@@ -73,6 +77,7 @@
                         </a>
                     </nav>
                 </div>
+                <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
 
 
@@ -184,9 +189,21 @@
                             </a>
                         </div>
                     </div>
+
+                </div>
+
+            </div>
+            <div class="footer">
+                <br /><br />
+                <h1>
+                    LearnLink
+                    <small>Teacher Dashboard</small>
+                </h1>
+                <div>
+                    &copy; 2024 LearnLink. All rights reserved.
                 </div>
             </div>
-    </div>
-    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        </div>
+        
 </body>
 </html>

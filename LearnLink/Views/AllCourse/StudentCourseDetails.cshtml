@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Dashboard - LearnLink</title>
+    <title>Student LearnLink</title>
     <link href="@Url.Content("/Content/courseDescription.css")" rel="stylesheet" />
 </head>
 <body>
@@ -18,21 +18,23 @@
                     </div>
                     <div class="logo-title">
                         <span>LearnLink</span>
-                        <span>Student Dashboard</span>
+                        <span>Student</span>
                     </div>
                 </div>
                 <div class="app-header-navigation">
                     <!-- Add any additional navigation items here if needed -->
                 </div>
                 <div class="app-header-actions">
-                    <div><h2 style="color:red;">@Model.CourseName</h2></div>
+                    <h3>Course Details</h3>
                     <div class="app-header-actions-buttons">
-                        <h1>@HttpContext.Current.Session["UserName"]</h1>
+                        <ion-icon size="large" name="person-circle"></ion-icon>
+                        <h3>@HttpContext.Current.Session["UserName"]</h3>
                     </div>
                 </div>
                 <div class="app-header-mobile">
-                    <div><h2 style="color:red;">@Model.CourseName</h2></div>
-                    <h1>@HttpContext.Current.Session["UserName"]</h1>
+                    <h3>Course Details</h3>
+                    <ion-icon size="large" name="person-circle"></ion-icon>
+                    <h3>@HttpContext.Current.Session["UserName"]</h3>
                 </div>
             </div>
 
@@ -43,7 +45,7 @@
                             <i class="icon ion-md-book"></i>
                             <span>All Courses</span>
                         </a>
-                        <a href="@Url.Action("EnrollCourse", "enrollCourses")">
+                        <a href="@Url.Action("EnrollCourses", "enrollCourses")">
                             <i class="icon ion-md-person-add"></i>
                             <span>Enroll Courses</span>
                         </a>
@@ -66,10 +68,17 @@
                     </nav>
                 </div>
 
+                <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
+
+
+
                 <div class="app-body">
+                    <div>                    </div>
                     <div class="app-body-content">
                         <div class="course-details">
-                            <h2>@Model.CourseName</h2>
+                            <h3 style="color: red;">@Model.CourseName</h3><br /><br />
                             <p><strong>Description:</strong> @Model.CourseDescription</p>
                             <p><strong>Prerequisites:</strong> @Model.CoursePrerequisite</p>
                             <p><strong>Course Fee:</strong> @Model.CourseFee</p>

@@ -1,9 +1,11 @@
-﻿/* Global styles */
+﻿
+
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #1e1e1e; /* Dark background color */
+    background-color: #000000; /* Dark background color */
     color: #fff; /* Light text color */
 }
 
@@ -18,7 +20,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    background-color: #121212; /* Darker header background */
+    background-color: #000000; /* Darker header background */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -92,7 +94,7 @@ body {
 
 .profile-footer {
     padding: 1rem;
-    background-color: #121212; /* Darker footer background */
+    background-color: #000000; /* Darker footer background */
     text-align: center;
     color: #fff;
 }

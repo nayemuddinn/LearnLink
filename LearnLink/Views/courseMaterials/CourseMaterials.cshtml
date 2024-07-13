@@ -2,122 +2,140 @@
 
 @using LearnLink.Models;
 
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teacher Dashboard - LearnLink</title>
+    <title>Teacher LearnLink</title>
     <link href="@Url.Content("/Content/CourseManage.css")" rel="stylesheet" />
     <link href="@Url.Content("/Content/textfield.css")" rel="stylesheet" />
 </head>
-<div class="responsive-wrapper">
-    <div class="app">
-        <div class="app-header">
-            <div class="logo">
-                <div class="logo-icon">
-                    <ion-icon name="school-outline"></ion-icon>
-                </div>
-                <div class="logo-title">
-                    <span>LearnLink</span>
-                    <span>Teacher Dashboard</span>
-                </div>
-            </div>
-            <div class="app-header-navigation">
-                <!-- Add any additional navigation items here if needed -->
-            </div>
-            <div class="app-header-actions">
-                <div class="app-header-actions-buttons">
-                    <h1>@HttpContext.Current.Session["UserName"]</h1>
-                </div>
-            </div>
-            <div class="app-header-mobile">
-                <h1>@HttpContext.Current.Session["UserName"]</h1>
-            </div>
-        </div>
-
-        <div class="app-body">
-            <div class="app-body-navigation">
-                <nav class="navigation">
-                    <a href="@Url.Action("ManageCourse", "ManageCourse")">
-                        <i class="icon ion-md-book"></i>
-                        <span>Manage Courses</span>
-                    </a>
-                    <a href="@Url.Action("createCourse", "createCourse")">
-                        <i class="icon ion-md-add-circle"></i>
-                        <span>Create Courses</span>
-                    </a>
-                    <a href="@Url.Action("courseMaterials", "courseMaterials")">
-                        <i class="icon ion-md-add-circle"></i>
-                        <span>CourseMaterials</span>
-                    </a>
-                    <a href="@Url.Action("enrollStudents", "enrollStudents")">
-                        <i class="icon ion-md-person-add"></i>
-                        <span>Enroll Students</span>
-                    </a>
-                    <a href="@Url.Action("reviewAssessments", "reviewAssessments")">
-                        <i class="icon ion-md-checkmark-circle"></i>
-                        <span>Review Courses</span>
-                    </a>
-                    <a href="@Url.Action("giveFeedback", "giveFeedback")">
-                        <i class="icon ion-md-text"></i>
-                        <span>Provide Feedback</span>
-                    </a>
-                    <a href="@Url.Action("editteacherProfile", "editteacherProfile")">
-                        <i class="icon ion-md-person"></i>
-                        <span>Edit Profile</span>
-                    </a>
-                    <a href="@Url.Action("login", "Login")">
-                        <i class="icon ion-md-exit"></i>
-                        <span>Log Out</span>
-                    </a>
-                </nav>
-            </div>
-
-
-            <div class="auth-container">
-                <div class="login-wrapper">
-                    <div class="form-box login">
-
-                        @{
-                            ViewBag.Title = "Upload File";
-
-                        }
-
-                        <h2>Upload File</h2>
-                        <br /><br />
-
-                        @using (Html.BeginForm("CourseMaterials", "CourseMaterials", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                        {
-                            <div class="form-group">
-                                @Html.Label("CourseID")
-                                @Html.TextBox("courseID", null, new { @class = "form-control", placeholder = "Enter Course ID" })
-                                @Html.ValidationMessage("courseID")
-                            </div>
-                            <br /><br />
-                            <div class="form-group">
-                                @Html.Label("FileUpload")
-                                <br />
-                                <input type="file" name="fileUpload" required />
-                                @Html.ValidationMessage("fileUpload")
-                            </div>
-                            <br /><br />
-                            <div class="form-group d-flex justify-content-between">
-                                <button type="submit" class="btn btn-primary">Upload</button>
-                                <button type="button" class="btn btn-back" onclick="window.location.href='/TeacherDashboard/Dashboard'">Back</button>
-                            </div>
-
-                        }
-
-
-
+<body>
+    <div class="responsive-wrapper">
+        <div class="app">
+            <div class="app-header">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <ion-icon name="school-outline"></ion-icon>
+                    </div>
+                    <div class="logo-title">
+                        <span>LearnLink</span>
+                        <span>Teacher</span>
                     </div>
                 </div>
+                <div class="app-header-navigation">
+                    <!-- Add any additional navigation items here if needed -->
+                </div>
 
+
+                <div class="app-header-actions">
+                    <h3>Provide Course Material</h3>
+                    <div class="app-header-actions-buttons">
+                        <ion-icon size="large" name="person-circle"></ion-icon>
+                        <h3>@HttpContext.Current.Session["UserName"]</h3>
+                    </div>
+                </div>
+                <div class="app-header-mobile">
+                    <h3>Provide Course Materials</h3>
+                    <ion-icon size="large" name="person-circle"></ion-icon>
+                    <h3>@HttpContext.Current.Session["UserName"]</h3>
+                </div>
+            </div>
+
+            <div class="app-body">
+                <div class="app-body-navigation">
+                    <nav class="navigation">
+                        <a href="@Url.Action("ManageCourse", "ManageCourse")">
+                            <i class="icon ion-md-book"></i>
+                            <span>Manage Courses</span>
+                        </a>
+                        <a href="@Url.Action("createCourse", "createCourse")">
+                            <i class="icon ion-md-add-circle"></i>
+                            <span>Create Courses</span>
+                        </a>
+                        <a href="@Url.Action("courseMaterials", "courseMaterials")">
+                            <i class="icon ion-md-add-circle"></i>
+                            <span>CourseMaterials</span>
+                        </a>
+                        <a href="@Url.Action("enrollStudents", "enrollStudents")">
+                            <i class="icon ion-md-person-add"></i>
+                            <span>Enroll Students</span>
+                        </a>
+                        <a href="@Url.Action("reviewAssessments", "reviewAssessments")">
+                            <i class="icon ion-md-checkmark-circle"></i>
+                            <span>Review Courses</span>
+                        </a>
+                        <a href="@Url.Action("giveFeedback", "giveFeedback")">
+                            <i class="icon ion-md-text"></i>
+                            <span>Provide Feedback</span>
+                        </a>
+                        <a href="@Url.Action("editteacherProfile", "editteacherProfile")">
+                            <i class="icon ion-md-person"></i>
+                            <span>Edit Profile</span>
+                        </a>
+                        <a href="@Url.Action("login", "Login")">
+                            <i class="icon ion-md-exit"></i>
+                            <span>Log Out</span>
+                        </a>
+                    </nav>
+                </div>
+                <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
+                <div class="auth-container">
+                    <div class="login-wrapper">
+                        <div class="form-box login">
+
+                            @{
+                                ViewBag.Title = "Upload File";
+
+                            }
+
+                            <h2>Upload File</h2>
+                            <br /><br />
+
+                            @using (Html.BeginForm("CourseMaterials", "CourseMaterials", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <div class="form-group">
+                                    @Html.Label("CourseID")
+                                    @Html.TextBox("courseID", null, new { @class = "form-control", placeholder = "Enter Course ID" })
+                                    @Html.ValidationMessage("courseID")
+                                </div>
+                                <br /><br />
+                                <div class="form-group">
+                                    @Html.Label("FileUpload")
+                                    <br />
+                                    <input type="file" name="fileUpload" required />
+                                    @Html.ValidationMessage("fileUpload")
+                                </div>
+                                <br /><br />
+                                <div class="form-group d-flex justify-content-between">
+                                    <button type="submit" class="btn btn-primary">Upload</button>
+                                    <button type="button" class="btn btn-back" onclick="window.location.href='/TeacherDashboard/Dashboard'">Back</button>
+                                </div>
+
+                            }
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="footer">
+                <br /><br />
+                <h1>
+                    LearnLink
+                    <small>Teacher Dashboard</small>
+                </h1>
+                <div>
+                    &copy; 2024 LearnLink. All rights reserved.
+                </div>
             </div>
         </div>
 
+
     </div>
-
-</div>
-
-<script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 

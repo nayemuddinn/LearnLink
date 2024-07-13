@@ -1,15 +1,27 @@
-﻿.transparent-table {
-    margin-left:150px;
-    width: 100%;
+﻿.search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 60px;
+}
+
+    .search-form input,
+    .search-form button {
+        margin: 0 5px;
+    }
+
+.transparent-table {
+    width: 80%;
     border-collapse: collapse;
-    background-color: rgba(255, 255, 255, 0.5); 
+    background-color: rgba(255, 255, 255, 0.5);
+    margin: 0 auto; /* Center the table horizontally */
 }
 
     .transparent-table th, .transparent-table td {
         border: 1px solid #ddd;
-        padding: 12px; 
+        padding: 12px;
         text-align: left;
-        font-size: 14px; 
+        font-size: 14px;
     }
 
     .transparent-table th {
@@ -25,24 +37,24 @@
     }
 
     .transparent-table tbody tr:hover td {
-        background-color: #36414d; 
+        background-color: #36414d;
     }
 
 .view-button {
     background-color: #10407b;
     color: white;
     border: none;
-    padding: 6px 12px; 
+    padding: 6px 12px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 12px; 
+    font-size: 12px;
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 12px;
     transition: background-color 0.3s ease;
 }
 
-    .enroll-button:hover {
+    .view-button:hover {
         background-color: #45a049;
     }

@@ -5,10 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Courses - LearnLink</title>
+    <title>Teacher LearnLink</title>
     <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
     <link href="@Url.Content("/Content/ShowCourseMaterials.css")" rel="stylesheet" />
-
 </head>
 <body>
     <div class="responsive-wrapper">
@@ -20,19 +19,25 @@
                     </div>
                     <div class="logo-title">
                         <span>LearnLink</span>
-                        <span>Course Materials</span>
+                        <span>Teacher</span>
                     </div>
                 </div>
                 <div class="app-header-navigation">
                     <!-- Add any additional navigation items here if needed -->
                 </div>
+
+
                 <div class="app-header-actions">
+                    <h3>Course Materials</h3>
                     <div class="app-header-actions-buttons">
-                        <h1>@HttpContext.Current.Session["UserName"]</h1>
+                        <ion-icon size="large" name="person-circle"></ion-icon>
+                        <h3>@HttpContext.Current.Session["UserName"]</h3>
                     </div>
                 </div>
                 <div class="app-header-mobile">
-                    <h1>@HttpContext.Current.Session["UserName"]</h1>
+                    <h3>Course Materials</h3>
+                    <ion-icon size="large" name="person-circle"></ion-icon>
+                    <h3>@HttpContext.Current.Session["UserName"]</h3>
                 </div>
             </div>
 
@@ -73,6 +78,12 @@
                         </a>
                     </nav>
                 </div>
+                <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
+
+
+
 
                 <div class="app-body-content">
                     <div class="tiles">
@@ -141,7 +152,17 @@
                 </div>
             </div>
         </div>
+        <div class="footer">
+            <br /><br />
+            <h1>
+                LearnLink
+                <small>Teacher Dashboard</small>
+            </h1>
+            <div>
+                &copy; 2024 LearnLink. All rights reserved.
+            </div>
+        </div>
     </div>
-    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+   
 </body>
 </html>

@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teacher Dashboard - LearnLink</title>
+    <title>Teacher LearnLink</title>
     <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
     <link href="@Url.Content("/Content/Enroll_Student.css")" rel="stylesheet" />
 </head>
@@ -19,7 +19,7 @@
                     </div>
                     <div class="logo-title">
                         <span>LearnLink</span>
-                        <span>Teacher Dashboard</span>
+                        <span>Teacher</span>
                     </div>
                 </div>
                 <div class="app-header-navigation">
@@ -28,12 +28,16 @@
 
 
                 <div class="app-header-actions">
+                    <h3>Enroll New Students</h3>
                     <div class="app-header-actions-buttons">
-                        <h1>@HttpContext.Current.Session["UserName"]</h1>
+                        <ion-icon size="large" name="person-circle"></ion-icon>
+                        <h3>@HttpContext.Current.Session["UserName"]</h3>
                     </div>
                 </div>
                 <div class="app-header-mobile">
-                    <h1>@HttpContext.Current.Session["UserName"]</h1>
+                    <h3>Enroll New Students</h3>
+                    <ion-icon size="large" name="person-circle"></ion-icon>
+                    <h3>@HttpContext.Current.Session["UserName"]</h3>
                 </div>
             </div>
 
@@ -74,6 +78,7 @@
                         </a>
                     </nav>
                 </div>
+                <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
 
 
@@ -117,8 +122,8 @@
 
             </div>
         </div>
+        
     </div>
-
     <div class="footer">
         <br /><br />
         <h1>

@@ -996,15 +996,17 @@ button {
 
 }
 
-
+.course-name {
+    color: red;
+}
 
 .app-body {
-    display: grid;
+    display:flex;
     align-items: center;
+}
     .app-body-content
-
 {
-    display: flex;
+    display:flex;
     justify-content: center;
     width: 100%; /* Make sure it takes full width */
 }
