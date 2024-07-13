@@ -146,7 +146,7 @@
     </Compile>
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\CourseMaterials.cs" />
-    <Compile Include="Models\EditProfileViewModel.cs" />
+    <Compile Include="Models\Enrollment.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -172,6 +172,7 @@
     <Content Include="Content\courseDescription.css" />
     <Content Include="Content\CourseManage.css" />
     <Content Include="Content\dashboard.css" />
+    <Content Include="Content\editpofile.css" />
     <Content Include="Content\editprofile.css" />
     <Content Include="Content\forgotPassword.css" />
     <Content Include="Content\Image\bg.jpg" />
