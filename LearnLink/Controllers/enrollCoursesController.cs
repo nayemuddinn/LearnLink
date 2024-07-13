@@ -14,10 +14,10 @@ namespace LearnLink.Controllers
     public class enrollCoursesController : Controller
     {
 
-        [HttpPost]
-        public ActionResult EnrollCourse(int Id)
+      
+        public ActionResult EnrollCourse(int courseId,int teacherId)
         {
-           /* using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
+            using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
             {
                 string query = "INSERT INTO EnrollmentRequests (StudentID, CourseID,TeacherID, RequestDate, Status) VALUES (@StudentID, @CourseID,@TeacherID, @RequestDate, @Status)";
                 SqlCommand cmd = new SqlCommand(query, conn);
@@ -27,13 +27,12 @@ namespace LearnLink.Controllers
                 cmd.Parameters.AddWithValue("@RequestDate", DateTime.Now);
                 cmd.Parameters.AddWithValue("@Status", "Requested");
                 conn.Open();
-                cmd.ExecuteNonQuery();*/
+                cmd.ExecuteNonQuery();
 
                 Response.Write("<script>alert('Course Enrollment Request Sent ');</script>");
 
-
-                return RedirectToAction("StudentCourseDetails", "AllCourse");
-            //}
+                return View() ;
+            }
 
         }
     }

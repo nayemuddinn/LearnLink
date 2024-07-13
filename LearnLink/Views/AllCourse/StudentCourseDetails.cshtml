@@ -66,15 +66,20 @@
                     </nav>
                 </div>
 
-                <div class="app-body-content">
-                    <div class="course-details">
-                        <p><strong>Description:</strong> @Model.CourseDescription</p>
-                        <p><strong>Prerequisites:</strong> @Model.CoursePrerequisite</p>
-                        <p><strong>Course Fee:</strong> @Model.CourseFee</p>
-                        <p><strong>Teacher:</strong> @Model.TeacherName</p>
-                        <a href="@Url.Action("EnrollCourse", "enrollCourses", new { Id = Model.CourseID })" class="tile-buttons view">
-                            <span class="view-button">Enroll</span>
-                        </a>
+                <div class="app-body">
+                    <div class="app-body-content">
+                        <div class="course-details">
+                            <h2>@Model.CourseName</h2>
+                            <p><strong>Description:</strong> @Model.CourseDescription</p>
+                            <p><strong>Prerequisites:</strong> @Model.CoursePrerequisite</p>
+                            <p><strong>Course Fee:</strong> @Model.CourseFee</p>
+                            <p><strong>Teacher:</strong> @Model.TeacherName</p>
+
+                            <a href="@Url.Action("EnrollCourse", "enrollCourses", new {  courseId = Model.CourseID,teacherId=Model.TeacherID })" class="tile-buttons view">
+                                <span class="view-button">Enroll</span>
+                            </a>
+
+                        </div>
                     </div>
                 </div>
             </div>
