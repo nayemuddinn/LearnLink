@@ -237,14 +237,14 @@
     <Content Include="Views\forgotPassword\forgotPassword.cshtml" />
     <Content Include="Views\AllCourse\AllCourse.cshtml" />
     <Content Include="Views\AllCourse\StudentCourseDetails.cshtml" />
-    <Content Include="Views\enrollCourses\EnrollCourse.cshtml" />
     <Content Include="Views\enrollStudents\enrollNewStudents.cshtml" />
     <Content Include="Views\enrollStudents\ViewEnrolledStudents.cshtml" />
+    <Content Include="Views\enrollCourses\ReEnrollCourse.cshtml" />
+    <Content Include="Views\enrollCourses\EnrollCourse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="files\" />
-    <Folder Include="Views\Profile\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
