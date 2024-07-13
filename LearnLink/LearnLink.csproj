@@ -146,11 +146,13 @@
     </Compile>
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\CourseMaterials.cs" />
-    <Compile Include="Models\EditProfileViewModel.cs" />
+    <Compile Include="Models\Enrollment.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Enroll_Student.css" />
+    <Content Include="Content\AllCourses.css" />
     <Content Include="Content\BackButton.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -172,6 +174,7 @@
     <Content Include="Content\courseDescription.css" />
     <Content Include="Content\CourseManage.css" />
     <Content Include="Content\dashboard.css" />
+    <Content Include="Content\editpofile.css" />
     <Content Include="Content\editprofile.css" />
     <Content Include="Content\forgotPassword.css" />
     <Content Include="Content\Image\bg.jpg" />
@@ -234,14 +237,14 @@
     <Content Include="Views\forgotPassword\forgotPassword.cshtml" />
     <Content Include="Views\AllCourse\AllCourse.cshtml" />
     <Content Include="Views\AllCourse\StudentCourseDetails.cshtml" />
-    <Content Include="Views\enrollCourses\EnrollCourse.cshtml" />
     <Content Include="Views\enrollStudents\enrollNewStudents.cshtml" />
     <Content Include="Views\enrollStudents\ViewEnrolledStudents.cshtml" />
+    <Content Include="Views\enrollCourses\ReEnrollCourse.cshtml" />
+    <Content Include="Views\enrollCourses\EnrollCourse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="files\" />
-    <Folder Include="Views\Profile\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

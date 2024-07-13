@@ -28,6 +28,8 @@ namespace LearnLink.Controllers
                 return status != null ? status.ToString() : null;
             }
         }
+
+     
         public ActionResult EnrollCourse(int courseId, int teacherId)
         {
             string status = getStatus(courseId);
@@ -61,23 +63,24 @@ namespace LearnLink.Controllers
             {
                 ViewBag.Message = "Rejected";
                 ViewBag.CourseID = courseId;
-                ViewBag.TeacherID = teacherId;
+                
             }
 
             return View();
         }
 
-        public ActionResult ReEnrollCourse(int courseId, int teacherId)
+        public ActionResult ReEnrollCourse(int courseId)
         {
+          
+
             using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
             {
-                string query = "UPDATE Enrollment SET Status = @Status, RequestDate = @RequestDate WHERE StudentID = @StudentID AND CourseID = @CourseID AND TeacherID = @TeacherID";
+                string query = "UPDATE Enrollment SET Status = @Status, RequestDate = @RequestDate WHERE StudentID = @StudentID AND CourseID = @CourseID";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@StudentID", Session["UserID"]);
                 cmd.Parameters.AddWithValue("@CourseID", courseId);
-                cmd.Parameters.AddWithValue("@TeacherID", teacherId);
                 cmd.Parameters.AddWithValue("@RequestDate", DateTime.Now);
-                cmd.Parameters.AddWithValue("@Status", "Requested"); 
+                cmd.Parameters.AddWithValue("@Status", "Requested");
 
                 conn.Open();
                 int rowsAffected = cmd.ExecuteNonQuery();
@@ -91,8 +94,9 @@ namespace LearnLink.Controllers
                     ViewBag.Message = "Failed to update the enrollment request. Please try again.";
                 }
             }
-
             return View();
+
+
         }
 
 
