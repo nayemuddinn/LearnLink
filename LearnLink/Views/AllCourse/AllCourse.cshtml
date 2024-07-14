@@ -19,7 +19,7 @@
                     </div>
                     <div class="logo-title">
                         <span>LearnLink</span>
-                        <span>Student</span>
+                        <span>@HttpContext.Current.Session["UserRole"]</span>
                     </div>
                 </div>
                 <div class="app-header-navigation">
@@ -42,35 +42,78 @@
             </div>
 
             <div class="app-body">
-                <div class="app-body-navigation">
-                    <nav class="navigation">
-                        <a href="@Url.Action("AllCourse", "AllCourse")">
-                            <i class="icon ion-md-book"></i>
-                            <span>All Courses</span>
-                        </a>
-                        <a href="@Url.Action("ViewEnrolledCourses", "StudentEnrolledCourses")">
-                            <i class="icon ion-md-person-add"></i>
-                            <span>Enrolled Courses</span>
-                        </a>
-                        <a href="@Url.Action("Assessment", "Assessment")">
-                            <i class="icon ion-md-checkmark-circle"></i>
-                            <span>Assessments</span>
-                        </a>
-                        </a>
-                        <a href="@Url.Action("seeFeedback", "seeFeedback")">
-                            <i class="icon ion-md-text"></i>
-                            <span>See Feedback</span>
-                        </a>
-                        <a href="@Url.Action("editStudentProfile", "editStudentProfile")">
-                            <i class="icon ion-md-person"></i>
-                            <span>Edit Profile</span>
-                        </a>
-                        <a href="@Url.Action("login", "Login")">
-                            <i class="icon ion-md-exit"></i>
-                            <span>Log Out</span>
-                        </a>
-                    </nav>
-                </div>
+                @{
+                    if (Session["UserRole"] == "Student")
+                    {
+                        <div class="app-body-navigation">
+                            <nav class="navigation">
+                                <a href="@Url.Action("AllCourse", "AllCourse")">
+                                    <i class="icon ion-md-book"></i>
+                                    <span>All Courses</span>
+                                </a>
+                                <a href="@Url.Action("ViewEnrolledCourses", "StudentEnrolledCourses")">
+                                    <i class="icon ion-md-person-add"></i>
+                                    <span>Enrolled Courses</span>
+                                </a>
+                                <a href="@Url.Action("Assessment", "Assessment")">
+                                    <i class="icon ion-md-checkmark-circle"></i>
+                                    <span>Assessments</span>
+                                </a>
+                                <a href="@Url.Action("seeFeedback", "seeFeedback")">
+                                    <i class="icon ion-md-text"></i>
+                                    <span>See Feedback</span>
+                                </a>
+                                <a href="@Url.Action("editStudentProfile", "editStudentProfile")">
+                                    <i class="icon ion-md-person"></i>
+                                    <span>Edit Profile</span>
+                                </a>
+                                <a href="@Url.Action("login", "Login")">
+                                    <i class="icon ion-md-exit"></i>
+                                    <span>Log Out</span>
+                                </a>
+                            </nav>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="app-body-navigation">
+                            <nav class="navigation">
+                                <a href="@Url.Action("ManageCourse", "ManageCourse")">
+                                    <i class="icon ion-md-book"></i>
+                                    <span>Manage Courses</span>
+                                </a>
+                                <a href="@Url.Action("createCourse", "createCourse")">
+                                    <i class="icon ion-md-add-circle"></i>
+                                    <span>Create Courses</span>
+                                </a>
+                                <a href="@Url.Action("courseMaterials", "courseMaterials")">
+                                    <i class="icon ion-md-add-circle"></i>
+                                    <span>CourseMaterials</span>
+                                </a>
+                                <a href="@Url.Action("enrollStudents", "enrollStudents")">
+                                    <i class="icon ion-md-person-add"></i>
+                                    <span>Enroll Students</span>
+                                </a>
+                                <a href="@Url.Action("Assessment", "Assessment")">
+                                    <i class="icon ion-md-checkmark-circle"></i>
+                                    <span>Assessments</span>
+                                </a>
+                                <a href="@Url.Action("giveFeedback", "giveFeedback")">
+                                    <i class="icon ion-md-text"></i>
+                                    <span>Provide Feedback</span>
+                                </a>
+                                <a href="@Url.Action("editteacherProfile", "editteacherProfile")">
+                                    <i class="icon ion-md-person"></i>
+                                    <span>Edit Profile</span>
+                                </a>
+                                <a href="@Url.Action("login", "Login")">
+                                    <i class="icon ion-md-exit"></i>
+                                    <span>Log Out</span>
+                                </a>
+                            </nav>
+                        </div>
+                    }
+                }
 
                 <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
