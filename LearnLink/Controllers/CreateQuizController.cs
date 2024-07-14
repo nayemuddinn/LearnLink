@@ -21,19 +21,34 @@ namespace LearnLink.Controllers
         [HttpPost]
         public ActionResult CreateQuiz(Quiz quiz)
         {
+         
             using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
             {
                 try
                 {
                     conn.Open();
-                    string query = @"INSERT INTO Quiz (CourseID, TeacherID, Title, Description, CreationDate, CourseName) SELECT @CourseID,@TeacherID,@Title,@Description,@CreationDate,@CourseName
-                    c.CourseName FROM Courses c WHERE c.CourseID = @CourseID";
+                    string query = @"
+                INSERT INTO Quiz (CourseID, TeacherID, Title, Description, CreationDate, CourseName, Duration) 
+                SELECT 
+                    @CourseID, 
+                    @TeacherID, 
+                    @Title, 
+                    @Description, 
+                    @CreationDate, 
+                    c.CourseName, 
+                    @Duration
+                FROM Courses c
+                WHERE c.CourseID = @CourseID";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@CourseID", quiz.CourseID);
-                        cmd.Parameters.AddWithValue("@CourseName", quiz.CourseName);
                         cmd.Parameters.AddWithValue("@TeacherID", Session["UserID"]);
+                        cmd.Parameters.AddWithValue("@Title", quiz.Title);
+                        cmd.Parameters.AddWithValue("@Description", quiz.Description);
+                        cmd.Parameters.AddWithValue("@CreationDate", DateTime.Now);
+                        cmd.Parameters.AddWithValue("@Duration", quiz.Duration);
+
                         int rowsAffected = cmd.ExecuteNonQuery();
 
                         if (rowsAffected > 0)
@@ -48,12 +63,13 @@ namespace LearnLink.Controllers
                 }
                 catch (Exception ex)
                 {
-                    Response.Write("<script>alert('An error occurred. Please try again.');</script>");
-                   // Response.Write("<script>alert('An error occurred. Please try again.');</script>");
+                    Response.Write($"<script>alert('An error occurred: Please Try Again');</script>");
                 }
             }
+
             return View();
         }
+
 
 
 
