@@ -8,6 +8,7 @@
     <title>Teacher LearnLink</title>
     <link href="@Url.Content("/Content/CourseManage.css")" rel="stylesheet" />
     <link href="@Url.Content("/Content/textfield.css")" rel="stylesheet" />
+    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
     <div class="responsive-wrapper">
@@ -25,8 +26,6 @@
                 <div class="app-header-navigation">
                     <!-- Add any additional navigation items here if needed -->
                 </div>
-
-
                 <div class="app-header-actions">
                     <h3>Create Course</h3>
                     <div class="app-header-actions-buttons">
@@ -40,7 +39,7 @@
                     <h3>@HttpContext.Current.Session["UserName"]</h3>
                 </div>
             </div>
-
+            
             <div class="app-body">
                 @{
                     if (Session["UserRole"].Equals("Student"))
@@ -88,7 +87,7 @@
                                 </a>
                                 <a href="@Url.Action("courseMaterials", "courseMaterials")">
                                     <i class="icon ion-md-add-circle"></i>
-                                    <span>CourseMaterials</span>
+                                    <span>Course Materials</span>
                                 </a>
                                 <a href="@Url.Action("enrollStudents", "enrollStudents")">
                                     <i class="icon ion-md-person-add"></i>
@@ -114,53 +113,42 @@
                         </div>
                     }
                 }
-                <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
-
+            <div class="mid">
                 <div class="auth-container">
+
                     <div class="login-wrapper">
                         <div class="form-box login">
                             @{
                                 ViewBag.Title = "Create Course";
-
                             }
-
-
-
                             <form action="" method="post">
                                 <div class="input-box">
                                     <input type="text" name="CourseName" required>
                                     <label for="Course">Course Name</label>
                                 </div>
                                 <div class="input-box">
-                                    <input type="text" class="input-box" name="CourseDescription" required>
+                                    <input type="text" name="CourseDescription" required>
                                     <label for="Course">Course Description</label>
                                 </div>
-
                                 <div class="input-box">
-                                    <input type="text" class="input-box" name="CoursePrerequisite" required>
+                                    <input type="text" name="CoursePrerequisite" required>
                                     <label for="Course">Course Prerequisite</label>
                                 </div>
-
                                 <div class="input-box">
-                                    <input type="number" class="input-box" name="CourseFee" required>
+                                    <input type="number" name="CourseFee" required>
                                     <label for="Course">Course Fee</label>
                                 </div>
                                 <br /><br />
-                                <div class="button-container text-center">
-                                    <input type="submit" class="btn" name="create" value="Create" required>
+                                <div class="button-container">
+                                    <input type="submit" class="btn" name="create" value="Create">
                                     <button type="button" class="btn btn-back" onclick="window.location.href='/TeacherDashboard/Dashboard'">Back</button>
                                 </div>
-
-
-
                             </form>
-
-
                         </div>
                     </div>
-
                 </div>
+            </div>
+                
             </div>
             <div class="footer">
                 <br /><br />
@@ -174,4 +162,5 @@
             </div>
         </div>
     </div>
-
+</body>
+</html>

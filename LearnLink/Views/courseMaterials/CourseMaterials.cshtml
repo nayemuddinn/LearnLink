@@ -118,46 +118,47 @@
                 }
                 <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
+                <div class="mid">
+                    <div class="auth-container">
+                        <div class="login-wrapper">
+                            <div class="form-box login">
 
-                <div class="auth-container">
-                    <div class="login-wrapper">
-                        <div class="form-box login">
+                                @{
+                                    ViewBag.Title = "Upload File";
 
-                            @{
-                                ViewBag.Title = "Upload File";
+                                }
 
-                            }
-
-                            <h2>Upload File</h2>
-                            <br /><br />
-
-                            @using (Html.BeginForm("CourseMaterials", "CourseMaterials", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                            {
-                                <div class="form-group">
-                                    @Html.Label("CourseID")
-                                    @Html.TextBox("courseID", null, new { @class = "form-control", placeholder = "Enter Course ID" })
-                                    @Html.ValidationMessage("courseID")
-                                </div>
+                                <h2>Upload File</h2>
                                 <br /><br />
-                                <div class="form-group">
-                                    @Html.Label("FileUpload")
-                                    <br />
-                                    <input type="file" name="fileUpload" required />
-                                    @Html.ValidationMessage("fileUpload")
-                                </div>
-                                <br /><br />
-                                <div class="form-group d-flex justify-content-between">
-                                    <button type="submit" class="btn btn-primary">Upload</button>
-                                    <button type="button" class="btn btn-back" onclick="window.location.href='/TeacherDashboard/Dashboard'">Back</button>
-                                </div>
 
-                            }
+                                @using (Html.BeginForm("CourseMaterials", "CourseMaterials", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                    <div class="form-group">
+                                        @Html.Label("CourseID")
+                                        @Html.TextBox("courseID", null, new { @class = "form-control", placeholder = "Enter Course ID" })
+                                        @Html.ValidationMessage("courseID")
+                                    </div>
+                                    <br /><br />
+                                    <div class="form-group">
+                                        @Html.Label("FileUpload")
+                                        <br />
+                                        <input type="file" name="fileUpload" required />
+                                        @Html.ValidationMessage("fileUpload")
+                                    </div>
+                                    <br /><br />
+                                    <div class="form-group d-flex justify-content-between">
+                                        <button type="submit" class="btn btn-primary">Upload</button>
+                                        <button type="button" class="btn btn-back" onclick="window.location.href='/TeacherDashboard/Dashboard'">Back</button>
+                                    </div>
+
+                                }
 
 
 
+                            </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
             </div>
             <div class="footer">

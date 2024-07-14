@@ -1,10 +1,16 @@
 ﻿/* Global Styles */
+.mid{
+    margin-left:230px;
+
+}
 .auth-container * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
     text-decoration: none;
+    margin: auto;
+    width: 300px;
 }
 
 .auth-container html {
@@ -167,10 +173,10 @@
 }
 
 .auth-container .btn {
-    width: 160px;
-    height: 60px;
+    width: 130px;
+    height: 45px;
     background: transparent;
-    border: 2px solid white;
+    border: 0 solid white;
     outline: none;
     text-align: center;
     border-radius: 10px;

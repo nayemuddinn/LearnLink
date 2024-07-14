@@ -1,0 +1,160 @@
+﻿/* Global Styles */
+.auth-container * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+}
+
+.auth-container html {
+    background-color: #ffffff;
+    font-size: 1em;
+    font-family: "Roboto", sans-serif;
+    scroll-behavior: smooth;
+}
+
+.auth-container body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Header Styles */
+.auth-container header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 150px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+/* Login/Registration Wrapper Styles */
+.auth-container .login-wrapper,
+.auth-container .registration-wrapper {
+    color: #fff;
+    position: relative;
+    width: 400px;
+    background: transparent;
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-container .login-wrapper {
+    height: 440px;
+    margin: 0 auto;
+}
+
+.auth-container .registration-wrapper {
+    height: 600px;
+    margin: 0 auto;
+}
+
+.auth-container .form-box {
+    width: 100%;
+    padding: 30px;
+}
+
+    .auth-container .form-box h2 {
+        font-size: 2em;
+        text-align: center;
+    }
+
+/* Input Box Styles */
+.auth-container .input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 10px;
+    font-size: 1em;
+}
+
+    .auth-container .input-box label {
+        position: absolute;
+        top: 50%;
+        left: 5px;
+        font-size: 1em;
+        transform: translateY(-50%);
+        font-weight: 500;
+        pointer-events: none;
+        transition: .5s;
+    }
+
+    .auth-container .input-box input:focus ~ label,
+    .auth-container .input-box input:valid ~ label {
+        top: -4px;
+    }
+
+    .auth-container .input-box input {
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        color: whitesmoke;
+        font-size: 1em;
+        outline: none;
+        border: none;
+        padding: 0 30px 0 5px;
+    }
+
+    .auth-container .input-box .underline {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 2px;
+        background: #fff;
+    }
+
+        .auth-container .input-box .underline::before {
+            position: absolute;
+            content: '';
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .5s ease-in-out;
+        }
+
+    .auth-container .input-box input:focus ~ .underline::before,
+    .auth-container .input-box input:valid ~ .underline::before {
+        transform: scaleX(1);
+    }
+
+.auth-container .button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+    .auth-container .button-container .btn {
+        width: 100%;
+        height: 40px;
+        border: none;
+        background: #fff;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1em;
+        color: #333;
+        transition: background-color 0.3s;
+    }
+
+    .auth-container .button-container .btn-back {
+        margin-top: 10px;
+        background: #ddd;
+    }
+
+    .auth-container .button-container .btn:hover {
+        background: #ddd;
+    }
