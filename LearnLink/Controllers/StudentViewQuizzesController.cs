@@ -136,20 +136,20 @@ namespace LearnLink.Controllers
                 using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
                 {
                     conn.Open();
-                    string query = "INSERT INTO QuizEvaluation (StudentID, QuizID, Score) VALUES (@StudentID, @QuizID, @Score)";
+                    string query = "INSERT INTO QuizEvaluation (StudentID, QuizID, Score, SubmissionTime) VALUES (@StudentID, @QuizID, @Score, @SubmissionTime)";
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@StudentID", (int)Session["UserID"]);
                         cmd.Parameters.AddWithValue("@QuizID", quizID);
-                        cmd.Parameters.AddWithValue("@Score",0);
+                        cmd.Parameters.AddWithValue("@Score", 0);
+                        cmd.Parameters.AddWithValue("@SubmissionTime", currentTime);
                         cmd.ExecuteNonQuery();
                     }
                 }
                 TempData["AlertMessage"] = "Submission Time is exceeded";
                 return RedirectToAction("ViewQuizzes");
-
             }
-          
+
             int score = 0;
             using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
             {
@@ -169,7 +169,6 @@ namespace LearnLink.Controllers
                     }
                 }
 
-       
                 foreach (var key in form.AllKeys)
                 {
                     if (key.StartsWith("question_"))
@@ -184,20 +183,21 @@ namespace LearnLink.Controllers
                     }
                 }
 
-   
-                string query = "INSERT INTO QuizEvaluation (StudentID, QuizID, Score) VALUES (@StudentID, @QuizID, @Score)";
+                string query = "INSERT INTO QuizEvaluation (StudentID, QuizID, Score, SubmissionTime) VALUES (@StudentID, @QuizID, @Score, @SubmissionTime)";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@StudentID", (int)Session["UserID"]);
                     cmd.Parameters.AddWithValue("@QuizID", quizID);
                     cmd.Parameters.AddWithValue("@Score", score);
+                    cmd.Parameters.AddWithValue("@SubmissionTime", currentTime);
                     cmd.ExecuteNonQuery();
                 }
             }
 
-            Response.Write("<script>alert('Quiz submitted successfully!');</script>");
-            return RedirectToAction("Dashboard", "StudentDashboard");
+            TempData["AlertMessage"] = "Submission submitted successfully";
+            return RedirectToAction("ViewQuizzes");
         }
+
 
 
 

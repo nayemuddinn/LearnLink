@@ -131,7 +131,7 @@ namespace LearnLink.Controllers
                     Response.Write("<script>alert('An error occurred while starting the quiz. Please try again.');</script>");
                 }
             }
-
+            TempData["AlertMessage"] = "Quiz is Online";
             return RedirectToAction("ViewQuizzes");
         }
 
