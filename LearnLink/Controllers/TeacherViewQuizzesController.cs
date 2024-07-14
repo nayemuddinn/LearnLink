@@ -131,14 +131,45 @@ namespace LearnLink.Controllers
                     Response.Write("<script>alert('An error occurred while starting the quiz. Please try again.');</script>");
                 }
             }
-
+            TempData["AlertMessage"] = "Quiz is Online";
             return RedirectToAction("ViewQuizzes");
         }
 
 
-        public ActionResult studentParticipation()
+        public ActionResult studentParticipation(int id)
         {
-            return View();
+            List<QuizEvaluation> evaluations = new List<QuizEvaluation>();
+
+            using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
+            {
+                string query = @"
+                SELECT qe.SubmitID, qe.QuizID, q.Title AS QuizTitle, qe.StudentID, s.Name AS StudentName, qe.Score, qe.SubmissionTime
+                FROM QuizEvaluation qe
+                INNER JOIN Quiz q ON qe.QuizID = q.QuizID
+                INNER JOIN Student s ON qe.StudentID = s.UserID
+                WHERE qe.QuizID = @QuizID";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@QuizID", id);
+
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    evaluations.Add(new QuizEvaluation
+                    {
+                        SubmitID = (int)reader["SubmitID"],
+                        QuizID = (int)reader["QuizID"],
+                        StudentName = (string)reader["StudentName"],
+                        StudentID = (int)reader["StudentID"],
+                        Score = (int)reader["Score"],
+                        SubmissionTime = (DateTime)reader["SubmissionTime"]
+                    });
+                }
+            }
+
+            return View(evaluations);
         }
 
 

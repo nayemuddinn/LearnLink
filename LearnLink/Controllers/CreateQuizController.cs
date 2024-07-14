@@ -53,6 +53,7 @@ namespace LearnLink.Controllers
 
                         if (rowsAffected > 0)
                         {
+                         
                             Response.Write("<script>alert('Quiz created successfully!');</script>");
                         }
                         else
@@ -100,12 +101,13 @@ namespace LearnLink.Controllers
                         cmd.Parameters.AddWithValue("@CorrectOption", quizQuestion.CorrectOption);
 
                         cmd.ExecuteNonQuery();
-                        ViewBag.Message = "Question uploaded successfully!";
+                        Response.Write($"<script>alert('Question uploaded successfully!');</script>");
                     }
                 }
                 catch (Exception ex)
                 {
-                    ViewBag.Message = "An error occurred: " + ex.Message;
+                    Response.Write($"<script>alert('An error occurred: Try Again');</script>");
+                  
                 }
             }
             return View();

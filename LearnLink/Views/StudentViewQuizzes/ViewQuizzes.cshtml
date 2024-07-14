@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student LearnLink</title>
     <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
-    <link href="@Url.Content("/Content/ShowCourseMaterials.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/UnEnrollBut.css")" rel="stylesheet" />
     <link href="@Url.Content("/Content/backbutton2.css")" rel="stylesheet" />
 </head>
 <body>
@@ -60,10 +60,7 @@
                                     <i class="icon ion-md-checkmark-circle"></i>
                                     <span>Assessments</span>
                                 </a>
-                                <a href="@Url.Action("seeFeedback", "seeFeedback")">
-                                    <i class="icon ion-md-text"></i>
-                                    <span>See Feedback</span>
-                                </a>
+                                
                                 <a href="@Url.Action("editStudentProfile", "editStudentProfile")">
                                     <i class="icon ion-md-person"></i>
                                     <span>Edit Profile</span>
@@ -99,10 +96,7 @@
                                     <i class="icon ion-md-checkmark-circle"></i>
                                     <span>Assessments</span>
                                 </a>
-                                <a href="@Url.Action("giveFeedback", "giveFeedback")">
-                                    <i class="icon ion-md-text"></i>
-                                    <span>Provide Feedback</span>
-                                </a>
+                                
                                 <a href="@Url.Action("editteacherProfile", "editteacherProfile")">
                                     <i class="icon ion-md-person"></i>
                                     <span>Edit Profile</span>
@@ -136,20 +130,20 @@
                             <div class="clicktile">
                                 <div class="tile-header">
                                     <i class="icon ion-md-book"></i>
-                                    <h3>
+                                    <h3 style="color:black">
                                         <span>Quiz Name: @quiz.Title</span>
                                     </h3>
                                 </div>
-                                <p>Title           : @quiz.Title</p>
-                                <p>Course ID       : @quiz.CourseID</p>
-                                <p>Course Name     : @quiz.CourseName</p>
-                                <p>Duration(min)   : @quiz.Duration</p>
-                                <p>Uploaded On : @quiz.CreationDate</p>
+                                <p>Title           : @quiz.Title <br />
+                                Course ID       : @quiz.CourseID<br />
+                                Course Name     : @quiz.CourseName<br />
+                                Duration(min)   : @quiz.Duration<br />
+                                Uploaded On : @quiz.CreationDate</p>
                                 <div class="button-container">
                                     @{
                                         if (quiz.Score != -1)
                                         {
-                                            <p>Your Score : @quiz.Score</p>
+                                           <strong>Your Score : @quiz.Score</strong>
                                         }
                                         else if (quiz.Status == "Started")
                                         {
@@ -157,7 +151,7 @@
                                         }
                                         else
                                         {
-                                            <p>Quiz Hasn't Started by the Teacher Yet</p>
+                                            <strong>Quiz Hasn't Started</strong>
                                         }
                                     }
 

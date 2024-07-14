@@ -190,6 +190,8 @@
     <Content Include="Content\forgotPassword.css" />
     <Content Include="Content\Image\bg.jpg" />
     <Content Include="Content\loginpage.css" />
+    <Content Include="Content\mid.css" />
+    <Content Include="Content\participation.css" />
     <Content Include="Content\ShowCourseMaterials.css" />
     <Content Include="Content\textfield.css" />
     <Content Include="Content\unenroll.css" />
