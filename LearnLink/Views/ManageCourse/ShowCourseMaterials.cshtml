@@ -110,7 +110,7 @@
                                             <span>Download</span>
 
                                         </a>
-                                        @if (Session["UserRole"] != null && Session["UserRole"].Equals("teacher"))
+                                        @if (Session["UserRole"] != null && Session["UserRole"].Equals("Teacher"))
                                         {
                                             <a href="@Url.Action("DeleteMaterial", "ManageCourse", new { fileId = material.FileID,courseId=material.CourseID })" class="tile-buttons delete">
                                                 <span>Delete</span>

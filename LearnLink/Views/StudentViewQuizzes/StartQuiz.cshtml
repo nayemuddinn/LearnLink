@@ -1,4 +1,4 @@
-﻿@model List<LearnLink.Models.Course>
+﻿@model List<LearnLink.Models.QuizQuestion>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student LearnLink</title>
     <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
-    <link href="@Url.Content("/Content/AllCourses.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/ShowCourseMaterials.css")" rel="stylesheet" />
 </head>
 <body>
     <div class="responsive-wrapper">
@@ -19,23 +19,21 @@
                     </div>
                     <div class="logo-title">
                         <span>LearnLink</span>
-                        <span>Student</span>
+                        <span>Student Dashboard</span>
                     </div>
                 </div>
                 <div class="app-header-navigation">
-
+                    <!-- Add any additional navigation items here if needed -->
                 </div>
                 <div class="app-header-actions">
-
-                    <h3>All Courses</h3>
+                    <h3>Dashboard</h3>
                     <div class="app-header-actions-buttons">
                         <ion-icon size="large" name="person-circle"></ion-icon>
                         <h3>@HttpContext.Current.Session["UserName"]</h3>
                     </div>
                 </div>
                 <div class="app-header-mobile">
-
-                    <h3>All Courses</h3>
+                    <h3>Dashboard</h3>
                     <ion-icon size="large" name="person-circle"></ion-icon>
                     <h3>@HttpContext.Current.Session["UserName"]</h3>
                 </div>
@@ -55,7 +53,6 @@
                         <a href="@Url.Action("Assessment", "Assessment")">
                             <i class="icon ion-md-checkmark-circle"></i>
                             <span>Assessments</span>
-                        </a>
                         </a>
                         <a href="@Url.Action("seeFeedback", "seeFeedback")">
                             <i class="icon ion-md-text"></i>
@@ -77,53 +74,46 @@
 
 
                 <div class="app-body-content">
+                @using (Html.BeginForm("SubmitQuiz", "StuddentViewQuizzes", FormMethod.Post))
+                {
+                    var questionNumber = 1;
 
                     <div>
-                        <form method="get" action="@Url.Action("AllCourse", "AllCourse")" class="search-form">
-                            <input type="text" name="searchTerm" placeholder="ID, name, or teacher" value="@ViewBag.SearchTerm" />
-                            <button type="submit">Search</button>
-                        </form>
-                        <table class="transparent-table">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Instructor</th>
-                                    <th>Fee</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var course in Model)
-                                {
-                                    <tr>
-                                        <td>@course.CourseID</td>
-                                        <td>@course.CourseName</td>
-                                        <td>@course.TeacherName</td>
-                                        <td>@course.CourseFee</td>
-                                        <td>
-                                            <a href="@Url.Action("StudentCourseDetails", "AllCourse", new { cId =course.CourseID })" class="tile-buttons view">
-                                                <span class="view-button">View</span>
-                                            </a>
-
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                        <br /><br />
-
-                        <div>
-                            <button type="button" class="btn btn-back" onclick="window.location.href='/StudentDashboard/Dashboard'">Back</button>
-                        </div>
-
-
+                        @foreach (var question in Model)
+                        {
+                            <div class="quiz-question">
+                                <p>@questionNumber : @question.Question</p>
+                                <div>
+                                    <div>
+                                    <label>
+                                        <input type="radio" name="@question.QuestionID" value="A" required /> @question.OptionA
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="@question.QuestionID" value="B" required /> @question.OptionB
+                                    </label>
+                                        </div>
+                                    <div>
+                                    <label>
+                                        <input type="radio" name="@question.QuestionID" value="C" required /> @question.OptionC
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="@question.QuestionID" value="D" required /> @question.OptionD
+                                    </label>
+                                        </div>
+                                    <input type="hidden" name="" value="@question.QuestionID" />
+                                </div>
+                            </div>
+                            <br>
+                            questionNumber++;
+                        }
                     </div>
+                    <button type="submit" class="submit-button">Submit Quiz</button>
+                }
+
                 </div>
-
-
             </div>
             <br /><br />
+
             <div class="footer">
                 <h1>
                     LearnLink
@@ -133,10 +123,7 @@
                     &copy; 2024 LearnLink. All rights reserved.
                 </div>
             </div>
-
-
         </div>
     </div>
-    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
