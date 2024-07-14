@@ -131,8 +131,8 @@ namespace LearnLink.Controllers
 
             if ((DateTime.Now - quizStartTime).TotalMinutes > quizDuration)
             {
-                ViewBag.TLE= "Quiz time exceeded. Submission not accepted";
-                return View();
+                Session["TLE"]= "Quiz time exceeded. Submission not accepted";
+                RedirectToAction("Dashboard", "StudentDashboard");
             }
 
             int score = 0;

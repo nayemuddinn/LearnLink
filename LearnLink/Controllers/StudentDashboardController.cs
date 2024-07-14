@@ -10,10 +10,10 @@ namespace LearnLink.Controllers
     {
         public ActionResult Dashboard()
         {
-            if (ViewBag.TLE != null)
+            if (Session["TLE"] != null)
             {
                 Response.Write("<script>alert('" + ViewBag.TLE + "');</script>");
-                ViewBag.TLE = null;
+                Session["TLE"] = null;
             }
             return View();
         }
