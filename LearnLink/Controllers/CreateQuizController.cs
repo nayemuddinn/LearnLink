@@ -26,19 +26,23 @@ namespace LearnLink.Controllers
                 try
                 {
                     conn.Open();
+                    string query = @"INSERT INTO Quiz (CourseID, TeacherID, Title, Description, CreationDate, CourseName) SELECT @CourseID,@TeacherID,@Title,@Description,@CreationDate,
+                    c.CourseName FROM Courses c WHERE c.CourseID = @CourseID";
 
-                    string query = "INSERT INTO Quiz (CourseID, TeacherID, Title, Description, CreationDate) VALUES (@CourseID, @TeacherID, @Title, @Description, @CreationDate)";
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@CourseID", quiz.CourseID);
                         cmd.Parameters.AddWithValue("@TeacherID", Session["UserID"]);
-                        cmd.Parameters.AddWithValue("@Title", quiz.Title);
-                        cmd.Parameters.AddWithValue("@Description", quiz.Description);
-                        cmd.Parameters.AddWithValue("@CreationDate", DateTime.Now);
+                        int rowsAffected = cmd.ExecuteNonQuery();
 
-                        cmd.ExecuteNonQuery();
-
-                        Response.Write("<script>alert('Quiz created successfully!');</script>");
+                        if (rowsAffected > 0)
+                        {
+                            Response.Write("<script>alert('Quiz created successfully!');</script>");
+                        }
+                        else
+                        {
+                            Response.Write("<script>alert('Course ID not found. Please check the Course ID and try again.');</script>");
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -48,6 +52,7 @@ namespace LearnLink.Controllers
             }
             return View();
         }
+
 
 
         public ActionResult UploadQuiz()

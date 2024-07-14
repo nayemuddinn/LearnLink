@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model List<LearnLink.Models.Quiz> 
+
+< !DOCTYPE html >
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -69,68 +71,41 @@
 
                 <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-
-
-
-
                 <div class="app-body-content">
                     <div class="tiles">
-                        <div class="tile">
-                            <div class="tile-header">
-                                <i class="icon ion-md-book"></i>
-                                <h3>
-                                    <span>Create Quiz</span>
-                                </h3>
+                        @foreach (var quiz in Model)
+                        {
+                            <div class="tile">
+                                <div class="tile-header">
+                                    <i class="icon ion-md-book"></i>
+                                    <h3>
+                                        <span>Quiz Name : @quiz.Title</span>
+                                    </h3>
+                                </div>
+                                <p>Course ID   : @quiz.CourseID</p>
+                                <p>Course Name :@quiz.CourseName</p>
+                                <p>Created on  : @quiz.CreationDate.ToShortDateString()</p>
+                                <div class="button-container">
+                                    <a href="@Url.Action("StartQuiz", "Quiz", new { id = quiz.QuizID })" class="btn btn-start">Start</a>
+                                    <a href="@Url.Action("StudentParticipation", "Quiz", new { id = quiz.QuizID })" class="btn btn-participation">See Student Participation</a>
+                                </div>
                             </div>
-                            <a href="@Url.Action("CreateQuiz", "CreateQuiz")">
-                                <span></span>
-                                <button class="icon-button">
-                                    <i class="icon ion-md-arrow-forward"></i>
-                                </button>
-                            </a>
-                        </div>
-                        <div class="tile">
-                            <div class="tile-header">
-                                <i class="icon ion-md-book"></i>
-                                <h3>
-                                    <span>Upload Quiz</span>
-                                </h3>
-                            </div>
-                            <a href="@Url.Action("UploadQuiz", "CreateQuiz")">
-                                <span></span>
-                                <button class="icon-button">
-                                    <i class="icon ion-md-arrow-forward"></i>
-                                </button>
-                            </a>
-                        </div>
-                        <div class="tile">
-                            <div class="tile-header">
-                                <i class="icon ion-md-book"></i>
-                                <h3>
-                                    <span>View Quizzes</span>
-                                </h3>
-                            </div>
-                            <a href="@Url.Action("ViewQuizzes", "ViewQuizzes")">
-                                <span></span>
-                                <button class="icon-button">
-                                    <i class="icon ion-md-arrow-forward"></i>
-                                </button>
-                            </a>
-                        </div>
+                        }
                     </div>
                 </div>
             </div>
-            <div class="footer">
-                <br /><br />
-                <h1>
-                    LearnLink
-                    <small>Student</small>
-                </h1>
-                <div>
-                    &copy; 2024 LearnLink. All rights reserved.
-                </div>
+        </div>
+        <div class="footer">
+            <br /><br />
+            <h1>
+                LearnLink
+                <small>Student</small>
+            </h1>
+            <div>
+                &copy; 2024 LearnLink. All rights reserved.
             </div>
         </div>
+    </div>
 
     </div>
 </body>
