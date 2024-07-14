@@ -47,6 +47,76 @@ namespace LearnLink.Controllers
             return View(quizzes); 
         }
 
+        public ActionResult DeleteQuiz(int id)
+        {
+            string connectionString = DBconnection.connStr;
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    using (SqlTransaction transaction = conn.BeginTransaction())
+                    {
+                        string deleteQuizQuestionsQuery = "DELETE FROM QuizQuestions WHERE QuizID = @QuizID";
+                        using (SqlCommand cmd = new SqlCommand(deleteQuizQuestionsQuery, conn, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@QuizID", id);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        string deleteQuizQuery = "DELETE FROM Quiz WHERE QuizID = @QuizID";
+                        using (SqlCommand cmd = new SqlCommand(deleteQuizQuery, conn, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@QuizID", id);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        transaction.Commit();
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Response.Write("<script>alert('An error occurred while deleting the quiz. Please try again');</script>");
+                }
+            }
+
+            return RedirectToAction("ViewQuizzes"); 
+        }
+
+        public ActionResult StartQuiz(int id)
+        {
+           
+            using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "UPDATE Quiz SET Status = @Status WHERE QuizID = @QuizID";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Status", "Started");
+                        cmd.Parameters.AddWithValue("@QuizID", id);
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        if (rowsAffected == 0)
+                        {
+                            return HttpNotFound("Quiz not found or already started.");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Response.Write("<script>alert('An error occurred while Starting the quiz. Please try again');</script>");
+                }
+            }
+
+            return RedirectToAction("ViewQuizzes");
+        }
+
+
+
 
     }
 }

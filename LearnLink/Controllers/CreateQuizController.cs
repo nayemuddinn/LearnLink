@@ -26,12 +26,13 @@ namespace LearnLink.Controllers
                 try
                 {
                     conn.Open();
-                    string query = @"INSERT INTO Quiz (CourseID, TeacherID, Title, Description, CreationDate, CourseName) SELECT @CourseID,@TeacherID,@Title,@Description,@CreationDate,
+                    string query = @"INSERT INTO Quiz (CourseID, TeacherID, Title, Description, CreationDate, CourseName) SELECT @CourseID,@TeacherID,@Title,@Description,@CreationDate,@CourseName
                     c.CourseName FROM Courses c WHERE c.CourseID = @CourseID";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@CourseID", quiz.CourseID);
+                        cmd.Parameters.AddWithValue("@CourseName", quiz.CourseName);
                         cmd.Parameters.AddWithValue("@TeacherID", Session["UserID"]);
                         int rowsAffected = cmd.ExecuteNonQuery();
 
@@ -48,6 +49,7 @@ namespace LearnLink.Controllers
                 catch (Exception ex)
                 {
                     Response.Write("<script>alert('An error occurred. Please try again.');</script>");
+                   // Response.Write("<script>alert('An error occurred. Please try again.');</script>");
                 }
             }
             return View();
