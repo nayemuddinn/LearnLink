@@ -46,7 +46,6 @@ namespace LearnLink.Controllers
 
             return View(quizzes); 
         }
-
         public ActionResult DeleteQuiz(int id)
         {
             string connectionString = DBconnection.connStr;
@@ -56,34 +55,35 @@ namespace LearnLink.Controllers
                 try
                 {
                     conn.Open();
-                    using (SqlTransaction transaction = conn.BeginTransaction())
+
+       
+                    string deleteQuizQuestionsQuery = "DELETE FROM QuizQuestions WHERE QuizID = @QuizID";
+                    using (SqlCommand cmd = new SqlCommand(deleteQuizQuestionsQuery, conn))
                     {
-                        string deleteQuizQuestionsQuery = "DELETE FROM QuizQuestions WHERE QuizID = @QuizID";
-                        using (SqlCommand cmd = new SqlCommand(deleteQuizQuestionsQuery, conn, transaction))
-                        {
-                            cmd.Parameters.AddWithValue("@QuizID", id);
-                            cmd.ExecuteNonQuery();
-                        }
-
-                        string deleteQuizQuery = "DELETE FROM Quiz WHERE QuizID = @QuizID";
-                        using (SqlCommand cmd = new SqlCommand(deleteQuizQuery, conn, transaction))
-                        {
-                            cmd.Parameters.AddWithValue("@QuizID", id);
-                            cmd.ExecuteNonQuery();
-                        }
-
-                        transaction.Commit();
-
+                        cmd.Parameters.AddWithValue("@QuizID", id);
+                        cmd.ExecuteNonQuery();
                     }
+
+          
+                    string deleteQuizQuery = "DELETE FROM Quiz WHERE QuizID = @QuizID";
+                    using (SqlCommand cmd = new SqlCommand(deleteQuizQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@QuizID", id);
+                        cmd.ExecuteNonQuery();
+                    }
+
+         
+                    Response.Write("<script>alert('Quiz deleted successfully!');</script>");
                 }
                 catch (Exception ex)
                 {
-                    Response.Write("<script>alert('An error occurred while deleting the quiz. Please try again');</script>");
+
+                    Response.Write($"<script>alert('An error occurred while deleting the quiz:');</script>");
                 }
             }
-
-            return RedirectToAction("ViewQuizzes"); 
+            return RedirectToAction("ViewQuizzes");
         }
+
 
         public ActionResult StartQuiz(int id)
         {
