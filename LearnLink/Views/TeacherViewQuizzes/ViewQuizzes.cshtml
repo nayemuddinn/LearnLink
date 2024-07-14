@@ -1,12 +1,14 @@
-﻿@model LearnLink.Models.User
+﻿@model List<LearnLink.Models.Quiz>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teacher - LearnLink</title>
+    <title>Teacher LearnLink</title>
     <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/viewbutton.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/backbutton2.css")" rel="stylesheet" />
 </head>
 <body>
     <div class="responsive-wrapper">
@@ -27,14 +29,14 @@
 
 
                 <div class="app-header-actions">
-                    <h3>Review Courses</h3>
+                    <h3>Manage Your Courses</h3>
                     <div class="app-header-actions-buttons">
                         <ion-icon size="large" name="person-circle"></ion-icon>
                         <h3>@HttpContext.Current.Session["UserName"]</h3>
                     </div>
                 </div>
                 <div class="app-header-mobile">
-                    <h3>Review Courses</h3>
+                    <h3>Manage Your Courses</h3>
                     <ion-icon size="large" name="person-circle"></ion-icon>
                     <h3>@HttpContext.Current.Session["UserName"]</h3>
                 </div>
@@ -59,6 +61,10 @@
                             <i class="icon ion-md-person-add"></i>
                             <span>Enroll Students</span>
                         </a>
+                        <a href="@Url.Action("Assessment", "TeacherAssessment")">
+                            <i class="icon ion-md-checkmark-circle"></i>
+                            <span>Assessments</span>
+                        </a>
                         <a href="@Url.Action("reviewAssessments", "reviewAssessments")">
                             <i class="icon ion-md-checkmark-circle"></i>
                             <span>Review Courses</span>
@@ -81,76 +87,38 @@
 
 
 
+
                 <div class="app-body-content">
                     <div class="tiles">
-                        <div class="tile">
-                            <div class="tile-header">
-                                <i class="icon ion-md-book"></i>
-                                <h3>
-                                    <span>Course 1</span>
-                                    <span></span>
-                                </h3>
+                        @foreach (var quiz in Model)
+                        {
+                            <div class="clicktile">
+                                <div class="tile-header">
+                                    <i class="icon ion-md-book"></i>
+                                    <h3>
+                                        <span>Quiz Name: @quiz.Title</span>
+                                    </h3>
+                                </div>
+                                <p>Course ID: @quiz.CourseID</p>
+                                <p>Course Name: @quiz.CourseName</p>
+                                <p>Created on: @quiz.CreationDate.ToShortDateString()</p>
+                                <div class="button-container">
+                                    @{
+                                        if (quiz.Status == "NotStarted")
+                                        {
+                                            <a href="@Url.Action("StartQuiz", "TeacherViewQuizzes", new { id = quiz.QuizID })" class="tile-buttons view">Start</a>
+                                        }
+                                    }
+                                    <a href="@Url.Action("DeleteQuiz", "TeacherViewQuizzes", new { id = quiz.QuizID })" class="tile-buttons view">Delete</a>
+                                    <a href="@Url.Action("StudentParticipation", "TeacherViewQuizzes", new { id = quiz.QuizID })" class="tile-buttons view">Participation</a>
+                                </div>
                             </div>
-                            <a href="@Url.Action("teacherCourse", "teacherCourse")">
-                                <span>Feedback</span>
-                                <button class="icon-button">
-                                    <i class="icon ion-md-arrow-forward"></i>
-                                </button>
-                            </a>
-                        </div>
-                        <div class="tile">
-                            <div class="tile-header">
-                                <i class="icon ion-md-add-circle"></i>
-                                <h3>
-                                    <span>Couse 2</span>
-                                    <span></span>
-                                </h3>
-                            </div>
-                            <a href="@Url.Action("createCourse", "createCourse")">
-                                <span>Feedback</span>
-                                <button class="icon-button">
-                                    <i class="icon ion-md-arrow-forward"></i>
-                                </button>
-                            </a>
-                        </div>
-                        <div class="tile">
-                            <div class="tile-header">
-                                <i class="icon ion-md-person-add"></i>
-                                <h3>
-                                    <span>Course 3</span>
-                                    <span></span>
-                                </h3>
-                            </div>
-                            <a href="@Url.Action("enrollStudents", "enrollStudents")">
-                                <span>Feedback</span>
-                                <button class="icon-button">
-                                    <i class="icon ion-md-arrow-forward"></i>
-                                </button>
-                            </a>
-
-                        </div>
-                        <div class="tile">
-                            <div class="tile-header">
-                                <i class="icon ion-md-person-add"></i>
-                                <h3>
-                                    <span>Back</span>
-
-                                </h3>
-                            </div>
-                            <a href="@Url.Action("Dashboard", "TeacherDashboard")">
-                            </a>
-
-                        </div>
-
-
+                        }
                     </div>
                 </div>
             </div>
-
             <div class="footer">
-
                 <br /><br />
-
                 <h1>
                     LearnLink
                     <small>Teacher</small>
@@ -160,8 +128,7 @@
                 </div>
             </div>
         </div>
-       
+
     </div>
-    
 </body>
 </html>

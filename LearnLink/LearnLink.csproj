@@ -135,7 +135,6 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\Passwordhasher.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
-    <Compile Include="Controllers\reviewAssessmentsController.cs" />
     <Compile Include="Controllers\seeFeedbackController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\StudentDashboardController.cs" />
@@ -143,7 +142,7 @@
     <Compile Include="Controllers\StudentEnrolledCoursesController.cs" />
     <Compile Include="Controllers\TeacherAssessmentController.cs" />
     <Compile Include="Controllers\TeacherDashboardController.cs" />
-    <Compile Include="Controllers\ViewQuizzesController.cs" />
+    <Compile Include="Controllers\TeacherViewQuizzesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -240,7 +239,6 @@
     <Content Include="Views\ManageCourse\ShowCourseMaterials.cshtml" />
     <Content Include="Views\ManageCourse\ViewMaterial.cshtml" />
     <Content Include="Views\ManageCourse\DownloadMaterial.cshtml" />
-    <Content Include="Views\reviewAssessments\reviewAssessments.cshtml" />
     <Content Include="Views\enrollStudents\enrollStudents.cshtml" />
     <Content Include="Views\forgotPassword\forgotPassword.cshtml" />
     <Content Include="Views\AllCourse\AllCourse.cshtml" />
@@ -255,12 +253,11 @@
     <Content Include="Views\CreateQuiz\CreateQuiz.cshtml" />
     <Content Include="Views\TeacherAssessment\Assessment.cshtml" />
     <Content Include="Views\CreateQuiz\UploadQuiz.cshtml" />
-    <Content Include="Views\ViewQuizzes\ViewQuizzes.cshtml" />
+    <Content Include="Views\TeacherViewQuizzes\ViewQuizzes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="files\" />
-    <Folder Include="Views\ViewQuizes\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace LearnLink.Controllers
 {
-    public class ViewQuizzesController : Controller
+    public class TeacherViewQuizzesController : Controller
     {
 
         public ActionResult ViewQuizzes()
