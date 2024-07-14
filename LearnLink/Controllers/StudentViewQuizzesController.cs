@@ -112,10 +112,76 @@ namespace LearnLink.Controllers
 
             Session["QuizStartTime"] = DateTime.Now;
             Session["QuizDuration"] = quiz.Duration;
+            Session["QuizID"] = quiz.QuizID;
 
-     
+
             return View(questions);
         }
+
+
+        [HttpPost]
+        public ActionResult SubmitQuiz(FormCollection form)
+        {
+            int quizID = (int)Session["QuizID"];
+            DateTime quizStartTime = (DateTime)Session["QuizStartTime"];
+            int quizDuration = (int)Session["QuizDuration"];
+
+            if ((DateTime.Now - quizStartTime).TotalMinutes > quizDuration)
+            {
+                Response.Write("<script>alert('Quiz time exceeded. Submission not accepted.');</script>");
+                return RedirectToAction("Dashboard", "StudentDashboard");
+            }
+
+            int score = 0;
+            using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
+            {
+                conn.Open();
+
+                Dictionary<int, string> correctAnswers = new Dictionary<int, string>();
+                string queryCorrectAnswers = "SELECT QuestionID, CorrectOption FROM QuizQuestions WHERE QuizID = @QuizID";
+                using (SqlCommand cmd = new SqlCommand(queryCorrectAnswers, conn))
+                {
+                    cmd.Parameters.AddWithValue("@QuizID", quizID);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            correctAnswers.Add((int)reader["QuestionID"], reader["CorrectOption"].ToString());
+                        }
+                    }
+                }
+
+       
+                foreach (var key in form.AllKeys)
+                {
+                    if (key.StartsWith("question_"))
+                    {
+                        int questionID = int.Parse(key.Split('_')[1]);
+                        string selectedOption = form[key];
+
+                        if (correctAnswers.ContainsKey(questionID) && correctAnswers[questionID] == selectedOption)
+                        {
+                            score++;
+                        }
+                    }
+                }
+
+   
+                string query = "INSERT INTO QuizEvaluation (StudentID, QuizID, Score) VALUES (@StudentID, @QuizID, @Score)";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@StudentID", (int)Session["UserID"]);
+                    cmd.Parameters.AddWithValue("@QuizID", quizID);
+                    cmd.Parameters.AddWithValue("@Score", score);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+            Response.Write("<script>alert('Quiz submitted successfully!');</script>");
+            return RedirectToAction("Dashboard", "StudentDashboard");
+        }
+
+
 
 
 
