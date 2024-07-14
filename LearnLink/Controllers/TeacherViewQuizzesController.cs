@@ -57,7 +57,13 @@ namespace LearnLink.Controllers
                 {
                     conn.Open();
 
-       
+                    string deleteQuizEvaluationsQuery = "DELETE FROM QuizEvaluation WHERE QuizID = @QuizID";
+                    using (SqlCommand cmd = new SqlCommand(deleteQuizEvaluationsQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@QuizID", id);
+                        cmd.ExecuteNonQuery();
+                    }
+
                     string deleteQuizQuestionsQuery = "DELETE FROM QuizQuestions WHERE QuizID = @QuizID";
                     using (SqlCommand cmd = new SqlCommand(deleteQuizQuestionsQuery, conn))
                     {
@@ -65,7 +71,6 @@ namespace LearnLink.Controllers
                         cmd.ExecuteNonQuery();
                     }
 
-          
                     string deleteQuizQuery = "DELETE FROM Quiz WHERE QuizID = @QuizID";
                     using (SqlCommand cmd = new SqlCommand(deleteQuizQuery, conn))
                     {
@@ -73,17 +78,18 @@ namespace LearnLink.Controllers
                         cmd.ExecuteNonQuery();
                     }
 
-         
                     Response.Write("<script>alert('Quiz deleted successfully!');</script>");
                 }
                 catch (Exception ex)
                 {
-
-                    Response.Write($"<script>alert('An error occurred while deleting the quiz:');</script>");
+                    Response.Write($"<script>alert('An error occurred while deleting the quiz: {ex.Message}');</script>");
                 }
             }
+
             return RedirectToAction("ViewQuizzes");
         }
+
+
 
 
         public ActionResult StartQuiz(int id)
