@@ -153,6 +153,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\backbutton2.css" />
+    <Content Include="Content\backbutton3.css" />
     <Content Include="Content\Enroll_Student.css" />
     <Content Include="Content\AllCourses.css" />
     <Content Include="Content\BackButton.css" />
@@ -183,6 +185,9 @@
     <Content Include="Content\loginpage.css" />
     <Content Include="Content\ShowCourseMaterials.css" />
     <Content Include="Content\textfield.css" />
+    <Content Include="Content\unenroll.css" />
+    <Content Include="Content\unenrollbutton.css" />
+    <Content Include="Content\viewbutton.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -234,7 +239,6 @@
     <Content Include="Views\ManageCourse\DownloadMaterial.cshtml" />
     <Content Include="Views\reviewAssessments\reviewAssessments.cshtml" />
     <Content Include="Views\enrollStudents\enrollStudents.cshtml" />
-    <Content Include="Views\studentCourse\studentCourse.cshtml" />
     <Content Include="Views\forgotPassword\forgotPassword.cshtml" />
     <Content Include="Views\AllCourse\AllCourse.cshtml" />
     <Content Include="Views\AllCourse\StudentCourseDetails.cshtml" />

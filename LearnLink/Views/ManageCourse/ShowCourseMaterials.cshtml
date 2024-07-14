@@ -8,6 +8,7 @@
     <title>Teacher LearnLink</title>
     <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
     <link href="@Url.Content("/Content/ShowCourseMaterials.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/backbutton2.css")" rel="stylesheet" />
 </head>
 <body>
     <div class="responsive-wrapper">
@@ -103,17 +104,17 @@
                                     </div>
                                     <div class="button-container">
                                         <a href="@Url.Action("ViewMaterial", "ManageCourse", new { fileId = material.FileID })" class="tile-buttons view">
-                                            <span>View</span>        
+                                            <span>View</span>
                                         </a>
                                         <a href="@Url.Action("DownloadMaterial", "ManageCourse", new { fileId = material.FileID })" class="tile-buttons download">
                                             <span>Download</span>
-                                            
+
                                         </a>
                                         @if (Session["UserRole"] != null && Session["UserRole"].Equals("teacher"))
-                                        {       
+                                        {
                                             <a href="@Url.Action("DeleteMaterial", "ManageCourse", new { fileId = material.FileID,courseId=material.CourseID })" class="tile-buttons delete">
                                                 <span>Delete</span>
-                                               
+
                                             </a>
                                         }
 
@@ -133,6 +134,15 @@
                                 </div>
                             </div>
                         }
+
+
+
+
+                    </div>
+                    <br /><br />
+                    <div>
+
+                        <button type="button" class="btn btn-back" onclick="window.location.href='/ManageCourse/ManageCourse'">Back</button>
                     </div>
                 </div>
             </div>
@@ -142,23 +152,14 @@
 
                 <h1>
                     LearnLink
-                    <small>Teacher Dashboard</small>
+                    <small>Teacher</small>
                 </h1>
                 <div>
                     &copy; 2024 LearnLink. All rights reserved.
                 </div>
             </div>
         </div>
-        <div class="footer">
-            <br /><br />
-            <h1>
-                LearnLink
-                <small>Teacher Dashboard</small>
-            </h1>
-            <div>
-                &copy; 2024 LearnLink. All rights reserved.
-            </div>
-        </div>
+        
     </div>
    
 </body>

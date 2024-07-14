@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teacher LearnLink</title>
     <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/backbutton2.css")" rel="stylesheet" />
 </head>
 <body>
     <div class="responsive-wrapper">
@@ -88,7 +89,7 @@
                                 <i class="icon ion-md-book"></i>
                                 <h3>
                                     <span>Enroll New Student</span>
-                                    <span></span>
+
                                 </h3>
                             </div>
                             <a href="@Url.Action("enrollNewStudents", "enrollStudents")">
@@ -108,8 +109,19 @@
                                 </h3>
                             </div>
                             <a href="@Url.Action("AllEnrolledStudents", "enrollStudents")">
+                                <span></span>
+                                <button class="icon-button">
+                                    <i class="icon ion-md-arrow-forward"></i>
+                                </button>
                             </a>
 
+
+
+                        </div>
+                        <br /><br />
+                        <div>
+
+                            <button type="button" class="btn btn-back" onclick="window.location.href='/TeacherDashboard/Dashboard'">Back</button>
                         </div>
 
 
@@ -121,7 +133,7 @@
                 <br /><br />
                 <h1>
                     LearnLink
-                    <small>Teacher Dashboard</small>
+                    <small>Teacher</small>
                 </h1>
                 <div>
                     &copy; 2024 LearnLink. All rights reserved.
@@ -129,6 +141,5 @@
             </div>
         </div>
     </div>
-    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

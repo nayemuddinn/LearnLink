@@ -120,9 +120,14 @@
                                         @Html.ValidationMessageFor(m => m.Institution, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
-
+                                <br />
                                 <div class="form-group">
                                     <div class="input-group">
+                                        <button type="button" class="btn btn-back" onclick="window.location.href='/TeacherDashboard/Dashboard'">Back</button>
+
+
+                                        <div style="width: 150px;"></div>
+
                                         <input type="submit" value="Save" class="btn btn-primary" />
                                     </div>
                                 </div>
@@ -136,7 +141,7 @@
             <div class="footer">
                 <h1>
                     LearnLink
-                    <small>Student Dashboard</small>
+                    <small>Student</small>
                 </h1>
                 <div>
                     &copy; 2024 LearnLink. All rights reserved.

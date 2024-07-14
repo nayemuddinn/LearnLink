@@ -8,6 +8,8 @@
     <title>Teacher LearnLink</title>
     <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
     <link href="@Url.Content("/Content/Enroll_Student.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/backbutton2.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/unenroll.css")" rel="stylesheet" />
 </head>
 <body>
     <div class="responsive-wrapper">
@@ -28,14 +30,14 @@
 
 
                 <div class="app-header-actions">
-                    <h3>Enroll New Students</h3>
+                    <h3>View All Students</h3>
                     <div class="app-header-actions-buttons">
                         <ion-icon size="large" name="person-circle"></ion-icon>
                         <h3>@HttpContext.Current.Session["UserName"]</h3>
                     </div>
                 </div>
                 <div class="app-header-mobile">
-                    <h3>Enroll New Students</h3>
+                    <h3>View All Students</h3>
                     <ion-icon size="large" name="person-circle"></ion-icon>
                     <h3>@HttpContext.Current.Session["UserName"]</h3>
                 </div>
@@ -107,7 +109,7 @@
                                     <td>@item.Institution</td>
                                     <td>@item.Phone</td>
                                     <td>
-                                        <a href="@Url.Action("UnenrollStudent", "enrollStudents", new { studentId = item.StudentID, courseId = item.CourseID ,page=1})" class="btn btn-dl">
+                                        <a href="@Url.Action("UnenrollStudent", "enrollStudents", new { studentId = item.StudentID, courseId = item.CourseID ,page=1})" class="btn btn-dl btn-red">
                                             Unenroll
                                         </a>
                                     </td>
@@ -115,24 +117,29 @@
                             }
                         </tbody>
                     </table>
+                    <br /><br />
+                    <div>
+
+                        <button type="button" class="btn btn-back" onclick="window.location.href='/enrollStudents/enrollStudents'">Back</button>
+                    </div>
                 </div>
 
+            </div>
+            <div class="footer">
+                <br /><br />
+                <h1>
+                    LearnLink
+                    <small>Teacher</small>
+                </h1>
+                <div>
+                    &copy; 2024 LearnLink. All rights reserved.
+                </div>
             </div>
         </div>
 
     </div>
-    <div class="footer">
-        <br /><br />
-        <h1>
-            LearnLink
-            <small>Teacher Dashboard</small>
-        </h1>
-        <div>
-            &copy; 2024 LearnLink. All rights reserved.
-        </div>
-    </div>
-    </div>
-    </div>
-    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    
+    
+    
 </body>
 </html>

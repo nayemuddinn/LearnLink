@@ -1,14 +1,25 @@
-﻿.search-form {
-    display: flex;
+﻿
+.search-form {
+    display:flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    background-color: #f2f2f2; /* Add this line */
+    padding: 1px;
 }
 
     .search-form input,
     .search-form button {
         margin: 0 5px;
+        border-radius: 5px;
+        padding: 5px; /* Add this line */
+        border: none;
+        background-color: #f2f2f2;
     }
+
+
+
 
 .transparent-table {
     width: 80%;

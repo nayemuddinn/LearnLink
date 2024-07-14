@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student LearnLink</title>
     <link href="@Url.Content("/Content/courseDescription.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/backbutton2.css")" rel="stylesheet" />
 </head>
 <body>
     <div class="responsive-wrapper">
@@ -68,33 +69,42 @@
                 </div>
 
                 <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
-                <div class="app-body">
-                    <div class="app-body-content">
-                        @if (ViewBag.Message == "Rejected")
-                        {
-                            <script type="text/javascript">
+                <div>
+                    <div class="app-body">
+                        <div class="app-body-content">
+                            @if (ViewBag.Message == "Rejected")
+                            {
+                                <script type="text/javascript">
                                 if (confirm("Your previous request was rejected. Do you want to re-enroll?")) {
                                     window.location.href = '@Url.Action("ReEnrollCourse", "enrollCourses", new { courseId = ViewBag.CourseID, teacherId = ViewBag.TeacherID })';
                                 }
                                 else {
                                      window.location.href = '@Url.Action("Dashboard", "StudentDashboard")';
                                 }
-                            </script>
-                        }
-                        else
-                        {
-                            <p>@ViewBag.Message</p>
-                        }
+                                </script>
+                            }
+                            else
+                            {
+                                <p>@ViewBag.Message</p>
+
+                            }
+                        </div>
+
+
                     </div>
+                    <br />
+                    <button type="button" class="btn btn-back" onclick="window.location.href='/AllCourse/AllCourse'">Back</button>
                 </div>
+                
+
             </div>
+            
 
             <br /><br />
             <div class="footer">
                 <h1>
                     LearnLink
-                    <small>Student Dashboard</small>
+                    <small>Student</small>
                 </h1>
                 <div>
                     &copy; 2024 LearnLink. All rights reserved.

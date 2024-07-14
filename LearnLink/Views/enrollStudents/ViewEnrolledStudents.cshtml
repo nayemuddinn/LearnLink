@@ -6,8 +6,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enrolled Students</title>
-    <link href="@Url.Content("/Content/Enroll_Student.css")" rel="stylesheet" />
     <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/Enroll_Student.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/backbutton2.css")" rel="stylesheet" />
 
 </head>
 <body>
@@ -20,18 +21,23 @@
                     </div>
                     <div class="logo-title">
                         <span>LearnLink</span>
-                        <span>@HttpContext.Current.Session["UserRole"]</span>
+                        <span>Teacher</span>
                     </div>
                 </div>
+                <div class="app-header-navigation">
+                    <!-- Add any additional navigation items here if needed -->
+                </div>
+
+
                 <div class="app-header-actions">
-                    <h3>Enrolled Students</h3>
+                    <h3>View Enrolled Students</h3>
                     <div class="app-header-actions-buttons">
                         <ion-icon size="large" name="person-circle"></ion-icon>
                         <h3>@HttpContext.Current.Session["UserName"]</h3>
                     </div>
                 </div>
                 <div class="app-header-mobile">
-                    <h3>Enrolled Students</h3>
+                    <h3>View Enrolled Students</h3>
                     <ion-icon size="large" name="person-circle"></ion-icon>
                     <h3>@HttpContext.Current.Session["UserName"]</h3>
                 </div>
@@ -50,7 +56,7 @@
                         </a>
                         <a href="@Url.Action("courseMaterials", "courseMaterials")">
                             <i class="icon ion-md-add-circle"></i>
-                            <span>Course Materials</span>
+                            <span>CourseMaterials</span>
                         </a>
                         <a href="@Url.Action("enrollStudents", "enrollStudents")">
                             <i class="icon ion-md-person-add"></i>
@@ -74,6 +80,7 @@
                         </a>
                     </nav>
                 </div>
+                <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
                 <div class="app-body-content">
                     <table class="transparent-table">
@@ -95,22 +102,28 @@
                                     <td>@student.Institution</td>
                                     <td>@student.Phone</td>
                                     <td>
-                                      
-                                        <a href="@Url.Action("UnenrollStudent", "enrollStudents", new { studentID = student.UserID, courseID = ViewBag.CourseID ,page=0})" class="view-ac-button">
-                                            <span class="view-button">Unenroll</span>
+
+                                        <a href="@Url.Action("UnenrollStudent", "enrollStudents", new { studentID = student.UserID, courseID = ViewBag.CourseID ,page=0})" class="view-dl-button">
+                                            <span class="view-dl-button">Unenroll</span>
                                         </a>
                                     </td>
                                 </tr>
                             }
                         </tbody>
                     </table>
-                </div>
-            </div>
+                    <br /><br />
+                    <div>
 
+                        <button type="button" class="btn btn-back" onclick="window.location.href='/ManageCourse/ManageCourse'">Back</button>
+                    </div>
+                </div>
+
+            </div>
+            <br /><br />
             <div class="footer">
                 <h1>
                     LearnLink
-                    <small>Teacher Dashboard</small>
+                    <small>Teacher</small>
                 </h1>
                 <div>
                     &copy; 2024 LearnLink. All rights reserved.
@@ -118,6 +131,5 @@
             </div>
         </div>
     </div>
-    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

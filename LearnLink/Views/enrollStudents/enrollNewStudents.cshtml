@@ -8,6 +8,7 @@
     <title>Teacher LearnLink</title>
     <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
     <link href="@Url.Content("/Content/Enroll_Student.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/backbutton2.css")" rel="stylesheet" />
 </head>
 <body>
     <div class="responsive-wrapper">
@@ -111,13 +112,16 @@
                                             <span class="view-button">Accept</span>
                                         </a>
                                         <a href="@Url.Action("UpdateRequest", "enrollStudents", new { enrollmentID = request.EnrollmentID, actionType = "reject" })" class="view-dl-button">
-                                            <span class="view-button">Reject</span>
+                                            <span class="view-dl-button">Reject</span>
                                         </a>
                                     </td>
                                 </tr>
                             }
                         </tbody>
-                    </table>
+                    </table><br /><br />
+                    <div>
+                        <button type="button" class="btn btn-back" onclick="window.location.href='/enrollStudents/enrollStudents'">Back</button>
+                    </div>
                 </div>
 
             </div>
@@ -128,7 +132,7 @@
         <br /><br />
         <h1>
             LearnLink
-            <small>Teacher Dashboard</small>
+            <small>Teacher</small>
         </h1>
         <div>
             &copy; 2024 LearnLink. All rights reserved.
@@ -136,6 +140,5 @@
     </div>
     </div>
     </div>
-    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
