@@ -150,8 +150,10 @@
                                     {
                                         <a href="@Url.Action("StartQuiz", "TeacherViewQuizzes", new { id = quiz.QuizID })" class="tile-buttons view">Start</a>
                                     }
+
                                     <a href="@Url.Action("DeleteQuiz", "TeacherViewQuizzes", new { id = quiz.QuizID })" class="tile-buttons unenrolled">Delete</a>
-                                    <a href="@Url.Action("StudentParticipation", "TeacherViewQuizzes", new { id = quiz.QuizID })" class="tile-buttons download">Participation</a>
+                                    <a href="@Url.Action("studentParticipation", "TeacherViewQuizzes", new { id = quiz.QuizID })" class="tile-buttons download">Participation</a>
+
                                 </div>
                             </div>
                         }
