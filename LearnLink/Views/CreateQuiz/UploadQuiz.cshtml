@@ -1,0 +1,146 @@
+﻿@model LearnLink.Models.User
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard - LearnLink</title>
+    <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
+</head>
+<body>
+    <div class="responsive-wrapper">
+        <div class="app">
+            <div class="app-header">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <ion-icon name="school-outline"></ion-icon>
+                    </div>
+                    <div class="logo-title">
+                        <span>LearnLink</span>
+                        <span>Teacher Dashboard</span>
+                    </div>
+                </div>
+                <div class="app-header-navigation">
+                    <!-- Add any additional navigation items here if needed -->
+                </div>
+
+
+                <div class="app-header-actions">
+                    <h3>Dashboard</h3>
+                    <div class="app-header-actions-buttons">
+                        <ion-icon size="large" name="person-circle"></ion-icon>
+                        <h3>@HttpContext.Current.Session["UserName"]</h3>
+                    </div>
+                </div>
+                <div class="app-header-mobile">
+                    <h3>Dashboard</h3>
+                    <ion-icon size="large" name="person-circle"></ion-icon>
+                    <h3>@HttpContext.Current.Session["UserName"]</h3>
+                </div>
+            </div>
+
+            <div class="app-body">
+                <div class="app-body-navigation">
+                    <nav class="navigation">
+                        <a href="@Url.Action("ManageCourse", "ManageCourse")">
+                            <i class="icon ion-md-book"></i>
+                            <span>Manage Courses</span>
+                        </a>
+                        <a href="@Url.Action("createCourse", "createCourse")">
+                            <i class="icon ion-md-add-circle"></i>
+                            <span>Create Courses</span>
+                        </a>
+                        <a href="@Url.Action("courseMaterials", "courseMaterials")">
+                            <i class="icon ion-md-add-circle"></i>
+                            <span>CourseMaterials</span>
+                        </a>
+                        <a href="@Url.Action("enrollStudents", "enrollStudents")">
+                            <i class="icon ion-md-person-add"></i>
+                            <span>Enroll Students</span>
+                        </a>
+                        <a href="@Url.Action("Assessment", "TeacherAssessment")">
+                            <i class="icon ion-md-checkmark-circle"></i>
+                            <span>Assessments</span>
+                        </a>
+                        <a href="@Url.Action("reviewAssessments", "reviewAssessments")">
+                            <i class="icon ion-md-checkmark-circle"></i>
+                            <span>Review Courses</span>
+                        </a>
+                        <a href="@Url.Action("giveFeedback", "giveFeedback")">
+                            <i class="icon ion-md-text"></i>
+                            <span>Provide Feedback</span>
+                        </a>
+                        <a href="@Url.Action("editteacherProfile", "editteacherProfile")">
+                            <i class="icon ion-md-person"></i>
+                            <span>Edit Profile</span>
+                        </a>
+                        <a href="@Url.Action("login", "Login")">
+                            <i class="icon ion-md-exit"></i>
+                            <span>Log Out</span>
+                        </a>
+                    </nav>
+                </div>
+                <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
+                <div class="app-body">
+                    <form action="@Url.Action("UploadQuiz", "YourControllerName")" method="post">
+
+                        <div class="input-box">
+                            <label for="QuizID">Quiz ID</label>
+                            <input type="number" class="input-box" name="QuizID" required />
+                        </div>
+
+                        <div class="input-box">
+                            <label for="questionText">Question</label>
+                            <input type="text" class="input-box" name="question" required />
+                        </div>
+
+                        <div class="input-box">
+                            <label for="optionA">Option A</label>
+                            <input type="text" name="A" required />
+                        </div>
+
+                        <div class="input-box">
+                            <label for="optionB">Option B</label>
+                            <input type="text" name="B" required />
+                        </div>
+
+                        <div class="input-box">
+                            <label for="optionC">Option C</label>
+                            <input type="text" name="C" required />
+                        </div>
+
+                        <div class="input-box">
+                            <label for="optionD">Option D</label>
+                            <input type="text" name="D" required />
+                        </div>
+
+                        <div class="input-box">
+                            <label for="correctOption">Correct Option</label>
+                            <input type="text" name="correctOption" required />
+                        </div>
+
+                        <div class="button-container text-center">
+                            <input type="submit" class="btn" value="Submit Question" />
+                            <button type="button" class="btn btn-back" onclick="window.location.href='@Url.Action("UploadQuiz", "CreateQuiz")'">Back</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            <div class="footer">
+                <br /><br />
+                <h1>
+                    LearnLink
+                    <small>Teacher</small>
+                </h1>
+                <div>
+                    &copy; 2024 LearnLink. All rights reserved.
+                </div>
+            </div>
+        </div>
+
+</body>
+</html>

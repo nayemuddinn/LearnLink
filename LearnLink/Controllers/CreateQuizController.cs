@@ -1,5 +1,6 @@
 ﻿using LearnLink.Content;
 using LearnLink.Models;
+using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -45,6 +46,12 @@ namespace LearnLink.Controllers
                     Response.Write("<script>alert('An error occurred. Please try again.');</script>");
                 }
             }
+            return View();
+        }
+
+
+        public ActionResult UploadQuiz()
+        {
             return View();
         }
     }
