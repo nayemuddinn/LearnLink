@@ -19,7 +19,8 @@ namespace LearnLink.Controllers
 
             using (SqlConnection con = new SqlConnection(DBconnection.connStr))
             {
-                string query = "SELECT QuizID, CourseID, TeacherID,CourseName,Title, Description, CreationDate,Status FROM Quiz WHERE TeacherID = @TeacherID";
+                string query = "SELECT QuizID, CourseID, TeacherID, CourseName, Title, Description, CreationDate, Status FROM Quiz WHERE TeacherID = @TeacherID ORDER BY QuizID DESC";
+
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
                     cmd.Parameters.AddWithValue("@TeacherID", (int)Session["UserID"]);
