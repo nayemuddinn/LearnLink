@@ -1,6 +1,5 @@
 ﻿@model List<LearnLink.Models.Quiz> 
 
-< !DOCTYPE html >
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -71,28 +70,33 @@
 
                 <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-                <div class="app-body-content">
-                    <div class="tiles">
-                        @foreach (var quiz in Model)
-                        {
-                            <div class="tile">
-                                <div class="tile-header">
-                                    <i class="icon ion-md-book"></i>
-                                    <h3>
-                                        <span>Quiz Name : @quiz.Title</span>
-                                    </h3>
-                                </div>
-                                <p>Course ID   : @quiz.CourseID</p>
-                                <p>Course Name :@quiz.CourseName</p>
-                                <p>Created on  : @quiz.CreationDate.ToShortDateString()</p>
-                                <div class="button-container">
-                                    <a href="@Url.Action("StartQuiz", "Quiz", new { id = quiz.QuizID })" class="btn btn-start">Start</a>
-                                    <a href="@Url.Action("StudentParticipation", "Quiz", new { id = quiz.QuizID })" class="btn btn-participation">See Student Participation</a>
-                                </div>
+                <div class="tiles">
+                    @foreach (var quiz in Model)
+                    {
+                        <div class="clicktile">
+                            <div class="tile-header">
+                                <i class="icon ion-md-book"></i>
+                                <h3>
+                                    <span>Quiz Name: @quiz.Title</span>
+                                </h3>
                             </div>
-                        }
-                    </div>
+                            <p>Course ID: @quiz.CourseID</p>
+                            <p>Course Name: @quiz.CourseName</p>
+                            <p>Created on: @quiz.CreationDate.ToShortDateString()</p>
+                            <div class="button-container">
+                                @{
+                                    if (quiz.Status == "NotStarted")
+                                    {
+                                        <a href="@Url.Action("StartQuiz", "Quiz", new { id = quiz.QuizID })" class="tile-buttons view">Start</a>
+                                    }
+                                }
+                                <a href="@Url.Action("DeleteQuiz", "Quiz", new { id = quiz.QuizID })" class="tile-buttons view">Delete</a>
+                                <a href="@Url.Action("StudentParticipation", "Quiz", new { id = quiz.QuizID })" class="tile-buttons view">Participation</a>
+                            </div>
+                        </div>
+                    }
                 </div>
+
             </div>
         </div>
         <div class="footer">
