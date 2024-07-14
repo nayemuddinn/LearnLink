@@ -152,6 +152,7 @@
     <Compile Include="Models\EnrolledStudentCourse.cs" />
     <Compile Include="Models\Enrollment.cs" />
     <Compile Include="Models\Quiz.cs" />
+    <Compile Include="Models\QuizEvaluation.cs" />
     <Compile Include="Models\QuizQuestions.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

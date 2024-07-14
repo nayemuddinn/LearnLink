@@ -10,9 +10,11 @@ namespace LearnLink.Controllers
     {
         public ActionResult Dashboard()
         {
-            ViewBag.Courses = new List<string> { "Mathematics", "Physics", "Computer Science" };
-            ViewBag.Assignments = new List<string> { "Math Assignment 1", "Physics Lab Report", "CS Project" };
-            ViewBag.Announcements = new List<string> { "Holiday on Friday", "Guest Lecture on AI", "Midterm Schedule" };
+            if (Session["TLE"] != null)
+            {
+                Response.Write("<script>alert('" + ViewBag.TLE + "');</script>");
+                Session["TLE"] = null;
+            }
             return View();
         }
     }

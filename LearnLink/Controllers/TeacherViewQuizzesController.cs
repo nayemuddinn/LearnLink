@@ -19,7 +19,7 @@ namespace LearnLink.Controllers
 
             using (SqlConnection con = new SqlConnection(DBconnection.connStr))
             {
-                string query = "SELECT QuizID, CourseID, TeacherID, CourseName, Title, Description, CreationDate, Status FROM Quiz WHERE TeacherID = @TeacherID ORDER BY QuizID DESC";
+                string query = "SELECT QuizID, CourseID, TeacherID, CourseName, Title, Description, CreationDate,Duration, Status FROM Quiz WHERE TeacherID = @TeacherID ORDER BY QuizID DESC";
 
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
@@ -36,6 +36,7 @@ namespace LearnLink.Controllers
                                 Title = reader["Title"] != DBNull.Value ? reader["Title"].ToString() : "No Title",
                                 Description = reader["Description"] != DBNull.Value ? reader["Description"].ToString() : "No Description",
                                 CreationDate = reader["CreationDate"] != DBNull.Value ? Convert.ToDateTime(reader["CreationDate"]) : DateTime.MinValue,
+                                Duration = reader["Duration"] != DBNull.Value ? Convert.ToInt32(reader["Duration"]) : 0,
                                 CourseName = reader["CourseName"] != DBNull.Value ? reader["CourseName"].ToString() : "NoCourseName",
                                 Status = reader["Status"] != DBNull.Value ? reader["Status"].ToString() : "NotStarted"
                             });
@@ -57,7 +58,13 @@ namespace LearnLink.Controllers
                 {
                     conn.Open();
 
-       
+                    string deleteQuizEvaluationsQuery = "DELETE FROM QuizEvaluation WHERE QuizID = @QuizID";
+                    using (SqlCommand cmd = new SqlCommand(deleteQuizEvaluationsQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@QuizID", id);
+                        cmd.ExecuteNonQuery();
+                    }
+
                     string deleteQuizQuestionsQuery = "DELETE FROM QuizQuestions WHERE QuizID = @QuizID";
                     using (SqlCommand cmd = new SqlCommand(deleteQuizQuestionsQuery, conn))
                     {
@@ -65,7 +72,6 @@ namespace LearnLink.Controllers
                         cmd.ExecuteNonQuery();
                     }
 
-          
                     string deleteQuizQuery = "DELETE FROM Quiz WHERE QuizID = @QuizID";
                     using (SqlCommand cmd = new SqlCommand(deleteQuizQuery, conn))
                     {
@@ -73,17 +79,18 @@ namespace LearnLink.Controllers
                         cmd.ExecuteNonQuery();
                     }
 
-         
                     Response.Write("<script>alert('Quiz deleted successfully!');</script>");
                 }
                 catch (Exception ex)
                 {
-
-                    Response.Write($"<script>alert('An error occurred while deleting the quiz:');</script>");
+                    Response.Write($"<script>alert('An error occurred while deleting the quiz: {ex.Message}');</script>");
                 }
             }
+
             return RedirectToAction("ViewQuizzes");
         }
+
+
 
 
         public ActionResult StartQuiz(int id)
