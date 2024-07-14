@@ -16,71 +16,75 @@ namespace LearnLink.Controllers
     {
         public ActionResult Login()
         {
+
             return View();
         }
 
         [HttpPost]
         public ActionResult Login(User user)
         {
-            string connStr = DBconnection.connStr;
-            string role = user.Role;
-            using (SqlConnection conn = new SqlConnection(connStr))
             {
-                try
+                var clientID = "596117591616-ufi32thv442eg1a26chrbgas74q1o56i.apps.googleusercontent.com";
+                var url = "https://localhost:44397/signingoogle/signingoogle";
+                var response = GoogleAuth.GetAuthUrl(clientID, url);
+
+                ViewBag.response = response;
+                string connStr = DBconnection.connStr;
+                string role = user.Role;
+                using (SqlConnection conn = new SqlConnection(connStr))
                 {
-                    conn.Open();
-
-                    string query = "SELECT name,password,userID FROM " + role + " WHERE Email = @Email";
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    try
                     {
-                        cmd.Parameters.AddWithValue("@Email", user.Email);
+                        conn.Open();
 
-                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        string query = "SELECT name,password,userID FROM " + role + " WHERE Email = @Email";
+                        using (SqlCommand cmd = new SqlCommand(query, conn))
                         {
-                            if (reader.Read() && PasswordHasher.VerifyPassword(user.Password, reader["Password"].ToString()))
-                            {
-                                Session["UserRole"] = role.ToString();
-                                Session["UserName"] = reader["Name"].ToString();
-                                Session["UserEmail"] = user.Email;
-                                Session["UserID"] = reader["UserID"];
-                                Response.Write("<script>alert('Login successful!');</script>");
+                            cmd.Parameters.AddWithValue("@Email", user.Email);
 
-                                if (role.Equals("teacher", StringComparison.OrdinalIgnoreCase))
-                                {
-                                    return RedirectToAction("Dashboard", "TeacherDashboard");
-                                }
-                                else if (role.Equals("student", StringComparison.OrdinalIgnoreCase))
-                                {
-                                    return RedirectToAction("Dashboard", "StudentDashboard");
-                                }
-                            }
-                            else
+                            using (SqlDataReader reader = cmd.ExecuteReader())
                             {
-                                Response.Write("<script>alert('Wrong credential.');</script>");
-                                return View();
+                                if (reader.Read() && PasswordHasher.VerifyPassword(user.Password, reader["Password"].ToString()))
+                                {
+                                    Session["UserRole"] = role.ToString();
+                                    Session["UserName"] = reader["Name"].ToString();
+                                    Session["UserEmail"] = user.Email;
+                                    Session["UserID"] = reader["UserID"];
+                                    Response.Write("<script>alert('Login successful!');</script>");
+
+                                    if (role.Equals("teacher", StringComparison.OrdinalIgnoreCase))
+                                    {
+                                        return RedirectToAction("Dashboard", "TeacherDashboard");
+                                    }
+                                    else if (role.Equals("student", StringComparison.OrdinalIgnoreCase))
+                                    {
+                                        return RedirectToAction("Dashboard", "StudentDashboard");
+                                    }
+                                }
+                                else
+                                {
+                                    Response.Write("<script>alert('Wrong credential.');</script>");
+                                    return View();
+                                }
                             }
                         }
                     }
+                    catch (Exception ex)
+                    {
+                        Response.Write("<script>alert('Try Again');</script>");
+                    }
                 }
-                catch (Exception ex)
-                {
-                    Response.Write("<script>alert('Try Again');</script>");
-                }
+
+                return View();
             }
 
-            return View();
-        }
+            /* public ActionResult signingoogle()
+             {
+                 ViewBag.response = response;
 
-        public ActionResult signingoogle()
-        {
+                 return View();
 
-            var clientID = "596117591616-ufi32thv442eg1a26chrbgas74q1o56i.apps.googleusercontent.com";
-            var url = "https://localhost:44397/Login/signingoogle";
-            var response = GoogleAuth.GetAuthUrl(clientID,url);
-            ViewBag.response = response;
-
-            return View();
-
+             }*/
         }
     }
 }

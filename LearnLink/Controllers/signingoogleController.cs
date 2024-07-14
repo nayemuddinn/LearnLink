@@ -22,19 +22,19 @@ namespace LearnLink.Controllers
         {
             return View();
         }
-        public async Task<ActionResult> GoogleLoginCallback(string code)
+        public async Task<ActionResult> signingoogle(string code)
         {
-            try
-            {
+           
+            
                 var clientID = "596117591616-ufi32thv442eg1a26chrbgas74q1o56i.apps.googleusercontent.com";
-                var url = "https://localhost:44397/signingoogle";
+                var url = "https://localhost:44397/signingoogle/signingoogle";
                 var clientsecret = "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";
                 var token = await GoogleAuth.GetAuthAccessToken(code, clientID, clientsecret, url);
                 var userprofile = await GoogleAuth.GetProfileResponseAsync(token.AccessToken.ToString());
                 var googleUser = JsonConvert.DeserializeObject<GoogleProfile>(userprofile);
                 return View();
-            }
-            catch (Exception ex) { }
+            
+           // catch (Exception ex) { }
 
             return RedirectToAction("");
         }
