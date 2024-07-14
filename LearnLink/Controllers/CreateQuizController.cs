@@ -50,7 +50,12 @@ namespace LearnLink.Controllers
         }
 
 
-        [HttpPost]
+        public ActionResult UploadQuiz()
+        {
+            return View();
+        }
+
+     [HttpPost]
         public ActionResult UploadQuiz(QuizQuestion quizQuestion)
         {
             using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
