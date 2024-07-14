@@ -61,5 +61,62 @@ namespace LearnLink.Controllers
             return View(quizzes);
         }
 
+        public ActionResult StartQuiz(int id)
+        {
+            Quiz quiz = null;
+            List<QuizQuestion> questions = new List<QuizQuestion>();
+            using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
+            {
+                conn.Open();
+                string queryQuiz = "SELECT * FROM Quiz WHERE QuizID = @QuizID";
+                using (SqlCommand cmd = new SqlCommand(queryQuiz, conn))
+                {
+                    cmd.Parameters.AddWithValue("@QuizID", id);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            quiz = new Quiz
+                            {
+                                QuizID = (int)reader["QuizID"],
+                                Title = reader["Title"].ToString(),
+                                Duration = (int)reader["Duration"]
+                            };
+                        }
+                    }
+                }
+
+                string queryQuestions = "SELECT * FROM QuizQuestions WHERE QuizID = @QuizID";
+                using (SqlCommand cmd = new SqlCommand(queryQuestions, conn))
+                {
+                    cmd.Parameters.AddWithValue("@QuizID", id);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            questions.Add(new QuizQuestion
+                            {
+                                QuizID= (int)reader["QuizID"],
+                                QuestionID = (int)reader["QuestionID"],
+                                Question = reader["Question"].ToString(),
+                                OptionA = reader["OptionA"].ToString(),
+                                OptionB = reader["OptionB"].ToString(),
+                                OptionC = reader["OptionC"].ToString(),
+                                OptionD = reader["OptionD"].ToString(),
+                                CorrectOption = reader["CorrectOption"].ToString()
+                            });
+                        }
+                    }
+                }
+            }
+
+            Session["QuizStartTime"] = DateTime.Now;
+            Session["QuizDuration"] = quiz.Duration;
+
+     
+            return View(questions);
+        }
+
+
     }
 }
