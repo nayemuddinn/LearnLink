@@ -1,4 +1,6 @@
-﻿
+﻿.mid{
+    margin-left=300px;
+}
 .search-form {
     display:flex;
     justify-content: center;
