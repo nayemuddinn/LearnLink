@@ -85,6 +85,11 @@
 
 
                 <div class="app-body">
+                    @if (ViewBag.Message != null)
+                    { 
+                            @ViewBag.Message
+                    
+                    }
                     <form action="@Url.Action("UploadQuiz", "CreateQuiz")" method="post">
 
                         <div class="input-box">
@@ -126,6 +131,8 @@
                             <input type="submit" class="btn" value="Submit Question" />
                         </div>
                     </form>
+
+
                 </div>
 
             </div>
