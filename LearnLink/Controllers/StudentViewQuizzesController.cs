@@ -66,6 +66,36 @@ namespace LearnLink.Controllers
 
         public ActionResult StartQuiz(int id)
         {
+
+            DateTime startTime = (DateTime)Session["QuizStartTime"];
+            int duration = (int)Session["QuizDuration"];
+            DateTime endTime = startTime.AddMinutes(duration);
+            DateTime currentTime = DateTime.Now;
+
+            if (currentTime > endTime)
+            {
+                using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
+                {
+                    conn.Open();
+                    string query = "INSERT INTO QuizEvaluation (StudentID, QuizID, Score, SubmissionTime) VALUES (@StudentID, @QuizID, @Score, @SubmissionTime)";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@StudentID", (int)Session["UserID"]);
+                        cmd.Parameters.AddWithValue("@QuizID",(int) Session["QuizID"]);
+                        cmd.Parameters.AddWithValue("@Score", 0);
+                        cmd.Parameters.AddWithValue("@SubmissionTime", currentTime);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                Session["QuizID"] = null;
+            }
+
+
+                if (Session["QuizID"]!=null)
+            {
+                TempData["AlertMessage"] = "You cannot start another quiz while you are currently taking one.";
+                return RedirectToAction("ViewQuizzes");
+            }
             Quiz quiz = null;
             List<QuizQuestion> questions = new List<QuizQuestion>();
             using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
@@ -115,6 +145,7 @@ namespace LearnLink.Controllers
 
             Session["QuizStartTime"] = DateTime.Now;
             Session["QuizDuration"] = quiz.Duration;
+            Session["QuizEndtime"] = DateTime.Now.AddMinutes(quiz.Duration);
             Session["QuizID"] = quiz.QuizID;
 
 
@@ -125,6 +156,8 @@ namespace LearnLink.Controllers
         [HttpPost]
         public ActionResult SubmitQuiz(FormCollection form)
         {
+            Session["QuizID"] = null;
+
             int quizID = (int)Session["QuizID"];
             DateTime startTime = (DateTime)Session["QuizStartTime"];
             int duration = (int)Session["QuizDuration"];
