@@ -75,48 +75,70 @@
 
                 <div class="app-body-content">
                     <div class="tiles">
-                        <div class="tile">
-                            <div class="tile-header">
-                                <i class="icon ion-md-book"></i>
-                                <h3>
-                                    <span>Create Quiz</span>
-                                </h3>
+                        @if (Session["UserRole"] != null && Session["UserRole"].Equals("teacher"))
+                        {
+                            <div class="tile">
+                                <div class="tile-header">
+                                    <i class="icon ion-md-book"></i>
+                                    <h3>
+                                        <span>Create Quiz</span>
+                                    </h3>
+                                </div>
+                                <a href="@Url.Action("CreateQuiz", "CreateQuiz")">
+                                    <span></span>
+                                    <button class="icon-button">
+                                        <i class="icon ion-md-arrow-forward"></i>
+                                    </button>
+                                </a>
                             </div>
-                            <a href="@Url.Action("CreateQuiz", "CreateQuiz")">
-                                <span></span>
-                                <button class="icon-button">
-                                    <i class="icon ion-md-arrow-forward"></i>
-                                </button>
-                            </a>
-                        </div>
-                        <div class="tile">
-                            <div class="tile-header">
-                                <i class="icon ion-md-book"></i>
-                                <h3>
-                                    <span>Upload Quiz</span>
-                                </h3>
+                            <div class="tile">
+                                <div class="tile-header">
+                                    <i class="icon ion-md-book"></i>
+                                    <h3>
+                                        <span>Upload Quiz</span>
+                                    </h3>
+                                </div>
+                                <a href="@Url.Action("UploadQuiz", "CreateQuiz")">
+                                    <span></span>
+                                    <button class="icon-button">
+                                        <i class="icon ion-md-arrow-forward"></i>
+                                    </button>
+                                </a>
                             </div>
-                            <a href="@Url.Action("UploadQuiz", "CreateQuiz")">
-                                <span></span>
-                                <button class="icon-button">
-                                    <i class="icon ion-md-arrow-forward"></i>
-                                </button>
-                            </a>
-                        </div>
-                        <div class="tile">
-                            <div class="tile-header">
-                                <i class="icon ion-md-book"></i>
-                                <h3>
-                                    <span>View Quizzes</span>
-                                </h3>
+                            <div class="tile">
+                                <div class="tile-header">
+                                    <i class="icon ion-md-book"></i>
+                                    <h3>
+                                        <span>View Quizzes</span>
+                                    </h3>
+                                </div>
+                                <a href="@Url.Action("ViewQuizzes", "TeacherViewQuizzes")">
+                                    <span></span>
+                                    <button class="icon-button">
+                                        <i class="icon ion-md-arrow-forward"></i>
+                                    </button>
+                                </a>
                             </div>
-                            <a href="@Url.Action("ViewQuizzes", "TeacherViewQuizzes")">
-                                <span></span>
-                                <button class="icon-button">
-                                    <i class="icon ion-md-arrow-forward"></i>
-                                </button>
-                            </a>
-                        </div>
+                        }
+                        else
+                        {
+                            <div class="tile">
+                                <div class="tile-header">
+                                    <i class="icon ion-md-book"></i>
+                                    <h3>
+                                        <span>Take a Quiz</span>
+                                    </h3>
+                                </div>
+                                <a href="@Url.Action("ViewQuizzes", "StudentViewQuizzes")">
+                                    <span></span>
+                                    <button class="icon-button">
+                                        <i class="icon ion-md-arrow-forward"></i>
+                                    </button>
+                                </a>
+                            </div>
+
+                        }
+
                     </div>
                 </div>
             </div>

@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace LearnLink.Controllers
 {
-    public class TeacherAssessmentController : Controller
+    public class AssessmentController : Controller
     {
         
         public ActionResult Assessment()
