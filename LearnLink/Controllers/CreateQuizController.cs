@@ -50,8 +50,36 @@ namespace LearnLink.Controllers
         }
 
 
-        public ActionResult UploadQuiz()
+        [HttpPost]
+        public ActionResult UploadQuiz(QuizQuestion quizQuestion)
         {
+            using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "INSERT INTO QuizQuestions (QuizID, Question, OptionA, OptionB, OptionC, OptionD, CorrectOption) " +
+                                   "VALUES (@QuizID, @QuestionText, @OptionA, @OptionB, @OptionC, @OptionD, @CorrectOption)";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@QuizID", quizQuestion.QuizID);
+                        cmd.Parameters.AddWithValue("@QuestionText", quizQuestion.Question);
+                        cmd.Parameters.AddWithValue("@OptionA", quizQuestion.OptionA);
+                        cmd.Parameters.AddWithValue("@OptionB", quizQuestion.OptionB);
+                        cmd.Parameters.AddWithValue("@OptionC", quizQuestion.OptionC);
+                        cmd.Parameters.AddWithValue("@OptionD", quizQuestion.OptionD);
+                        cmd.Parameters.AddWithValue("@CorrectOption", quizQuestion.CorrectOption);
+
+                        cmd.ExecuteNonQuery();
+                        ViewBag.Message = "Question uploaded successfully!";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = "An error occurred: " + ex.Message;
+                }
+            }
             return View();
         }
     }

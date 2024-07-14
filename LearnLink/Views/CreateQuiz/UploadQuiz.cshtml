@@ -1,4 +1,4 @@
-﻿@model LearnLink.Models.User
+﻿@model LearnLink.Models.QuizQuestion
 
 <!DOCTYPE html>
 <html lang="en">
@@ -85,7 +85,7 @@
 
 
                 <div class="app-body">
-                    <form action="@Url.Action("UploadQuiz", "YourControllerName")" method="post">
+                    <form action="@Url.Action("UploadQuiz", "CreateQuiz")" method="post">
 
                         <div class="input-box">
                             <label for="QuizID">Quiz ID</label>
@@ -124,7 +124,6 @@
 
                         <div class="button-container text-center">
                             <input type="submit" class="btn" value="Submit Question" />
-                            <button type="button" class="btn btn-back" onclick="window.location.href='@Url.Action("UploadQuiz", "CreateQuiz")'">Back</button>
                         </div>
                     </form>
                 </div>
