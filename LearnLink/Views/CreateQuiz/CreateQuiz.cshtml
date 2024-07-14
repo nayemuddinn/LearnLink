@@ -59,6 +59,10 @@
                             <i class="icon ion-md-person-add"></i>
                             <span>Enroll Students</span>
                         </a>
+                        <a href="@Url.Action("giveAssessments", "giveAssessments")">
+                            <i class="icon ion-md-checkmark-circle"></i>
+                            <span>Assessments</span>
+                        </a>
                         <a href="@Url.Action("ReviewAssessments", "ReviewAssessments")">
                             <i class="icon ion-md-checkmark-circle"></i>
                             <span>Review Courses</span>
@@ -87,21 +91,27 @@
                             }
 
                             <form action="@Url.Action("CreateQuiz", "CreateQuiz")" method="post">
-                                <div>
-                                    <label for="Title">Quiz Title</label>
-                                    <input type="text" name="Title" id="Title" required>
+                                <div class="input-box">
+                                    <input type="text" name="CourseID" required>
+                                    <label for="Course">Course ID</label>
                                 </div>
-                                <div>
-                                    <label for="Description">Quiz Description</label>
-                                    <input type="text" name="Description" id="Description" required>
+                                <div class="input-box">
+                                    <input type="text" name="Title" required>
+                                    <label for="Course">Title</label>
                                 </div>
-                                <div>
+                                <div class="input-box">
+                                    <input type="text" class="input-box" name="Description" required>
+                                    <label for="Course">Description</label>
+                                </div>
+                                <div class="input-box">
+                                    <input type="number" class="input-box" name="QuizTime" required>
                                     <label for="QuizTime">Quiz Time (minutes)</label>
-                                    <input type="number" name="QuizTime" id="QuizTime" required>
                                 </div>
-                                <div>
-                                    <input type="submit" value="Create Quiz">
-                                    <button type="button" onclick="window.location.href='/TeacherDashboard/Dashboard'">Back</button>
+
+                                <br /><br />
+                                <div class="button-container text-center">
+                                    <input type="submit" class="btn" name="create" value="Create" required>
+                                    <button type="button" class="btn btn-back" onclick="window.location.href='/TeacherDashboard/Dashboard'">Back</button>
                                 </div>
                             </form>
                         </div>
