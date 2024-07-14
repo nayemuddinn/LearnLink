@@ -126,15 +126,30 @@ namespace LearnLink.Controllers
         public ActionResult SubmitQuiz(FormCollection form)
         {
             int quizID = (int)Session["QuizID"];
-            DateTime quizStartTime = (DateTime)Session["QuizStartTime"];
-            int quizDuration = (int)Session["QuizDuration"];
+            DateTime startTime = (DateTime)Session["QuizStartTime"];
+            int duration = (int)Session["QuizDuration"];
+            DateTime endTime = startTime.AddMinutes(duration);
+            DateTime currentTime = DateTime.Now;
 
-            if ((DateTime.Now - quizStartTime).TotalMinutes > quizDuration)
+            if (currentTime > endTime)
             {
-                Session["TLE"]= "Quiz time exceeded. Submission not accepted";
-                RedirectToAction("Dashboard", "StudentDashboard");
-            }
+                using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
+                {
+                    conn.Open();
+                    string query = "INSERT INTO QuizEvaluation (StudentID, QuizID, Score) VALUES (@StudentID, @QuizID, @Score)";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@StudentID", (int)Session["UserID"]);
+                        cmd.Parameters.AddWithValue("@QuizID", quizID);
+                        cmd.Parameters.AddWithValue("@Score",0);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                TempData["AlertMessage"] = "Submission Time is exceeded";
+                return RedirectToAction("ViewQuizzes");
 
+            }
+          
             int score = 0;
             using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
             {

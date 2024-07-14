@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LearnLink.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,11 +11,7 @@ namespace LearnLink.Controllers
     {
         public ActionResult Dashboard()
         {
-            if (Session["TLE"] != null)
-            {
-                Response.Write("<script>alert('" + ViewBag.TLE + "');</script>");
-                Session["TLE"] = null;
-            }
+         
             return View();
         }
     }
