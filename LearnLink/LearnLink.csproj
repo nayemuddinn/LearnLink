@@ -123,6 +123,7 @@
     <Compile Include="Controllers\AllCourseController.cs" />
     <Compile Include="Controllers\courseMaterialsController.cs" />
     <Compile Include="Controllers\createCourseController.cs" />
+    <Compile Include="Controllers\CreateQuizController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\EditStudentProfileController.cs" />
     <Compile Include="Controllers\EditTeacherProfileController.cs" />
@@ -250,6 +251,7 @@
     <Content Include="Views\StudentEnrolledCourses\ViewEnrolledCourses.cshtml" />
     <Content Include="Views\StudentEnrolledCourses\Unenroll.cshtml" />
     <Content Include="Views\enrollStudents\AllEnrolledStudents.cshtml" />
+    <Content Include="Views\CreateQuiz\CreateQuiz.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
