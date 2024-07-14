@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model List<LearnLink.Models.QuizEvaluation>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,8 +8,8 @@
     <title>Student LearnLink</title>
     <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
     <link href="@Url.Content("/Content/ShowCourseMaterials.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/Enroll_Student.css")" rel="stylesheet" />
     <link href="@Url.Content("/Content/backbutton2.css")" rel="stylesheet" />
-
 </head>
 <body>
     <div class="responsive-wrapper">
@@ -115,12 +117,37 @@
 
                 <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
+                <div class="app-body-content">
+                    <table class="transparent-table">
+                        <thead>
+                            <tr>
+                                <th>Quiz ID</th>
+                                <th>Student ID</th>
+                                <th>Student Name</th>
+                                <th>Score</th>
+                                <th>Submission Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var evaluation in Model)
+                            {
+                                <tr>
+                                    <td>@evaluation.QuizID</td>
+                                    <td>@evaluation.StudentID</td>
+                                    <td>@evaluation.StudentName</td>
+                                    <td>@evaluation.Score</td>
+                                    <td>@evaluation.SubmissionTime</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
 
-
-
-
-                
+                    <div>
+                        <button type="button" class="btn btn-back" onclick="window.location.href='@Url.Action("enrollNewStudents", "EnrollStudents")'">Back</button>
+                    </div>
+                </div>
             </div>
+
             <div class="footer">
                 <br /><br />
                 <h1>
@@ -132,7 +159,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </body>
 </html>

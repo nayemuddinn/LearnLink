@@ -62,32 +62,32 @@ namespace LearnLink.Controllers
         }
 
 
-
-
         public ActionResult StartQuiz(int id)
         {
-
-            DateTime startTime = (DateTime)Session["QuizStartTime"];
-            int duration = (int)Session["QuizDuration"];
-            DateTime endTime = startTime.AddMinutes(duration);
-            DateTime currentTime = DateTime.Now;
-
-            if (currentTime > endTime)
+            if (Session["QuizStartTime"] != null)
             {
-                using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
+                DateTime startTime = (DateTime)Session["QuizStartTime"];
+                int duration = (int)Session["QuizDuration"];
+                DateTime endTime = startTime.AddMinutes(duration);
+                DateTime currentTime = DateTime.Now;
+
+                if (currentTime > endTime)
                 {
-                    conn.Open();
-                    string query = "INSERT INTO QuizEvaluation (StudentID, QuizID, Score, SubmissionTime) VALUES (@StudentID, @QuizID, @Score, @SubmissionTime)";
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
                     {
-                        cmd.Parameters.AddWithValue("@StudentID", (int)Session["UserID"]);
-                        cmd.Parameters.AddWithValue("@QuizID",(int) Session["QuizID"]);
-                        cmd.Parameters.AddWithValue("@Score", 0);
-                        cmd.Parameters.AddWithValue("@SubmissionTime", currentTime);
-                        cmd.ExecuteNonQuery();
+                        conn.Open();
+                        string query = "INSERT INTO QuizEvaluation (StudentID, QuizID, Score, SubmissionTime) VALUES (@StudentID, @QuizID, @Score, @SubmissionTime)";
+                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@StudentID", (int)Session["UserID"]);
+                            cmd.Parameters.AddWithValue("@QuizID", (int)Session["QuizID"]);
+                            cmd.Parameters.AddWithValue("@Score", 0);
+                            cmd.Parameters.AddWithValue("@SubmissionTime", currentTime);
+                            cmd.ExecuteNonQuery();
+                        }
                     }
+                    Session["QuizID"] = null;
                 }
-                Session["QuizID"] = null;
             }
 
 
@@ -156,7 +156,7 @@ namespace LearnLink.Controllers
         [HttpPost]
         public ActionResult SubmitQuiz(FormCollection form)
         {
-            Session["QuizID"] = null;
+           
 
             int quizID = (int)Session["QuizID"];
             DateTime startTime = (DateTime)Session["QuizStartTime"];
@@ -180,6 +180,7 @@ namespace LearnLink.Controllers
                     }
                 }
                 TempData["AlertMessage"] = "Submission Time is exceeded";
+                Session["QuizID"] = null;
                 return RedirectToAction("ViewQuizzes");
             }
 
@@ -226,7 +227,7 @@ namespace LearnLink.Controllers
                     cmd.ExecuteNonQuery();
                 }
             }
-
+            Session["QuizID"] = null;
             TempData["AlertMessage"] = "Submission submitted successfully";
             return RedirectToAction("ViewQuizzes");
         }
