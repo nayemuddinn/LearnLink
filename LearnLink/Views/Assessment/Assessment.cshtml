@@ -39,7 +39,7 @@
 
             <div class="app-body">
                 @{
-                    if (Session["UserRole"] == "Student")
+                    if (Session["UserRole"].Equals("Student"))
                     {
                         <div class="app-body-navigation">
                             <nav class="navigation">
@@ -119,7 +119,7 @@
 
                 <div class="app-body-content">
                     <div class="tiles">
-                        @if (Session["UserRole"] != null && Session["UserRole"].Equals("teacher"))
+                        @if (Session["UserRole"] != null && Session["UserRole"].Equals("Teacher"))
                         {
                             <div class="tile">
                                 <div class="tile-header">

@@ -41,7 +41,7 @@
 
             <div class="app-body">
                 @{
-                    if (Session["UserRole"] == "Student")
+                    if (Session["UserRole"].Equals("Student"))
                     {
                         <div class="app-body-navigation">
                             <nav class="navigation">
