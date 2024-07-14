@@ -131,7 +131,7 @@ namespace LearnLink.Controllers
 
             if ((DateTime.Now - quizStartTime).TotalMinutes > quizDuration)
             {
-                Response.Write("<script>alert('Quiz time exceeded. Submission not accepted.');</script>");
+                ViewBag.TLE= "Quiz time exceeded. Submission not accepted";
                 return View();
             }
 
