@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using System.Data.SqlClient;
 using System.Web.Helpers;
 using LearnLink.Content;
-
+using GoogleAuthentication.Services;
 
 namespace LearnLink.Controllers
 {
@@ -69,6 +69,18 @@ namespace LearnLink.Controllers
             }
 
             return View();
+        }
+
+        public ActionResult signingoogle()
+        {
+
+            var clientID = "596117591616-ufi32thv442eg1a26chrbgas74q1o56i.apps.googleusercontent.com";
+            var url = "https://localhost:44397/Login/signingoogle";
+            var response = GoogleAuth.GetAuthUrl(clientID,url);
+            ViewBag.response = response;
+
+            return View();
+
         }
     }
 }

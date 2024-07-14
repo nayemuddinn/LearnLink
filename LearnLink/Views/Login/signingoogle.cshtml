@@ -1,0 +1,37 @@
+﻿@using LearnLink.Models;
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnLink</title>
+    <link href="@Url.Content("/Content/editprofile.css")" rel="stylesheet" />
+</head>
+@{
+    ViewBag.Title = "signingoogle";
+}
+
+
+<div class="input-box">
+    <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+    <input type="text" name="Address" id="Address" autocomplete="off" required>
+    <label>Address</label>
+</div>
+
+<div class="input-box">
+    <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+    <input type="text" name="Institution" id="Institution" autocomplete="off" required>
+    <label>Institution</label>
+</div>
+
+<div class="input-box">
+    <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+    <input type="password" name="password" id="password" autocomplete="off" required>
+    <label for="password">Password</label>
+</div>
+<div class="rdio-btn">
+    <input type="radio" id="teacher" name="Role" value="teacher" checked>
+    <label for="teacher">Teacher</label>
+    <input type="radio" id="student" name="Role" value="student">
+    <label for="student">Student</label>
+</div>
+<a class=" ="btn btn-default" href="@ViewBag.response">Google sign up</a>

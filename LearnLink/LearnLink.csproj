@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GoogleAuthentication, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GoogleAuthentication.1.0.0\lib\net46\GoogleAuthentication.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -136,6 +139,7 @@
     <Compile Include="Controllers\Passwordhasher.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Controllers\seeFeedbackController.cs" />
+    <Compile Include="Controllers\signingoogleController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\StudentDashboardController.cs" />
     <Compile Include="Controllers\ManageCourseController.cs" />
@@ -151,12 +155,14 @@
     <Compile Include="Models\CourseMaterials.cs" />
     <Compile Include="Models\EnrolledStudentCourse.cs" />
     <Compile Include="Models\Enrollment.cs" />
+    <Compile Include="Models\GoogleProfile.cs" />
     <Compile Include="Models\Quiz.cs" />
     <Compile Include="Models\QuizQuestions.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Code2Night.jpeg" />
     <Content Include="Content\backbutton2.css" />
     <Content Include="Content\backbutton3.css" />
     <Content Include="Content\Enroll_Student.css" />
@@ -258,10 +264,12 @@
     <Content Include="Views\StudentViewQuizzes\ViewQuizzes.cshtml" />
     <Content Include="Views\StudentViewQuizzes\StartQuiz.cshtml" />
     <Content Include="Views\View.cshtml" />
+    <Content Include="Views\Login\signingoogle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="files\" />
+    <Folder Include="Views\signingoogle\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
