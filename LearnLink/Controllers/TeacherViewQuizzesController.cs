@@ -95,14 +95,26 @@ namespace LearnLink.Controllers
 
         public ActionResult StartQuiz(int id)
         {
-           
             using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
             {
                 try
                 {
                     conn.Open();
-                    string query = "UPDATE Quiz SET Status = @Status WHERE QuizID = @QuizID";
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    string checkQuestionsQuery = "SELECT COUNT(*) FROM QuizQuestions WHERE QuizID = @QuizID";
+                    using (SqlCommand cmd = new SqlCommand(checkQuestionsQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@QuizID", id);
+                        int questionCount = (int)cmd.ExecuteScalar();
+
+                        if (questionCount == 0)
+                        {
+                            TempData["AlertMessage"] = "The quiz cannot be started because it has no questions.";
+                            return RedirectToAction("ViewQuizzes");
+                        }
+                    }
+
+                    string updateStatusQuery = "UPDATE Quiz SET Status = @Status WHERE QuizID = @QuizID";
+                    using (SqlCommand cmd = new SqlCommand(updateStatusQuery, conn))
                     {
                         cmd.Parameters.AddWithValue("@Status", "Started");
                         cmd.Parameters.AddWithValue("@QuizID", id);
@@ -116,12 +128,13 @@ namespace LearnLink.Controllers
                 }
                 catch (Exception ex)
                 {
-                    Response.Write("<script>alert('An error occurred while Starting the quiz. Please try again');</script>");
+                    Response.Write("<script>alert('An error occurred while starting the quiz. Please try again.');</script>");
                 }
             }
 
             return RedirectToAction("ViewQuizzes");
         }
+
 
 
 

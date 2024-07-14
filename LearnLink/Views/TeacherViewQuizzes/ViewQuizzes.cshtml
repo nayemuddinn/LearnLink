@@ -1,5 +1,9 @@
 ﻿@model List<LearnLink.Models.Quiz>
 
+@{
+    var alertMessage = TempData["AlertMessage"] as string;
+}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -121,6 +125,15 @@
 
 
                 <div class="app-body-content">
+                    <script type="text/javascript">
+        window.onload = function() {
+            var alertMessage = '@alertMessage';
+            if (alertMessage) {
+                alert(alertMessage);
+                window.location.href = '@Url.Action("ViewQuizzes")';
+            }
+        };
+                    </script>
                     <div class="tiles">
                         @foreach (var quiz in Model)
                         {
