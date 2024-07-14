@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student LearnLink</title>
     <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
-    <link href="@Url.Content("/Content/ShowCourseMaterials.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/mid.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/backbutton2.css")" rel="stylesheet" />
 </head>
 <body>
     <div class="responsive-wrapper">
@@ -57,10 +58,7 @@
                                     <i class="icon ion-md-checkmark-circle"></i>
                                     <span>Assessments</span>
                                 </a>
-                                <a href="@Url.Action("seeFeedback", "seeFeedback")">
-                                    <i class="icon ion-md-text"></i>
-                                    <span>See Feedback</span>
-                                </a>
+                                
                                 <a href="@Url.Action("editStudentProfile", "editStudentProfile")">
                                     <i class="icon ion-md-person"></i>
                                     <span>Edit Profile</span>
@@ -96,10 +94,7 @@
                                     <i class="icon ion-md-checkmark-circle"></i>
                                     <span>Assessments</span>
                                 </a>
-                                <a href="@Url.Action("giveFeedback", "giveFeedback")">
-                                    <i class="icon ion-md-text"></i>
-                                    <span>Provide Feedback</span>
-                                </a>
+                                
                                 <a href="@Url.Action("editteacherProfile", "editteacherProfile")">
                                     <i class="icon ion-md-person"></i>
                                     <span>Edit Profile</span>
@@ -116,42 +111,47 @@
                 <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
 
+                <div class="mid">
+                    <div class="app-body-content">
+                        @using (Html.BeginForm("SubmitQuiz", "StudentViewQuizzes", FormMethod.Post))
+                        {
+                            var questionNumber = 1;
 
-                <div class="app-body-content">
-                    @using (Html.BeginForm("SubmitQuiz", "StudentViewQuizzes", FormMethod.Post))
-                    {
-                        var questionNumber = 1;
+                            <div>
+                                @foreach (var question in Model)
+                                {
+                                    <div class="quiz-question">
+                                        <p>@questionNumber : @question.Question</p>
+                                        <div>
+                                            <div style="display: flex; flex-wrap: wrap;">
+                                                <label style="margin-right: 30px;">
+                                                    <input type="radio" name="question_@question.QuestionID" value="A" required /> @question.OptionA
+                                                </label>
+                                                <label style="margin-right: 30px;">
+                                                    <input type="radio" name="question_@question.QuestionID" value="B" required /> @question.OptionB
+                                                </label>
+                                                <label style="margin-right: 30px;">
+                                                    <input type="radio" name="question_@question.QuestionID" value="C" required /> @question.OptionC
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="question_@question.QuestionID" value="D" required /> @question.OptionD
+                                                </label>
+                                            </div>
 
-                        <div>
-                            @foreach (var question in Model)
-                            {
-                                <div class="quiz-question">
-                                    <p>@questionNumber : @question.Question</p>
-                                    <div>
-                                        <div>
-                                            <label>
-                                                <input type="radio" name="question_@question.QuestionID" value="A" required /> @question.OptionA
-                                            </label>
-                                            <label>
-                                                <input type="radio" name="question_@question.QuestionID" value="B" required /> @question.OptionB
-                                            </label>
                                         </div>
-                                        <div>
-                                            <label>
-                                                <input type="radio" name="question_@question.QuestionID" value="C" required /> @question.OptionC
-                                            </label>
-                                            <label>
-                                                <input type="radio" name="question_@question.QuestionID" value="D" required /> @question.OptionD
-                                            </label>
-                                        </div>
+                                        <br />
                                     </div>
-                                </div>
-                                <br>
-                                questionNumber++;
-                            }
-                        </div>
-                        <button type="submit" class="submit-button">Submit Quiz</button>
-                    }
+                                    <br />
+                                    questionNumber++;
+                                }
+                            </div>
+                            
+                            
+
+                                <button type="submit" class="btn btn-back">Submit</button>
+                            
+                        }
+                    </div>
                 </div>
 
             </div>

@@ -9,6 +9,7 @@
     <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
     <link href="@Url.Content("/Content/AllCourses.css")" rel="stylesheet" />
     <link href="@Url.Content("/Content/backbutton2.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/mid.css")" rel="stylesheet" />
 </head>
 <body>
     <div class="responsive-wrapper">
@@ -60,10 +61,7 @@
                                     <i class="icon ion-md-checkmark-circle"></i>
                                     <span>Assessments</span>
                                 </a>
-                                <a href="@Url.Action("seeFeedback", "seeFeedback")">
-                                    <i class="icon ion-md-text"></i>
-                                    <span>See Feedback</span>
-                                </a>
+                                
                                 <a href="@Url.Action("editStudentProfile", "editStudentProfile")">
                                     <i class="icon ion-md-person"></i>
                                     <span>Edit Profile</span>
@@ -99,10 +97,7 @@
                                     <i class="icon ion-md-checkmark-circle"></i>
                                     <span>Assessments</span>
                                 </a>
-                                <a href="@Url.Action("giveFeedback", "giveFeedback")">
-                                    <i class="icon ion-md-text"></i>
-                                    <span>Provide Feedback</span>
-                                </a>
+                                
                                 <a href="@Url.Action("editteacherProfile", "editteacherProfile")">
                                     <i class="icon ion-md-person"></i>
                                     <span>Edit Profile</span>
@@ -119,14 +114,15 @@
                 <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
 
-                
-                <div class="app-body-content">
-                    <div class="mid">
+                <div class="mid">
+                    <div class="app-body-content">
+
                         <div>
                             <form method="get" action="@Url.Action("AllCourse", "AllCourse")" class="search-form">
                                 <input type="text" name="searchTerm" placeholder="ID, name, or teacher" value="@ViewBag.SearchTerm" />
                                 <button type="submit">Search</button>
                             </form>
+
                             <table class="transparent-table">
                                 <thead>
                                     <tr>
