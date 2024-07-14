@@ -76,12 +76,13 @@
                 <div class="app-body-content">
                 @using (Html.BeginForm("SubmitQuiz", "StuddentViewQuizzes", FormMethod.Post))
                 {
-                      
+                    var questionNumber = 1;
+
                     <div>
                         @foreach (var question in Model)
                         {
                             <div class="quiz-question">
-                                <p>@question.Question</p>
+                                <p>@questionNumber : @question.Question</p>
                                 <div>
                                     <div>
                                     <label>
@@ -102,6 +103,8 @@
                                     <input type="hidden" name="" value="@question.QuestionID" />
                                 </div>
                             </div>
+                            <br>
+                            questionNumber++;
                         }
                     </div>
                     <button type="submit" class="submit-button">Submit Quiz</button>
