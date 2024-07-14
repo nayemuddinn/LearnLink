@@ -121,6 +121,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Content\DBconnection.cs" />
     <Compile Include="Controllers\AllCourseController.cs" />
+    <Compile Include="Controllers\changeCredentialsController.cs" />
     <Compile Include="Controllers\courseMaterialsController.cs" />
     <Compile Include="Controllers\createCourseController.cs" />
     <Compile Include="Controllers\CreateQuizController.cs" />
@@ -263,6 +264,7 @@
     <Content Include="Views\StudentViewQuizzes\StartQuiz.cshtml" />
     <Content Include="Views\View.cshtml" />
     <Content Include="Views\TeacherViewQuizzes\studentParticipation.cshtml" />
+    <Content Include="Views\changeCredentials\changeCredentials.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
