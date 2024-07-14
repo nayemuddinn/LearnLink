@@ -134,7 +134,11 @@
                                 <p>Uploaded On : @quiz.CreationDate</p>
                                 <div class="button-container">
                                     @{
-                                        if (quiz.Status == "Started")
+                                        if(quiz.Score!=-1)
+                                           {
+                                                <p>Your Score : @quiz.Score</p>
+                                           }
+                                        else if (quiz.Status == "Started")
                                         {
                                             <a href="@Url.Action("StartQuiz", "StudentViewQuizzes", new { id = quiz.QuizID })" class="tile-buttons view">Start</a>
                                         }
