@@ -1,0 +1,61 @@
+﻿
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #000000; /* Dark background color */
+    color: #fff; /* Light text color */
+}
+.mid {
+    margin-left: 180px;
+}
+
+.app-body {
+    padding: 2rem;
+}
+
+.input-box {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+    .input-box label {
+        flex: 0 0 150px;
+        margin-right: 1rem;
+    }
+
+    .input-box input {
+        flex: 1;
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: #222;
+        color: #fff;
+    }
+
+        .input-box input:focus {
+            border-color: #4caf50;
+            outline: none;
+        }
+
+.button-container {
+    text-align: center;
+    margin-top: 2rem;
+}
+    .button-container .btn-back {
+        margin-right: 10rem; /* Add margin to the right of the Back button */
+    }
+.btn {
+    padding: 0.5rem 1rem;
+    background-color: #4caf50; /* Button background color */
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .btn:hover {
+        background-color: #45a049; /* Darker button background color on hover */
+    }

@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teacher Dashboard - LearnLink</title>
     <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/uploadquiz.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/backbutton2.css")" rel="stylesheet" />
 </head>
 <body>
     <div class="responsive-wrapper">
@@ -120,53 +122,52 @@
                     @if (ViewBag.Message != null)
                     {
                         @ViewBag.Message
-
                     }
+                    
                     <form action="@Url.Action("UploadQuiz", "CreateQuiz")" method="post">
+                        <div class="mid">
+                            <div class="input-box">
+                                <label for="QuizID">Quiz ID</label>
+                                <input type="number" name="QuizID" required />
+                            </div>
 
-                        <div class="input-box">
-                            <label for="QuizID">Quiz ID</label>
-                            <input type="number" class="input-box" name="QuizID" required />
+                            <div class="input-box">
+                                <label for="questionText">Question</label>
+                                <input type="text" name="Question" required />
+                            </div>
+
+                            <div class="input-box">
+                                <label for="optionA">Option A</label>
+                                <input type="text" name="optionA" required />
+                            </div>
+
+                            <div class="input-box">
+                                <label for="optionB">Option B</label>
+                                <input type="text" name="optionB" required />
+                            </div>
+
+                            <div class="input-box">
+                                <label for="optionC">Option C</label>
+                                <input type="text" name="optionC" required />
+                            </div>
+
+                            <div class="input-box">
+                                <label for="optionD">Option D</label>
+                                <input type="text" name="optionD" required />
+                            </div>
+
+                            <div class="input-box">
+                                <label for="correctOption">Correct Option</label>
+                                <input type="text" name="correctOption" required />
+                            </div>
+
+                            <div class="button-container">
+                                <button type="button" class="btn btn-back" onclick="window.location.href='/Assessment/Assessment'">Back</button>
+                                <span></span>
+                                <input type="submit" class="btn" value="Submit Question" />
+                            </div>
                         </div>
-
-                        <div class="input-box">
-                            <label for="questionText">Question</label>
-                            <input type="text" class="input-box" name="Question" required />
-                        </div>
-
-                        <div class="input-box">
-                            <label for="optionA">Option A</label>
-                            <input type="text" name="optionA" required />
-                        </div>
-
-                        <div class="input-box">
-                            <label for="optionB">Option B</label>
-                            <input type="text" name="optionB" required />
-                        </div>
-
-                        <div class="input-box">
-                            <label for="optionC">Option C</label>
-                            <input type="text" name="optionC" required />
-                        </div>
-
-                        <div class="input-box">
-                            <label for="optionD">Option D</label>
-                            <input type="text" name="optionD" required />
-                        </div>
-
-                        <div class="input-box">
-                            <label for="correctOption">Correct Option</label>
-                            <input type="text" name="correctOption" required />
-                        </div>
-
-                        <div class="button-container text-center">
-                            <input type="submit" class="btn" value="Submit Question" />
-                        </div>
-                    </form>
-
-
-                </div>
-
+</div>
             </div>
             <div class="footer">
                 <br /><br />
