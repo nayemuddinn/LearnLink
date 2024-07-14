@@ -6,10 +6,10 @@ using System.Web.Mvc;
 
 namespace LearnLink.Controllers
 {
-    public class giveAssessmentsController : Controller
+    public class AssessmentController : Controller
     {
-        // GET: giveAssessments
-        public ActionResult giveAssessments()
+        
+        public ActionResult Assessment()
         {
             return View();
         }

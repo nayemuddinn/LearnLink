@@ -63,23 +63,23 @@ namespace LearnLink.Controllers
 
 
 
-        public ActionResult StudentCourseDetails(int courseId) 
+        public ActionResult StudentCourseDetails(int cId) 
         {
-       
-            {
-                Course courseDetails = new Course();
+           
+
+            Course courseDetails = new Course();
 
                 using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
                 {
                     conn.Open();
                     string query = @"
-                SELECT c.CourseID, c.CourseName, c.CourseDescription, c.CoursePrerequisite, c.CourseFee, t.Name
+                SELECT c.CourseID, c.CourseName, c.CourseDescription, c.CoursePrerequisite, c.CourseFee, c.TeacherID,t.Name
                 FROM Courses c
                 JOIN Teacher t ON c.TeacherID = t.UserID
                 WHERE c.CourseID = @CourseID";
 
                     SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@CourseID", courseId);
+                    cmd.Parameters.AddWithValue("@CourseID", cId);
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     if (reader.Read())
@@ -89,13 +89,13 @@ namespace LearnLink.Controllers
                         courseDetails.CourseDescription = (string)reader["CourseDescription"];
                         courseDetails.CoursePrerequisite = (string)reader["CoursePrerequisite"];
                         courseDetails.CourseFee = (int)reader["CourseFee"];
+                        courseDetails.TeacherID= (int)reader["TeacherID"];
                         courseDetails.TeacherName = (string)reader["Name"];
                     }
                 }
 
                 return View(courseDetails);
-            }
-
+      
         }
 
 

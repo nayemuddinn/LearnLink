@@ -13,7 +13,7 @@ namespace LearnLink.Controllers
         {
             int userId = (int)Session["UserID"];
             User user = GetTeacherById(userId);
-            EditProfileViewModel model = new EditProfileViewModel
+            User model = new User
             {
                 Name = user.Name,
                 Email = user.Email,
@@ -25,7 +25,7 @@ namespace LearnLink.Controllers
         }
 
         [HttpPost]
-        public ActionResult editteacherProfile(EditProfileViewModel model)
+        public ActionResult editteacherProfile(User model)
         {
             if (ModelState.IsValid)
             {
@@ -39,7 +39,7 @@ namespace LearnLink.Controllers
 
         private User GetTeacherById(int userId)
         {
-           // string connStr = DBConnection.ConnStr;
+      
             User user = null;
 
             using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
@@ -67,9 +67,9 @@ namespace LearnLink.Controllers
             return user;
         }
 
-        private void UpdateTeacherProfile(int userId, EditProfileViewModel model)
+        private void UpdateTeacherProfile(int userId, User model)
         {
-           // string connStr = DBConnection.ConnStr;
+          
 
             using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
             {

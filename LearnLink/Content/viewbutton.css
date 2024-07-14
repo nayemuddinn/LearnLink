@@ -10,7 +10,7 @@
     justify-content: space-between;
     position: relative;
     transition: 0.25s ease;
-   /* &:hover*/
+    /* &:hover*/
 
 {
     transform: translateY(-5px);
@@ -83,8 +83,8 @@ a {
 
 .button-container {
     display: flex;
-    flex-wrap: wrap; 
-    gap: 10px; 
+    flex-wrap: wrap;
+    gap: 60px;
 }
 
 
@@ -92,10 +92,10 @@ a {
     display: flex;
     align-items: center;
     text-decoration: none;
-    padding: 8px 12px; 
-    border-radius: 20px; 
-    font-weight: 500; 
-    font-size: 0.9em; 
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 0.9em;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
     border: 2px solid;
@@ -104,39 +104,38 @@ a {
 
 
     .tile-buttons.view {
-        
         background-color: #4CAF55;
         color: #fff;
-        border-color: #4CAF50; 
+        border-color: #4CAF50;
     }
 
         .tile-buttons.view:hover {
-            background-color: #45a049; 
+            background-color: #45a049;
             border-color: #45a049;
         }
 
- 
+
     .tile-buttons.download {
-        background-color: #2196F3; 
-        color: #fff; 
+        background-color: #2196F3;
+        color: #fff;
         border-color: #2196F3;
     }
 
         .tile-buttons.download:hover {
-            background-color: #1976D2; 
+            background-color: #1976D2;
             border-color: #1976D2;
         }
 
-   
+
     .tile-buttons.enrolled {
-        display:flex;
-        background-color: #FFC107; 
-        color: #fff; 
-        border-color: #FFC107; 
+        display: flex;
+        background-color: #FFC107;
+        color: #fff;
+        border-color: #FFC107;
     }
 
         .tile-buttons.enrolled:hover {
-            background-color: #FFA000; 
+            background-color: #FFA000;
             border-color: #FFA000;
         }
 
@@ -154,8 +153,8 @@ a {
 .icon-button {
     background: none;
     border: none;
-    color: #fff; 
-    font-size: 1em; 
+    color: #fff;
+    font-size: 1em;
     margin-left: 5px;
     cursor: pointer;
 }

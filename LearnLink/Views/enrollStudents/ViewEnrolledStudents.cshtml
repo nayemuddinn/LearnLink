@@ -1,13 +1,15 @@
-﻿@using LearnLink.Models;
+﻿@model List<LearnLink.Models.User>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teacher LearnLink</title>
-    <link href="@Url.Content("/Content/CourseManage.css")" rel="stylesheet" />
-    <link href="@Url.Content("/Content/textfield.css")" rel="stylesheet" />
+    <title>Enrolled Students</title>
+    <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/Enroll_Student.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/backbutton2.css")" rel="stylesheet" />
+
 </head>
 <body>
     <div class="responsive-wrapper">
@@ -28,14 +30,14 @@
 
 
                 <div class="app-header-actions">
-                    <h3>Create Course</h3>
+                    <h3>View Enrolled Students</h3>
                     <div class="app-header-actions-buttons">
                         <ion-icon size="large" name="person-circle"></ion-icon>
                         <h3>@HttpContext.Current.Session["UserName"]</h3>
                     </div>
                 </div>
                 <div class="app-header-mobile">
-                    <h3>Create Course</h3>
+                    <h3>View Enrolled Students</h3>
                     <ion-icon size="large" name="person-circle"></ion-icon>
                     <h3>@HttpContext.Current.Session["UserName"]</h3>
                 </div>
@@ -116,54 +118,45 @@
                 }
                 <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
+                <div class="app-body-content">
+                    <table class="transparent-table">
+                        <thead>
+                            <tr>
+                                <th>Student ID</th>
+                                <th>Student Name</th>
+                                <th>Institution</th>
+                                <th>Phone Number</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var student in Model)
+                            {
+                                <tr>
+                                    <td>@student.UserID</td>
+                                    <td>@student.Name</td>
+                                    <td>@student.Institution</td>
+                                    <td>@student.Phone</td>
+                                    <td>
 
-                <div class="auth-container">
-                    <div class="login-wrapper">
-                        <div class="form-box login">
-                            @{
-                                ViewBag.Title = "Create Course";
-
+                                        <a href="@Url.Action("UnenrollStudent", "enrollStudents", new { studentID = student.UserID, courseID = ViewBag.CourseID ,page=0})" class="view-dl-button">
+                                            <span class="view-dl-button">Unenroll</span>
+                                        </a>
+                                    </td>
+                                </tr>
                             }
+                        </tbody>
+                    </table>
+                    <br /><br />
+                    <div>
 
-
-
-                            <form action="" method="post">
-                                <div class="input-box">
-                                    <input type="text" name="CourseName" required>
-                                    <label for="Course">Course Name</label>
-                                </div>
-                                <div class="input-box">
-                                    <input type="text" class="input-box" name="CourseDescription" required>
-                                    <label for="Course">Course Description</label>
-                                </div>
-
-                                <div class="input-box">
-                                    <input type="text" class="input-box" name="CoursePrerequisite" required>
-                                    <label for="Course">Course Prerequisite</label>
-                                </div>
-
-                                <div class="input-box">
-                                    <input type="number" class="input-box" name="CourseFee" required>
-                                    <label for="Course">Course Fee</label>
-                                </div>
-                                <br /><br />
-                                <div class="button-container text-center">
-                                    <input type="submit" class="btn" name="create" value="Create" required>
-                                    <button type="button" class="btn btn-back" onclick="window.location.href='/TeacherDashboard/Dashboard'">Back</button>
-                                </div>
-
-
-
-                            </form>
-
-
-                        </div>
+                        <button type="button" class="btn btn-back" onclick="window.location.href='/ManageCourse/ManageCourse'">Back</button>
                     </div>
-
                 </div>
+
             </div>
+            <br /><br />
             <div class="footer">
-                <br /><br />
                 <h1>
                     LearnLink
                     <small>Teacher</small>
@@ -174,4 +167,5 @@
             </div>
         </div>
     </div>
-
+</body>
+</html>

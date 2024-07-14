@@ -1,0 +1,27 @@
+﻿.btn-back {
+    padding: 0.5rem 1rem;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .btn-back:hover {
+        background-color: #45a049;
+    }
+
+.view-button {
+    background-color: #45a049;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: background-color 0.3s ease;
+}

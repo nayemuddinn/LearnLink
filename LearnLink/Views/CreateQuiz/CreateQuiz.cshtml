@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teacher LearnLink</title>
+    <title>Create Quiz</title>
     <link href="@Url.Content("/Content/CourseManage.css")" rel="stylesheet" />
     <link href="@Url.Content("/Content/textfield.css")" rel="stylesheet" />
 </head>
@@ -26,16 +26,15 @@
                     <!-- Add any additional navigation items here if needed -->
                 </div>
 
-
                 <div class="app-header-actions">
-                    <h3>Create Course</h3>
+                    <h3>Create Quiz</h3>
                     <div class="app-header-actions-buttons">
                         <ion-icon size="large" name="person-circle"></ion-icon>
                         <h3>@HttpContext.Current.Session["UserName"]</h3>
                     </div>
                 </div>
                 <div class="app-header-mobile">
-                    <h3>Create Course</h3>
+                    <h3>Create Quiz</h3>
                     <ion-icon size="large" name="person-circle"></ion-icon>
                     <h3>@HttpContext.Current.Session["UserName"]</h3>
                 </div>
@@ -116,50 +115,39 @@
                 }
                 <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-
                 <div class="auth-container">
                     <div class="login-wrapper">
                         <div class="form-box login">
                             @{
-                                ViewBag.Title = "Create Course";
-
+                                ViewBag.Title = "Create Quiz";
                             }
 
-
-
-                            <form action="" method="post">
+                            <form action="@Url.Action("CreateQuiz", "CreateQuiz")" method="post">
                                 <div class="input-box">
-                                    <input type="text" name="CourseName" required>
-                                    <label for="Course">Course Name</label>
+                                    <input type="text" name="CourseID" required>
+                                    <label for="Course">Course ID</label>
                                 </div>
                                 <div class="input-box">
-                                    <input type="text" class="input-box" name="CourseDescription" required>
-                                    <label for="Course">Course Description</label>
+                                    <input type="text" name="Title" required>
+                                    <label for="Course">Title</label>
+                                </div>
+                                <div class="input-box">
+                                    <input type="text" class="input-box" name="Description" required>
+                                    <label for="Course">Description</label>
+                                </div>
+                                <div class="input-box">
+                                    <input type="number" class="input-box" name="Duration" required>
+                                    <label for="QuizTime">Quiz Time (minutes)</label>
                                 </div>
 
-                                <div class="input-box">
-                                    <input type="text" class="input-box" name="CoursePrerequisite" required>
-                                    <label for="Course">Course Prerequisite</label>
-                                </div>
-
-                                <div class="input-box">
-                                    <input type="number" class="input-box" name="CourseFee" required>
-                                    <label for="Course">Course Fee</label>
-                                </div>
                                 <br /><br />
                                 <div class="button-container text-center">
                                     <input type="submit" class="btn" name="create" value="Create" required>
                                     <button type="button" class="btn btn-back" onclick="window.location.href='/TeacherDashboard/Dashboard'">Back</button>
                                 </div>
-
-
-
                             </form>
-
-
                         </div>
                     </div>
-
                 </div>
             </div>
             <div class="footer">
@@ -174,4 +162,7 @@
             </div>
         </div>
     </div>
+</body>
+</html>
+
 

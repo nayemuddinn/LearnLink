@@ -39,7 +39,7 @@ namespace LearnLink.Controllers
                         {
                             if (reader.Read() && PasswordHasher.VerifyPassword(user.Password, reader["Password"].ToString()))
                             {
-                                Session["UserRole"] = role;
+                                Session["UserRole"] = role.ToString();
                                 Session["UserName"] = reader["Name"].ToString();
                                 Session["UserEmail"] = user.Email;
                                 Session["UserID"] = reader["UserID"];

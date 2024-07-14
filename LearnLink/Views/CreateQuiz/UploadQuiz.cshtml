@@ -1,13 +1,12 @@
-﻿@using LearnLink.Models;
+﻿@model LearnLink.Models.QuizQuestion
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teacher LearnLink</title>
-    <link href="@Url.Content("/Content/CourseManage.css")" rel="stylesheet" />
-    <link href="@Url.Content("/Content/textfield.css")" rel="stylesheet" />
+    <title>Teacher Dashboard - LearnLink</title>
+    <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
 </head>
 <body>
     <div class="responsive-wrapper">
@@ -28,14 +27,14 @@
 
 
                 <div class="app-header-actions">
-                    <h3>Create Course</h3>
+                    <h3>Upload Quiz Questions</h3>
                     <div class="app-header-actions-buttons">
                         <ion-icon size="large" name="person-circle"></ion-icon>
                         <h3>@HttpContext.Current.Session["UserName"]</h3>
                     </div>
                 </div>
                 <div class="app-header-mobile">
-                    <h3>Create Course</h3>
+                    <h3>Upload Quiz Questions</h3>
                     <ion-icon size="large" name="person-circle"></ion-icon>
                     <h3>@HttpContext.Current.Session["UserName"]</h3>
                 </div>
@@ -117,50 +116,57 @@
                 <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
 
-                <div class="auth-container">
-                    <div class="login-wrapper">
-                        <div class="form-box login">
-                            @{
-                                ViewBag.Title = "Create Course";
+                <div class="app-body">
+                    @if (ViewBag.Message != null)
+                    {
+                        @ViewBag.Message
 
-                            }
+                    }
+                    <form action="@Url.Action("UploadQuiz", "CreateQuiz")" method="post">
 
-
-
-                            <form action="" method="post">
-                                <div class="input-box">
-                                    <input type="text" name="CourseName" required>
-                                    <label for="Course">Course Name</label>
-                                </div>
-                                <div class="input-box">
-                                    <input type="text" class="input-box" name="CourseDescription" required>
-                                    <label for="Course">Course Description</label>
-                                </div>
-
-                                <div class="input-box">
-                                    <input type="text" class="input-box" name="CoursePrerequisite" required>
-                                    <label for="Course">Course Prerequisite</label>
-                                </div>
-
-                                <div class="input-box">
-                                    <input type="number" class="input-box" name="CourseFee" required>
-                                    <label for="Course">Course Fee</label>
-                                </div>
-                                <br /><br />
-                                <div class="button-container text-center">
-                                    <input type="submit" class="btn" name="create" value="Create" required>
-                                    <button type="button" class="btn btn-back" onclick="window.location.href='/TeacherDashboard/Dashboard'">Back</button>
-                                </div>
-
-
-
-                            </form>
-
-
+                        <div class="input-box">
+                            <label for="QuizID">Quiz ID</label>
+                            <input type="number" class="input-box" name="QuizID" required />
                         </div>
-                    </div>
+
+                        <div class="input-box">
+                            <label for="questionText">Question</label>
+                            <input type="text" class="input-box" name="Question" required />
+                        </div>
+
+                        <div class="input-box">
+                            <label for="optionA">Option A</label>
+                            <input type="text" name="optionA" required />
+                        </div>
+
+                        <div class="input-box">
+                            <label for="optionB">Option B</label>
+                            <input type="text" name="optionB" required />
+                        </div>
+
+                        <div class="input-box">
+                            <label for="optionC">Option C</label>
+                            <input type="text" name="optionC" required />
+                        </div>
+
+                        <div class="input-box">
+                            <label for="optionD">Option D</label>
+                            <input type="text" name="optionD" required />
+                        </div>
+
+                        <div class="input-box">
+                            <label for="correctOption">Correct Option</label>
+                            <input type="text" name="correctOption" required />
+                        </div>
+
+                        <div class="button-container text-center">
+                            <input type="submit" class="btn" value="Submit Question" />
+                        </div>
+                    </form>
+
 
                 </div>
+
             </div>
             <div class="footer">
                 <br /><br />
@@ -173,5 +179,6 @@
                 </div>
             </div>
         </div>
-    </div>
 
+</body>
+</html>

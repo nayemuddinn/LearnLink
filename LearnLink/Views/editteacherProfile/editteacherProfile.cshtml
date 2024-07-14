@@ -1,64 +1,203 @@
-﻿@model LearnLink.Models.EditProfileViewModel
+﻿@model LearnLink.Models.User
 
-@{
-    ViewBag.Title = "Edit Teacher Profile";
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher LearnLink</title>
+    <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/editprofile.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/backbutton2.css")" rel="stylesheet" />
 
-<h2>Edit Teacher Profile</h2>
+</head>
+<body>
+    <div class="responsive-wrapper">
+        <div class="app">
+            <div class="app-header">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <ion-icon name="school-outline"></ion-icon>
+                    </div>
+                    <div class="logo-title">
+                        <span>LearnLink</span>
+                        <span>@HttpContext.Current.Session["UserRole"]</span>
+                    </div>
+                </div>
+                <div class="app-header-navigation">
+                    <!-- Add any additional navigation items here if needed -->
+                </div>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Profile</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-        <div class="form-group">
-            @Html.LabelFor(m => m.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(m => m.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                <div class="app-header-actions">
+                    <h3>Edit Teacher Profile</h3>
+                    <div class="app-header-actions-buttons">
+                        <ion-icon size="large" name="person-circle"></ion-icon>
+                        <h3>@HttpContext.Current.Session["UserName"]</h3>
+                    </div>
+                </div>
+                <div class="app-header-mobile">
+                    <h3>Edit Teacher Profile</h3>
+                    <ion-icon size="large" name="person-circle"></ion-icon>
+                    <h3>@HttpContext.Current.Session["UserName"]</h3>
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(m => m.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            <div class="app-body">
+                @{
+                    if (Session["UserRole"].Equals("Student"))
+                    {
+                        <div class="app-body-navigation">
+                            <nav class="navigation">
+                                <a href="@Url.Action("AllCourse", "AllCourse")">
+                                    <i class="icon ion-md-book"></i>
+                                    <span>All Courses</span>
+                                </a>
+                                <a href="@Url.Action("ViewEnrolledCourses", "StudentEnrolledCourses")">
+                                    <i class="icon ion-md-person-add"></i>
+                                    <span>Enrolled Courses</span>
+                                </a>
+                                <a href="@Url.Action("Assessment", "Assessment")">
+                                    <i class="icon ion-md-checkmark-circle"></i>
+                                    <span>Assessments</span>
+                                </a>
+                                <a href="@Url.Action("seeFeedback", "seeFeedback")">
+                                    <i class="icon ion-md-text"></i>
+                                    <span>See Feedback</span>
+                                </a>
+                                <a href="@Url.Action("editStudentProfile", "editStudentProfile")">
+                                    <i class="icon ion-md-person"></i>
+                                    <span>Edit Profile</span>
+                                </a>
+                                <a href="@Url.Action("login", "Login")">
+                                    <i class="icon ion-md-exit"></i>
+                                    <span>Log Out</span>
+                                </a>
+                            </nav>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="app-body-navigation">
+                            <nav class="navigation">
+                                <a href="@Url.Action("ManageCourse", "ManageCourse")">
+                                    <i class="icon ion-md-book"></i>
+                                    <span>Manage Courses</span>
+                                </a>
+                                <a href="@Url.Action("createCourse", "createCourse")">
+                                    <i class="icon ion-md-add-circle"></i>
+                                    <span>Create Courses</span>
+                                </a>
+                                <a href="@Url.Action("courseMaterials", "courseMaterials")">
+                                    <i class="icon ion-md-add-circle"></i>
+                                    <span>CourseMaterials</span>
+                                </a>
+                                <a href="@Url.Action("enrollStudents", "enrollStudents")">
+                                    <i class="icon ion-md-person-add"></i>
+                                    <span>Enroll Students</span>
+                                </a>
+                                <a href="@Url.Action("Assessment", "Assessment")">
+                                    <i class="icon ion-md-checkmark-circle"></i>
+                                    <span>Assessments</span>
+                                </a>
+                                <a href="@Url.Action("giveFeedback", "giveFeedback")">
+                                    <i class="icon ion-md-text"></i>
+                                    <span>Provide Feedback</span>
+                                </a>
+                                <a href="@Url.Action("editteacherProfile", "editteacherProfile")">
+                                    <i class="icon ion-md-person"></i>
+                                    <span>Edit Profile</span>
+                                </a>
+                                <a href="@Url.Action("login", "Login")">
+                                    <i class="icon ion-md-exit"></i>
+                                    <span>Log Out</span>
+                                </a>
+                            </nav>
+                        </div>
+                    }
+                }
+                <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-        <div class="form-group">
-            @Html.LabelFor(m => m.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(m => m.Phone, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(m => m.Address, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(m => m.Address, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <main class="profile-content">
+                    <div class="form-wrapper">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
 
-        <div class="form-group">
-            @Html.LabelFor(m => m.Institution, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(m => m.Institution, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(m => m.Institution, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                            <div class="form-horizontal">
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Name, htmlAttributes: new { @class = "control-label" })
+                                    <div class="input-group">
+                                        @Html.EditorFor(m => m.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Email, htmlAttributes: new { @class = "control-label" })
+                                    <div class="input-group">
+                                        @Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Phone, htmlAttributes: new { @class = "control-label" })
+                                    <div class="input-group">
+                                        @Html.EditorFor(m => m.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Address, htmlAttributes: new { @class = "control-label" })
+                                    <div class="input-group">
+                                        @Html.EditorFor(m => m.Address, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Institution, htmlAttributes: new { @class = "control-label" })
+                                    <div class="input-group">
+                                        @Html.EditorFor(m => m.Institution, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(m => m.Institution, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <div class="input-group">
+
+                                        <button type="button" class="btn btn-back" onclick="window.location.href='/TeacherDashboard/Dashboard'">Back</button>
+
+
+                                        <div style="width: 150px;"></div>
+
+                                        <input type="submit" value="Save" class="btn btn-primary" />
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </main>
+
+
             </div>
-        </div>
-    </div>
-}
+            <div class="footer">
+                <br /><br />
+                <h1>
+                    LearnLink
+                    <small>Teacher</small>
+                </h1>
+                <div>
+                    &copy; 2024 LearnLink. All rights reserved.
+                </div>
+            </div>
+</body>
+
+</html>
