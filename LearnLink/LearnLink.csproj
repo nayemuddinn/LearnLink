@@ -192,6 +192,7 @@
     <Content Include="Content\textfield.css" />
     <Content Include="Content\unenroll.css" />
     <Content Include="Content\unenrollbutton.css" />
+    <Content Include="Content\uploadquiz.css" />
     <Content Include="Content\viewbutton.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
