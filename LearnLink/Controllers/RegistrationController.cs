@@ -17,9 +17,16 @@ namespace LearnLink.Controllers
         [HttpPost]
         public ActionResult reg(User user)
         {
+     
             if (!user.Password.Equals(user.ConfirmPassword))
             {
                 TempData["AlertMessage"] = "Passwords do not Match!";
+                return View();
+            }
+
+            if (!user.PIN.Equals(user.ConfirmPIN))
+            {
+                TempData["AlertMessage"] = "PIN do not Match!";
                 return View();
             }
 
@@ -44,20 +51,49 @@ namespace LearnLink.Controllers
             {
                 try
                 {
-                    string role = user.Role;
-                    string Hashpass = PasswordHasher.HashPassword(user.Password);
                     conn.Open();
-                    string query = "INSERT INTO " + role + " (Name, Email, Password, Phone, Address, Institution) " +
-                                   "VALUES (@Name, @Email, @Password, @Phone, @Address, @Institution)";
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@Name", user.Name);
-                    cmd.Parameters.AddWithValue("@Email", user.Email);
-                    cmd.Parameters.AddWithValue("@Password", Hashpass);
-                    cmd.Parameters.AddWithValue("@Phone", user.Phone);
-                    cmd.Parameters.AddWithValue("@Address", user.Address);
-                    cmd.Parameters.AddWithValue("@Institution", user.Institution);
 
-                    cmd.ExecuteNonQuery();
+                    string checkEmailQuery = "SELECT COUNT(*) FROM " + user.Role + " WHERE Email = @Email";
+                    using (SqlCommand cmd = new SqlCommand(checkEmailQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Email", user.Email);
+                        int emailCount = (int)cmd.ExecuteScalar();
+                        if (emailCount > 0)
+                        {
+                            TempData["AlertMessage"] = "Email already exists!";
+                            return View();
+                        }
+                    }
+
+                    string checkPhoneQuery = "SELECT COUNT(*) FROM " + user.Role + " WHERE Phone = @Phone";
+                    using (SqlCommand cmd = new SqlCommand(checkPhoneQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Phone", user.Phone);
+                        int phoneCount = (int)cmd.ExecuteScalar();
+                        if (phoneCount > 0)
+                        {
+                            TempData["AlertMessage"] = "Phone number already exists!";
+                            return View();
+                        }
+                    }
+
+                    string Hashpass = PasswordHasher.HashPassword(user.Password);
+                    string Hashpin = PasswordHasher.HashPassword(user.PIN);
+                    string query = "INSERT INTO " + user.Role + " (Name, Email, Password, Phone, Address, Institution,PIN) " +
+                                   "VALUES (@Name, @Email, @Password, @Phone, @Address, @Institution,@PIN)";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Name", user.Name);
+                        cmd.Parameters.AddWithValue("@Email", user.Email);
+                        cmd.Parameters.AddWithValue("@Password", Hashpass);
+                        cmd.Parameters.AddWithValue("@Phone", user.Phone);
+                        cmd.Parameters.AddWithValue("@Address", user.Address);
+                        cmd.Parameters.AddWithValue("@Institution", user.Institution);
+                        cmd.Parameters.AddWithValue("@PIN",Hashpin);
+
+                        cmd.ExecuteNonQuery();
+                    }
+
                     ViewBag.SuccessMessage = "Registration successful!";
                 }
                 catch (SqlException sqlEx)
@@ -68,8 +104,11 @@ namespace LearnLink.Controllers
                 {
                     ViewBag.ErrorMessage = "Error: " + ex.Message;
                 }
+
                 return View();
             }
         }
+
     }
 }
+
