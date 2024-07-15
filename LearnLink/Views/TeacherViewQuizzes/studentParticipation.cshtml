@@ -10,6 +10,7 @@
     <link href="@Url.Content("/Content/ShowCourseMaterials.css")" rel="stylesheet" />
     <link href="@Url.Content("/Content/Enroll_Student.css")" rel="stylesheet" />
     <link href="@Url.Content("/Content/backbutton2.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/mid.css")" rel="stylesheet" />
 </head>
 <body>
     <div class="responsive-wrapper">
@@ -28,14 +29,14 @@
                     <!-- Add any additional navigation items here if needed -->
                 </div>
                 <div class="app-header-actions">
-                    <h3>Assessment</h3>
+                    <h3>Student Participation</h3>
                     <div class="app-header-actions-buttons">
                         <ion-icon size="large" name="person-circle"></ion-icon>
                         <h3>@HttpContext.Current.Session["UserName"]</h3>
                     </div>
                 </div>
                 <div class="app-header-mobile">
-                    <h3>Assessment</h3>
+                    <h3>Student Participation</h3>
                     <ion-icon size="large" name="person-circle"></ion-icon>
                     <h3>@HttpContext.Current.Session["UserName"]</h3>
                 </div>
@@ -59,7 +60,7 @@
                                     <i class="icon ion-md-checkmark-circle"></i>
                                     <span>Assessments</span>
                                 </a>
-                                
+
                                 <a href="@Url.Action("editStudentProfile", "editStudentProfile")">
                                     <i class="icon ion-md-person"></i>
                                     <span>Edit Profile</span>
@@ -95,7 +96,7 @@
                                     <i class="icon ion-md-checkmark-circle"></i>
                                     <span>Assessments</span>
                                 </a>
-                                
+
                                 <a href="@Url.Action("editteacherProfile", "editteacherProfile")">
                                     <i class="icon ion-md-person"></i>
                                     <span>Edit Profile</span>
@@ -110,44 +111,46 @@
                 }
 
                 <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
-                <div class="app-body-content">
-                    <table class="transparent-table">
-                        <thead>
-                            <tr>
-                                <th>Quiz ID</th>
-                                <th>Student ID</th>
-                                <th>Student Name</th>
-                                <th>Score</th>
-                                <th>Submission Time</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var evaluation in Model)
-                            {
+                <div class="mida">
+                    <div class="app-body-content">
+                        <table class="transparent-table">
+                            <thead>
                                 <tr>
-                                    <td>@evaluation.QuizID</td>
-                                    <td>@evaluation.StudentID</td>
-                                    <td>@evaluation.StudentName</td>
-                                    <td>@evaluation.Score</td>
-                                    <td>@evaluation.SubmissionTime</td>
+                                    <th>Quiz ID</th>
+                                    <th>Student ID</th>
+                                    <th>Student Name</th>
+                                    <th>Score</th>
+                                    <th>Submission Time</th>
                                 </tr>
-                            }
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach (var evaluation in Model)
+                                {
+                                    <tr>
+                                        <td>@evaluation.QuizID</td>
+                                        <td>@evaluation.StudentID</td>
+                                        <td>@evaluation.StudentName</td>
+                                        <td>@evaluation.Score</td>
+                                        <td>@evaluation.SubmissionTime</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <br /><br />
+                        <div>
+                            <button type="button" class="btn btn-back" onclick="window.location.href='@Url.Action("enrollNewStudents", "EnrollStudents")'">Back</button>
+                        </div>
 
-                    <div>
-                        <button type="button" class="btn btn-back" onclick="window.location.href='@Url.Action("enrollNewStudents", "EnrollStudents")'">Back</button>
                     </div>
+
+
                 </div>
+
             </div>
 
             <div class="footer">
                 <br /><br />
-                <h1>
-                    LearnLink
-                    <small>@HttpContext.Current.Session["UserRole"]</small>
-                </h1>
+                
                 <div>
                     &copy; 2024 LearnLink. All rights reserved.
                 </div>
