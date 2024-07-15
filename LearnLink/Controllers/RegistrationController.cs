@@ -36,6 +36,13 @@ namespace LearnLink.Controllers
                 return View();
             }
 
+
+            if (user.PIN.Length < 6)
+            {
+                TempData["AlertMessage"] = "PIN must be at least 6 characters long.";
+                return View();
+            }
+
             bool hasDigit = Regex.IsMatch(user.Password, @"\d");
             bool hasSpecialChar = Regex.IsMatch(user.Password, @"[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]");
 
@@ -94,15 +101,15 @@ namespace LearnLink.Controllers
                         cmd.ExecuteNonQuery();
                     }
 
-                    ViewBag.SuccessMessage = "Registration successful!";
+                    TempData["AlertMessage"]= "Registration successful!";
                 }
                 catch (SqlException sqlEx)
                 {
-                    ViewBag.ErrorMessage = "SQL Error: " + sqlEx.Message;
+                    TempData["AlertMessage"]= sqlEx.Message;
                 }
                 catch (Exception ex)
                 {
-                    ViewBag.ErrorMessage = "Error: " + ex.Message;
+                    TempData["AlertMessage"]= ex.Message;
                 }
 
                 return View();
