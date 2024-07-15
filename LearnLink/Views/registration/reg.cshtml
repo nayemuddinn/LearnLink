@@ -1,5 +1,9 @@
 ﻿@using LearnLink.Models;
 
+@{
+    var alertMessage = TempData["AlertMessage"] as string;
+}
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +13,15 @@
 <div class="registration-wrapper">
     <div class="form-box login">
         <br /><br />
-
+        <script type="text/javascript">
+        window.onload = function() {
+            var alertMessage = '@alertMessage';
+            if (alertMessage) {
+                alert(alertMessage);
+                window.location.href = '@Url.Action("reg")';
+            }
+        };
+        </script>
         <h2>Registration</h2>
         <form action="" method="post">
 

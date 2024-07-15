@@ -2,6 +2,7 @@
 using LearnLink.Models;
 using System;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 using System.Web.Mvc;
 
 namespace LearnLink.Controllers
@@ -16,9 +17,24 @@ namespace LearnLink.Controllers
         [HttpPost]
         public ActionResult reg(User user)
         {
-            if (user.Password != user.ConfirmPassword)
+            if (!user.Password.Equals(user.ConfirmPassword))
             {
-                ViewBag.ErrorMessage = "Passwords do not match!";
+                TempData["AlertMessage"] = "Passwords do not Match!";
+                return View();
+            }
+
+            if (user.Password.Length < 6)
+            {
+                TempData["AlertMessage"] = "Password must be at least 6 characters long.";
+                return View();
+            }
+
+            bool hasDigit = Regex.IsMatch(user.Password, @"\d");
+            bool hasSpecialChar = Regex.IsMatch(user.Password, @"[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]");
+
+            if (!hasDigit || !hasSpecialChar)
+            {
+                TempData["AlertMessage"] = "Password must contain at least one digit and one special character.";
                 return View();
             }
 
