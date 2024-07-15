@@ -64,7 +64,7 @@ namespace LearnLink.Controllers
 
         public ActionResult StartQuiz(int id)
         {
-            if (Session["QuizStartTime"] != null)
+            if (Session["QuizStartTime"] != null )
             {
                 DateTime startTime = (DateTime)Session["QuizStartTime"];
                 int duration = (int)Session["QuizDuration"];
@@ -91,7 +91,7 @@ namespace LearnLink.Controllers
             }
 
 
-                if (Session["QuizID"]!=null)
+                if (Session["QuizID"]!=null && (int)Session["QuizID"] != id)
             {
                 TempData["AlertMessage"] = "You cannot start another quiz while you are currently taking one.";
                 return RedirectToAction("ViewQuizzes");
