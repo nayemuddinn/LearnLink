@@ -1,5 +1,9 @@
 ﻿@using LearnLink.Models;
 
+@{
+    var alertMessage = TempData["AlertMessage"] as string;
+}
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +13,15 @@
 <div class="registration-wrapper">
     <div class="form-box login">
         <br /><br />
-
+        <script type="text/javascript">
+        window.onload = function() {
+            var alertMessage = '@alertMessage';
+            if (alertMessage) {
+                alert(alertMessage);
+                window.location.href = '@Url.Action("reg")';
+            }
+        };
+        </script>
         <h2>Registration</h2>
         <form action="" method="post">
 
@@ -36,6 +48,19 @@
                 <input type="password" name="ConfirmPassword" id="ConfirmPassword" autocomplete="off" required>
                 <label>Confirm Password</label>
             </div>
+
+            <div class="input-box">
+                <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+                <input type="password" name="PIN" id="PIN" autocomplete="off" required>
+                <label>Password</label>
+            </div>
+
+            <div class="input-box">
+                <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+                <input type="password" name="ConfirmPIN" id="ConfirmPIN" autocomplete="off" required>
+                <label>Confirm PIN</label>
+            </div>
+
 
             <div class="input-box">
                 <span class="icon"><ion-icon name="call-outline"></ion-icon></span>
