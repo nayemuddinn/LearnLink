@@ -1,12 +1,10 @@
 
 ## Overview
 
-**Learn Link** is a web-based **Learning Management System (LMS)** designed for seamless collaboration between students and teachers.  
-Built using **ASP.NET** and **MySQL** following **MVC architecture**, it simplifies course management, resource sharing, assessments, and performance tracking.
+**Learn Link** is a web-based **Learning Management System (LMS)** designed to facilitate seamless collaboration between **students and teachers**.  
+Built with **ASP.NET MVC** and **MySQL**, it provides a centralized platform for **course creation, material management, assessments, and performance tracking**.  
 
-Our goal is to bridge the gap between traditional classroom learning and modern digital education.
-
----
+The platform aims to modernize education by making online learning **efficient, interactive, and accessible** for both educators and learners.
 
 ##  Key Features
 
@@ -27,7 +25,7 @@ Our goal is to bridge the gap between traditional classroom learning and modern 
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 | Layer            | Technology |
 |------------------|------------|
