@@ -36,6 +36,19 @@ The platform aims to modernize education by making online learning **efficient, 
 | **Version Control** | Git & GitHub |
 | **Deployment**   | Localhost / Server-based Hosting |
 
-
 ---
+
+
+
+_Here are some images showing this app's features and UI_
+
+<br/>
+
+![log-reg](https://github.com/user-attachments/assets/5ce30ff0-85f4-43ce-89b9-9f2773a2de12)
+
+
+
+
+
+
 
