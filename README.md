@@ -12,7 +12,7 @@ By combining robust features with an intuitive interface, **Learn Link** helps m
 ### Teacher Capabilities
 - **User Management** – Register, login, and access a personalized dashboard.
 - **Course Management** – Create, update, or delete courses with ease.
-- **Material Upload** – Add, update, and remove course materials.
+- **Material Upload** – Add, update, and remove course materials (Image, PDF, doc files).
 - **Quiz Creation** – Create timed quizzes with configurable settings.
 - **Student Control** – Approve/reject enrollment requests, remove students when necessary.
 - **Assessment & Tracking** – View student scores, evaluate performance, and track progress.
@@ -49,15 +49,12 @@ _Here are some images showing this app's features and UI_
 
 | Login | Register |
 |------|----------|
-| <img width="1920" height="1080" alt="login" src="https://github.com/user-attachments/assets/8a642409-de72-4d64-858e-4daed426c3b5" />
-|  <img width="1920" height="1080" alt="reg" src="https://github.com/user-attachments/assets/8bfa6e45-42a3-49bf-9168-03996b2ec62d"/>
- |
+| <img width="600" height="480" alt="login" src="https://github.com/user-attachments/assets/8a642409-de72-4d64-858e-4daed426c3b5" /> | <img width="600" height="480" alt="reg" src="https://github.com/user-attachments/assets/8bfa6e45-42a3-49bf-9168-03996b2ec62d" /> |
 
 | Teacher Dashboard | Student Dashboard |
 |-------------------|-------------------|
-|<img width="1920" height="1080" alt="Dashboard_Teacher" src="https://github.com/user-attachments/assets/8e96f945-bce8-4db7-9c01-c91fcbce3fbc" />
- |<img width="1920" height="1080" alt="Dashboard_student" src="https://github.com/user-attachments/assets/99be5743-d3b4-4722-bbd3-84bde61262cc" />
- |
+| <img width="600" height="480" alt="Dashboard_Teacher" src="https://github.com/user-attachments/assets/8e96f945-bce8-4db7-9c01-c91fcbce3fbc" /> | <img width="600" height="480" alt="Dashboard_student" src="https://github.com/user-attachments/assets/99be5743-d3b4-4722-bbd3-84bde61262cc" /> |
+
 
 
 
