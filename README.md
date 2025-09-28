@@ -70,3 +70,4 @@ cd learn-link
 ### Database Setup
 
 Run the SQL script located at [`/database/schema.sql`](./database/schema.sql):
+
