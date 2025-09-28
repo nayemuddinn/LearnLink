@@ -1,0 +1,116 @@
+CREATE TABLE student (
+    UserID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+    Name VARCHAR(255) NOT NULL,
+    Email VARCHAR(50) UNIQUE CHECK (Email LIKE '%@%.com'),
+    Password VARCHAR(60) NOT NULL,
+    Phone VARCHAR(11) UNIQUE CHECK (Phone LIKE '01%' AND LEN(Phone) = 11 AND Phone BETWEEN '01000000000' AND '01999999999'),
+    Address VARCHAR(200) NOT NULL,
+    Institution VARCHAR(200) NOT NULL
+);
+
+CREATE TABLE teacher (
+    UserID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+    Name VARCHAR(255) NOT NULL,
+    Email VARCHAR(50) UNIQUE CHECK (Email LIKE '%@%.com'),
+    Password VARCHAR(60) NOT NULL,
+    Phone VARCHAR(11) UNIQUE CHECK (Phone LIKE '01%' AND LEN(Phone) = 11 AND Phone BETWEEN '01000000000' AND '01999999999'),
+    Address VARCHAR(200) NOT NULL,
+    Institution VARCHAR(200) NOT NULL
+);
+
+
+CREATE TABLE Courses (
+    CourseID INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+    CourseName NVARCHAR(100) NOT NULL,
+    CourseFee INT NOT NULL,
+    CourseDescription NVARCHAR(100) NOT NULL,
+    CoursePrerequisite NVARCHAR(100) NOT NULL,
+    TeacherID INT FOREIGN KEY REFERENCES teacher(UserID)
+);
+
+ALTER TABLE Courses
+ADD CourseCreateDate DATETIME NOT NULL DEFAULT GETDATE();
+
+
+CREATE TABLE courseMaterials
+(
+    FileID INT PRIMARY KEY IDENTITY(1,1),  
+    CourseID INT NOT NULL,               
+    TeacherID INT NOT NULL,                 
+    Name NVARCHAR(255) NOT NULL,             
+    ContentType NVARCHAR(100) NOT NULL,      
+    Data VARBINARY(MAX) NOT NULL,            
+    UploadDate DATETIME NOT NULL,             
+    FOREIGN KEY (CourseID) REFERENCES Courses(CourseID),
+    FOREIGN KEY (TeacherID) REFERENCES Teacher(UserID)
+);
+
+CREATE TABLE Enrollment (
+    EnrollmentID INT IDENTITY(1,1) PRIMARY KEY,
+    StudentID INT NOT NULL,
+    CourseID INT NOT NULL,
+    TeacherID INT NOT NULL,
+    RequestDate DATETIME DEFAULT GETDATE(),
+    Status VARCHAR(20) DEFAULT 'Pending'
+);
+
+
+CREATE TABLE Quiz (
+    QuizID INT IDENTITY(1,1) PRIMARY KEY,
+    CourseID INT NOT NULL,
+    TeacherID INT NOT NULL,
+    Title VARCHAR(255) NOT NULL,
+    Description TEXT,
+    CreationDate DATETIME NOT NULL,
+    FOREIGN KEY (CourseID) REFERENCES Courses(CourseID),
+    FOREIGN KEY (TeacherID) REFERENCES Teacher(UserID)
+);
+
+ALTER TABLE Quiz
+ADD Status NVARCHAR(50)  DEFAULT 'NotStarted'
+ALTER TABLE Quiz
+ADD CourseName NVARCHAR(255) NOT NULL DEFAULT 'Unknown';
+ALTER TABLE Quiz
+ADD Duration int NOT NULL DEFAULT 0;
+
+
+CREATE TABLE QuizQuestions (
+    QuestionID INT IDENTITY(1,1) PRIMARY KEY,
+    QuizID INT NOT NULL,
+    Question NVARCHAR(255) NOT NULL,
+    OptionA NVARCHAR(255) NOT NULL,
+    OptionB NVARCHAR(255) NOT NULL,
+    OptionC NVARCHAR(255) NOT NULL,
+    OptionD NVARCHAR(255) NOT NULL,
+    CorrectOption CHAR(1) NOT NULL CHECK (CorrectOption IN ('A', 'B', 'C', 'D')),
+    FOREIGN KEY (QuizID) REFERENCES Quiz(QuizID) ON DELETE CASCADE
+);
+
+
+
+CREATE TABLE QuizEvaluation (
+    SubmitID INT PRIMARY KEY IDENTITY,
+    StudentID INT,
+    StudentName NVARCHAR(MAX),
+    QuizID INT,
+    Score INT,
+    SubmissionTime DATETIME,
+    Feedback NVARCHAR(MAX),
+    FOREIGN KEY (StudentID) REFERENCES Student(UserID),
+    FOREIGN KEY (QuizID) REFERENCES Quiz(QuizID)
+);
+
+ALTER TABLE teacher
+ADD PIN NVARCHAR(MAX)
+ NOT NULL DEFAULT 123456;
+
+
+ALTER TABLE student
+ADD PIN NVARCHAR(MAX)
+ NOT NULL DEFAULT 123456;
+
+
+
+
+
+ 
