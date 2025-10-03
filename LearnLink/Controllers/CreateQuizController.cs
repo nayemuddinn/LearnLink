@@ -74,12 +74,18 @@ namespace LearnLink.Controllers
 
 
 
-        public ActionResult UploadQuiz()
+        public ActionResult UploadQuiz(int id)
         {
-            return View();
+            QuizQuestion quizQuestion = new QuizQuestion
+            {
+                QuizID = id
+            };
+
+            return View(quizQuestion);
         }
 
-     [HttpPost]
+
+        [HttpPost]
         public ActionResult UploadQuiz(QuizQuestion quizQuestion)
         {
             using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
@@ -87,8 +93,9 @@ namespace LearnLink.Controllers
                 try
                 {
                     conn.Open();
-                    string query = "INSERT INTO QuizQuestions (QuizID, Question, OptionA, OptionB, OptionC, OptionD, CorrectOption) " +
-                                   "VALUES (@QuizID, @QuestionText, @OptionA, @OptionB, @OptionC, @OptionD, @CorrectOption)";
+                    string query = @"INSERT INTO QuizQuestions 
+                            (QuizID, Question, OptionA, OptionB, OptionC, OptionD, CorrectOption) 
+                             VALUES (@QuizID, @QuestionText, @OptionA, @OptionB, @OptionC, @OptionD, @CorrectOption)";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
@@ -101,16 +108,22 @@ namespace LearnLink.Controllers
                         cmd.Parameters.AddWithValue("@CorrectOption", quizQuestion.CorrectOption);
 
                         cmd.ExecuteNonQuery();
-                        Response.Write($"<script>alert('Question uploaded successfully!');</script>");
+                        TempData["Message"] = "Question uploaded successfully!";
                     }
+
+                    TempData["Alert"] = "Question uploaded successfully!";
+                    return RedirectToAction("UploadQuiz", new { id = quizQuestion.QuizID });
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    Response.Write($"<script>alert('An error occurred: Try Again');</script>");
-                  
+                    return RedirectToAction("UploadQuiz", new { id = quizQuestion.QuizID });
+                    TempData["Message"] = "An error occurred. Please try again.";
                 }
             }
-            return View();
+         
+
+            return RedirectToAction("UploadQuiz", new { id = quizQuestion.QuizID });
         }
+
     }
 }
