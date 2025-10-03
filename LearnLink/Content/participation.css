@@ -1,5 +1,4 @@
-﻿
-.clicktile {
+﻿.clicktile {
     padding: 1rem;
     border-radius: 8px;
     background-color: var(--c-olive-500);
@@ -10,76 +9,69 @@
     justify-content: space-between;
     position: relative;
     transition: 0.25s ease;
-    /* &:hover*/
-
-{
-    transform: translateY(-5px);
 }
 
-&:focus-within {
-    box-shadow: 0 0 0 2px var(--c-gray-800), 0 0 0 4px var(--c-olive-500);
-}
+    .clicktile:hover {
+        transform: translateY(-5px);
+    }
 
-&:nth-child(2) {
-    background-color: var(--c-green-500);
-    &:focus-within
+    .clicktile:focus-within {
+        box-shadow: 0 0 0 2px var(--c-gray-800), 0 0 0 4px var(--c-olive-500);
+    }
 
-{
-    box-shadow: 0 0 0 2px var(--c-gray-800), 0 0 0 4px var(--c-green-500);
-}
+    .clicktile:nth-child(2) {
+        background-color: var(--c-green-500);
+    }
 
-}
+        .clicktile:nth-child(2):focus-within {
+            box-shadow: 0 0 0 2px var(--c-gray-800), 0 0 0 4px var(--c-green-500);
+        }
 
-&:nth-child(3) {
-    background-color: var(--c-gray-300);
-    &:focus-within
+    .clicktile:nth-child(3) {
+        background-color: var(--c-gray-300);
+    }
 
-{
-    box-shadow: 0 0 0 2px var(--c-gray-800), 0 0 0 4px var(--c-gray-300);
-}
+        .clicktile:nth-child(3):focus-within {
+            box-shadow: 0 0 0 2px var(--c-gray-800), 0 0 0 4px var(--c-gray-300);
+        }
 
-}
+    .clicktile a {
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        position: relative;
+        z-index: 2;
+    }
 
-a {
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-weight: 600;
-    .icon-button
+        .clicktile a:focus {
+            box-shadow: none;
+        }
 
-{
+        .clicktile a::after {
+            content: none;
+        }
+
+.icon-button {
     color: inherit;
     border-color: inherit;
-    &:hover, &:focus
-
-{
-    background-color: transparent;
-    i
-
-{
-    transform: none;
+    background: none;
+    border: none;
+    font-size: 1em;
+    margin-left: 5px;
+    cursor: pointer;
 }
 
-}
-}
+    .icon-button:hover,
+    .icon-button:focus {
+        background-color: transparent;
+    }
 
-&:focus {
-    box-shadow: none;
-}
-
-&:after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-}
-
-}
-}
+        .icon-button:hover i,
+        .icon-button:focus i {
+            transform: none;
+        }
 
 .button-container {
     display: flex;
@@ -87,9 +79,8 @@ a {
     gap: 5px;
 }
 
-
 .tile-buttons {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     text-decoration: none;
     padding: 8px 12px;
@@ -97,12 +88,12 @@ a {
     font-weight: 500;
     font-size: 0.9em;
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
     border: 2px solid;
     line-height: 1.2;
-    flex:none;
+    white-space: nowrap;
+    flex: none;
 }
-
 
     .tile-buttons.view {
         background-color: #4CAF55;
@@ -115,7 +106,6 @@ a {
             border-color: #45a049;
         }
 
-
     .tile-buttons.download {
         background-color: #2196F3;
         color: #fff;
@@ -127,9 +117,7 @@ a {
             border-color: #1976D2;
         }
 
-
     .tile-buttons.enrolled {
-        display: flex;
         background-color: #FFC107;
         color: #fff;
         border-color: #FFC107;
@@ -141,7 +129,6 @@ a {
         }
 
     .tile-buttons.unenrolled {
-        display: flex;
         background-color: #ff0000;
         color: #fff;
         border-color: #ff0000;
@@ -162,12 +149,3 @@ a {
             background-color: #990101;
             border-color: #FFA000;
         }
-
-.icon-button {
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 1em;
-    margin-left: 5px;
-    cursor: pointer;
-}
