@@ -24,17 +24,27 @@
                     </div>
                 </div>
                 <div class="app-header-navigation">
-                    <!-- Add any additional navigation items here if needed -->
+                   
                 </div>
+
+           
                 <div class="app-header-actions">
-                    <h3>Start A Quiz</h3>
+                    <div class="header-timer" id="headerTimer">
+                        <ion-icon name="timer-outline"></ion-icon>
+                        <span id="quizTimeHeader">--:--</span>
+                    </div>
                     <div class="app-header-actions-buttons">
                         <ion-icon size="large" name="person-circle"></ion-icon>
                         <h3>@HttpContext.Current.Session["UserName"]</h3>
                     </div>
                 </div>
+
+     
                 <div class="app-header-mobile">
-                    <h3>Start A Quiz</h3>
+                    <div class="header-timer" id="headerTimerMobile" style="margin-bottom:6px;">
+                        <ion-icon name="timer-outline"></ion-icon>
+                        <span id="quizTimeHeaderMobile">--:--</span>
+                    </div>
                     <ion-icon size="large" name="person-circle"></ion-icon>
                     <h3>@HttpContext.Current.Session["UserName"]</h3>
                 </div>
@@ -58,7 +68,6 @@
                                     <i class="icon ion-md-checkmark-circle"></i>
                                     <span>Assessments</span>
                                 </a>
-                                
                                 <a href="@Url.Action("editStudentProfile", "editStudentProfile")">
                                     <i class="icon ion-md-person"></i>
                                     <span>Edit Profile</span>
@@ -94,7 +103,6 @@
                                     <i class="icon ion-md-checkmark-circle"></i>
                                     <span>Assessments</span>
                                 </a>
-                                
                                 <a href="@Url.Action("editteacherProfile", "editteacherProfile")">
                                     <i class="icon ion-md-person"></i>
                                     <span>Edit Profile</span>
@@ -109,7 +117,6 @@
                 }
 
                 <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
 
                 <div class="mid">
                     <div class="app-body-content">
@@ -145,11 +152,8 @@
                                     questionNumber++;
                                 }
                             </div>
-                            
-                            
 
-                                <button type="submit" class="btn btn-back">Submit</button>
-                            
+                            <button type="submit" class="btn btn-back">Submit</button>
                         }
                     </div>
                 </div>
@@ -158,12 +162,72 @@
             <br /><br />
 
             <div class="footer">
-                
-                <div>
-                    &copy; 2024 LearnLink. All rights reserved.
-                </div>
+                <div>&copy; 2024 LearnLink. All rights reserved.</div>
             </div>
         </div>
     </div>
+
+
+    <script>
+    (function () {
+        var endIso = '@(((DateTime)Session["QuizEndtime"]).ToUniversalTime().ToString("o"))';
+        var serverNowIso = '@DateTime.UtcNow.ToString("o")';
+        if (!endIso || endIso === '') return;
+
+        var end = new Date(endIso).getTime();
+        var serverNow = new Date(serverNowIso).getTime();
+        var clientNow = Date.now();
+        var skew = serverNow - clientNow;
+
+        var timeElHeader = document.getElementById('quizTimeHeader');
+        var timeElHeaderMobile = document.getElementById('quizTimeHeaderMobile');
+        var headerTimer = document.getElementById('headerTimer');
+        var headerTimerMobile = document.getElementById('headerTimerMobile');
+
+        function pad(n){ return n < 10 ? '0' + n : n; }
+
+        function writeTime(el, text) { if (el) el.textContent = text; }
+        function setWarn(container, on) { if (!container) return; container.classList.toggle('warn', !!on); }
+        function setEnd(container, on) { if (!container) return; container.classList.toggle('end', !!on); }
+
+        function render(ms) {
+            var totalSec = Math.floor(ms / 1000);
+            var h = Math.floor(totalSec / 3600);
+            var m = Math.floor((totalSec % 3600) / 60);
+            var s = totalSec % 60;
+            var txt = (h > 0 ? pad(h) + ':' : '') + pad(m) + ':' + pad(s);
+
+            writeTime(timeElHeader, txt);
+            writeTime(timeElHeaderMobile, txt);
+
+            setWarn(headerTimer, totalSec <= 60 && totalSec > 0);
+            setWarn(headerTimerMobile, totalSec <= 60 && totalSec > 0);
+
+            if (totalSec <= 0) {
+                setWarn(headerTimer, false);
+                setWarn(headerTimerMobile, false);
+                setEnd(headerTimer, true);
+                setEnd(headerTimerMobile, true);
+
+                var form = document.querySelector('form[action*="SubmitQuiz"]');
+                if (form) {
+                    var submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
+                    if (submitBtn) submitBtn.disabled = true;
+                    form.submit();
+                }
+            }
+        }
+
+        function tick() {
+            var now = Date.now() + skew;
+            var ms = end - now;
+            render(ms);
+            if (ms <= 0) clearInterval(iv);
+        }
+
+        tick();
+        var iv = setInterval(tick, 1000);
+    })();
+    </script>
 </body>
 </html>

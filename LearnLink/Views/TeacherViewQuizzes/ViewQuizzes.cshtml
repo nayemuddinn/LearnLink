@@ -149,8 +149,15 @@
                                     @if (quiz.Status == "NotStarted")
                                     {
                                         <a href="@Url.Action("StartQuiz", "TeacherViewQuizzes", new { id = quiz.QuizID })" class="tile-buttons view">Start</a>
-                                    }
+                                        <a href="@Url.Action("UploadQuiz", "CreateQuiz", new { id = quiz.QuizID })" class="tile-buttons view">Upload Question</a>
+                                        @*<a href="@Url.Action("UploadQuiz", "CreateQuiz")">
+                                            <span></span>
+                                            <button class="icon-button">
+                                                <i class="icon ion-md-arrow-forward"></i>
+                                            </button>  Upload Question
+                                        </a>*@
 
+                                    }
                                     <a href="@Url.Action("DeleteQuiz", "TeacherViewQuizzes", new { id = quiz.QuizID })" class="tile-buttons unenrolled">Delete</a>
                                     <a href="@Url.Action("studentParticipation", "TeacherViewQuizzes", new { id = quiz.QuizID })" class="tile-buttons download">Participation</a>
 
