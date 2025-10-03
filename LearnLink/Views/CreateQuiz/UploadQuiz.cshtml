@@ -23,63 +23,6 @@
     <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
     <link href="@Url.Content("/Content/uploadquiz.css")" rel="stylesheet" />
     <link href="@Url.Content("/Content/backbutton2.css")" rel="stylesheet" />
-
-    <!-- Scoped styles: only affect this form -->
-    <style>
-        .quiz-form .input-box {
-            margin-bottom: 14px;
-        }
-
-            .quiz-form .input-box label {
-                display: block;
-                font-weight: 600;
-                margin-bottom: 6px;
-            }
-
-            .quiz-form .input-box input[type="text"],
-            .quiz-form .input-box textarea {
-                width: 100%;
-                padding: 12px;
-                font-size: 16px;
-                line-height: 1.4;
-                border: 1px solid #dcdcdc;
-                border-radius: 8px;
-                box-sizing: border-box;
-            }
-            /* Roomy question box */
-            .quiz-form .input-box textarea {
-                min-height: 140px;
-                resize: vertical;
-            }
-        /* Arrange option inputs neatly */
-        .quiz-form .options-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-        /* Radio buttons row */
-        .quiz-form .radio-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 18px;
-            margin-top: 6px;
-        }
-
-            .quiz-form .radio-group label {
-                display: inline-flex;
-                align-items: center;
-                gap: 8px;
-                font-weight: 500;
-                cursor: pointer;
-            }
-
-        .quiz-form .button-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 10px;
-        }
-    </style>
 </head>
 <body>
     <div class="responsive-wrapper">
@@ -94,9 +37,7 @@
                         <span>@HttpContext.Current.Session["UserRole"]</span>
                     </div>
                 </div>
-                <div class="app-header-navigation">
-                    <!-- Add any additional navigation items here if needed -->
-                </div>
+                <div class="app-header-navigation"></div>
 
                 <div class="app-header-actions">
                     <h3>Upload Quiz Questions</h3>
@@ -118,26 +59,11 @@
                     {
                         <div class="app-body-navigation">
                             <nav class="navigation">
-                                <a href="@Url.Action("AllCourse", "AllCourse")">
-                                    <i class="icon ion-md-book"></i>
-                                    <span>All Courses</span>
-                                </a>
-                                <a href="@Url.Action("ViewEnrolledCourses", "StudentEnrolledCourses")">
-                                    <i class="icon ion-md-person-add"></i>
-                                    <span>Enrolled Courses</span>
-                                </a>
-                                <a href="@Url.Action("Assessment", "Assessment")">
-                                    <i class="icon ion-md-checkmark-circle"></i>
-                                    <span>Assessments</span>
-                                </a>
-                                <a href="@Url.Action("editStudentProfile", "editStudentProfile")">
-                                    <i class="icon ion-md-person"></i>
-                                    <span>Edit Profile</span>
-                                </a>
-                                <a href="@Url.Action("login", "Login")">
-                                    <i class="icon ion-md-exit"></i>
-                                    <span>Log Out</span>
-                                </a>
+                                <a href="@Url.Action("AllCourse", "AllCourse")"><i class="icon ion-md-book"></i><span>All Courses</span></a>
+                                <a href="@Url.Action("ViewEnrolledCourses", "StudentEnrolledCourses")"><i class="icon ion-md-person-add"></i><span>Enrolled Courses</span></a>
+                                <a href="@Url.Action("Assessment", "Assessment")"><i class="icon ion-md-checkmark-circle"></i><span>Assessments</span></a>
+                                <a href="@Url.Action("editStudentProfile", "editStudentProfile")"><i class="icon ion-md-person"></i><span>Edit Profile</span></a>
+                                <a href="@Url.Action("login", "Login")"><i class="icon ion-md-exit"></i><span>Log Out</span></a>
                             </nav>
                         </div>
                     }
@@ -145,34 +71,13 @@
                     {
                         <div class="app-body-navigation">
                             <nav class="navigation">
-                                <a href="@Url.Action("ManageCourse", "ManageCourse")">
-                                    <i class="icon ion-md-book"></i>
-                                    <span>Manage Courses</span>
-                                </a>
-                                <a href="@Url.Action("createCourse", "createCourse")">
-                                    <i class="icon ion-md-add-circle"></i>
-                                    <span>Create Courses</span>
-                                </a>
-                                <a href="@Url.Action("courseMaterials", "courseMaterials")">
-                                    <i class="icon ion-md-add-circle"></i>
-                                    <span>CourseMaterials</span>
-                                </a>
-                                <a href="@Url.Action("enrollStudents", "enrollStudents")">
-                                    <i class="icon ion-md-person-add"></i>
-                                    <span>Enroll Students</span>
-                                </a>
-                                <a href="@Url.Action("Assessment", "Assessment")">
-                                    <i class="icon ion-md-checkmark-circle"></i>
-                                    <span>Assessments</span>
-                                </a>
-                                <a href="@Url.Action("editteacherProfile", "editteacherProfile")">
-                                    <i class="icon ion-md-person"></i>
-                                    <span>Edit Profile</span>
-                                </a>
-                                <a href="@Url.Action("login", "Login")">
-                                    <i class="icon ion-md-exit"></i>
-                                    <span>Log Out</span>
-                                </a>
+                                <a href="@Url.Action("ManageCourse", "ManageCourse")"><i class="icon ion-md-book"></i><span>Manage Courses</span></a>
+                                <a href="@Url.Action("createCourse", "createCourse")"><i class="icon ion-md-add-circle"></i><span>Create Courses</span></a>
+                                <a href="@Url.Action("courseMaterials", "courseMaterials")"><i class="icon ion-md-add-circle"></i><span>CourseMaterials</span></a>
+                                <a href="@Url.Action("enrollStudents", "enrollStudents")"><i class="icon ion-md-person-add"></i><span>Enroll Students</span></a>
+                                <a href="@Url.Action("Assessment", "Assessment")"><i class="icon ion-md-checkmark-circle"></i><span>Assessments</span></a>
+                                <a href="@Url.Action("editteacherProfile", "editteacherProfile")"><i class="icon ion-md-person"></i><span>Edit Profile</span></a>
+                                <a href="@Url.Action("login", "Login")"><i class="icon ion-md-exit"></i><span>Log Out</span></a>
                             </nav>
                         </div>
                     }
@@ -190,51 +95,37 @@
                             <form class="quiz-form" action="@Url.Action("UploadQuiz", "CreateQuiz")" method="post">
                                 @Html.HiddenFor(m => m.QuizID)
 
-                                <!-- Bigger Question textarea -->
                                 <div class="input-box">
                                     <label for="Question">Question</label>
                                     <textarea id="Question" name="Question" required placeholder="Type the full question here..."></textarea>
                                 </div>
 
-                                <!-- Options A–D laid out nicely -->
                                 <div class="options-grid">
                                     <div class="input-box">
                                         <label for="OptionA">Option A</label>
                                         <input id="OptionA" type="text" name="OptionA" required placeholder="Enter option A" />
                                     </div>
-
                                     <div class="input-box">
                                         <label for="OptionB">Option B</label>
                                         <input id="OptionB" type="text" name="OptionB" required placeholder="Enter option B" />
                                     </div>
-
                                     <div class="input-box">
                                         <label for="OptionC">Option C</label>
                                         <input id="OptionC" type="text" name="OptionC" required placeholder="Enter option C" />
                                     </div>
-
                                     <div class="input-box">
                                         <label for="OptionD">Option D</label>
                                         <input id="OptionD" type="text" name="OptionD" required placeholder="Enter option D" />
                                     </div>
                                 </div>
 
-                                <!-- Correct Option as radio buttons -->
                                 <div class="input-box">
                                     <label>Correct Option</label>
                                     <div class="radio-group" role="radiogroup" aria-label="Correct Option">
-                                        <label>
-                                            <input type="radio" name="CorrectOption" value="A" required /> A
-                                        </label>
-                                        <label>
-                                            <input type="radio" name="CorrectOption" value="B" /> B
-                                        </label>
-                                        <label>
-                                            <input type="radio" name="CorrectOption" value="C" /> C
-                                        </label>
-                                        <label>
-                                            <input type="radio" name="CorrectOption" value="D" /> D
-                                        </label>
+                                        <label><input type="radio" name="CorrectOption" value="A" required /> A</label>
+                                        <label><input type="radio" name="CorrectOption" value="B" /> B</label>
+                                        <label><input type="radio" name="CorrectOption" value="C" /> C</label>
+                                        <label><input type="radio" name="CorrectOption" value="D" /> D</label>
                                     </div>
                                 </div>
 
@@ -252,9 +143,7 @@
 
             <div class="footer">
                 <br /><br />
-                <div>
-                    &copy; 2024 LearnLink. All rights reserved.
-                </div>
+                <div>&copy; 2024 LearnLink. All rights reserved.</div>
             </div>
         </div>
     </div>

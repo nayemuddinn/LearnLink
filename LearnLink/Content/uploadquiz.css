@@ -1,12 +1,11 @@
-﻿
-
-body {
+﻿body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #000000; /* Dark background color */
-    color: #fff; /* Light text color */
+    background-color: #000000;
+    color: #fff;
 }
+
 .mid {
     margin-left: 180px;
 }
@@ -18,44 +17,77 @@ body {
 .input-box {
     margin-bottom: 1rem;
     display: flex;
-    align-items: center;
+    flex-direction: column;
 }
 
     .input-box label {
-        flex: 0 0 150px;
-        margin-right: 1rem;
+        font-weight: 600;
+        margin-bottom: 6px;
     }
 
-    .input-box input {
-        flex: 1;
-        padding: 0.5rem;
+    .input-box input[type="text"],
+    .input-box textarea {
+        width: 100%;
+        padding: 14px;
+        font-size: 18px;
+        line-height: 1.5;
         border: 1px solid #ccc;
-        border-radius: 4px;
+        border-radius: 6px;
         background-color: #222;
         color: #fff;
+        box-sizing: border-box;
     }
 
-        .input-box input:focus {
+        .input-box input[type="text"]:focus,
+        .input-box textarea:focus {
             border-color: #4caf50;
             outline: none;
         }
+
+    .input-box textarea {
+        min-height: 200px;
+        resize: vertical;
+    }
+
+.options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.radio-group {
+    display: flex;
+    gap: 20px;
+    margin-top: 6px;
+}
+
+    .radio-group label {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-weight: 500;
+        cursor: pointer;
+    }
 
 .button-container {
     text-align: center;
     margin-top: 2rem;
 }
+
     .button-container .btn-back {
-        margin-right: 10rem; /* Add margin to the right of the Back button */
+        margin-right: 10rem;
     }
+
 .btn {
     padding: 0.5rem 1rem;
-    background-color: #4caf50; /* Button background color */
+    background-color: #4caf50;
     color: #fff;
     border: none;
+    border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
     .btn:hover {
-        background-color: #45a049; /* Darker button background color on hover */
+        background-color: #45a049;
     }
