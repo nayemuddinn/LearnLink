@@ -1,4 +1,4 @@
-﻿using LearnLink.Content;
+using LearnLink.Content;
 using LearnLink.Models;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace LearnLink.Controllers
+namespace LearnLink.Controllers.Enrollment
 {
     public class enrollStudentsController : Controller
     {
@@ -18,7 +18,7 @@ namespace LearnLink.Controllers
         }
         public ActionResult enrollNewStudents()
         {
-            List<Enrollment> requests = new List<Enrollment>();
+            List<LearnLink.Models.Enrollment> requests = new List<LearnLink.Models.Enrollment>();
 
             using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
             {
@@ -37,7 +37,7 @@ namespace LearnLink.Controllers
 
                 while (reader.Read())
                 {
-                    requests.Add(new Enrollment
+                    requests.Add(new LearnLink.Models.Enrollment
                     {
                         EnrollmentID = (int)reader["EnrollmentID"],
                         CourseID = (int)reader["CourseID"],
@@ -66,7 +66,7 @@ namespace LearnLink.Controllers
             {
                 status = "Rejected";
             }
-          
+
 
             using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
             {

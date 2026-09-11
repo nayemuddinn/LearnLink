@@ -1,11 +1,11 @@
-﻿using LearnLink.Content;
+using LearnLink.Content;
 using LearnLink.Models;
 using System;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
 
-namespace LearnLink.Controllers
+namespace LearnLink.Controllers.Account
 {
     public class RegistrationController : Controller
     {
@@ -17,7 +17,7 @@ namespace LearnLink.Controllers
         [HttpPost]
         public ActionResult reg(User user)
         {
-     
+
             if (!user.Password.Equals(user.ConfirmPassword))
             {
                 TempData["AlertMessage"] = "Passwords do not Match!";
@@ -118,4 +118,3 @@ namespace LearnLink.Controllers
 
     }
 }
-

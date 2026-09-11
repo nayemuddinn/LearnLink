@@ -1,9 +1,9 @@
-﻿// StudentController.cs
+// StudentController.cs
 using System.Linq;
 using System.Web.Mvc;
 using LearnLink.Models;
 
-namespace LearnLink.Controllers
+namespace LearnLink.Controllers.Students
 {
     public class StudentController : Controller
     {

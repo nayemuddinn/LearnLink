@@ -1,4 +1,4 @@
-﻿using LearnLink.Content;
+using LearnLink.Content;
 using LearnLink.Models;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Web.Mvc;
 using System.Data;
 using System.Web;
 
-namespace LearnLink.Controllers
+namespace LearnLink.Controllers.Courses
 {
     public class CourseMaterialsController : Controller
     {
@@ -72,10 +72,10 @@ namespace LearnLink.Controllers
                                 {
                                     string query = "INSERT INTO courseMaterials (CourseID, TeacherID, Name, ContentType, Data, UploadDate) VALUES (@CourseID, @TeacherID, @Name, @ContentType, @Data, @UploadDate)";
 
-                  
+
                                     using (SqlCommand cmd = new SqlCommand(query, con))
                                     {
-      
+
                                         cmd.Parameters.AddWithValue("@CourseID", material.CourseID);       
                                         cmd.Parameters.AddWithValue("@TeacherID", material.TeacherID);     
                                         cmd.Parameters.AddWithValue("@Name", material.Name);              
@@ -90,8 +90,8 @@ namespace LearnLink.Controllers
                                 }
                             }
                         }
-                      
-                 
+
+
                 }
                 catch (SqlException sqlEx)
                 {
@@ -105,7 +105,7 @@ namespace LearnLink.Controllers
             else
             {
                 Response.Write("<script>alert('Upload a valid File');</script>");
-  
+
             }
 
             return View();

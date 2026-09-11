@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Web;
 
-namespace LearnLink.Controllers
+namespace LearnLink.Controllers.Account
 {
     public class PasswordHasher
     {
@@ -13,7 +13,7 @@ namespace LearnLink.Controllers
 
         public static string HashPassword(string password)
         {
-        
+
             byte[] salt;
             new RNGCryptoServiceProvider().GetBytes(salt = new byte[SaltSize]);
 
@@ -24,7 +24,7 @@ namespace LearnLink.Controllers
             Array.Copy(salt, 0, hashBytes, 0, SaltSize);
             Array.Copy(hash, 0, hashBytes, SaltSize, HashSize);
 
-     
+
             string base64Hash = Convert.ToBase64String(hashBytes);
 
 
@@ -37,7 +37,7 @@ namespace LearnLink.Controllers
             string[] split = hashedPassword.Replace("$HASH|V1$", "").Split('$');
             byte[] hashBytes = Convert.FromBase64String(split[0]);
 
-   
+
             byte[] salt = new byte[SaltSize];
             Array.Copy(hashBytes, 0, salt, 0, SaltSize);
 

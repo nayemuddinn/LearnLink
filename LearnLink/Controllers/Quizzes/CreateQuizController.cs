@@ -1,4 +1,4 @@
-﻿using LearnLink.Content;
+using LearnLink.Content;
 using LearnLink.Models;
 using Microsoft.Ajax.Utilities;
 using System;
@@ -8,11 +8,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace LearnLink.Controllers
+namespace LearnLink.Controllers.Quizzes
 {
     public class CreateQuizController : Controller
     {
-      
+
         public ActionResult CreateQuiz()
         {
             return View();
@@ -21,7 +21,7 @@ namespace LearnLink.Controllers
         [HttpPost]
         public ActionResult CreateQuiz(Quiz quiz)
         {
-         
+
             using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
             {
                 try
@@ -53,7 +53,7 @@ namespace LearnLink.Controllers
 
                         if (rowsAffected > 0)
                         {
-                         
+
                             Response.Write("<script>alert('Quiz created successfully!');</script>");
                         }
                         else
@@ -70,7 +70,6 @@ namespace LearnLink.Controllers
 
             return View();
         }
-
 
 
 
@@ -120,7 +119,7 @@ namespace LearnLink.Controllers
                     TempData["Message"] = "An error occurred. Please try again.";
                 }
             }
-         
+
 
             return RedirectToAction("UploadQuiz", new { id = quizQuestion.QuizID });
         }

@@ -1,4 +1,4 @@
-﻿using LearnLink.Content;
+using LearnLink.Content;
 using LearnLink.Models;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace LearnLink.Controllers
+namespace LearnLink.Controllers.Quizzes
 {
     public class StudentViewQuizzesController : Controller
     {
@@ -139,7 +139,7 @@ namespace LearnLink.Controllers
                 }
             }
 
-     
+
             if (Session["QuizID"] == null
                 || (int)Session["QuizID"] != quiz.QuizID
                 || Session["QuizStartTime"] == null

@@ -1,4 +1,4 @@
-﻿using LearnLink.Content;
+using LearnLink.Content;
 using LearnLink.Models;
 using System;
 using System.Collections.Generic;
@@ -9,11 +9,11 @@ using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 
-namespace LearnLink.Controllers
+namespace LearnLink.Controllers.Account
 {
     public class forgotPasswordController : Controller
     {
-     
+
             public ActionResult ForgotPassword()
             {
                 return View();

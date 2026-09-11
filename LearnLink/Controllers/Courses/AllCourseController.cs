@@ -1,4 +1,4 @@
-﻿using LearnLink.Content;
+using LearnLink.Content;
 using LearnLink.Models;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
-namespace LearnLink.Controllers
+namespace LearnLink.Controllers.Courses
 {
     public class AllCourseController : Controller
     {
@@ -65,7 +65,7 @@ namespace LearnLink.Controllers
 
         public ActionResult StudentCourseDetails(int cId) 
         {
-           
+
 
             Course courseDetails = new Course();
 
@@ -95,7 +95,7 @@ namespace LearnLink.Controllers
                 }
 
                 return View(courseDetails);
-      
+
         }
 
 

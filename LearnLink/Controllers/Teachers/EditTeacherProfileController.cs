@@ -1,10 +1,10 @@
-﻿using LearnLink.Content;
+using LearnLink.Content;
 using LearnLink.Models;
 using System;
 using System.Data.SqlClient;
 using System.Web.Mvc;
 
-namespace LearnLink.Controllers
+namespace LearnLink.Controllers.Teachers
 {
     public class EditTeacherProfileController : Controller
     {
@@ -39,7 +39,7 @@ namespace LearnLink.Controllers
 
         private User GetTeacherById(int userId)
         {
-      
+
             User user = null;
 
             using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
@@ -69,7 +69,7 @@ namespace LearnLink.Controllers
 
         private void UpdateTeacherProfile(int userId, User model)
         {
-          
+
 
             using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
             {
