@@ -29,12 +29,11 @@ By combining robust features with an intuitive interface, **Learn Link** helps m
 
 | Layer            | Technology |
 |------------------|------------|
-| **Frontend**     | ASP.NET MVC Views (Razor) |
+| **Frontend**     | HTML,CSS, Bootstrap |
 | **Backend**      | ASP.NET (C#) |
 | **Architecture** | MVC (Model-View-Controller) |
 | **Database**     | MSSQL |
 | **Version Control** | Git & GitHub |
-| **Deployment**   | Localhost / Server-based Hosting |
 
 ---
 
