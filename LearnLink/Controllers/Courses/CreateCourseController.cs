@@ -1,10 +1,10 @@
-﻿using LearnLink.Content;
+using LearnLink.Content;
 using LearnLink.Models;
 using System;
 using System.Data.SqlClient;
 using System.Web.Mvc;
 
-namespace LearnLink.Controllers
+namespace LearnLink.Controllers.Courses
 {
     public class CreateCourseController : Controller
     {
@@ -34,13 +34,13 @@ namespace LearnLink.Controllers
                         cmd.ExecuteNonQuery();
 
                         Response.Write("<script>alert('Course created successfully!');</script>");
-                      
+
                     }
                 }
                 catch (Exception ex)
                 {
                     Response.Write("<script>alert('An error occurred. Please try again.');</script>");
-                
+
                 }
             }
             return View();

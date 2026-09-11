@@ -1,4 +1,4 @@
-﻿using LearnLink.Content;
+using LearnLink.Content;
 using LearnLink.Models;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Web.Mvc;
 
-namespace LearnLink.Controllers
+namespace LearnLink.Controllers.Courses
 {
     public class ManageCourseController : Controller
     {
@@ -16,7 +16,7 @@ namespace LearnLink.Controllers
             int teacherID = (int)Session["UserID"];
             List<Course> courses = new List<Course>();
 
-          
+
             using (SqlConnection con = new SqlConnection(constr))
             {
                 string query = "SELECT CourseID, CourseName,CourseCreateDate FROM Courses WHERE TeacherID = @TeacherID";
@@ -121,7 +121,7 @@ namespace LearnLink.Controllers
             Response.AppendHeader("Content-Disposition", "inline; filename=" + material.Name);
             return File(material.Data, contentType);
 
-           
+
         }
         public ActionResult DownloadMaterial(int fileId)
         {

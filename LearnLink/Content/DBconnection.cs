@@ -11,10 +11,11 @@ namespace LearnLink.Content
         {
             var fromConfig = ConfigurationManager.ConnectionStrings["LearnLinkDb"]?.ConnectionString;
             var fromEnv = Environment.GetEnvironmentVariable("LEARNLINK_CONNSTR");
-            var fallback = "Data Source=DAREDEVIL\\SQLEXPRESS; Initial Catalog=learnlink; Integrated Security=True; TrustServerCertificate=True";
+            var fallback = "Data Source=.\\SQLEXPRESS;Initial Catalog=learnlink;Integrated Security=True;TrustServerCertificate=True;";
             if (!string.IsNullOrWhiteSpace(fromConfig)) return fromConfig;
             if (!string.IsNullOrWhiteSpace(fromEnv)) return fromEnv;
             return fallback;
+
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using LearnLink.Models;
+using LearnLink.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +8,7 @@ using System.Data.SqlClient;
 using System.Web.Helpers;
 using LearnLink.Content;
 
-
-namespace LearnLink.Controllers
+namespace LearnLink.Controllers.Account
 {
 
     public class LoginController : Controller

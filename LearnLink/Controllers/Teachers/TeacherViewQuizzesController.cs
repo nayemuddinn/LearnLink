@@ -1,4 +1,4 @@
-﻿using LearnLink.Content;
+using LearnLink.Content;
 using LearnLink.Models;
 using System;
 using System.Collections.Generic;
@@ -7,14 +7,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace LearnLink.Controllers
+namespace LearnLink.Controllers.Teachers
 {
     public class TeacherViewQuizzesController : Controller
     {
 
         public ActionResult ViewQuizzes()
         {
-  
+
             List<Quiz> quizzes = new List<Quiz>();
 
             using (SqlConnection con = new SqlConnection(DBconnection.connStr))
@@ -134,6 +134,7 @@ namespace LearnLink.Controllers
             TempData["AlertMessage"] = "Quiz is Online";
             return RedirectToAction("ViewQuizzes");
         }
+
 
 
         public ActionResult studentParticipation(int id)

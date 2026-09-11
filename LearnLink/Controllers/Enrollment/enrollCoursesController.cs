@@ -1,4 +1,4 @@
-﻿using LearnLink.Content;
+using LearnLink.Content;
 using LearnLink.Models;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
-namespace LearnLink.Controllers
+namespace LearnLink.Controllers.Enrollment
 {
     public class enrollCoursesController : Controller
     {
@@ -29,7 +29,7 @@ namespace LearnLink.Controllers
             }
         }
 
-     
+
         public ActionResult EnrollCourse(int courseId, int teacherId)
         {
             string status = getStatus(courseId);
@@ -63,7 +63,7 @@ namespace LearnLink.Controllers
             {
                 ViewBag.Message = "Rejected";
                 ViewBag.CourseID = courseId;
-                
+
             }
 
             return View();
@@ -71,7 +71,7 @@ namespace LearnLink.Controllers
 
         public ActionResult ReEnrollCourse(int courseId)
         {
-          
+
 
             using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
             {
