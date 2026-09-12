@@ -12,16 +12,26 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar-homepage">
-        <a href="@Url.Action("Index", "Home")" class="logo">LearnLink</a>
-        <ul class="nav-links">
-            <li><a href="@Url.Action("Index", "Home")">Home</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="@Url.Action("About", "Home")">About</a></li>
-        </ul>
-        <a href="@Url.Action("login", "Login")" class="signin-btn">Sign In</a>
-    </nav>
+
+    @{
+       
+        string currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+        string currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+    }
+
+    <!-- Only show navbar if on Home/Index -->
+    @if (currentController == "Home" && currentAction == "Index")
+    {
+        <nav class="navbar-homepage">
+            <a href="@Url.Action("Index", "Home")" class="logo">LearnLink</a>
+            <ul class="nav-links">
+                <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="@Url.Action("About", "Home")">About</a></li>
+            </ul>
+            <a href="@Url.Action("login", "Login")" class="signin-btn">Sign In</a>
+        </nav>
+    }
 
     <div class="container body-content">
         @RenderBody()
