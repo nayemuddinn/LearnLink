@@ -1,41 +1,83 @@
 ﻿@using LearnLink.Models;
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LearnLink</title>
-    <link href="@Url.Content("/Content/loginpage.css")" rel="stylesheet" />
-</head>
-
-<div class="login-wrapper">
-    <div class="form-box login">
-        <h2>Login</h2>
-        <form action="" method="post">
-            <div class="input-box">
-                <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
-                <input type="email" name="email" id="email" autocomplete="off" required>
-                <label for="email">Email</label>
+<!-- Login view fragment - relies on shared _Layout for head/scripts -->
+<main class="auth-container">
+    <div class="auth-content">
+        <!-- Left Section: Welcome/Branding -->
+        <div class="auth-left-section">
+            <div class="auth-branding">
+                <h1>LearnLink</h1>
+                <p>Connect, Learn, and Grow</p>
+                <div class="auth-features">
+                    <div class="feature-item">
+                        <ion-icon name="checkmark-circle-outline"></ion-icon>
+                        <span>Seamless Learning</span>
+                    </div>
+                    <div class="feature-item">
+                        <ion-icon name="checkmark-circle-outline"></ion-icon>
+                        <span>Collaborative Platform</span>
+                    </div>
+                    <div class="feature-item">
+                        <ion-icon name="checkmark-circle-outline"></ion-icon>
+                        <span>Accessible Anywhere</span>
+                    </div>
+                </div>
             </div>
-            <div class="input-box">
-                <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
-                <input type="password" name="password" id="password" autocomplete="off" required>
-                <label for="password">Password</label>
-            </div>
-            <div class="remember-forgot">
-                <a class="forgot-password-link" onclick="location.href='@Url.Action("forgotPassword", "forgotPassword")';">Forgot Password?</a>
-            </div>
-            <div class="rdio-btn">
-                <input type="radio" id="Teacher" name="Role" value="Teacher" checked>
-                <label for="teacher">Teacher</label>
-                <input type="radio" id="Student" name="Role" value="Student">
-                <label for="student">Student</label>
-            </div>
-            <button type="submit" class="btn" name="login">Login</button>
-        </form>
-        <div class="register-link">
-            <a class="register-link" onclick="location.href='@Url.Action("reg", "Registration")';">Don't have an account?</a>
         </div>
-    
+
+        <!-- Right Section: Form -->
+        <div class="auth-right-section">
+            <div class="auth-form-container">
+                <!-- Form -->
+                <form action="" method="post" class="auth-form">
+                    <!-- Role Selection Toggle (moved inside form so value is posted) -->
+                    <div class="auth-role-selector">
+                        <p class="role-label">Login as</p>
+                        <div class="role-toggle-container">
+                            <input type="radio" id="role-teacher" name="Role" value="teacher" checked>
+                            <label for="role-teacher" class="role-toggle-btn">
+                                <ion-icon name="school-outline"></ion-icon>
+                                <span>Teacher</span>
+                            </label>
+
+                            <input type="radio" id="role-student" name="Role" value="student">
+                            <label for="role-student" class="role-toggle-btn">
+                                <ion-icon name="person-outline"></ion-icon>
+                                <span>Student</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <h2>Welcome Back</h2>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon"><ion-icon name="mail-outline"></ion-icon></span>
+                            <input type="email" id="email" name="Email" placeholder="you@example.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+                            <input type="password" id="password" name="Password" placeholder="Enter your password" required>
+                        </div>
+                    </div>
+
+                    <div class="form-footer">
+                        <a href="@Url.Action("forgotPassword", "forgotPassword")" class="forgot-link">Forgot Password?</a>
+                    </div>
+
+                    <button type="submit" name="login" class="btn-primary">Sign In</button>
+                </form>
+
+                <!-- Sign Up Link -->
+                <div class="auth-footer-link">
+                    <p>Don't have an account? <a href="@Url.Action("reg", "Registration")">Create one</a></p>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-<script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</main>

@@ -159,6 +159,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\auth.css" />
     <Content Include="Content\backbutton2.css" />
     <Content Include="Content\backbutton3.css" />
     <Content Include="Content\CreateCourse.css" />
@@ -188,6 +189,7 @@
     <Content Include="Content\editpofile.css" />
     <Content Include="Content\editprofile.css" />
     <Content Include="Content\forgotPassword.css" />
+    <Content Include="Content\homepage.css" />
     <Content Include="Content\Image\bg.jpg" />
     <Content Include="Content\loginpage.css" />
     <Content Include="Content\mid.css" />
