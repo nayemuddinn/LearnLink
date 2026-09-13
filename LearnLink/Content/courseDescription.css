@@ -374,3 +374,60 @@ body {
         max-width: none;
     }
 }
+
+
+
+/* Glassmorphism Toast Notification */
+.glass-toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: rgba(16, 185, 129, 0.2); /* Emerald green tinted glass */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(16, 185, 129, 0.4);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 15px rgba(16, 185, 129, 0.2);
+    color: #f8fafc;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 9999;
+    /* Animation defaults */
+    transform: translateX(120%);
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+    .glass-toast.show {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    .glass-toast ion-icon {
+        font-size: 1.8rem;
+        color: #10b981; /* Solid emerald for icon */
+    }
+
+.toast-msg {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.toast-close {
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin-left: 10px;
+    transition: color 0.2s;
+}
+
+    .toast-close:hover {
+        color: #f8fafc;
+    }
