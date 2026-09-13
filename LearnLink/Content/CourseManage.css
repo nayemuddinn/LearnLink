@@ -92,7 +92,7 @@ a {
 }
 
 .app {
-    min-height: 80vh;
+    min-height: 90vh;
     width: 100%;
     max-width: contain;
     background-color: var(--c-gray-800);

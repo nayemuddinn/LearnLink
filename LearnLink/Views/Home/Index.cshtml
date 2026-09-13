@@ -1,33 +1,156 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Home - LearnLink";
 }
 
-<main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
+<main class="homepage-content">
+    <!-- Hero Slideshow -->
+    <section class="hero-slideshow">
+        <div class="slideshow-container">
+            <div class="slide active">
+                <h1>Welcome to LearnLink</h1>
+                <p>Transform education through modern, interactive learning management</p>
+                <a href="@Url.Action("login", "Login")" class="slide-btn">Get Started</a>
+            </div>
+            <div class="slide">
+                <h1>Learn Together</h1>
+                <p>Connect with instructors and classmates in a collaborative environment</p>
+                <a href="@Url.Action("login", "Login")" class="slide-btn">Join Now</a>
+            </div>
+            <div class="slide">
+                <h1>Grow Your Skills</h1>
+                <p>Access courses, materials, and assessments anytime, anywhere</p>
+                <a href="@Url.Action("login", "Login")" class="slide-btn">Explore Courses</a>
+            </div>
+        </div>
+        <div class="slide-dots">
+            <span class="dot active" onclick="currentSlide(0)"></span>
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+        </div>
     </section>
 
-    <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </section>
-    </div>
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <h2>Key Features</h2>
+        <p>Everything you need to succeed in your learning journey</p>
+
+        <div class="features-grid">
+            <!-- For Teachers -->
+            <div class="feature-tile">
+                <div class="feature-icon">
+                    <ion-icon name="school-outline" style="color: #000; font-size: 3rem;"></ion-icon>
+                </div>
+                <h3>Course Management</h3>
+                <p>Create, organize, and manage courses with ease. Upload materials, set schedules, and track student progress.</p>
+            </div>
+
+            <div class="feature-tile">
+                <div class="feature-icon">
+                    <ion-icon name="document-outline" style="color: #000; font-size: 3rem;"></ion-icon>
+                </div>
+                <h3>Materials & Resources</h3>
+                <p>Share documents, PDFs, images, and multimedia content. Keep all learning materials in one centralized location.</p>
+            </div>
+
+            <div class="feature-tile">
+                <div class="feature-icon">
+                    <ion-icon name="checkmark-circle-outline" style="color: #000; font-size: 3rem;"></ion-icon>
+                </div>
+                <h3>Interactive Quizzes</h3>
+                <p>Create timed quizzes to assess student knowledge. View detailed results and track individual performance.</p>
+            </div>
+
+            <!-- For Students -->
+            <div class="feature-tile">
+                <div class="feature-icon">
+                    <ion-icon name="book-outline" style="color: #000; font-size: 3rem;"></ion-icon>
+                </div>
+                <h3>Access Courses</h3>
+                <p>Browse and enroll in courses offered by your institution. Learn at your own pace with structured content.</p>
+            </div>
+
+            <div class="feature-tile">
+                <div class="feature-icon">
+                    <ion-icon name="bar-chart-outline" style="color: #000; font-size: 3rem;"></ion-icon>
+                </div>
+                <h3>Track Progress</h3>
+                <p>Monitor your learning journey with detailed progress reports. View quiz scores and performance analytics.</p>
+            </div>
+
+            <div class="feature-tile">
+                <div class="feature-icon">
+                    <ion-icon name="people-outline" style="color: #000; font-size: 3rem;"></ion-icon>
+                </div>
+                <h3>Collaborate</h3>
+                <p>Connect with peers and instructors in your courses. Participate in a supportive learning community.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Ready to Get Started?</h2>
+        <p>Join thousands of students and teachers already using LearnLink</p>
+        <a href="@Url.Action("login", "Login")" class="cta-btn">Sign In Now</a>
+    </section>
 </main>
+
+<!-- Footer -->
+<footer class="homepage-footer">
+    <p>&copy; 2024 LearnLink. All rights reserved. Empowering education through technology.</p>
+</footer>
+
+@section Scripts {
+    <script>
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            // Wrap around
+            if (index >= totalSlides) {
+                currentSlideIndex = 0;
+            } else if (index < 0) {
+                currentSlideIndex = totalSlides - 1;
+            } else {
+                currentSlideIndex = index;
+            }
+
+            // Hide all slides
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            // Show current slide
+            slides[currentSlideIndex].classList.add('active');
+            dots[currentSlideIndex].classList.add('active');
+        }
+
+        function currentSlide(index) {
+            showSlide(index);
+            resetAutoSlide();
+        }
+
+        function nextSlide() {
+            showSlide(currentSlideIndex + 1);
+        }
+
+        let autoSlideInterval;
+
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(() => {
+                nextSlide();
+            }, 5000); // Change slide every 5 seconds
+        }
+
+        function resetAutoSlide() {
+            clearInterval(autoSlideInterval);
+            startAutoSlide();
+        }
+
+        // Start auto-slide on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            startAutoSlide();
+        });
+    </script>
+}

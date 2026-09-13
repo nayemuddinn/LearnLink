@@ -1,7 +1,10 @@
-﻿@model List<LearnLink.Models.Quiz>
+@model List<LearnLink.Models.Quiz>
+
 @{
+    ViewBag.Title = "Available Quizzes";
     var alertMessage = TempData["AlertMessage"] as string;
 }
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,14 +32,14 @@
                     <!-- Add any additional navigation items here if needed -->
                 </div>
                 <div class="app-header-actions">
-                    <h3>Quiz</h3>
+                    <h3>Available Quizzes</h3>
                     <div class="app-header-actions-buttons">
                         <ion-icon size="large" name="person-circle"></ion-icon>
                         <h3>@HttpContext.Current.Session["UserName"]</h3>
                     </div>
                 </div>
                 <div class="app-header-mobile">
-                    <h3>Quiz</h3>
+                    <h3>Available Quizzes</h3>
                     <ion-icon size="large" name="person-circle"></ion-icon>
                     <h3>@HttpContext.Current.Session["UserName"]</h3>
                 </div>
@@ -60,7 +63,7 @@
                                     <i class="icon ion-md-checkmark-circle"></i>
                                     <span>Assessments</span>
                                 </a>
-                                
+
                                 <a href="@Url.Action("editStudentProfile", "editStudentProfile")">
                                     <i class="icon ion-md-person"></i>
                                     <span>Edit Profile</span>
@@ -96,7 +99,7 @@
                                     <i class="icon ion-md-checkmark-circle"></i>
                                     <span>Assessments</span>
                                 </a>
-                                
+
                                 <a href="@Url.Action("editteacherProfile", "editteacherProfile")">
                                     <i class="icon ion-md-person"></i>
                                     <span>Edit Profile</span>
@@ -112,69 +115,96 @@
 
                 <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-
-
                 <div class="app-body-content">
-                    <div class="tiles">
+                    @if (!string.IsNullOrEmpty(alertMessage))
+                    {
                         <script type="text/javascript">
-        window.onload = function() {
-            var alertMessage = '@alertMessage';
-            if (alertMessage) {
-                alert(alertMessage);
-                window.location.href = '@Url.Action("ViewQuizzes")';
-            }
-        };
+                            window.onload = function() {
+                                alert('@alertMessage');
+                                window.location.href = '@Url.Action("ViewQuizzes")';
+                            };
                         </script>
-                        @foreach (var quiz in Model)
-                        {
-                            <div class="clicktile">
-                                <div class="tile-header">
-                                    <i class="icon ion-md-book"></i>
-                                    <h3 style="color:black">
-                                        <span>Quiz Name: @quiz.Title</span>
-                                    </h3>
-                                </div>
-                                <p>Title           : @quiz.Title <br />
-                                Course ID       : @quiz.CourseID<br />
-                                Course Name     : @quiz.CourseName<br />
-                                Duration(min)   : @quiz.Duration<br />
-                                Uploaded On : @quiz.CreationDate</p>
-                                <div class="button-container">
-                                    @{
-                                        if (quiz.Score != -1)
+                    }
+
+                    @if (Model == null || Model.Count == 0)
+                    {
+                        <div class="alert alert-info" style="margin: 40px; padding: 20px; border-radius: 10px; background: rgba(59, 130, 246, 0.1); border-left: 4px solid var(--accent-blue); color: var(--accent-blue);">
+                            <ion-icon name="information-circle-outline"></ion-icon>
+                            No quizzes available at this time. Enroll in courses to see available quizzes.
+                        </div>
+                    }
+                    else
+                    {
+                        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 24px; margin: 40px; padding-bottom: 40px;">
+                            @foreach (var quiz in Model)
+                            {
+                                <div class="quiz-question-card" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 12px 24px rgba(59, 130, 246, 0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 32px rgba(59, 130, 246, 0.1)'">
+                                    <div style="padding: 24px;">
+                                        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px;">
+                                            <ion-icon name="document-text-outline" style="font-size: 24px; color: var(--accent-blue); flex-shrink: 0;"></ion-icon>
+                                            <div style="flex: 1;">
+                                                <h3 style="margin: 0 0 4px 0; color: var(--primary-text); font-size: 1.1rem;">@quiz.Title</h3>
+                                                <p style="margin: 0; color: var(--secondary-text); font-size: 0.85rem;">Course: @quiz.CourseName</p>
+                                            </div>
+                                        </div>
+
+                                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--border-color);">
+                                            <div>
+                                                <p style="margin: 0 0 4px 0; color: var(--secondary-text); font-size: 0.8rem; text-transform: uppercase;">Duration</p>
+                                                <p style="margin: 0; color: var(--primary-text); font-weight: 600;">@quiz.Duration min</p>
+                                            </div>
+                                            <div>
+                                                <p style="margin: 0 0 4px 0; color: var(--secondary-text); font-size: 0.8rem; text-transform: uppercase;">Created</p>
+                                                <p style="margin: 0; color: var(--primary-text); font-weight: 600;">@quiz.CreationDate.ToString("MMM dd")</p>
+                                            </div>
+                                        </div>
+
+                                        @if (quiz.Score != -1)
                                         {
-                                           <strong>Your Score : @quiz.Score</strong>
+                                            <div style="background: rgba(16, 185, 129, 0.1); padding: 12px; border-radius: 8px; border-left: 4px solid #10b981; margin-bottom: 16px;">
+                                                <p style="margin: 0; color: #10b981; font-weight: 600;">
+                                                    <ion-icon name="checkmark-circle-outline" style="vertical-align: middle; margin-right: 4px;"></ion-icon>
+                                                    Completed - Score: @quiz.Score
+                                                </p>
+                                            </div>
                                         }
                                         else if (quiz.Status == "Started")
                                         {
-                                            <a href="@Url.Action("StartQuiz", "StudentViewQuizzes", new { id = quiz.QuizID })" class="tile-buttons view">Start</a>
+                                            <a href="@Url.Action("StartQuiz", "StudentViewQuizzes", new { id = quiz.QuizID })" class="btn-primary" style="display: flex; align-items: center; justify-content: center; width: 100%; text-decoration: none; margin-bottom: 0;">
+                                                <ion-icon name="play-circle-outline"></ion-icon>
+                                                Start Quiz
+                                            </a>
                                         }
                                         else
                                         {
-                                            <strong>Quiz Hasn't Started</strong>
+                                            <div style="background: rgba(156, 163, 175, 0.1); padding: 12px; border-radius: 8px; border-left: 4px solid var(--secondary-text);">
+                                                <p style="margin: 0; color: var(--secondary-text); font-weight: 600;">
+                                                    <ion-icon name="lock-closed-outline" style="vertical-align: middle; margin-right: 4px;"></ion-icon>
+                                                    Not Yet Available
+                                                </p>
+                                            </div>
                                         }
-                                    }
-
+                                    </div>
                                 </div>
-                            </div>
-                        }
-                    </div>
-                    <br /><br />
-                    <div>
+                            }
+                        </div>
+                    }
 
-                        <button type="button" class="btn btn-back" onclick="window.location.href='/ManageCourse/ManageCourse'">Back</button>
+                    <div style="margin: 20px 40px;">
+                        <button type="button" class="btn btn-back" onclick="window.location.href='/Assessment/Assessment'">Back to Assessment</button>
                     </div>
                 </div>
             </div>
-            <br /><br />
-
             <div class="footer">
-               
+                <br /><br />
                 <div>
                     &copy; 2024 LearnLink. All rights reserved.
                 </div>
             </div>
         </div>
     </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

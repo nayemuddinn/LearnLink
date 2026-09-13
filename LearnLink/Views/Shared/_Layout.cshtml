@@ -5,9 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - LearnLink</title>
     @Styles.Render("~/Content/css")
+    <link href="@Url.Content("/Content/homepage.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/auth.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/custom-ui.css")" rel="stylesheet" />
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+
+    @{
+       
+        string currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+        string currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+    }
+
+    <!-- Only show navbar if on Home/Index -->
+    @if (currentController == "Home" && currentAction == "Index")
+    {
+        <nav class="navbar-homepage">
+            <a href="@Url.Action("Index", "Home")" class="logo">LearnLink</a>
+            <ul class="nav-links">
+                <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="@Url.Action("About", "Home")">About</a></li>
+            </ul>
+            <a href="@Url.Action("login", "Login")" class="signin-btn">Sign In</a>
+        </nav>
+    }
 
     <div class="container body-content">
         @RenderBody()

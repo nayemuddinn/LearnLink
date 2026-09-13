@@ -159,9 +159,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\AllEnrolledStudents.css" />
+    <Content Include="Content\auth.css" />
     <Content Include="Content\backbutton2.css" />
     <Content Include="Content\backbutton3.css" />
     <Content Include="Content\CreateCourse.css" />
+    <Content Include="Content\custom-ui.css" />
+    <Content Include="Content\dashboard.css" />
+    <Content Include="Content\EditProfile.css" />
     <Content Include="Content\Enroll_Student.css" />
     <Content Include="Content\AllCourses.css" />
     <Content Include="Content\BackButton.css" />
@@ -184,15 +189,16 @@
     <Content Include="Content\course.css" />
     <Content Include="Content\courseDescription.css" />
     <Content Include="Content\CourseManage.css" />
-    <Content Include="Content\dashboard.css" />
     <Content Include="Content\editpofile.css" />
-    <Content Include="Content\editprofile.css" />
     <Content Include="Content\forgotPassword.css" />
+    <Content Include="Content\fullscreen-unified.css" />
+    <Content Include="Content\homepage.css" />
     <Content Include="Content\Image\bg.jpg" />
     <Content Include="Content\loginpage.css" />
     <Content Include="Content\mid.css" />
     <Content Include="Content\participation.css" />
     <Content Include="Content\ShowCourseMaterials.css" />
+    <Content Include="Content\StartQuiz.css" />
     <Content Include="Content\textfield.css" />
     <Content Include="Content\unenroll.css" />
     <Content Include="Content\UnEnrollBut.css" />
@@ -233,7 +239,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\createCourse\createCourse.cshtml" />
     <Content Include="Views\editStudentProfile\editStudentProfile.cshtml" />
     <Content Include="Views\editteacherProfile\editteacherProfile.cshtml" />
     <Content Include="Views\giveFeedback\giveFeedback.cshtml" />
@@ -243,7 +248,6 @@
     <Content Include="Views\StudentDashboard\Dashboard.cshtml" />
     <Content Include="Views\ManageCourse\ManageCourse.cshtml" />
     <Content Include="Views\TeacherDashboard\Dashboard.cshtml" />
-    <Content Include="Views\courseMaterials\CourseMaterials.cshtml" />
     <Content Include="Views\ManageCourse\ShowCourseMaterials.cshtml" />
     <Content Include="Views\ManageCourse\ViewMaterial.cshtml" />
     <Content Include="Views\ManageCourse\DownloadMaterial.cshtml" />
@@ -257,16 +261,18 @@
     <Content Include="Views\enrollCourses\EnrollCourse.cshtml" />
     <Content Include="Views\StudentEnrolledCourses\ViewEnrolledCourses.cshtml" />
     <Content Include="Views\StudentEnrolledCourses\Unenroll.cshtml" />
-    <Content Include="Views\enrollStudents\AllEnrolledStudents.cshtml" />
-    <Content Include="Views\CreateQuiz\CreateQuiz.cshtml" />
     <Content Include="Views\CreateQuiz\UploadQuiz.cshtml" />
-    <Content Include="Views\TeacherViewQuizzes\ViewQuizzes.cshtml" />
     <Content Include="Views\Assessment\Assessment.cshtml" />
-    <Content Include="Views\StudentViewQuizzes\ViewQuizzes.cshtml" />
-    <Content Include="Views\StudentViewQuizzes\StartQuiz.cshtml" />
     <Content Include="Views\View.cshtml" />
     <Content Include="Views\TeacherViewQuizzes\studentParticipation.cshtml" />
     <Content Include="Views\changeCredentials\changeCredentials.cshtml" />
+    <Content Include="Views\StudentViewQuizzes\ViewQuizzes.cshtml" />
+    <Content Include="Views\TeacherViewQuizzes\ViewQuizzes.cshtml" />
+    <Content Include="Views\CreateQuiz\CreateQuiz.cshtml" />
+    <Content Include="Views\courseMaterials\CourseMaterials.cshtml" />
+    <Content Include="Views\createCourse\createCourse.cshtml" />
+    <Content Include="Views\StudentViewQuizzes\StartQuiz.cshtml" />
+    <Content Include="Views\enrollStudents\AllEnrolledStudents.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,233 +1,225 @@
-﻿@model List<LearnLink.Models.QuizQuestion>
+@model LearnLink.Models.Quiz
+
+@{
+    ViewBag.Title = "Quiz - " + Model.Title;
+}
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student LearnLink</title>
-    <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
-    <link href="@Url.Content("/Content/mid.css")" rel="stylesheet" />
-    <link href="@Url.Content("/Content/backbutton2.css")" rel="stylesheet" />
+    <title>@Model.Title - LearnLink</title>
+    <link href="@Url.Content("/Content/StartQuiz.css")" rel="stylesheet" />
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
-    <div class="responsive-wrapper">
-        <div class="app">
-            <div class="app-header">
-                <div class="logo">
-                    <div class="logo-icon">
-                        <ion-icon name="school-outline"></ion-icon>
-                    </div>
-                    <div class="logo-title">
-                        <span>LearnLink</span>
-                        <span>@HttpContext.Current.Session["UserRole"]</span>
-                    </div>
-                </div>
-                <div class="app-header-navigation">
-                   
-                </div>
-
-           
-                <div class="app-header-actions">
-                    <div class="header-timer" id="headerTimer">
-                        <ion-icon name="timer-outline"></ion-icon>
-                        <span id="quizTimeHeader">--:--</span>
-                    </div>
-                    <div class="app-header-actions-buttons">
-                        <ion-icon size="large" name="person-circle"></ion-icon>
-                        <h3>@HttpContext.Current.Session["UserName"]</h3>
-                    </div>
-                </div>
-
-     
-                <div class="app-header-mobile">
-                    <div class="header-timer" id="headerTimerMobile" style="margin-bottom:6px;">
-                        <ion-icon name="timer-outline"></ion-icon>
-                        <span id="quizTimeHeaderMobile">--:--</span>
-                    </div>
-                    <ion-icon size="large" name="person-circle"></ion-icon>
-                    <h3>@HttpContext.Current.Session["UserName"]</h3>
-                </div>
+    <!-- Professional Top Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <!-- Logo -->
+            <div class="navbar-logo">
+                <ion-icon name="school-outline" class="logo-icon"></ion-icon>
+                <span class="logo-text">LearnLink</span>
             </div>
 
-            <div class="app-body">
-                @{
-                    if (Session["UserRole"].Equals("Student"))
-                    {
-                        <div class="app-body-navigation">
-                            <nav class="navigation">
-                                <a href="@Url.Action("AllCourse", "AllCourse")">
-                                    <i class="icon ion-md-book"></i>
-                                    <span>All Courses</span>
-                                </a>
-                                <a href="@Url.Action("ViewEnrolledCourses", "StudentEnrolledCourses")">
-                                    <i class="icon ion-md-person-add"></i>
-                                    <span>Enrolled Courses</span>
-                                </a>
-                                <a href="@Url.Action("Assessment", "Assessment")">
-                                    <i class="icon ion-md-checkmark-circle"></i>
-                                    <span>Assessments</span>
-                                </a>
-                                <a href="@Url.Action("editStudentProfile", "editStudentProfile")">
-                                    <i class="icon ion-md-person"></i>
-                                    <span>Edit Profile</span>
-                                </a>
-                                <a href="@Url.Action("login", "Login")">
-                                    <i class="icon ion-md-exit"></i>
-                                    <span>Log Out</span>
-                                </a>
-                            </nav>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="app-body-navigation">
-                            <nav class="navigation">
-                                <a href="@Url.Action("ManageCourse", "ManageCourse")">
-                                    <i class="icon ion-md-book"></i>
-                                    <span>Manage Courses</span>
-                                </a>
-                                <a href="@Url.Action("createCourse", "createCourse")">
-                                    <i class="icon ion-md-add-circle"></i>
-                                    <span>Create Courses</span>
-                                </a>
-                                <a href="@Url.Action("courseMaterials", "courseMaterials")">
-                                    <i class="icon ion-md-add-circle"></i>
-                                    <span>CourseMaterials</span>
-                                </a>
-                                <a href="@Url.Action("enrollStudents", "enrollStudents")">
-                                    <i class="icon ion-md-person-add"></i>
-                                    <span>Enroll Students</span>
-                                </a>
-                                <a href="@Url.Action("Assessment", "Assessment")">
-                                    <i class="icon ion-md-checkmark-circle"></i>
-                                    <span>Assessments</span>
-                                </a>
-                                <a href="@Url.Action("editteacherProfile", "editteacherProfile")">
-                                    <i class="icon ion-md-person"></i>
-                                    <span>Edit Profile</span>
-                                </a>
-                                <a href="@Url.Action("login", "Login")">
-                                    <i class="icon ion-md-exit"></i>
-                                    <span>Log Out</span>
-                                </a>
-                            </nav>
-                        </div>
-                    }
-                }
+            <!-- Quiz Title in Center -->
+            <div class="quiz-title-center">
+                <h2>@Model.Title</h2>
+            </div>
 
-                <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
-                <div class="mid">
-                    <div class="app-body-content">
-                        @using (Html.BeginForm("SubmitQuiz", "StudentViewQuizzes", FormMethod.Post))
-                        {
-                            var questionNumber = 1;
-
-                            <div>
-                                @foreach (var question in Model)
-                                {
-                                    <div class="quiz-question">
-                                        <p>@questionNumber : @question.Question</p>
-                                        <div>
-                                            <div style="display: flex; flex-wrap: wrap;">
-                                                <label style="margin-right: 30px;">
-                                                    <input type="radio" name="question_@question.QuestionID" value="A" required /> @question.OptionA
-                                                </label>
-                                                <label style="margin-right: 30px;">
-                                                    <input type="radio" name="question_@question.QuestionID" value="B" required /> @question.OptionB
-                                                </label>
-                                                <label style="margin-right: 30px;">
-                                                    <input type="radio" name="question_@question.QuestionID" value="C" required /> @question.OptionC
-                                                </label>
-                                                <label>
-                                                    <input type="radio" name="question_@question.QuestionID" value="D" required /> @question.OptionD
-                                                </label>
-                                            </div>
-
-                                        </div>
-                                        <br />
-                                    </div>
-                                    <br />
-                                    questionNumber++;
-                                }
-                            </div>
-
-                            <button type="submit" class="btn btn-back">Submit</button>
-                        }
+            <!-- User Profile & Logout -->
+            <div class="navbar-user">
+                <div class="user-info">
+                    <ion-icon name="person-circle" class="user-avatar"></ion-icon>
+                    <div class="user-details">
+                        <p class="user-name">@HttpContext.Current.Session["UserName"]</p>
+                        <p class="user-role">Student</p>
                     </div>
                 </div>
-
+                <a href="@Url.Action("ViewQuizzes", "StudentViewQuizzes")" class="exit-btn" title="Exit Quiz">
+                    <ion-icon name="exit-outline"></ion-icon>
+                </a>
             </div>
-            <br /><br />
 
-            <div class="footer">
-                <div>&copy; 2024 LearnLink. All rights reserved.</div>
+            <!-- Mobile Menu Toggle -->
+            <div class="navbar-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
+        </div>
+    </nav>
+
+    <!-- Timer Bar (Sticky Below Navbar) -->
+    <div class="timer-bar">
+        <div class="timer-container">
+            <div class="timer-label">
+                <ion-icon name="time-outline"></ion-icon>
+                <span>Time Remaining</span>
+            </div>
+            <div class="timer-display" id="timerDisplay">00:00</div>
+            <div class="timer-status" id="timerStatus">Active</div>
         </div>
     </div>
 
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <div class="quiz-container">
+            <!-- Quiz Header -->
+            <div class="quiz-header">
+                <div class="header-info">
+                    <h1>@Model.Title</h1>
+                    if (Model.Questions != null && Model.Questions.Count > 0)
+                    {
+                        <p>Answer all @Model.Questions.Count questions</p>
+                    }
+                </div>
+                <div class="progress-info">
+                    <div class="progress-label">Questions: <span id="currentQuestion">0</span> / <span id="totalQuestions">@(Model.Questions?.Count ?? 0)</span></div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Form -->
+            if (Model.Questions != null && Model.Questions.Count > 0)
+            {
+                <form action="@Url.Action("SubmitQuiz", "StudentViewQuizzes")" method="post" id="quizForm">
+                    <input type="hidden" name="quizID" value="@Model.QuizID" />
+
+                    <div class="questions-container">
+                        @foreach (var question in Model.Questions)
+                        {
+                            <div class="question-card" data-question-id="@question.QuestionID">
+                                <div class="question-header">
+                                    <div class="question-number">
+                                        <span>Q@(Model.Questions.IndexOf(question) + 1)</span>
+                                    </div>
+                                    <div class="question-text">
+                                        <h3>@question.QuestionText</h3>
+                                    </div>
+                                </div>
+
+                                <div class="options-container">
+                                    @{
+                                        var options = new[] { question.OptionA, question.OptionB, question.OptionC, question.OptionD };
+                                        var optionLabels = new[] { "A", "B", "C", "D" };
+
+                                        for (int i = 0; i < options.Length; i++)
+                                        {
+                                            <div class="option-wrapper">
+                                                <input type="radio" 
+                                                       id="q@(question.QuestionID)_option@(optionLabels[i])" 
+                                                       name="question_@question.QuestionID" 
+                                                       value="@optionLabels[i]" 
+                                                       class="option-input"
+                                                       required
+                                                       onchange="updateProgress()">
+                                                <label for="q@(question.QuestionID)_option@(optionLabels[i])" class="option-label">
+                                                    <span class="option-letter">@optionLabels[i]</span>
+                                                    <span class="option-text">@options[i]</span>
+                                                </label>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="quiz-actions">
+                        <button type="submit" class="btn btn-primary" id="submitBtn">
+                            <ion-icon name="checkmark-circle-outline"></ion-icon>
+                            <span>Submit Quiz</span>
+                        </button>
+                        <a href="@Url.Action("ViewQuizzes", "StudentViewQuizzes")" class="btn btn-secondary">
+                            <ion-icon name="arrow-back-outline"></ion-icon>
+                            <span>Cancel Quiz</span>
+                        </a>
+                    </div>
+                </form>
+            }
+            else
+            {
+                <div class="alert alert-info">
+                    <ion-icon name="information-circle-outline"></ion-icon>
+                    <span>No questions available for this quiz yet.</span>
+                </div>
+            }
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 LearnLink. All rights reserved. Quiz Platform</p>
+        </div>
+    </footer>
 
     <script>
-    (function () {
-        var endIso = '@(((DateTime)Session["QuizEndtime"]).ToUniversalTime().ToString("o"))';
-        var serverNowIso = '@DateTime.UtcNow.ToString("o")';
-        if (!endIso || endIso === '') return;
+        // Initialize progress tracker
+        function updateProgress() {
+            var totalQuestions = @(Model.Questions?.Count ?? 0);
+            var answeredQuestions = 0;
 
-        var end = new Date(endIso).getTime();
-        var serverNow = new Date(serverNowIso).getTime();
-        var clientNow = Date.now();
-        var skew = serverNow - clientNow;
-
-        var timeElHeader = document.getElementById('quizTimeHeader');
-        var timeElHeaderMobile = document.getElementById('quizTimeHeaderMobile');
-        var headerTimer = document.getElementById('headerTimer');
-        var headerTimerMobile = document.getElementById('headerTimerMobile');
-
-        function pad(n){ return n < 10 ? '0' + n : n; }
-
-        function writeTime(el, text) { if (el) el.textContent = text; }
-        function setWarn(container, on) { if (!container) return; container.classList.toggle('warn', !!on); }
-        function setEnd(container, on) { if (!container) return; container.classList.toggle('end', !!on); }
-
-        function render(ms) {
-            var totalSec = Math.floor(ms / 1000);
-            var h = Math.floor(totalSec / 3600);
-            var m = Math.floor((totalSec % 3600) / 60);
-            var s = totalSec % 60;
-            var txt = (h > 0 ? pad(h) + ':' : '') + pad(m) + ':' + pad(s);
-
-            writeTime(timeElHeader, txt);
-            writeTime(timeElHeaderMobile, txt);
-
-            setWarn(headerTimer, totalSec <= 60 && totalSec > 0);
-            setWarn(headerTimerMobile, totalSec <= 60 && totalSec > 0);
-
-            if (totalSec <= 0) {
-                setWarn(headerTimer, false);
-                setWarn(headerTimerMobile, false);
-                setEnd(headerTimer, true);
-                setEnd(headerTimerMobile, true);
-
-                var form = document.querySelector('form[action*="SubmitQuiz"]');
-                if (form) {
-                    var submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
-                    if (submitBtn) submitBtn.disabled = true;
-                    form.submit();
-                }
+            for (let i = 1; i <= totalQuestions; i++) {
+                var questionAnswered = document.querySelector('input[name^="question_"]:checked');
+                if (questionAnswered) answeredQuestions++;
             }
+
+            document.getElementById('currentQuestion').textContent = answeredQuestions;
+            var percentage = (answeredQuestions / totalQuestions) * 100;
+            document.getElementById('progressFill').style.width = percentage + '%';
         }
 
-        function tick() {
-            var now = Date.now() + skew;
-            var ms = end - now;
-            render(ms);
-            if (ms <= 0) clearInterval(iv);
-        }
+        // Timer functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            var endTime = new Date('@HttpContext.Current.Session["QuizEndtime"]').getTime();
 
-        tick();
-        var iv = setInterval(tick, 1000);
-    })();
+            function updateTimer() {
+                var now = new Date().getTime();
+                var timeLeft = endTime - now;
+
+                if (timeLeft <= 0) {
+                    document.getElementById('timerDisplay').textContent = '00:00';
+                    document.getElementById('timerStatus').textContent = 'Time\'s Up!';
+                    document.getElementById('timerStatus').style.color = '#ef4444';
+                    document.getElementById('submitBtn').click();
+                    return;
+                }
+
+                var minutes = Math.floor(timeLeft / 60000);
+                var seconds = Math.floor((timeLeft % 60000) / 1000);
+
+                var displayText = (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+                document.getElementById('timerDisplay').textContent = displayText;
+
+                var timerBar = document.querySelector('.timer-bar');
+                var timerStatus = document.getElementById('timerStatus');
+
+                if (timeLeft <= 300000) { // 5 minutes
+                    timerBar.classList.add('critical');
+                    timerStatus.textContent = 'Critical!';
+                }
+                if (timeLeft <= 60000) { // 1 minute
+                    timerBar.classList.add('warning');
+                }
+
+                setTimeout(updateTimer, 1000);
+            }
+
+            updateTimer();
+            updateProgress();
+        });
+
+        // Mobile menu toggle
+        document.querySelector('.navbar-toggle').addEventListener('click', function() {
+            document.querySelector('.navbar-menu').classList.toggle('active');
+        });
     </script>
 </body>
 </html>
