@@ -167,6 +167,7 @@
     <Content Include="Content\custom-ui.css" />
     <Content Include="Content\dashboard.css" />
     <Content Include="Content\EditProfile.css" />
+    <Content Include="Content\enrollnewstudent.css" />
     <Content Include="Content\Enroll_Student.css" />
     <Content Include="Content\AllCourses.css" />
     <Content Include="Content\BackButton.css" />
