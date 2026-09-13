@@ -168,6 +168,14 @@
                                 <ion-icon name="time-outline"></ion-icon>
                                 <span>Requested</span>
                             </button>
+
+                            <a href="@Url.Action("CancelRequest", "enrollCourses", new { courseId = Model.CourseID })"
+                               class="btn-enroll"
+                               style="background-color: #ef4444; flex: 1;"
+                               onclick="return confirm('Are you sure you want to cancel this enrollment request?');">
+                                <ion-icon name="close-circle-outline"></ion-icon>
+                                <span>Cancel</span>
+                            </a>
                         }
                         else if (status == "Accepted")
                         {

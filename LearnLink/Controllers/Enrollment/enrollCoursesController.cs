@@ -147,5 +147,42 @@ namespace LearnLink.Controllers.Enrollment
             }
         }
 
+        public ActionResult CancelRequest(int courseId)
+        {
+            using (SqlConnection con = new SqlConnection(DBconnection.connStr))
+            {
+              
+                string query = "DELETE FROM enrollment WHERE StudentID = @StudentID AND CourseID = @CourseID AND Status = 'Requested'";
+
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@StudentID", Session["UserID"]);
+                    cmd.Parameters.AddWithValue("@CourseID", courseId);
+
+                    con.Open();
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        TempData["ToastMessage"] = "Enrollment request cancelled successfully.";
+                        TempData["ToastType"] = "success";
+                    }
+                    else
+                    {
+                        TempData["ToastMessage"] = "Failed to cancel request. It may have already been accepted.";
+                        TempData["ToastType"] = "error";
+                    }
+                    con.Close();
+
+                    if (Request.UrlReferrer != null)
+                    {
+                        return Redirect(Request.UrlReferrer.ToString());
+                    }
+
+                    return RedirectToAction("AllCourse", "AllCourse");
+                }
+            }
+        }
+
     }
 }
