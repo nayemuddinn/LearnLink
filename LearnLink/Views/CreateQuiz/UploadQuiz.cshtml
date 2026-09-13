@@ -19,41 +19,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teacher Dashboard - LearnLink</title>
+    <title>Upload Quiz Questions - LearnLink</title>
     <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
     <link href="@Url.Content("/Content/uploadquiz.css")" rel="stylesheet" />
     <link href="@Url.Content("/Content/backbutton2.css")" rel="stylesheet" />
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            padding: 0 !important;
+        }
+        .responsive-wrapper {
+            width: 100% !important;
+            max-width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            height: 100vh;
+        }
+        .app {
+            min-height: 100vh !important;
+            height: 100vh !important;
+            padding: 0 !important;
+            display: flex;
+            flex-direction: column;
+            border-radius: 0 !important;
+        }
+    </style>
 </head>
 <body>
     <div class="responsive-wrapper">
-        <div class="app">
-            <div class="app-header">
+        <div class="app" style="display: flex; flex-direction: column; height: 100vh; padding: 0;">
+            <div class="app-header" style="padding-bottom: 0.75rem; gap: 2rem; padding: 1rem 1.5rem 0.75rem 1.5rem;">
                 <div class="logo">
                     <div class="logo-icon">
                         <ion-icon name="school-outline"></ion-icon>
                     </div>
                     <div class="logo-title">
-                        <span>LearnLink</span>
-                        <span>@HttpContext.Current.Session["UserRole"]</span>
+                        <span style="font-size: 0.9rem;">LearnLink</span>
+                        <span style="font-size: 0.75rem;">@HttpContext.Current.Session["UserRole"]</span>
                     </div>
                 </div>
                 <div class="app-header-navigation"></div>
 
-                <div class="app-header-actions">
-                    <h3>Upload Quiz Questions</h3>
-                    <div class="app-header-actions-buttons">
-                        <ion-icon size="large" name="person-circle"></ion-icon>
-                        <h3>@HttpContext.Current.Session["UserName"]</h3>
+                <div class="app-header-actions" style="flex: 1;">
+                    <h3 style="margin: 0; font-size: 0.95rem; color: var(--c-text-secondary);">Upload Quiz Questions</h3>
+                    <div class="app-header-actions-buttons" style="margin-left: auto;">
+                        <ion-icon size="small" name="person-circle"></ion-icon>
+                        <span style="font-size: 0.85rem;">@HttpContext.Current.Session["UserName"]</span>
                     </div>
                 </div>
                 <div class="app-header-mobile">
-                    <h3>Upload Quiz Questions</h3>
-                    <ion-icon size="large" name="person-circle"></ion-icon>
-                    <h3>@HttpContext.Current.Session["UserName"]</h3>
+                    <h3 style="font-size: 0.9rem;">Upload Quiz</h3>
+                    <ion-icon size="small" name="person-circle"></ion-icon>
+                    <span style="font-size: 0.8rem;">@HttpContext.Current.Session["UserName"]</span>
                 </div>
             </div>
 
-            <div class="app-body">
+            <div class="app-body" style="display: grid; grid-template-columns: 180px 1fr; gap: 2rem; padding-top: 1.5rem; padding: 1.5rem; flex: 1; overflow: hidden;">
                 @{
                     if (Session["UserRole"].Equals("Student"))
                     {
@@ -84,68 +109,94 @@
                 }
                 <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-                <div class="app-body">
-                    <div class="mid">
-                        <div>
-                            @if (ViewBag.Message != null)
-                            {
-                                @ViewBag.Message
-                            }<br />
+                <div class="app-body-content" style="overflow-y: auto; display: flex; flex-direction: column;">
+                    <div style="flex: 1; display: flex; flex-direction: column;">
+                        @if (TempData["Alert"] != null)
+                        {
+                            <script>
+                                window.addEventListener('DOMContentLoaded', function () {
+                                    alert('@TempData["Alert"]');
+                                });
+                            </script>
+                        }
 
-                            <form class="quiz-form" action="@Url.Action("UploadQuiz", "CreateQuiz")" method="post">
-                                @Html.HiddenFor(m => m.QuizID)
+                        @if (ViewBag.Message != null)
+                        {
+                            @ViewBag.Message
+                        }
 
-                                <div class="input-box">
-                                    <label for="Question">Question</label>
-                                    <textarea id="Question" name="Question" required placeholder="Type the full question here..."></textarea>
-                                </div>
+                        <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
+                            <div style="width: 100%; max-width: 700px;">
+                                <form class="quiz-form" action="@Url.Action("UploadQuiz", "CreateQuiz")" method="post" style="background: var(--c-gray-700); padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
+                                    @Html.HiddenFor(m => m.QuizID)
 
-                                <div class="options-grid">
+                                    <h2 style="color: var(--c-text-primary); margin-top: 0; margin-bottom: 1.5rem;">Add Question to Quiz</h2>
+
                                     <div class="input-box">
-                                        <label for="OptionA">Option A</label>
-                                        <input id="OptionA" type="text" name="OptionA" required placeholder="Enter option A" />
+                                        <label for="Question" style="color: var(--c-text-primary); font-weight: 600;">Question</label>
+                                        <textarea id="Question" name="Question" required placeholder="Type the full question here..." style="background: var(--c-gray-800); color: var(--c-text-primary); border: 1px solid var(--c-gray-600); padding: 0.75rem; border-radius: 8px; font-family: inherit; resize: vertical; min-height: 100px;"></textarea>
                                     </div>
-                                    <div class="input-box">
-                                        <label for="OptionB">Option B</label>
-                                        <input id="OptionB" type="text" name="OptionB" required placeholder="Enter option B" />
-                                    </div>
-                                    <div class="input-box">
-                                        <label for="OptionC">Option C</label>
-                                        <input id="OptionC" type="text" name="OptionC" required placeholder="Enter option C" />
-                                    </div>
-                                    <div class="input-box">
-                                        <label for="OptionD">Option D</label>
-                                        <input id="OptionD" type="text" name="OptionD" required placeholder="Enter option D" />
-                                    </div>
-                                </div>
 
-                                <div class="input-box">
-                                    <label>Correct Option</label>
-                                    <div class="radio-group" role="radiogroup" aria-label="Correct Option">
-                                        <label><input type="radio" name="CorrectOption" value="A" required /> A</label>
-                                        <label><input type="radio" name="CorrectOption" value="B" /> B</label>
-                                        <label><input type="radio" name="CorrectOption" value="C" /> C</label>
-                                        <label><input type="radio" name="CorrectOption" value="D" /> D</label>
+                                    <div class="options-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem;">
+                                        <div class="input-box">
+                                            <label for="OptionA" style="color: var(--c-text-primary); font-weight: 600;">Option A</label>
+                                            <input id="OptionA" type="text" name="OptionA" required placeholder="Enter option A" style="background: var(--c-gray-800); color: var(--c-text-primary); border: 1px solid var(--c-gray-600); padding: 0.75rem; border-radius: 8px; font-family: inherit;" />
+                                        </div>
+                                        <div class="input-box">
+                                            <label for="OptionB" style="color: var(--c-text-primary); font-weight: 600;">Option B</label>
+                                            <input id="OptionB" type="text" name="OptionB" required placeholder="Enter option B" style="background: var(--c-gray-800); color: var(--c-text-primary); border: 1px solid var(--c-gray-600); padding: 0.75rem; border-radius: 8px; font-family: inherit;" />
+                                        </div>
+                                        <div class="input-box">
+                                            <label for="OptionC" style="color: var(--c-text-primary); font-weight: 600;">Option C</label>
+                                            <input id="OptionC" type="text" name="OptionC" required placeholder="Enter option C" style="background: var(--c-gray-800); color: var(--c-text-primary); border: 1px solid var(--c-gray-600); padding: 0.75rem; border-radius: 8px; font-family: inherit;" />
+                                        </div>
+                                        <div class="input-box">
+                                            <label for="OptionD" style="color: var(--c-text-primary); font-weight: 600;">Option D</label>
+                                            <input id="OptionD" type="text" name="OptionD" required placeholder="Enter option D" style="background: var(--c-gray-800); color: var(--c-text-primary); border: 1px solid var(--c-gray-600); padding: 0.75rem; border-radius: 8px; font-family: inherit;" />
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="button-container">
-                                    <button type="button" class="btn btn-back" onclick="window.location.href='/Assessment/Assessment'">Back</button>
-                                    <span></span>
-                                    <input type="submit" class="btn" value="Submit Question" />
-                                </div>
-                            </form>
+                                    <div class="input-box" style="margin-top: 1.5rem;">
+                                        <label style="color: var(--c-text-primary); font-weight: 600; display: block; margin-bottom: 1rem;">Select Correct Option</label>
+                                        <div class="radio-group" role="radiogroup" aria-label="Correct Option" style="display: flex; gap: 2rem; flex-wrap: wrap;">
+                                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; color: var(--c-text-primary);">
+                                                <input type="radio" name="CorrectOption" value="A" required style="width: 18px; height: 18px; cursor: pointer;" /> 
+                                                <span>Option A</span>
+                                            </label>
+                                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; color: var(--c-text-primary);">
+                                                <input type="radio" name="CorrectOption" value="B" style="width: 18px; height: 18px; cursor: pointer;" /> 
+                                                <span>Option B</span>
+                                            </label>
+                                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; color: var(--c-text-primary);">
+                                                <input type="radio" name="CorrectOption" value="C" style="width: 18px; height: 18px; cursor: pointer;" /> 
+                                                <span>Option C</span>
+                                            </label>
+                                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; color: var(--c-text-primary);">
+                                                <input type="radio" name="CorrectOption" value="D" style="width: 18px; height: 18px; cursor: pointer;" /> 
+                                                <span>Option D</span>
+                                            </label>
+                                        </div>
+                                    </div>
 
+                                    <div class="button-container" style="display: flex; gap: 1rem; margin-top: 2rem; justify-content: center;">
+                                        <button type="button" class="btn btn-back" onclick="window.location.href='/Assessment/Assessment'" style="background: var(--c-gray-600); color: var(--c-text-primary); padding: 0.75rem 1.5rem; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: background 0.3s ease;">Back</button>
+                                        <input type="submit" class="btn" value="Submit Question" style="background: var(--c-olive-500); color: var(--c-gray-900); padding: 0.75rem 2rem; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: transform 0.2s ease;" />
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="footer">
-                <br /><br />
-                <div>&copy; 2024 LearnLink. All rights reserved.</div>
+            <div class="footer" style="padding: 1rem 1.5rem; border-top: 1px solid var(--c-gray-600); margin-top: auto;">
+                <br />
+                <div style="font-size: 0.75rem; color: var(--c-text-tertiary);">&copy; 2024 LearnLink. All rights reserved.</div>
             </div>
         </div>
     </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

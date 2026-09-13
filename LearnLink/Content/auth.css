@@ -476,3 +476,20 @@ body {
         border-radius: 8px;
     }
 }
+
+.field-error {
+    display: block;
+    color: #ef4444;
+    font-size: 13px;
+    line-height: 1.4;
+    margin-top: 6px;
+    min-height: 18px;
+}
+
+.input-error {
+    border-color: #ef4444 !important;
+}
+
+.input-success {
+    border-color: #22c55e !important;
+}

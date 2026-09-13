@@ -29,11 +29,18 @@
         <div class="auth-right-section">
             <div class="auth-form-container">
                 <!-- Form -->
-                <form action="" method="post" class="auth-form">
-                    <!-- Role Selection Toggle (moved inside form so value is posted) -->
+
+                <form action="@Url.Action("Login", "Login")"
+                      method="post"
+                      class="auth-form"
+                      id="loginForm"
+                      novalidate>
+
+                    <!-- Role Selection Toggle -->
                     <div class="auth-role-selector">
                         <p class="role-label">Login as</p>
                         <div class="role-toggle-container">
+
                             <input type="radio" id="role-teacher" name="Role" value="teacher" checked>
                             <label for="role-teacher" class="role-toggle-btn">
                                 <ion-icon name="school-outline"></ion-icon>
@@ -45,33 +52,247 @@
                                 <ion-icon name="person-outline"></ion-icon>
                                 <span>Student</span>
                             </label>
+
                         </div>
                     </div>
 
                     <h2>Welcome Back</h2>
 
+                    <!-- Email -->
                     <div class="form-group">
                         <label for="email">Email Address</label>
+
                         <div class="input-wrapper">
-                            <span class="input-icon"><ion-icon name="mail-outline"></ion-icon></span>
-                            <input type="email" id="email" name="Email" placeholder="you@example.com" required>
+                            <span class="input-icon">
+                                <ion-icon name="mail-outline"></ion-icon>
+                            </span>
+
+                            <input type="email"
+                                   id="email"
+                                   name="Email"
+                                   placeholder="you@example.com"
+                                   required>
                         </div>
+
+                        <span class="field-error" id="emailError"></span>
                     </div>
 
+                    <!-- Password -->
                     <div class="form-group">
                         <label for="password">Password</label>
+
                         <div class="input-wrapper">
-                            <span class="input-icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
-                            <input type="password" id="password" name="Password" placeholder="Enter your password" required>
+                            <span class="input-icon">
+                                <ion-icon name="lock-closed-outline"></ion-icon>
+                            </span>
+
+                            <input type="password"
+                                   id="password"
+                                   name="Password"
+                                   placeholder="Enter your password"
+                                   required>
                         </div>
+
+                        <span class="field-error" id="passwordError"></span>
                     </div>
 
                     <div class="form-footer">
-                        <a href="@Url.Action("forgotPassword", "forgotPassword")" class="forgot-link">Forgot Password?</a>
+                        <a href="@Url.Action("forgotPassword", "forgotPassword")"
+                           class="forgot-link">
+                            Forgot Password?
+                        </a>
                     </div>
 
-                    <button type="submit" name="login" class="btn-primary">Sign In</button>
+                    <button type="submit" name="login" class="btn-primary">
+                        Sign In
+                    </button>
+
                 </form>
+
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+
+                        const form = document.getElementById("loginForm");
+
+                        const email = document.getElementById("email");
+                        const password = document.getElementById("password");
+
+                        const emailError = document.getElementById("emailError");
+                        const passwordError = document.getElementById("passwordError");
+
+
+                        form.addEventListener("submit", async function (event) {
+
+                            // IMPORTANT:
+                            // Stop the normal form submission.
+                            // This prevents the page from reloading.
+                            event.preventDefault();
+
+
+                            // Clear previous errors
+                            emailError.textContent = "";
+                            passwordError.textContent = "";
+
+                            email.classList.remove("input-error", "input-success");
+                            password.classList.remove("input-error", "input-success");
+
+
+                            let isValid = true;
+
+
+                            // -------------------------
+                            // Email validation
+                            // -------------------------
+
+                            if (email.value.trim() === "") {
+
+                                emailError.textContent = "Email is required.";
+                                email.classList.add("input-error");
+
+                                isValid = false;
+
+                            }
+                            else if (!email.validity.valid) {
+
+                                emailError.textContent =
+                                    "Please enter a valid email address.";
+
+                                email.classList.add("input-error");
+
+                                isValid = false;
+
+                            }
+                            else {
+
+                                email.classList.add("input-success");
+                            }
+
+
+                            // -------------------------
+                            // Password validation
+                            // -------------------------
+
+                            if (password.value.trim() === "") {
+
+                                passwordError.textContent = "Password is required.";
+                                password.classList.add("input-error");
+
+                                isValid = false;
+
+                            }
+                            else {
+
+                                password.classList.add("input-success");
+                            }
+
+
+                            // Don't contact the server if validation failed
+                            if (!isValid) {
+                                return;
+                            }
+
+
+                            // -------------------------
+                            // Disable button
+                            // -------------------------
+
+                            const submitButton =
+                                form.querySelector('button[type="submit"]');
+
+                            submitButton.disabled = true;
+                            submitButton.textContent = "Signing In...";
+
+
+                            // -------------------------
+                            // Send login request
+                            // -------------------------
+
+                            try {
+
+                                const formData = new FormData(form);
+
+                                const response = await fetch(
+                                    form.action || window.location.href,
+                                    {
+                                        method: "POST",
+                                        body: formData
+                                    }
+                                );
+
+
+                                const result = await response.json();
+
+
+                                // -------------------------
+                                // Login successful
+                                // -------------------------
+
+                                if (result.success) {
+
+                                    window.location.href = result.redirectUrl;
+
+                                    return;
+                                }
+
+
+                                // -------------------------
+                                // Login failed
+                                // -------------------------
+
+                                passwordError.textContent = result.message;
+                                password.classList.add("input-error");
+
+                            }
+                            catch (error) {
+
+                                console.error("Login error:", error);
+
+                                passwordError.textContent =
+                                    "Unable to connect to the server. Please try again.";
+
+                                password.classList.add("input-error");
+
+                            }
+                            finally {
+
+                                submitButton.disabled = false;
+                                submitButton.textContent = "Sign In";
+                            }
+
+                        });
+
+
+                        // -------------------------
+                        // Clear email error
+                        // -------------------------
+
+                        email.addEventListener("input", function () {
+
+                            emailError.textContent = "";
+
+                            email.classList.remove("input-error");
+
+                        });
+
+
+                        // -------------------------
+                        // Clear password error
+                        // -------------------------
+
+                        password.addEventListener("input", function () {
+
+                            passwordError.textContent = "";
+
+                            password.classList.remove("input-error");
+
+                        });
+
+                    });
+                </script>
+       
+
+
+
 
                 <!-- Sign Up Link -->
                 <div class="auth-footer-link">

@@ -1,18 +1,14 @@
 using LearnLink.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
 using System.Data.SqlClient;
-using System.Web.Helpers;
+using System.Web.Mvc;
 using LearnLink.Content;
 
 namespace LearnLink.Controllers.Account
 {
-
     public class LoginController : Controller
     {
+        [HttpGet]
         public ActionResult Login()
         {
             return View();
@@ -23,51 +19,100 @@ namespace LearnLink.Controllers.Account
         {
             string connStr = DBconnection.connStr;
             string role = user.Role;
+
+            // Validate role before using it in SQL
+            if (role != "teacher" && role != "student")
+            {
+                return Json(new
+                {
+                    success = false,
+                    message = "Invalid login role."
+                });
+            }
+
             using (SqlConnection conn = new SqlConnection(connStr))
             {
                 try
                 {
                     conn.Open();
 
-                    string query = "SELECT name,password,userID FROM " + role + " WHERE Email = @Email";
+                    string query =
+                        "SELECT name, password, userID FROM " +
+                        role +
+                        " WHERE Email = @Email";
+
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@Email", user.Email);
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            if (reader.Read() && PasswordHasher.VerifyPassword(user.Password, reader["Password"].ToString()))
+                            if (reader.Read())
                             {
-                                Session["UserRole"] = role.ToString();
-                                Session["UserName"] = reader["Name"].ToString();
-                                Session["UserEmail"] = user.Email;
-                                Session["UserID"] = reader["UserID"];
-                                Response.Write("<script>alert('Login successful!');</script>");
+                                string storedPassword =
+                                    reader["Password"].ToString();
 
-                                if (role.Equals("teacher", StringComparison.OrdinalIgnoreCase))
+                                bool passwordCorrect =
+                                    PasswordHasher.VerifyPassword(
+                                        user.Password,
+                                        storedPassword
+                                    );
+
+                                if (passwordCorrect)
                                 {
-                                    return RedirectToAction("Dashboard", "TeacherDashboard");
-                                }
-                                else if (role.Equals("student", StringComparison.OrdinalIgnoreCase))
-                                {
-                                    return RedirectToAction("Dashboard", "StudentDashboard");
+                                    Session["UserRole"] = role;
+                                    Session["UserName"] =
+                                        reader["Name"].ToString();
+                                    Session["UserEmail"] = user.Email;
+                                    Session["UserID"] = reader["UserID"];
+
+                                    string redirectUrl = "";
+
+                                    if (role.Equals(
+                                        "teacher",
+                                        StringComparison.OrdinalIgnoreCase))
+                                    {
+                                        redirectUrl = Url.Action(
+                                            "Dashboard",
+                                            "TeacherDashboard"
+                                        );
+                                    }
+                                    else if (role.Equals(
+                                        "student",
+                                        StringComparison.OrdinalIgnoreCase))
+                                    {
+                                        redirectUrl = Url.Action(
+                                            "Dashboard",
+                                            "StudentDashboard"
+                                        );
+                                    }
+
+                                    return Json(new
+                                    {
+                                        success = true,
+                                        redirectUrl = redirectUrl
+                                    });
                                 }
                             }
-                            else
+
+                            // Email doesn't exist OR password is wrong
+                            return Json(new
                             {
-                                Response.Write("<script>alert('Wrong credential.');</script>");
-                                return View();
-                            }
+                                success = false,
+                                message = "Wrong email or password."
+                            });
                         }
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    Response.Write("<script>alert('Try Again');</script>");
+                    return Json(new
+                    {
+                        success = false,
+                        message = "Something went wrong. Please try again."
+                    });
                 }
             }
-
-            return View();
         }
     }
 }
