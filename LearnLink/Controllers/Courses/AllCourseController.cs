@@ -6,6 +6,7 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Web;
 using System.Web.Mvc;
 
@@ -63,39 +64,57 @@ namespace LearnLink.Controllers.Courses
 
 
 
-        public ActionResult StudentCourseDetails(int cId) 
+        public ActionResult StudentCourseDetails(int cId)
         {
 
 
             Course courseDetails = new Course();
 
-                using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
-                {
-                    conn.Open();
-                    string query = @"
+            using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
+            {
+                conn.Open();
+                string query = @"
                 SELECT c.CourseID, c.CourseName, c.CourseDescription, c.CoursePrerequisite, c.CourseFee, c.TeacherID,t.Name
                 FROM Courses c
                 JOIN Teacher t ON c.TeacherID = t.UserID
                 WHERE c.CourseID = @CourseID";
 
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@CourseID", cId);
-                    SqlDataReader reader = cmd.ExecuteReader();
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@CourseID", cId);
+                SqlDataReader reader = cmd.ExecuteReader();
 
-                    if (reader.Read())
-                    {
-                        courseDetails.CourseID = (int)reader["CourseID"];
-                        courseDetails.CourseName = (string)reader["CourseName"];
-                        courseDetails.CourseDescription = (string)reader["CourseDescription"];
-                        courseDetails.CoursePrerequisite = (string)reader["CoursePrerequisite"];
-                        courseDetails.CourseFee = (int)reader["CourseFee"];
-                        courseDetails.TeacherID= (int)reader["TeacherID"];
-                        courseDetails.TeacherName = (string)reader["Name"];
-                    }
+                if (reader.Read())
+                {
+                    courseDetails.CourseID = (int)reader["CourseID"];
+                    courseDetails.CourseName = (string)reader["CourseName"];
+                    courseDetails.CourseDescription = (string)reader["CourseDescription"];
+                    courseDetails.CoursePrerequisite = (string)reader["CoursePrerequisite"];
+                    courseDetails.CourseFee = (int)reader["CourseFee"];
+                    courseDetails.TeacherID = (int)reader["TeacherID"];
+                    courseDetails.TeacherName = (string)reader["Name"];
                 }
+            }
 
-                return View(courseDetails);
+            string courseStatus = getCourseStatus(courseDetails.CourseID);
+            ViewBag.EnrollmentStatus = courseStatus;
 
+            return View(courseDetails);
+
+        }
+
+        public string getCourseStatus(int courseId)
+        {
+            using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
+            {
+                string checkQuery = "SELECT Status FROM Enrollment WHERE StudentID = @StudentID AND CourseID = @CourseID";
+                SqlCommand checkCmd = new SqlCommand(checkQuery, conn);
+                checkCmd.Parameters.AddWithValue("@StudentID", Session["UserID"]);
+                checkCmd.Parameters.AddWithValue("@CourseID", courseId);
+
+                conn.Open();
+                var status = checkCmd.ExecuteScalar();
+                return status != null ? status.ToString() : null;
+            }
         }
 
 
