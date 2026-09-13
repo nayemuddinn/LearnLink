@@ -13,7 +13,6 @@ namespace LearnLink.Controllers.Enrollment
 {
     public class enrollCoursesController : Controller
     {
-
         public string getStatus(int courseId)
         {
             using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
@@ -28,7 +27,6 @@ namespace LearnLink.Controllers.Enrollment
                 return status != null ? status.ToString() : null;
             }
         }
-
 
         public ActionResult EnrollCourse(int courseId, int teacherId)
         {
@@ -48,31 +46,39 @@ namespace LearnLink.Controllers.Enrollment
 
                     conn.Open();
                     insertCmd.ExecuteNonQuery();
-                    ViewBag.Message = "Course Enrollment Request Sent";
+
+               
+                    TempData["ToastMessage"] = "Course Enrollment Request Sent!";
+                    TempData["ToastType"] = "success";
                 }
             }
             else if (status == "Requested")
             {
-                ViewBag.Message = "You have already sent a request for this course.";
+                TempData["ToastMessage"] = "You have already sent a request for this course.";
+                TempData["ToastType"] = "warning";
             }
             else if (status == "Accepted")
             {
-                ViewBag.Message = "You are already enrolled in this course.";
+                TempData["ToastMessage"] = "You are already enrolled in this course.";
+                TempData["ToastType"] = "warning";
             }
             else if (status == "Rejected")
             {
-                ViewBag.Message = "Rejected";
-                ViewBag.CourseID = courseId;
-
+                TempData["ToastMessage"] = "Your previous request was rejected.";
+                TempData["ToastType"] = "error";
             }
 
-            return View();
+            // Smart Redirect: Sends the user back to the exact page they clicked the button from
+            if (Request.UrlReferrer != null)
+            {
+                return Redirect(Request.UrlReferrer.ToString());
+            }
+
+            return RedirectToAction("AllCourse", "AllCourse");
         }
 
         public ActionResult ReEnrollCourse(int courseId)
         {
-
-
             using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
             {
                 string query = "UPDATE Enrollment SET Status = @Status, RequestDate = @RequestDate WHERE StudentID = @StudentID AND CourseID = @CourseID";
@@ -87,18 +93,96 @@ namespace LearnLink.Controllers.Enrollment
 
                 if (rowsAffected > 0)
                 {
-                    ViewBag.Message = "Course Enrollment Request Sent Again";
+                    TempData["ToastMessage"] = "Course Enrollment Request Sent Again!";
+                    TempData["ToastType"] = "success";
                 }
                 else
                 {
-                    ViewBag.Message = "Failed to update the enrollment request. Please try again.";
+                    TempData["ToastMessage"] = "Failed to update the enrollment request. Please try again.";
+                    TempData["ToastType"] = "error";
                 }
             }
-            return View();
+
+            if (Request.UrlReferrer != null)
+            {
+                return Redirect(Request.UrlReferrer.ToString());
+            }
 
 
+            return RedirectToAction("AllCourse", "AllCourse");
         }
 
+        public ActionResult UnenrollCourse(int courseId)
+        {
+
+            using (SqlConnection con = new SqlConnection(DBconnection.connStr))
+            {
+                string query = "DELETE FROM enrollment WHERE StudentID = @StudentID AND CourseID = @CourseID";
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@StudentID", Session["UserID"]);
+                    cmd.Parameters.AddWithValue("@CourseID", courseId);
+                    con.Open();
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        TempData["ToastMessage"] = "Successfully unenrolled from the course.";
+                        TempData["ToastType"] = "success";
+                    }
+                    else
+                    {
+                        TempData["ToastMessage"] = "Failed to unenroll. Please try again.";
+                        TempData["ToastType"] = "error";
+                    }
+                    con.Close();
+
+                    if (Request.UrlReferrer != null)
+                    {
+                        return Redirect(Request.UrlReferrer.ToString());
+                    }
+
+                    return RedirectToAction("AllCourse", "AllCourse");
+                }
+            }
+        }
+
+        public ActionResult CancelRequest(int courseId)
+        {
+            using (SqlConnection con = new SqlConnection(DBconnection.connStr))
+            {
+              
+                string query = "DELETE FROM enrollment WHERE StudentID = @StudentID AND CourseID = @CourseID AND Status = 'Requested'";
+
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@StudentID", Session["UserID"]);
+                    cmd.Parameters.AddWithValue("@CourseID", courseId);
+
+                    con.Open();
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        TempData["ToastMessage"] = "Enrollment request cancelled successfully.";
+                        TempData["ToastType"] = "success";
+                    }
+                    else
+                    {
+                        TempData["ToastMessage"] = "Failed to cancel request. It may have already been accepted.";
+                        TempData["ToastType"] = "error";
+                    }
+                    con.Close();
+
+                    if (Request.UrlReferrer != null)
+                    {
+                        return Redirect(Request.UrlReferrer.ToString());
+                    }
+
+                    return RedirectToAction("AllCourse", "AllCourse");
+                }
+            }
+        }
 
     }
 }
