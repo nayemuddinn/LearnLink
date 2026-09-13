@@ -33,7 +33,6 @@ By combining robust features with an intuitive interface, **Learn Link** helps m
 | **Backend**      | ASP.NET (C#) |
 | **Architecture** | MVC (Model-View-Controller) |
 | **Database**     | MSSQL |
-| **Version Control** | Git & GitHub |
 
 ---
 
@@ -41,22 +40,7 @@ By combining robust features with an intuitive interface, **Learn Link** helps m
 
 _Here are some images showing this app's features and UI_
 
-## 📸 Screenshots
 
-## Screenshots
-
-| Login | Register |
-|------|----------|
-| <img width="600" height="480" alt="login" src="https://github.com/user-attachments/assets/8a642409-de72-4d64-858e-4daed426c3b5" /> | <img width="600" height="480" alt="reg" src="https://github.com/user-attachments/assets/8bfa6e45-42a3-49bf-9168-03996b2ec62d" /> |
-
-| Teacher Dashboard | Student Dashboard |
-|-------------------|-------------------|
-| <img width="600" height="480" alt="Dashboard_Teacher" src="https://github.com/user-attachments/assets/8e96f945-bce8-4db7-9c01-c91fcbce3fbc" /> | <img width="600" height="480" alt="Dashboard_student" src="https://github.com/user-attachments/assets/99be5743-d3b4-4722-bbd3-84bde61262cc" /> |
-
-
-
-
----
 
 ## Prerequisites
 
