@@ -4,11 +4,13 @@ using System;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace LearnLink.Controllers.Account
 {
     public class RegistrationController : Controller
     {
+        [HttpGet]
         public ActionResult reg()
         {
             return View();
@@ -17,44 +19,58 @@ namespace LearnLink.Controllers.Account
         [HttpPost]
         public ActionResult reg(User user)
         {
-            System.Diagnostics.Debug.WriteLine("===== REGISTRATION START =====");
+            System.Diagnostics.Debug.WriteLine(
+                "===== REGISTRATION START ====="
+            );
 
             try
             {
-                // Check received values
-                System.Diagnostics.Debug.WriteLine("Name: " + user.Name);
-                System.Diagnostics.Debug.WriteLine("Email: " + user.Email);
-                System.Diagnostics.Debug.WriteLine("Role: " + user.Role);
-                System.Diagnostics.Debug.WriteLine("Phone: " + user.Phone);
-
                 // -------------------------------------------------
                 // BASIC VALIDATION
                 // -------------------------------------------------
 
                 if (user == null)
                 {
-                    TempData["AlertMessage"] = "Invalid registration data.";
-                    return View();
+                    return Json(new
+                    {
+                        success = false,
+                        message = "Invalid registration data."
+                    });
                 }
+
+                System.Diagnostics.Debug.WriteLine(
+                    "Name: " + user.Name
+                );
+
+                System.Diagnostics.Debug.WriteLine(
+                    "Email: " + user.Email
+                );
+
+                System.Diagnostics.Debug.WriteLine(
+                    "Role: " + user.Role
+                );
+
+                System.Diagnostics.Debug.WriteLine(
+                    "Phone: " + user.Phone
+                );
 
                 if (string.IsNullOrWhiteSpace(user.Role))
                 {
-                    TempData["AlertMessage"] = "Please select Teacher or Student.";
-                    return View(user);
+                    return Json(new
+                    {
+                        success = false,
+                        message = "Please select Teacher or Student."
+                    });
                 }
 
                 if (string.IsNullOrWhiteSpace(user.Password) ||
                     string.IsNullOrWhiteSpace(user.ConfirmPassword))
                 {
-                    TempData["AlertMessage"] = "Password fields cannot be empty.";
-                    return View(user);
-                }
-
-                if (string.IsNullOrWhiteSpace(user.PIN) ||
-                    string.IsNullOrWhiteSpace(user.ConfirmPIN))
-                {
-                    TempData["AlertMessage"] = "PIN fields cannot be empty.";
-                    return View(user);
+                    return Json(new
+                    {
+                        success = false,
+                        message = "Password fields cannot be empty."
+                    });
                 }
 
                 // -------------------------------------------------
@@ -63,68 +79,48 @@ namespace LearnLink.Controllers.Account
 
                 if (user.Password != user.ConfirmPassword)
                 {
-                    System.Diagnostics.Debug.WriteLine("STOPPED: Password mismatch");
-
-                    TempData["AlertMessage"] = "Passwords do not match.";
-                    return View(user);
+                    return Json(new
+                    {
+                        success = false,
+                        message = "Passwords do not match."
+                    });
                 }
 
                 if (user.Password.Length < 6)
                 {
-                    System.Diagnostics.Debug.WriteLine("STOPPED: Password too short");
-
-                    TempData["AlertMessage"] =
-                        "Password must be at least 6 characters long.";
-
-                    return View(user);
-                }
-
-                // -------------------------------------------------
-                // PIN CHECK
-                // -------------------------------------------------
-
-                if (user.PIN != user.ConfirmPIN)
-                {
-                    System.Diagnostics.Debug.WriteLine("STOPPED: PIN mismatch");
-
-                    TempData["AlertMessage"] = "PINs do not match.";
-                    return View(user);
-                }
-
-                if (user.PIN.Length < 6)
-                {
-                    System.Diagnostics.Debug.WriteLine("STOPPED: PIN too short");
-
-                    TempData["AlertMessage"] =
-                        "PIN must be at least 6 characters long.";
-
-                    return View(user);
+                    return Json(new
+                    {
+                        success = false,
+                        message = "Password must be at least 6 characters long."
+                    });
                 }
 
                 // -------------------------------------------------
                 // PASSWORD STRENGTH
                 // -------------------------------------------------
 
-                bool hasDigit = Regex.IsMatch(user.Password, @"\d");
+                bool hasDigit =
+                    Regex.IsMatch(user.Password, @"\d");
 
-                bool hasSpecialChar = Regex.IsMatch(
-                    user.Password,
-                    @"[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]"
-                );
+                bool hasSpecialChar =
+                    Regex.IsMatch(
+                        user.Password,
+                        @"[^a-zA-Z0-9]"
+                    );
 
                 if (!hasDigit || !hasSpecialChar)
                 {
-                    System.Diagnostics.Debug.WriteLine(
-                        "STOPPED: Password does not meet requirements"
-                    );
-
-                    TempData["AlertMessage"] =
-                        "Password must contain at least one digit and one special character.";
-
-                    return View(user);
+                    return Json(new
+                    {
+                        success = false,
+                        message =
+                            "Password must contain at least one digit and one special character."
+                    });
                 }
 
-                System.Diagnostics.Debug.WriteLine("===== VALIDATION PASSED =====");
+                System.Diagnostics.Debug.WriteLine(
+                    "===== VALIDATION PASSED ====="
+                );
 
                 // -------------------------------------------------
                 // VALIDATE ROLE
@@ -132,21 +128,26 @@ namespace LearnLink.Controllers.Account
 
                 string tableName;
 
-                if (user.Role.Equals("teacher", StringComparison.OrdinalIgnoreCase))
+                if (user.Role.Equals(
+                    "teacher",
+                    StringComparison.OrdinalIgnoreCase))
                 {
                     tableName = "teacher";
                 }
-                else if (user.Role.Equals("student", StringComparison.OrdinalIgnoreCase))
+                else if (user.Role.Equals(
+                    "student",
+                    StringComparison.OrdinalIgnoreCase))
                 {
                     tableName = "student";
                 }
                 else
                 {
-                    TempData["AlertMessage"] = "Invalid registration role.";
-                    return View(user);
+                    return Json(new
+                    {
+                        success = false,
+                        message = "Invalid registration role."
+                    });
                 }
-
-                System.Diagnostics.Debug.WriteLine("Table: " + tableName);
 
                 // -------------------------------------------------
                 // DATABASE CONNECTION
@@ -154,7 +155,8 @@ namespace LearnLink.Controllers.Account
 
                 string connStr = DBconnection.connStr;
 
-                using (SqlConnection conn = new SqlConnection(connStr))
+                using (SqlConnection conn =
+                       new SqlConnection(connStr))
                 {
                     conn.Open();
 
@@ -162,19 +164,35 @@ namespace LearnLink.Controllers.Account
                         "===== DATABASE CONNECTED ====="
                     );
 
+                    System.Diagnostics.Debug.WriteLine(
+                        "Database: " + conn.Database
+                    );
+
+                    System.Diagnostics.Debug.WriteLine(
+                        "Server: " + conn.DataSource
+                    );
+
                     // -------------------------------------------------
                     // CHECK EMAIL
                     // -------------------------------------------------
 
                     string checkEmailQuery =
-                        "SELECT COUNT(*) FROM " + tableName +
+                        "SELECT COUNT(*) FROM " +
+                        tableName +
                         " WHERE Email = @Email";
 
-                    using (SqlCommand cmd = new SqlCommand(checkEmailQuery, conn))
+                    using (SqlCommand cmd =
+                           new SqlCommand(
+                               checkEmailQuery,
+                               conn))
                     {
-                        cmd.Parameters.AddWithValue("@Email", user.Email);
+                        cmd.Parameters.AddWithValue(
+                            "@Email",
+                            user.Email
+                        );
 
-                        int emailCount = (int)cmd.ExecuteScalar();
+                        int emailCount =
+                            (int)cmd.ExecuteScalar();
 
                         System.Diagnostics.Debug.WriteLine(
                             "Email count: " + emailCount
@@ -182,8 +200,11 @@ namespace LearnLink.Controllers.Account
 
                         if (emailCount > 0)
                         {
-                            TempData["AlertMessage"] = "Email already exists!";
-                            return View(user);
+                            return Json(new
+                            {
+                                success = false,
+                                message = "Email already exists!"
+                            });
                         }
                     }
 
@@ -192,14 +213,22 @@ namespace LearnLink.Controllers.Account
                     // -------------------------------------------------
 
                     string checkPhoneQuery =
-                        "SELECT COUNT(*) FROM " + tableName +
+                        "SELECT COUNT(*) FROM " +
+                        tableName +
                         " WHERE Phone = @Phone";
 
-                    using (SqlCommand cmd = new SqlCommand(checkPhoneQuery, conn))
+                    using (SqlCommand cmd =
+                           new SqlCommand(
+                               checkPhoneQuery,
+                               conn))
                     {
-                        cmd.Parameters.AddWithValue("@Phone", user.Phone);
+                        cmd.Parameters.AddWithValue(
+                            "@Phone",
+                            user.Phone
+                        );
 
-                        int phoneCount = (int)cmd.ExecuteScalar();
+                        int phoneCount =
+                            (int)cmd.ExecuteScalar();
 
                         System.Diagnostics.Debug.WriteLine(
                             "Phone count: " + phoneCount
@@ -207,63 +236,108 @@ namespace LearnLink.Controllers.Account
 
                         if (phoneCount > 0)
                         {
-                            TempData["AlertMessage"] = "Phone number already exists!";
-                            return View(user);
+                            return Json(new
+                            {
+                                success = false,
+                                message =
+                                    "Phone number already exists!"
+                            });
                         }
                     }
 
                     // -------------------------------------------------
-                    // HASH PASSWORD AND PIN
+                    // HASH PASSWORD
                     // -------------------------------------------------
 
-                    string hashPass = PasswordHasher.HashPassword(user.Password);
-                    string hashPin = PasswordHasher.HashPassword(user.PIN);
+                    System.Diagnostics.Debug.WriteLine(
+                        "===== START HASHING ====="
+                    );
 
-                    System.Diagnostics.Debug.WriteLine("Password and PIN hashed.");
+                    string hashPass =
+                        PasswordHasher.HashPassword(
+                            user.Password
+                        );
+
+                    System.Diagnostics.Debug.WriteLine(
+                        "===== HASHING COMPLETE ====="
+                    );
 
                     // -------------------------------------------------
                     // INSERT USER
                     // -------------------------------------------------
 
                     string query =
-                        "INSERT INTO " + tableName +
-                        " (Name, Email, Password, Phone, Address, Institution, PIN) " +
-                        "VALUES (@Name, @Email, @Password, @Phone, @Address, @Institution, @PIN)";
+                        "INSERT INTO " +
+                        tableName +
+                        " (Name, Email, Password, Phone, Address, Institution) " +
+                        "VALUES (@Name, @Email, @Password, @Phone, @Address, @Institution)";
 
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    using (SqlCommand cmd =
+                           new SqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@Name", user.Name);
-                        cmd.Parameters.AddWithValue("@Email", user.Email);
-                        cmd.Parameters.AddWithValue("@Password", hashPass);
-                        cmd.Parameters.AddWithValue("@Phone", user.Phone);
-                        cmd.Parameters.AddWithValue("@Address", user.Address);
-                        cmd.Parameters.AddWithValue("@Institution", user.Institution);
-                        cmd.Parameters.AddWithValue("@PIN", hashPin);
+                        cmd.Parameters.AddWithValue(
+                            "@Name",
+                            user.Name
+                        );
 
-                        int rowsAffected = cmd.ExecuteNonQuery();
+                        cmd.Parameters.AddWithValue(
+                            "@Email",
+                            user.Email
+                        );
+
+                        cmd.Parameters.AddWithValue(
+                            "@Password",
+                            hashPass
+                        );
+
+                        cmd.Parameters.AddWithValue(
+                            "@Phone",
+                            user.Phone
+                        );
+
+                        cmd.Parameters.AddWithValue(
+                            "@Address",
+                            user.Address
+                        );
+
+                        cmd.Parameters.AddWithValue(
+                            "@Institution",
+                            user.Institution
+                        );
 
                         System.Diagnostics.Debug.WriteLine(
-                            "Rows inserted: " + rowsAffected
+                            "===== ABOUT TO INSERT ====="
+                        );
+
+                        int rowsAffected =
+                            cmd.ExecuteNonQuery();
+
+                        System.Diagnostics.Debug.WriteLine(
+                            "===== INSERT RESULT: " +
+                            rowsAffected +
+                            " ====="
                         );
 
                         if (rowsAffected > 0)
                         {
-                            TempData["AlertMessage"] =
-                                "Registration successful!";
-
                             System.Diagnostics.Debug.WriteLine(
                                 "===== REGISTRATION SUCCESSFUL ====="
                             );
-                        }
-                        else
-                        {
-                            TempData["AlertMessage"] =
-                                "Registration failed. No record was inserted.";
 
-                            System.Diagnostics.Debug.WriteLine(
-                                "===== INSERT FAILED ====="
-                            );
+                            return Json(new
+                            {
+                                success = true,
+                                message =
+                                    "Registration successful!"
+                            });
                         }
+
+                        return Json(new
+                        {
+                            success = false,
+                            message =
+                                "Registration failed. No record was inserted."
+                        });
                     }
                 }
             }
@@ -274,11 +348,19 @@ namespace LearnLink.Controllers.Account
                 );
 
                 System.Diagnostics.Debug.WriteLine(
-                    sqlEx.Message
+                    "Message: " + sqlEx.Message
                 );
 
-                TempData["AlertMessage"] =
-                    "Database error: " + sqlEx.Message;
+                System.Diagnostics.Debug.WriteLine(
+                    "Number: " + sqlEx.Number
+                );
+
+                return Json(new
+                {
+                    success = false,
+                    message =
+                        "Database error. Please try again."
+                });
             }
             catch (Exception ex)
             {
@@ -287,15 +369,17 @@ namespace LearnLink.Controllers.Account
                 );
 
                 System.Diagnostics.Debug.WriteLine(
-                    ex.Message
+                    "Message: " + ex.Message
                 );
 
-                TempData["AlertMessage"] =
-                    "An error occurred: " + ex.Message;
+                return Json(new
+                {
+                    success = false,
+                    message =
+                        "An error occurred. Please try again."
+                });
             }
-
-            return View(user);
         }
-
     }
 }
+
