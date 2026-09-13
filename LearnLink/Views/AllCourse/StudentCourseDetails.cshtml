@@ -109,7 +109,6 @@
                     <div class="icon-wrapper">
                         <ion-icon name="book"></ion-icon>
                     </div>
-                    <!-- Keeping the red emphasis from your original code, but styled nicely -->
                     <h1 class="course-title">@Model.CourseName</h1>
                     <span class="course-id">Course ID: #@Model.CourseID</span>
                 </div>
@@ -160,7 +159,6 @@
 
                 <div class="course-actions">
                     @{
-             
                         string status = ViewBag.EnrollmentStatus as string;
 
                         if (status == "Requested")
@@ -178,6 +176,14 @@
                                 <ion-icon name="checkmark-circle-outline"></ion-icon>
                                 <span>Accepted</span>
                             </button>
+
+                            <a href="@Url.Action("UnenrollCourse", "enrollCourses", new { courseId = Model.CourseID })"
+                               class="btn-enroll"
+                               style="background-color: #ef4444; flex: 1;"
+                               onclick="return confirm('Are you sure you want to unenroll from this course?');">
+                                <ion-icon name="log-out-outline"></ion-icon>
+                                <span>Unenroll</span>
+                            </a>
                         }
                         else if (status == "Rejected")
                         {
@@ -216,6 +222,27 @@
             <p>&copy; 2026 LearnLink. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Toast Notification (Properly inside body) -->
+    @if (TempData["ToastMessage"] != null)
+    {
+        <div id="glass-toast" class="glass-toast show @TempData["ToastType"]">
+            <ion-icon name="checkmark-circle"></ion-icon>
+            <span class="toast-msg">@TempData["ToastMessage"]</span>
+            <button class="toast-close" onclick="document.getElementById('glass-toast').classList.remove('show')">
+                <ion-icon name="close"></ion-icon>
+            </button>
+        </div>
+
+        <script>
+            setTimeout(() => {
+                const toast = document.getElementById('glass-toast');
+                if (toast) {
+                    toast.classList.remove('show');
+                }
+            }, 4000); // Fades out after 4 seconds
+        </script>
+    }
 
     <script>
         // Mobile menu toggle
