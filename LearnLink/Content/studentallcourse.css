@@ -1,4 +1,4 @@
-﻿:root {
+:root {
     --bg-dark: #0f172a;
     --card-bg: rgba(30, 41, 59, 0.7);
     --card-border: #334155;
@@ -76,15 +76,15 @@ body {
     transition: all 0.2s ease;
 }
 
-.nav-link:hover, .nav-link.active {
-    color: var(--text-main);
-    background: var(--primary-light);
-}
+    .nav-link:hover, .nav-link.active {
+        color: var(--text-main);
+        background: var(--primary-light);
+    }
 
-.nav-link.active {
-    color: var(--primary);
-    font-weight: 600;
-}
+    .nav-link.active {
+        color: var(--primary);
+        font-weight: 600;
+    }
 
 .navbar-user {
     display: flex;
@@ -124,10 +124,10 @@ body {
     transition: 0.2s;
 }
 
-.logout-btn:hover {
-    color: #ef4444;
-    background: rgba(239, 68, 68, 0.1);
-}
+    .logout-btn:hover {
+        color: #ef4444;
+        background: rgba(239, 68, 68, 0.1);
+    }
 
 .navbar-toggle {
     display: none;
@@ -136,11 +136,11 @@ body {
     cursor: pointer;
 }
 
-.navbar-toggle span {
-    width: 22px;
-    height: 2px;
-    background: var(--text-main);
-}
+    .navbar-toggle span {
+        width: 22px;
+        height: 2px;
+        background: var(--text-main);
+    }
 
 /* Page Container */
 .main-content {
@@ -210,10 +210,10 @@ body {
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.search-input-group:focus-within {
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px var(--primary-light);
-}
+    .search-input-group:focus-within {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px var(--primary-light);
+    }
 
 .search-icon {
     font-size: 1.2rem;
@@ -230,9 +230,9 @@ body {
     font-size: 0.95rem;
 }
 
-.search-input::placeholder {
-    color: var(--text-muted);
-}
+    .search-input::placeholder {
+        color: var(--text-muted);
+    }
 
 .search-btn {
     display: flex;
@@ -248,9 +248,9 @@ body {
     transition: background 0.2s ease;
 }
 
-.search-btn:hover {
-    background: var(--primary-hover);
-}
+    .search-btn:hover {
+        background: var(--primary-hover);
+    }
 
 /* Table Card */
 .table-card {
@@ -266,10 +266,10 @@ body {
     border-bottom: 1px solid var(--card-border);
 }
 
-.table-header h2 {
-    font-size: 1.2rem;
-    font-weight: 600;
-}
+    .table-header h2 {
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
 
 .course-count {
     color: var(--text-muted);
@@ -282,35 +282,35 @@ body {
     text-align: left;
 }
 
-.courses-table th {
-    background: rgba(15, 23, 42, 0.4);
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 0.9rem 1.5rem;
-    border-bottom: 1px solid var(--card-border);
-}
+    .courses-table th {
+        background: rgba(15, 23, 42, 0.4);
+        color: var(--text-muted);
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        padding: 0.9rem 1.5rem;
+        border-bottom: 1px solid var(--card-border);
+    }
 
-.courses-table td {
-    padding: 1rem 1.5rem;
-    border-bottom: 1px solid var(--card-border);
-    font-size: 0.9rem;
-    color: var(--text-main);
-    vertical-align: middle;
-}
+    .courses-table td {
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid var(--card-border);
+        font-size: 0.9rem;
+        color: var(--text-main);
+        vertical-align: middle;
+    }
 
-.courses-table tbody tr {
-    transition: background 0.2s ease;
-}
+    .courses-table tbody tr {
+        transition: background 0.2s ease;
+    }
 
-.courses-table tbody tr:hover {
-    background: var(--hover-bg);
-}
+        .courses-table tbody tr:hover {
+            background: var(--hover-bg);
+        }
 
-.courses-table tbody tr:last-child td {
-    border-bottom: none;
-}
+        .courses-table tbody tr:last-child td {
+            border-bottom: none;
+        }
 
 .badge-id {
     background: rgba(148, 163, 184, 0.1);
@@ -352,10 +352,10 @@ body {
     transition: all 0.2s ease;
 }
 
-.btn-view:hover {
-    background: var(--primary);
-    color: #fff;
-}
+    .btn-view:hover {
+        background: var(--primary);
+        color: #fff;
+    }
 
 /* Empty State */
 .empty-state {
@@ -404,10 +404,10 @@ body {
     color: var(--text-muted);
 }
 
-.btn-secondary:hover {
-    background: var(--hover-bg);
-    color: var(--text-main);
-}
+    .btn-secondary:hover {
+        background: var(--hover-bg);
+        color: var(--text-main);
+    }
 
 /* Footer */
 .footer {
@@ -432,9 +432,9 @@ body {
         padding: 1rem;
     }
 
-    .navbar-menu.active {
-        display: block;
-    }
+        .navbar-menu.active {
+            display: block;
+        }
 
     .nav-links {
         flex-direction: column;
@@ -457,24 +457,24 @@ body {
         width: 100%;
     }
 
-    .courses-table tr {
-        border-bottom: 1px solid var(--card-border);
-        padding: 0.8rem 0;
-    }
+        .courses-table tr {
+            border-bottom: 1px solid var(--card-border);
+            padding: 0.8rem 0;
+        }
 
-    .courses-table td {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0.5rem 1.5rem;
-        border-bottom: none;
-    }
+        .courses-table td {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 1.5rem;
+            border-bottom: none;
+        }
 
-    .courses-table td::before {
-        content: attr(data-label);
-        font-size: 0.8rem;
-        font-weight: 600;
-        color: var(--text-muted);
-        text-transform: uppercase;
-    }
+            .courses-table td::before {
+                content: attr(data-label);
+                font-size: 0.8rem;
+                font-weight: 600;
+                color: var(--text-muted);
+                text-transform: uppercase;
+            }
 }

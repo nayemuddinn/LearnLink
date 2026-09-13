@@ -199,6 +199,7 @@
     <Content Include="Content\participation.css" />
     <Content Include="Content\ShowCourseMaterials.css" />
     <Content Include="Content\StartQuiz.css" />
+    <Content Include="Content\studentallcourse.css" />
     <Content Include="Content\textfield.css" />
     <Content Include="Content\unenroll.css" />
     <Content Include="Content\UnEnrollBut.css" />

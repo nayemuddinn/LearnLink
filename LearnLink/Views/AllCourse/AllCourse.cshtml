@@ -1,133 +1,141 @@
 ﻿@model List<LearnLink.Models.Course>
 
+@{
+    ViewBag.Title = "All Courses";
+    Layout = null;
+    string userRole = Session["UserRole"] != null ? Session["UserRole"].ToString() : "";
+    string userName = Session["UserName"] != null ? Session["UserName"].ToString() : "Guest";
+}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student LearnLink</title>
-    <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
-    <link href="@Url.Content("/Content/AllCourses.css")" rel="stylesheet" />
-    <link href="@Url.Content("/Content/backbutton2.css")" rel="stylesheet" />
-    <link href="@Url.Content("/Content/mid.css")" rel="stylesheet" />
+    <title>All Courses - LearnLink</title>
+    <link href="@Url.Content("~/Content/studentallcourse.css")" rel="stylesheet" />
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
-    <div class="responsive-wrapper">
-        <div class="app">
-            <div class="app-header">
-                <div class="logo">
-                    <div class="logo-icon">
-                        <ion-icon name="school-outline"></ion-icon>
-                    </div>
-                    <div class="logo-title">
-                        <span>LearnLink</span>
-                        <span>@HttpContext.Current.Session["UserRole"]</span>
-                    </div>
-                </div>
-                <div class="app-header-navigation">
-
-                </div>
-                <div class="app-header-actions">
-
-                    <h3>All Courses</h3>
-                    <div class="app-header-actions-buttons">
-                        <ion-icon size="large" name="person-circle"></ion-icon>
-                        <h3>@HttpContext.Current.Session["UserName"]</h3>
-                    </div>
-                </div>
-                <div class="app-header-mobile">
-
-                    <h3>All Courses</h3>
-                    <ion-icon size="large" name="person-circle"></ion-icon>
-                    <h3>@HttpContext.Current.Session["UserName"]</h3>
-                </div>
+    <!-- Top Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <ion-icon name="school-outline" class="logo-icon"></ion-icon>
+                <span class="logo-text">LearnLink</span>
             </div>
 
-            <div class="app-body">
-                @{
-                    if (Session["UserRole"].Equals("Student"))
+            <div class="navbar-menu">
+                <div class="nav-links">
+                    @if (userRole == "Student")
                     {
-                        <div class="app-body-navigation">
-                            <nav class="navigation">
-                                <a href="@Url.Action("AllCourse", "AllCourse")">
-                                    <i class="icon ion-md-book"></i>
-                                    <span>All Courses</span>
-                                </a>
-                                <a href="@Url.Action("ViewEnrolledCourses", "StudentEnrolledCourses")">
-                                    <i class="icon ion-md-person-add"></i>
-                                    <span>Enrolled Courses</span>
-                                </a>
-                                <a href="@Url.Action("Assessment", "Assessment")">
-                                    <i class="icon ion-md-checkmark-circle"></i>
-                                    <span>Assessments</span>
-                                </a>
-                                
-                                <a href="@Url.Action("editStudentProfile", "editStudentProfile")">
-                                    <i class="icon ion-md-person"></i>
-                                    <span>Edit Profile</span>
-                                </a>
-                                <a href="@Url.Action("login", "Login")">
-                                    <i class="icon ion-md-exit"></i>
-                                    <span>Log Out</span>
-                                </a>
-                            </nav>
-                        </div>
+                        <a href="@Url.Action("AllCourse", "AllCourse")" class="nav-link active">
+                            <ion-icon name="book-outline"></ion-icon>
+                            <span>All Courses</span>
+                        </a>
+                        <a href="@Url.Action("ViewEnrolledCourses", "StudentEnrolledCourses")" class="nav-link">
+                            <ion-icon name="school-outline"></ion-icon>
+                            <span>Enrolled</span>
+                        </a>
+                        <a href="@Url.Action("Assessment", "Assessment")" class="nav-link">
+                            <ion-icon name="checkmark-circle-outline"></ion-icon>
+                            <span>Assessments</span>
+                        </a>
                     }
                     else
                     {
-                        <div class="app-body-navigation">
-                            <nav class="navigation">
-                                <a href="@Url.Action("ManageCourse", "ManageCourse")">
-                                    <i class="icon ion-md-book"></i>
-                                    <span>Manage Courses</span>
-                                </a>
-                                <a href="@Url.Action("createCourse", "createCourse")">
-                                    <i class="icon ion-md-add-circle"></i>
-                                    <span>Create Courses</span>
-                                </a>
-                                <a href="@Url.Action("courseMaterials", "courseMaterials")">
-                                    <i class="icon ion-md-add-circle"></i>
-                                    <span>CourseMaterials</span>
-                                </a>
-                                <a href="@Url.Action("enrollStudents", "enrollStudents")">
-                                    <i class="icon ion-md-person-add"></i>
-                                    <span>Enroll Students</span>
-                                </a>
-                                <a href="@Url.Action("Assessment", "Assessment")">
-                                    <i class="icon ion-md-checkmark-circle"></i>
-                                    <span>Assessments</span>
-                                </a>
-                                
-                                <a href="@Url.Action("editteacherProfile", "editteacherProfile")">
-                                    <i class="icon ion-md-person"></i>
-                                    <span>Edit Profile</span>
-                                </a>
-                                <a href="@Url.Action("login", "Login")">
-                                    <i class="icon ion-md-exit"></i>
-                                    <span>Log Out</span>
-                                </a>
-                            </nav>
-                        </div>
+                        <a href="@Url.Action("ManageCourse", "ManageCourse")" class="nav-link">
+                            <ion-icon name="book-outline"></ion-icon>
+                            <span>Manage</span>
+                        </a>
+                        <a href="@Url.Action("createCourse", "createCourse")" class="nav-link">
+                            <ion-icon name="add-circle-outline"></ion-icon>
+                            <span>Create</span>
+                        </a>
+                        <a href="@Url.Action("courseMaterials", "courseMaterials")" class="nav-link">
+                            <ion-icon name="document-outline"></ion-icon>
+                            <span>Materials</span>
+                        </a>
+                        <a href="@Url.Action("enrollStudents", "enrollStudents")" class="nav-link">
+                            <ion-icon name="people-outline"></ion-icon>
+                            <span>Enroll</span>
+                        </a>
                     }
-                }
+                </div>
+            </div>
 
-                <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+            <div class="navbar-user">
+                <div class="user-info">
+                    <ion-icon name="person-circle" class="user-avatar"></ion-icon>
+                    <div class="user-details">
+                        <p class="user-name">@userName</p>
+                        <p class="user-role">@userRole</p>
+                    </div>
+                </div>
+                <a href="@Url.Action("login", "Login")" class="logout-btn" title="Log Out">
+                    <ion-icon name="log-out-outline"></ion-icon>
+                </a>
+            </div>
 
+            <div class="navbar-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
 
-                <div class="mid">
-                    <div class="app-body-content">
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <div class="page-container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="header-content">
+                    <div class="header-text">
+                        <h1>All Courses</h1>
+                        <p>Browse and explore available courses. Search by ID, name, or instructor to find what you're looking for.</p>
+                    </div>
+                    <div class="header-illustration">
+                        <div class="illustration-box">
+                            <ion-icon name="library-outline"></ion-icon>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <!-- Search Form Section -->
+            <div class="search-section">
+                <form method="get" action="@Url.Action("AllCourse", "AllCourse")" class="search-form">
+                    <div class="search-input-group">
+                        <ion-icon name="search-outline" class="search-icon"></ion-icon>
+                        <input type="text" name="searchTerm" placeholder="Search by ID, name, or teacher..." value="@ViewBag.SearchTerm" class="search-input" autocomplete="off" />
+                        <button type="submit" class="search-btn">
+                            <ion-icon name="search-outline"></ion-icon>
+                            <span>Search</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Courses Table Section -->
+            <div class="table-wrapper">
+                <div class="table-card">
+                    <div class="table-header">
                         <div>
-                            <form method="get" action="@Url.Action("AllCourse", "AllCourse")" class="search-form">
-                                <input type="text" name="searchTerm" placeholder="ID, name, or teacher" value="@ViewBag.SearchTerm" />
-                                <button type="submit">Search</button>
-                            </form>
+                            <h2>Course Listing</h2>
+                            <span class="course-count">@(Model != null ? Model.Count : 0) course(s) available</span>
+                        </div>
+                    </div>
 
-                            <table class="transparent-table">
+                    <div class="table-body">
+                        @if (Model != null && Model.Count > 0)
+                        {
+                            <table class="courses-table">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Name</th>
+                                        <th>Course Name</th>
                                         <th>Instructor</th>
                                         <th>Fee</th>
                                         <th>Action</th>
@@ -137,44 +145,68 @@
                                     @foreach (var course in Model)
                                     {
                                         <tr>
-                                            <td>@course.CourseID</td>
-                                            <td>@course.CourseName</td>
-                                            <td>@course.TeacherName</td>
-                                            <td>@course.CourseFee</td>
-                                            <td>
-                                                <a href="@Url.Action("StudentCourseDetails", "AllCourse", new { cId =course.CourseID })" class="tile-buttons view">
-                                                    <span class="view-button">View</span>
+                                            <td data-label="ID"><span class="badge-id">#@course.CourseID</span></td>
+                                            <td data-label="Name" class="font-weight-medium">@course.CourseName</td>
+                                            <td data-label="Instructor">
+                                                <div class="teacher-cell">
+                                                    <ion-icon name="person-outline"></ion-icon>
+                                                    <span>@course.TeacherName</span>
+                                                </div>
+                                            </td>
+                                            <td data-label="Fee" class="fee-text">$@course.CourseFee</td>
+                                            <td data-label="Action">
+                                                <a href="@Url.Action("StudentCourseDetails", "AllCourse", new { cId = course.CourseID })" class="btn-view">
+                                                    <ion-icon name="eye-outline"></ion-icon>
+                                                    <span>View</span>
                                                 </a>
-
                                             </td>
                                         </tr>
                                     }
                                 </tbody>
                             </table>
-                            <br /><br />
-
-                            <div>
-                                <button type="button" class="btn btn-back" onclick="window.location.href='/StudentDashboard/Dashboard'">Back</button>
+                        }
+                        else
+                        {
+                            <div class="empty-state">
+                                <ion-icon name="search-outline" class="empty-icon"></ion-icon>
+                                <h3>No courses found</h3>
+                                <p>Try adjusting your search criteria or browse all available courses.</p>
                             </div>
-
-
-                        </div>
+                        }
                     </div>
                 </div>
-
-
-                </div>
-                <br /><br />
-                <div class="footer">
-                   
-                    <div>
-                        &copy; 2024 LearnLink. All rights reserved.
-                    </div>
-                </div>
-
-
             </div>
-    </div>
-    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+            <!-- Form Actions -->
+            <div class="form-actions">
+                @if (userRole == "Student")
+                {
+                    <a href="@Url.Action("Dashboard", "StudentDashboard")" class="btn btn-secondary">
+                        <ion-icon name="arrow-back-outline"></ion-icon>
+                        <span>Back to Dashboard</span>
+                    </a>
+                }
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 LearnLink. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelector('.navbar-toggle').addEventListener('click', function() {
+            document.querySelector('.navbar-menu').classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelector('.navbar-menu').classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
