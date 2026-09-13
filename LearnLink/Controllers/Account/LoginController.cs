@@ -21,7 +21,7 @@ namespace LearnLink.Controllers.Account
             string role = user.Role;
 
             // Validate role before using it in SQL
-            if (role != "teacher" && role != "student")
+            if (role != "Teacher" && role != "Student")
             {
                 return Json(new
                 {

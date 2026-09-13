@@ -1,75 +1,110 @@
-﻿@using LearnLink.Models;
+﻿@using LearnLink.Models
 
-@{
-    var alertMessage = TempData["AlertMessage"] as string;
-}
-
-<!-- View uses shared layout (do not include <head> or <html> here) -->
 <main class="auth-container">
-
     <div class="auth-content">
-        <!-- Left Section: Welcome/Branding -->
+
+        <!-- Left Section: Welcome / Branding -->
         <div class="auth-left-section">
             <div class="auth-branding">
-                <h1>Join LearnLink</h1>
-                <p>Start Your Learning Journey Today</p>
+
+                <h1>LearnLink</h1>
+                <p>Connect, Learn, and Grow</p>
+
                 <div class="auth-features">
+
                     <div class="feature-item">
-                        <ion-icon name="flash-outline"></ion-icon>
-                        <span>Quick Registration</span>
+                        <ion-icon name="checkmark-circle-outline"></ion-icon>
+                        <span>Seamless Learning</span>
                     </div>
+
                     <div class="feature-item">
-                        <ion-icon name="shield-checkmark-outline"></ion-icon>
-                        <span>Secure & Private</span>
+                        <ion-icon name="checkmark-circle-outline"></ion-icon>
+                        <span>Collaborative Platform</span>
                     </div>
+
                     <div class="feature-item">
-                        <ion-icon name="people-outline"></ion-icon>
-                        <span>Join a Community</span>
+                        <ion-icon name="checkmark-circle-outline"></ion-icon>
+                        <span>Accessible Anywhere</span>
                     </div>
+
                 </div>
+
             </div>
         </div>
 
-        <!-- Right Section: Form -->
+
+        <!-- Right Section: Registration Form -->
         <div class="auth-right-section">
+
             <div class="auth-form-container">
 
-
-                <!-- Form -->
-                <form id="registrationForm" action="" method="post" class="auth-form reg-form">
+                <form action="@Url.Action("reg", "Registration")"
+                      method="post"
+                      class="auth-form reg-form"
+                      id="registrationForm"
+                      novalidate>
 
                     <h2>Create Your Account</h2>
 
-                    <!-- Role Selection Toggle -->
+
+                    <!-- ROLE SELECTION -->
                     <div class="auth-role-selector">
+
                         <p class="role-label">Register as</p>
 
                         <div class="role-toggle-container">
-                            <input type="radio" id="role-teacher" name="Role" value="teacher" checked>
-                            <label for="role-teacher" class="role-toggle-btn">
+
+                            <input type="radio"
+                                   id="role-teacher"
+                                   name="Role"
+                                   value="teacher"
+                                   checked>
+
+                            <label for="role-teacher"
+                                   class="role-toggle-btn">
+
                                 <ion-icon name="school-outline"></ion-icon>
                                 <span>Teacher</span>
+
                             </label>
 
-                            <input type="radio" id="role-student" name="Role" value="student">
-                            <label for="role-student" class="role-toggle-btn">
+
+                            <input type="radio"
+                                   id="role-student"
+                                   name="Role"
+                                   value="student">
+
+                            <label for="role-student"
+                                   class="role-toggle-btn">
+
                                 <ion-icon name="person-outline"></ion-icon>
                                 <span>Student</span>
+
                             </label>
+
                         </div>
+
                     </div>
 
 
-                    <!-- Personal Information Section -->
+                    <!-- PERSONAL INFORMATION -->
                     <div class="form-section">
-                        <h3 class="section-title">Personal Information</h3>
+
+                        <h3 class="section-title">
+                            Personal Information
+                        </h3>
 
                         <div class="form-row">
 
+                            <!-- Name -->
                             <div class="form-group form-group-half">
-                                <label for="Name">Full Name</label>
+
+                                <label for="Name">
+                                    Full Name
+                                </label>
 
                                 <div class="input-wrapper">
+
                                     <span class="input-icon">
                                         <ion-icon name="person-outline"></ion-icon>
                                     </span>
@@ -77,18 +112,25 @@
                                     <input type="text"
                                            id="Name"
                                            name="Name"
-                                           placeholder="John Doe"
-                                           required>
+                                           placeholder="John Doe">
+
                                 </div>
 
-                                <span class="field-error" id="NameError"></span>
+                                <span class="field-error"
+                                      id="nameError"></span>
+
                             </div>
 
 
+                            <!-- Email -->
                             <div class="form-group form-group-half">
-                                <label for="Email">Email Address</label>
+
+                                <label for="Email">
+                                    Email Address
+                                </label>
 
                                 <div class="input-wrapper">
+
                                     <span class="input-icon">
                                         <ion-icon name="mail-outline"></ion-icon>
                                     </span>
@@ -96,28 +138,38 @@
                                     <input type="email"
                                            id="Email"
                                            name="Email"
-                                           placeholder="you@example.com"
-                                           required>
+                                           placeholder="you@example.com">
+
                                 </div>
 
-                                <span class="field-error" id="EmailError"></span>
+                                <span class="field-error"
+                                      id="emailError"></span>
+
                             </div>
 
                         </div>
+
                     </div>
 
 
-                    <!-- Account Security Section -->
+                    <!-- ACCOUNT SECURITY -->
                     <div class="form-section">
-                        <h3 class="section-title">Account Security</h3>
+
+                        <h3 class="section-title">
+                            Account Security
+                        </h3>
 
                         <div class="form-row">
 
                             <!-- Password -->
                             <div class="form-group form-group-half">
-                                <label for="Password">Password</label>
+
+                                <label for="Password">
+                                    Password
+                                </label>
 
                                 <div class="input-wrapper">
+
                                     <span class="input-icon">
                                         <ion-icon name="lock-closed-outline"></ion-icon>
                                     </span>
@@ -125,19 +177,25 @@
                                     <input type="password"
                                            id="Password"
                                            name="Password"
-                                           placeholder="Create a strong password"
-                                           required>
+                                           placeholder="Create a strong password">
+
                                 </div>
 
-                                <span class="field-error" id="PasswordError"></span>
+                                <span class="field-error"
+                                      id="passwordError"></span>
+
                             </div>
 
 
                             <!-- Confirm Password -->
                             <div class="form-group form-group-half">
-                                <label for="ConfirmPassword">Confirm Password</label>
+
+                                <label for="ConfirmPassword">
+                                    Confirm Password
+                                </label>
 
                                 <div class="input-wrapper">
+
                                     <span class="input-icon">
                                         <ion-icon name="lock-closed-outline"></ion-icon>
                                     </span>
@@ -145,76 +203,38 @@
                                     <input type="password"
                                            id="ConfirmPassword"
                                            name="ConfirmPassword"
-                                           placeholder="Re-enter your password"
-                                           required>
+                                           placeholder="Re-enter your password">
+
                                 </div>
 
-                                <span class="field-error" id="ConfirmPasswordError"></span>
+                                <span class="field-error"
+                                      id="confirmPasswordError"></span>
+
                             </div>
 
                         </div>
 
-
-                        <div class="form-row">
-
-                            <!-- PIN -->
-                            <div class="form-group form-group-half">
-                                <label for="PIN">Personal PIN</label>
-
-                                <div class="input-wrapper">
-                                    <span class="input-icon">
-                                        <ion-icon name="key-outline"></ion-icon>
-                                    </span>
-
-                                    <input type="password"
-                                           id="PIN"
-                                           name="PIN"
-                                           placeholder="4-6 digit PIN"
-                                           required>
-                                </div>
-
-                                <span class="field-error" id="PINError"></span>
-                            </div>
-
-
-                            <!-- Confirm PIN -->
-                            <div class="form-group form-group-half">
-                                <label for="ConfirmPIN">Confirm PIN</label>
-
-                                <div class="input-wrapper">
-                                    <span class="input-icon">
-                                        <ion-icon name="key-outline"></ion-icon>
-                                    </span>
-
-                                    <input type="password"
-                                           id="ConfirmPIN"
-                                           name="ConfirmPIN"
-                                           placeholder="Re-enter your PIN"
-                                           required>
-                                </div>
-
-                                <span class="field-error" id="ConfirmPINError"></span>
-                            </div>
-
-                        </div>
-
-                        <p class="section-hint">
-                            Your PIN helps you recover your account if you forget your password
-                        </p>
                     </div>
 
 
-                    <!-- Contact & Institution Section -->
+                    <!-- CONTACT & INSTITUTION -->
                     <div class="form-section">
-                        <h3 class="section-title">Contact & Institution</h3>
+
+                        <h3 class="section-title">
+                            Contact & Institution
+                        </h3>
 
                         <div class="form-row">
 
                             <!-- Phone -->
                             <div class="form-group form-group-half">
-                                <label for="Phone">Phone Number</label>
+
+                                <label for="Phone">
+                                    Phone Number
+                                </label>
 
                                 <div class="input-wrapper">
+
                                     <span class="input-icon">
                                         <ion-icon name="call-outline"></ion-icon>
                                     </span>
@@ -222,19 +242,25 @@
                                     <input type="text"
                                            id="Phone"
                                            name="Phone"
-                                           placeholder="+1 (555) 123-4567"
-                                           required>
+                                           placeholder="01XXXXXXXXX">
+
                                 </div>
 
-                                <span class="field-error" id="PhoneError"></span>
+                                <span class="field-error"
+                                      id="phoneError"></span>
+
                             </div>
 
 
                             <!-- Institution -->
                             <div class="form-group form-group-half">
-                                <label for="Institution">Institution</label>
+
+                                <label for="Institution">
+                                    Institution
+                                </label>
 
                                 <div class="input-wrapper">
+
                                     <span class="input-icon">
                                         <ion-icon name="school-outline"></ion-icon>
                                     </span>
@@ -242,11 +268,13 @@
                                     <input type="text"
                                            id="Institution"
                                            name="Institution"
-                                           placeholder="Your School/University"
-                                           required>
+                                           placeholder="Your School/University">
+
                                 </div>
 
-                                <span class="field-error" id="InstitutionError"></span>
+                                <span class="field-error"
+                                      id="institutionError"></span>
+
                             </div>
 
                         </div>
@@ -256,9 +284,13 @@
                         <div class="form-row">
 
                             <div class="form-group">
-                                <label for="Address">Address</label>
+
+                                <label for="Address">
+                                    Address
+                                </label>
 
                                 <div class="input-wrapper">
+
                                     <span class="input-icon">
                                         <ion-icon name="home-outline"></ion-icon>
                                     </span>
@@ -266,232 +298,52 @@
                                     <input type="text"
                                            id="Address"
                                            name="Address"
-                                           placeholder="Street, City, State"
-                                           required>
+                                           placeholder="Street, City, State">
+
                                 </div>
 
-                                <span class="field-error" id="AddressError"></span>
+                                <span class="field-error"
+                                      id="addressError"></span>
+
                             </div>
 
                         </div>
+
                     </div>
 
 
-                    <button type="submit" name="Register" class="btn-primary">
+                    <!-- SUBMIT -->
+                    <button type="submit"
+                            class="btn-primary"
+                            id="registerButton">
+
                         Create Account
+
                     </button>
 
                 </form>
 
-                <script>
-                    document.getElementById("registrationForm").addEventListener("submit", function (event) {
-
-                        let isValid = true;
-
-                        // Get inputs
-                        const name = document.getElementById("Name");
-                        const email = document.getElementById("Email");
-
-                        const password = document.getElementById("Password");
-                        const confirmPassword = document.getElementById("ConfirmPassword");
-
-                        const pin = document.getElementById("PIN");
-                        const confirmPIN = document.getElementById("ConfirmPIN");
-
-                        const phone = document.getElementById("Phone");
-                        const institution = document.getElementById("Institution");
-                        const address = document.getElementById("Address");
-
-
-                        // Clear old errors
-                        document.querySelectorAll(".field-error").forEach(function (error) {
-                            error.textContent = "";
-                        });
-
-                        document.querySelectorAll(".input-error").forEach(function (input) {
-                            input.classList.remove("input-error");
-                        });
-
-
-                        // -------------------------
-                        // NAME
-                        // -------------------------
-
-                        if (name.value.trim() === "") {
-                            showError(name, "NameError", "Please enter your name.");
-                            isValid = false;
-                        }
-
-
-                        // -------------------------
-                        // EMAIL
-                        // -------------------------
-
-                        if (email.value.trim() === "") {
-                            showError(email, "EmailError", "Please enter your email.");
-                            isValid = false;
-                        }
-                        else if (!email.validity.valid) {
-                            showError(email, "EmailError", "Please enter a valid email address.");
-                            isValid = false;
-                        }
-
-
-                        // -------------------------
-                        // PASSWORD
-                        // -------------------------
-
-                        if (password.value.length < 6) {
-
-                            showError(
-                                password,
-                                "PasswordError",
-                                "Password must be at least 6 characters."
-                            );
-
-                            isValid = false;
-                        }
-                        else if (!/[0-9]/.test(password.value)) {
-
-                            showError(
-                                password,
-                                "PasswordError",
-                                "Password must contain at least one digit."
-                            );
-
-                            isValid = false;
-                        }
-                        else if (!/[^a-zA-Z0-9]/.test(password.value)) {
-
-                            showError(
-                                password,
-                                "PasswordError",
-                                "Password must contain at least one special character."
-                            );
-
-                            isValid = false;
-                        }
-
-
-                        // -------------------------
-                        // CONFIRM PASSWORD
-                        // -------------------------
-
-                        if (password.value !== confirmPassword.value) {
-
-                            showError(
-                                confirmPassword,
-                                "ConfirmPasswordError",
-                                "Passwords do not match."
-                            );
-
-                            isValid = false;
-                        }
-
-
-                        // -------------------------
-                        // PIN
-                        // -------------------------
-
-                        if (!/^[0-9]{4,6}$/.test(pin.value)) {
-
-                            showError(
-                                pin,
-                                "PINError",
-                                "PIN must contain 4 to 6 digits."
-                            );
-
-                            isValid = false;
-                        }
-
-
-                        // -------------------------
-                        // CONFIRM PIN
-                        // -------------------------
-
-                        if (pin.value !== confirmPIN.value) {
-
-                            showError(
-                                confirmPIN,
-                                "ConfirmPINError",
-                                "PINs do not match."
-                            );
-
-                            isValid = false;
-                        }
-
-
-                        // -------------------------
-                        // PHONE
-                        // -------------------------
-
-                        if (phone.value.trim() === "") {
-
-                            showError(
-                                phone,
-                                "PhoneError",
-                                "Please enter your phone number."
-                            );
-
-                            isValid = false;
-                        }
-
-
-                        // -------------------------
-                        // INSTITUTION
-                        // -------------------------
-
-                        if (institution.value.trim() === "") {
-
-                            showError(
-                                institution,
-                                "InstitutionError",
-                                "Please enter your institution."
-                            );
-
-                            isValid = false;
-                        }
-
-
-                        // -------------------------
-                        // ADDRESS
-                        // -------------------------
-
-                        if (address.value.trim() === "") {
-
-                            showError(
-                                address,
-                                "AddressError",
-                                "Please enter your address."
-                            );
-
-                            isValid = false;
-                        }
-
-                        if (!isValid) {
-                            event.preventDefault();
-                        }
-                    });
-
-
-                    // Helper function
-                    function showError(input, errorId, message) {
-
-                        input.classList.add("input-error");
-
-                        document.getElementById(errorId).textContent = message;
-                    }
-                </script>
-
-
 
                 <!-- Login Link -->
                 <div class="auth-footer-link">
-                    <p>Already have an account? <a href="@Url.Action("login", "Login")">Sign in here</a></p>
+
+                    <p>
+                        Already have an account?
+
+                        <a href="@Url.Action("Login", "Login")">
+                            Sign in
+                        </a>
+                    </p>
+
                 </div>
+
             </div>
+
         </div>
+
     </div>
 </main>
 
-<script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+<!-- Registration JavaScript -->
+<script src="@Url.Content("~/Scripts/registration.js")"></script>
