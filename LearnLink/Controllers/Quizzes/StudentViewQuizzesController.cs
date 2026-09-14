@@ -359,5 +359,51 @@ namespace LearnLink.Controllers.Quizzes
             TempData["AlertMessage"] = "Submission submitted successfully";
             return RedirectToAction("ViewQuizzes");
         }
+
+        [HttpGet]
+        public ActionResult GetFeedback(int quizID)
+        {
+            if (Session["UserID"] == null)
+            {
+                return RedirectToAction("login", "Login");
+            }
+
+            int studentID = (int)Session["UserID"];
+
+            string feedback = null;
+
+            using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
+            {
+                conn.Open();
+
+                string query = @"
+            SELECT TOP 1 Feedback
+            FROM QuizEvaluation
+            WHERE QuizID = @QuizID
+              AND StudentID = @StudentID
+            ORDER BY SubmissionTime DESC";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add("@QuizID", System.Data.SqlDbType.Int)
+                        .Value = quizID;
+
+                    cmd.Parameters.Add("@StudentID", System.Data.SqlDbType.Int)
+                        .Value = studentID;
+
+                    object result = cmd.ExecuteScalar();
+
+                    if (result != null && result != DBNull.Value)
+                    {
+                        feedback = result.ToString();
+                    }
+                }
+            }
+
+            TempData["Feedback"] = feedback;
+            TempData["FeedbackQuizID"] = quizID;
+
+            return RedirectToAction("ViewQuizzes");
+        }
     }
 }

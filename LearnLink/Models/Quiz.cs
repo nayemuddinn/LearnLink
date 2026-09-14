@@ -18,6 +18,8 @@ namespace LearnLink.Models
         public string Status { get; set; }
         public int Score { get; set; }
         public string TeacherName { get; set; }
+        public string Feedback { get; set; }
+        public int SubmitID { get; set; }
     }
 
 }
