@@ -105,72 +105,193 @@
             </div>
 
             <!-- Table Card -->
-            <div class="table-card">
-                <div class="table-header">
-                    <h2>Enrollment Requests</h2>
-                </div>
-
-                <div class="table-body">
-                    @if (Model != null && Model.Count > 0)
-                    {
-                        <table class="requests-table">
-                            <thead>
-                                <tr>
-                                    <th>Enrollment ID</th>
-                                    <th>Course ID</th>
-                                    <th>Course Name</th>
-                                    <th>Student ID</th>
-                                    <th>Student Name</th>
-                                    <th>Student Institution</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var request in Model)
-                                {
-                                    <tr>
-                                        <td data-label="Enrollment ID">
-                                            <span class="badge-id">#@request.EnrollmentID</span>
-                                        </td>
-                                        <td data-label="Course ID">#@request.CourseID</td>
-                                        <td data-label="Course Name">
-                                            <strong>@request.CourseName</strong>
-                                        </td>
-                                        <td data-label="Student ID">#@request.StudentID</td>
-                                        <td data-label="Student Name">@request.StudentName</td>
-                                        <td data-label="Student Institution">
-                                            <div class="institution-cell">
-                                                <ion-icon name="business-outline"></ion-icon>
-                                                <span>@request.StudentInstitution</span>
-                                            </div>
-                                        </td>
-                                        <td data-label="Action">
-                                            <div class="action-buttons">
-                                                <a href="@Url.Action("UpdateRequest", "enrollStudents", new { enrollmentID = request.EnrollmentID, actionType = "accept" })" class="btn-action btn-accept">
-                                                    <ion-icon name="checkmark-outline"></ion-icon>
-                                                    <span>Accept</span>
-                                                </a>
-                                                <a href="@Url.Action("UpdateRequest", "enrollStudents", new { enrollmentID = request.EnrollmentID, actionType = "reject" })" class="btn-action btn-reject">
-                                                    <ion-icon name="close-outline"></ion-icon>
-                                                    <span>Reject</span>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    }
-                    else
-                    {
-                        <div class="empty-state">
-                            <ion-icon name="checkmark-done-circle-outline" class="empty-icon"></ion-icon>
-                            <h3>No pending requests</h3>
-                            <p>All student enrollment requests have been processed.</p>
-                        </div>
-                    }
-                </div>
+            <div class="table-header">
+                <h2>Enrollment Requests</h2>
             </div>
+
+            <div class="search-section">
+
+                <form method="get"
+                      action="@Url.Action("enrollNewStudents", "enrollStudents")"
+                      class="search-form">
+
+                    <div class="search-controls">
+
+                        <div class="search-input-group">
+
+                            <ion-icon name="search-outline"
+                                      class="search-icon">
+                            </ion-icon>
+
+                            <input type="text"
+                                   name="searchTerm"
+                                   placeholder="Search by  course, student, or institution..."
+                                   value="@ViewBag.SearchTerm"
+                                   class="search-input"
+                                   autocomplete="off" />
+
+                            <button type="submit"
+                                    class="search-btn">
+
+                                <ion-icon name="search-outline"></ion-icon>
+                                <span>Search</span>
+
+                            </button>
+
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="pageSize">Show</label>
+
+                            <select id="pageSize"
+                                    name="pageSize"
+                                    class="filter-select"
+                                    onchange="this.form.submit()">
+
+                                <option value="10"
+                                        @(ViewBag.PageSize == 10 ? "selected" : "")>
+                                    10
+                                </option>
+
+                                <option value="100"
+                                        @(ViewBag.PageSize == 100 ? "selected" : "")>
+                                    100
+                                </option>
+
+                                <option value="1000"
+                                        @(ViewBag.PageSize == 1000 ? "selected" : "")>
+                                    1000
+                                </option>
+
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="sortBy">Sort By</label>
+
+                            <select id="sortBy"
+                                    name="sortBy"
+                                    class="filter-select"
+                                    onchange="this.form.submit()">
+
+                     
+
+                                <option value="CourseID"
+                                        @(ViewBag.SortBy == "CourseID" ? "selected" : "")>
+                                    Course ID
+                                </option>
+
+                                <option value="CourseName"
+                                        @(ViewBag.SortBy == "CourseName" ? "selected" : "")>
+                                    Course Name
+                                </option>
+
+                                <option value="StudentID"
+                                        @(ViewBag.SortBy == "StudentID" ? "selected" : "")>
+                                    Student ID
+                                </option>
+
+                                <option value="StudentName"
+                                        @(ViewBag.SortBy == "StudentName" ? "selected" : "")>
+                                    Student Name
+                                </option>
+
+                                <option value="StudentInstitution"
+                                        @(ViewBag.SortBy == "StudentInstitution" ? "selected" : "")>
+                                    Institution
+                                </option>
+
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="sortOrder">Order</label>
+
+                            <select id="sortOrder"
+                                    name="sortOrder"
+                                    class="filter-select"
+                                    onchange="this.form.submit()">
+
+                                <option value="ASC"
+                                        @(ViewBag.SortOrder == "ASC" ? "selected" : "")>
+                                    Ascending
+                                </option>
+
+                                <option value="DESC"
+                                        @(ViewBag.SortOrder == "DESC" ? "selected" : "")>
+                                    Descending
+                                </option>
+
+                            </select>
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="table-body">
+                @if (Model != null && Model.Count > 0)
+                {
+                    <table class="requests-table">
+                        <thead>
+                            <tr>
+                                <th>Enrollment ID</th>
+                                <th>Course ID</th>
+                                <th>Course Name</th>
+                                <th>Student ID</th>
+                                <th>Student Name</th>
+                                <th>Student Institution</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var request in Model)
+                            {
+                                <tr>
+                                    <td data-label="Enrollment ID">
+                                        <span class="badge-id">#@request.EnrollmentID</span>
+                                    </td>
+                                    <td data-label="Course ID">#@request.CourseID</td>
+                                    <td data-label="Course Name">
+                                        <strong>@request.CourseName</strong>
+                                    </td>
+                                    <td data-label="Student ID">#@request.StudentID</td>
+                                    <td data-label="Student Name">@request.StudentName</td>
+                                    <td data-label="Student Institution">
+                                        <div class="institution-cell">
+                                            <ion-icon name="business-outline"></ion-icon>
+                                            <span>@request.StudentInstitution</span>
+                                        </div>
+                                    </td>
+                                    <td data-label="Action">
+                                        <div class="action-buttons">
+                                            <a href="@Url.Action("UpdateRequest", "enrollStudents", new { enrollmentID = request.EnrollmentID, actionType = "accept" })" class="btn-action btn-accept">
+                                                <ion-icon name="checkmark-outline"></ion-icon>
+                                                <span>Accept</span>
+                                            </a>
+                                            <a href="@Url.Action("UpdateRequest", "enrollStudents", new { enrollmentID = request.EnrollmentID, actionType = "reject" })" class="btn-action btn-reject">
+                                                <ion-icon name="close-outline"></ion-icon>
+                                                <span>Reject</span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <div class="empty-state">
+                        <ion-icon name="checkmark-done-circle-outline" class="empty-icon"></ion-icon>
+                        <h3>No pending requests</h3>
+                        <p>All student enrollment requests have been processed.</p>
+                    </div>
+                }
+            </div>
+        </div>
 
             <!-- Back Action Button -->
             <div class="form-actions">

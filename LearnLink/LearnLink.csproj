@@ -196,6 +196,7 @@
     <Content Include="Content\homepage.css" />
     <Content Include="Content\Image\bg.jpg" />
     <Content Include="Content\loginpage.css" />
+    <Content Include="Content\ManageCourse.css" />
     <Content Include="Content\mid.css" />
     <Content Include="Content\participation.css" />
     <Content Include="Content\ShowCourseMaterials.css" />
@@ -207,6 +208,7 @@
     <Content Include="Content\unenrollbutton.css" />
     <Content Include="Content\uploadquiz.css" />
     <Content Include="Content\viewbutton.css" />
+    <Content Include="Content\ViewQuizzes.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
