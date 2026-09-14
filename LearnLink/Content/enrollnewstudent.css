@@ -446,3 +446,112 @@ body {
                 text-transform: uppercase;
             }
 }
+
+/* Search and Filter Section */
+.search-section {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--card-border);
+}
+
+.search-form {
+    width: 100%;
+}
+
+.search-controls {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.search-input-group {
+    min-width: 0;
+    width: 100%;
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    padding: 0.4rem;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+}
+
+.search-icon {
+    flex: 0 0 auto;
+    margin-left: 0.6rem;
+    margin-right: 0.5rem;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+.search-input {
+    min-width: 0;
+    width: 100%;
+    flex: 1 1 auto;
+    padding: 0.65rem 0.5rem;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-main);
+    font-size: 0.9rem;
+}
+
+    .search-input::placeholder {
+        color: var(--text-muted);
+    }
+
+.search-btn {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    margin-left: auto;
+    padding: 0.65rem 1rem;
+    border: none;
+    border-radius: 7px;
+    background: var(--primary);
+    color: #fff;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: background 0.2s ease;
+}
+
+    .search-btn:hover {
+        background: var(--primary-hover);
+    }
+
+.filter-group {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+    .filter-group label {
+        color: var(--text-muted);
+        font-size: 0.8rem;
+        white-space: nowrap;
+    }
+
+.filter-select {
+    padding: 0.65rem 2rem 0.65rem 0.7rem;
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    color: var(--text-main);
+    font-size: 0.85rem;
+    outline: none;
+    cursor: pointer;
+}
+
+    .filter-select:focus {
+        border-color: var(--primary);
+    }
+
+    .filter-select option {
+        background: var(--bg-dark);
+        color: var(--text-main);
+    }

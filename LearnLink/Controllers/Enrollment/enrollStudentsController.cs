@@ -16,42 +16,133 @@ namespace LearnLink.Controllers.Enrollment
         {
             return View();
         }
-        public ActionResult enrollNewStudents()
+        public ActionResult enrollNewStudents(
+     string searchTerm,
+     int pageSize = 10,
+     string sortBy = "CourseID",
+     string sortOrder = "DESC")
         {
-            List<LearnLink.Models.Enrollment> requests = new List<LearnLink.Models.Enrollment>();
+            List<LearnLink.Models.Enrollment> requests =
+                new List<LearnLink.Models.Enrollment>();
+
+            int teacherId = Convert.ToInt32(Session["UserID"]);
+
+            if (pageSize != 10 && pageSize != 100 && pageSize != 1000)
+                pageSize = 10;
+
+
+            string sortColumn;
+
+            switch (sortBy)
+            {
+                case "CourseID":
+                    sortColumn = "c.CourseID";
+                    break;
+
+                case "CourseName":
+                    sortColumn = "c.CourseName";
+                    break;
+
+                case "StudentID":
+                    sortColumn = "r.StudentID";
+                    break;
+
+                case "StudentName":
+                    sortColumn = "s.Name";
+                    break;
+
+                case "StudentInstitution":
+                    sortColumn = "s.Institution";
+                    break;
+
+                default:
+                    sortColumn = "c.CourseID";
+                    sortBy = "CourseID";
+                    break;
+            }
+
+
+            if (sortOrder != "ASC" && sortOrder != "DESC")
+                sortOrder = "DESC";
 
             using (SqlConnection conn = new SqlConnection(DBconnection.connStr))
             {
                 string query = @"
-                    SELECT r.EnrollmentID, c.CourseID, c.CourseName, r.StudentID, s.Name, s.Institution, r.Status
-                    FROM Enrollment r
-                    INNER JOIN Courses c ON r.CourseID = c.CourseID
-                    INNER JOIN Student s ON r.StudentID = s.UserID
-                    WHERE r.TeacherID = @TeacherID AND r.Status = 'Requested'";
+            SELECT TOP (@PageSize)
+                r.EnrollmentID,
+                c.CourseID,
+                c.CourseName,
+                r.StudentID,
+                s.Name,
+                s.Institution,
+                r.Status
+            FROM Enrollment r
+            INNER JOIN Courses c
+                ON r.CourseID = c.CourseID
+            INNER JOIN Student s
+                ON r.StudentID = s.UserID
+            WHERE r.TeacherID = @TeacherID
+              AND r.Status = 'Requested'
+        ";
 
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@TeacherID", Session["UserID"]);
-
-                conn.Open();
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                while (reader.Read())
+    
+                if (!string.IsNullOrWhiteSpace(searchTerm))
                 {
-                    requests.Add(new LearnLink.Models.Enrollment
+                    query += @"
+                AND (
+                    CAST(c.CourseID AS VARCHAR(20)) LIKE @SearchTerm
+                    OR c.CourseName LIKE @SearchTerm
+                    OR CAST(r.StudentID AS VARCHAR(20)) LIKE @SearchTerm
+                    OR s.Name LIKE @SearchTerm
+                    OR s.Institution LIKE @SearchTerm
+                )
+            ";
+                }
+
+            
+                query += $" ORDER BY {sortColumn} {sortOrder}";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add("@TeacherID", System.Data.SqlDbType.Int)
+                        .Value = teacherId;
+
+                    cmd.Parameters.Add("@PageSize", System.Data.SqlDbType.Int)
+                        .Value = pageSize;
+
+                    if (!string.IsNullOrWhiteSpace(searchTerm))
                     {
-                        EnrollmentID = (int)reader["EnrollmentID"],
-                        CourseID = (int)reader["CourseID"],
-                        CourseName = (string)reader["CourseName"],
-                        StudentID = (int)reader["StudentID"],
-                        StudentName = (string)reader["Name"],
-                        StudentInstitution = (string)reader["Institution"],
-                        Status = (string)reader["Status"]
-                    });
+                        cmd.Parameters.Add("@SearchTerm", System.Data.SqlDbType.VarChar)
+                            .Value = "%" + searchTerm.Trim() + "%";
+                    }
+
+                    conn.Open();
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            requests.Add(new LearnLink.Models.Enrollment
+                            {
+                                EnrollmentID = (int)reader["EnrollmentID"],
+                                CourseID = (int)reader["CourseID"],
+                                CourseName = (string)reader["CourseName"],
+                                StudentID = (int)reader["StudentID"],
+                                StudentName = (string)reader["Name"],
+                                StudentInstitution = (string)reader["Institution"],
+                                Status = (string)reader["Status"]
+                            });
+                        }
+                    }
                 }
             }
 
-            return View(requests);
+            ViewBag.SearchTerm = searchTerm;
+            ViewBag.PageSize = pageSize;
+            ViewBag.SortBy = sortBy;
+            ViewBag.SortOrder = sortOrder;
 
+            return View(requests);
         }
 
         public ActionResult UpdateRequest(int enrollmentID, string actionType)

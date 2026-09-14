@@ -196,6 +196,7 @@
     <Content Include="Content\homepage.css" />
     <Content Include="Content\Image\bg.jpg" />
     <Content Include="Content\loginpage.css" />
+    <Content Include="Content\ManageCourse.css" />
     <Content Include="Content\mid.css" />
     <Content Include="Content\participation.css" />
     <Content Include="Content\ShowCourseMaterials.css" />

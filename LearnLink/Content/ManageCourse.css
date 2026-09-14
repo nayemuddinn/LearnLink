@@ -1,0 +1,382 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #0f172a, #1e1b4b, #0f172a);
+    color: #f8fafc;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navbar Styles (Consistent with LearnLink Theme) */
+.navbar {
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 0.8rem 2rem;
+}
+
+.navbar-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-icon {
+    font-size: 2rem;
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.1);
+    padding: 8px;
+    border-radius: 12px;
+}
+
+.logo-text-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-text {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #f8fafc;
+}
+
+.role-badge {
+    font-size: 0.75rem;
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.1);
+    padding: 2px 8px;
+    border-radius: 20px;
+    width: fit-content;
+    font-weight: 500;
+}
+
+.navbar-menu .nav-links {
+    display: flex;
+    gap: 8px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #94a3b8;
+    text-decoration: none;
+    padding: 0.6rem 1rem;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+    .nav-link ion-icon {
+        font-size: 1.2rem;
+    }
+
+    .nav-link:hover, .nav-link.active {
+        color: #f8fafc;
+        background: rgba(255, 255, 255, 0.07);
+    }
+
+.navbar-user {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 6px 14px;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.user-avatar {
+    font-size: 1.5rem;
+    color: #38bdf8;
+}
+
+.user-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.logout-btn {
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #f87171;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+    .logout-btn:hover {
+        background: rgba(239, 68, 68, 0.3);
+        color: #fff;
+    }
+
+.navbar-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+    .navbar-toggle span {
+        width: 25px;
+        height: 3px;
+        background: #f8fafc;
+        border-radius: 2px;
+    }
+
+/* Main Layout */
+.main-content {
+    flex: 1;
+    padding: 3rem 2rem;
+}
+
+.page-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.page-header-title {
+    margin-bottom: 2.5rem;
+}
+
+    .page-header-title h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #f8fafc;
+        margin-bottom: 0.5rem;
+    }
+
+    .page-header-title p {
+        color: #94a3b8;
+        font-size: 1rem;
+    }
+
+/* Grid Layout for Teacher Course Tiles */
+.tiles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 25px;
+}
+
+/* Glassmorphism Card Style */
+.glass-card {
+    background: rgba(30, 41, 59, 0.5);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 1.8rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .glass-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(56, 189, 248, 0.3);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 0 20px rgba(56, 189, 248, 0.1);
+    }
+
+.card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 1.2rem;
+}
+
+.card-icon-wrapper {
+    background: rgba(56, 189, 248, 0.1);
+    color: #38bdf8;
+    font-size: 1.8rem;
+    padding: 12px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+.card-titles h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #f8fafc;
+    margin-bottom: 4px;
+}
+
+.course-id-tag {
+    font-size: 0.8rem;
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.1);
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+.card-body {
+    margin-bottom: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 1rem;
+}
+
+/* Description styling with line clamp */
+.description-item {
+    margin-bottom: 0.8rem;
+    color: #cbd5e1;
+    font-size: 0.85rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limits to 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+    .description-item ion-icon {
+        min-width: 1.1rem; /* Prevents icon from shrinking if text wraps */
+    }
+
+.meta-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    color: #94a3b8;
+    font-size: 0.9rem;
+}
+
+    .meta-item ion-icon {
+        color: #cbd5e1;
+        font-size: 1.1rem;
+        margin-top: 2px;
+    }
+
+/* Card Action Buttons */
+.card-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.btn-action {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-view {
+    background: rgba(56, 189, 248, 0.15);
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+    .btn-view:hover {
+        background: rgba(56, 189, 248, 0.25);
+        color: #fff;
+    }
+
+.btn-quiz {
+    background: rgba(16, 185, 129, 0.15);
+    color: #34d399;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+    .btn-quiz:hover {
+        background: rgba(16, 185, 129, 0.25);
+        color: #fff;
+    }
+
+/* Empty State */
+.empty-state {
+    grid-column: 1 / -1;
+    background: rgba(30, 41, 59, 0.3);
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 4rem 2rem;
+    text-align: center;
+    color: #94a3b8;
+}
+
+    .empty-state ion-icon {
+        font-size: 3.5rem;
+        color: #64748b;
+        margin-bottom: 1rem;
+    }
+
+    .empty-state h3 {
+        font-size: 1.3rem;
+        color: #f8fafc;
+        margin-bottom: 0.5rem;
+    }
+
+/* Back Button */
+.back-action {
+    margin-top: 3rem;
+}
+
+.btn-back {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #f8fafc;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+    .btn-back:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 2rem;
+    color: #64748b;
+    font-size: 0.85rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(15, 23, 42, 0.5);
+}
