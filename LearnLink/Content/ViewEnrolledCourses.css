@@ -1,6 +1,5 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap'); /* ========================================================= GLOBAL ========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -22,7 +21,7 @@ body {
     display: flex;
     flex-direction: column;
 }
-/* ========================================================= NAVBAR ========================================================= */
+
 
 .navbar {
     width: 100%;
@@ -38,6 +37,8 @@ body {
     top: 0;
     z-index: 1000;
 }
+
+
 /* Brand */
 
 .navbar-brand {
@@ -67,19 +68,21 @@ body {
 }
 
 .brand-name {
+    color: #ffffff;
     font-size: 1.15rem;
     font-weight: 700;
-    color: #ffffff;
 }
 
 .brand-role {
     margin-top: 3px;
+    color: #38bdf8;
     font-size: 0.65rem;
     font-weight: 600;
-    color: #38bdf8;
     text-transform: uppercase;
     letter-spacing: 0.08em;
 }
+
+
 /* Navigation */
 
 .navbar-navigation {
@@ -127,17 +130,24 @@ body {
             color: #fca5a5;
             background: rgba(248, 113, 113, 0.08);
         }
-/* ========================================================= MOBILE HEADER ========================================================= */
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
 
 .mobile-header {
     display: none;
 }
-/* ========================================================= MOBILE NAVIGATION ========================================================= */
 
 .mobile-navigation {
     display: none;
 }
-/* ========================================================= MAIN CONTENT ========================================================= */
+
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
 
 .main-content {
     width: min(1200px, calc(100% - 40px));
@@ -145,7 +155,11 @@ body {
     padding: 3rem 0 4rem;
     flex: 1;
 }
-/* ========================================================= PAGE HEADER ========================================================= */
+
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
 
 .page-header {
     display: flex;
@@ -178,9 +192,9 @@ body {
 }
 
 .page-header h1 {
+    color: #ffffff;
     font-size: clamp(1.7rem, 3vw, 2.35rem);
     font-weight: 700;
-    color: #ffffff;
 }
 
 .page-header p {
@@ -188,7 +202,11 @@ body {
     color: #94a3b8;
     font-size: 0.9rem;
 }
-/* ========================================================= USER INFO ========================================================= */
+
+
+/* =========================================================
+   USER CARD
+========================================================= */
 
 .user-info-card {
     display: flex;
@@ -243,9 +261,13 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.08em;
 }
-/* ========================================================= SECTION HEADER ========================================================= */
 
-.materials-section {
+
+/* =========================================================
+   SECTION HEADER
+========================================================= */
+
+.courses-section {
     width: 100%;
 }
 
@@ -253,7 +275,7 @@ body {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.2rem;
 }
 
 .section-label {
@@ -271,7 +293,7 @@ body {
     font-weight: 600;
 }
 
-.material-count {
+.course-count {
     padding: 0.4rem 0.75rem;
     border-radius: 999px;
     color: #cbd5e1;
@@ -279,16 +301,77 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.08);
     font-size: 0.72rem;
 }
-/* ========================================================= MATERIAL GRID ========================================================= */
 
-.materials-grid {
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.search-container {
+    margin-bottom: 1.25rem;
+}
+
+.search-box {
+    width: 100%;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0 1rem;
+    background: rgba(15, 23, 42, 0.68);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    transition: all 0.25s ease;
+}
+
+    .search-box:focus-within {
+        border-color: rgba(56, 189, 248, 0.4);
+        box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.06);
+    }
+
+    .search-box ion-icon {
+        color: #64748b;
+        font-size: 1.15rem;
+    }
+
+    .search-box:focus-within ion-icon {
+        color: #38bdf8;
+    }
+
+    .search-box input {
+        width: 100%;
+        height: 46px;
+        border: none;
+        outline: none;
+        background: transparent;
+        color: #f8fafc;
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.78rem;
+    }
+
+        .search-box input::placeholder {
+            color: #64748b;
+        }
+
+
+/* =========================================================
+   COURSE GRID
+========================================================= */
+
+.courses-grid {
     display: grid;
-    grid-template-columns: repeat( auto-fill, minmax(300px, 1fr) );
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
     gap: 1.2rem;
 }
-/* ========================================================= MATERIAL CARD ========================================================= */
 
-.material-card {
+
+/* =========================================================
+   COURSE CARD
+========================================================= */
+
+.course-card {
     position: relative;
     padding: 1.35rem;
     background: rgba(15, 23, 42, 0.68);
@@ -300,7 +383,7 @@ body {
     transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-    .material-card::before {
+    .course-card::before {
         content: "";
         position: absolute;
         top: 0;
@@ -308,150 +391,226 @@ body {
         width: 100%;
         height: 2px;
         background: linear-gradient( 90deg, #38bdf8, #a855f7 );
-        opacity: 0.7;
+        opacity: 0.75;
     }
 
-    .material-card:hover {
+    .course-card:hover {
         transform: translateY(-5px);
         border-color: rgba(56, 189, 248, 0.22);
         box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28), 0 0 25px rgba(56, 189, 248, 0.04);
     }
-/* Card Top */
 
-.material-card-top {
+
+/* Course Top */
+
+.course-card-top {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 1.15rem;
+    margin-bottom: 1.2rem;
 }
 
-.file-icon {
-    width: 48px;
-    height: 48px;
+.course-icon {
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 13px;
+    border-radius: 14px;
     background: rgba(56, 189, 248, 0.1);
     border: 1px solid rgba(56, 189, 248, 0.15);
     color: #38bdf8;
     font-size: 1.45rem;
 }
 
-.file-type {
-    max-width: 150px;
+.course-id {
     padding: 0.35rem 0.6rem;
     border-radius: 7px;
     background: rgba(168, 85, 247, 0.08);
     border: 1px solid rgba(168, 85, 247, 0.14);
     color: #c4b5fd;
-    font-size: 0.62rem;
-    font-weight: 500;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    font-size: 0.68rem;
+    font-weight: 600;
 }
-/* Details */
 
-.material-details h3 {
+
+/* Course Information */
+
+.course-label {
+    display: block;
+    margin-bottom: 0.3rem;
+    color: #64748b;
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+}
+
+.course-information h3 {
+    min-height: 48px;
     color: #f8fafc;
-    font-size: 1rem;
+    font-size: 1.05rem;
     font-weight: 600;
     line-height: 1.45;
-    min-height: 46px;
     word-break: break-word;
-    overflow: hidden;
 }
 
-.material-meta {
+
+/* Instructor */
+
+.course-instructor {
     display: flex;
-    flex-direction: column;
-    gap: 0.55rem;
-    margin-top: 1rem;
-    padding-top: 0.9rem;
+    align-items: center;
+    gap: 0.7rem;
+    margin-top: 1.15rem;
+    padding-top: 1rem;
     border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.meta-item {
-    display: flex;
-    align-items: center;
-    gap: 0.55rem;
-    color: #94a3b8;
-    font-size: 0.72rem;
-}
-
-    .meta-item ion-icon {
-        color: #64748b;
-        font-size: 0.95rem;
-        flex-shrink: 0;
-    }
-/* ========================================================= ACTION BUTTONS ========================================================= */
-
-.material-actions {
-    display: flex;
-    gap: 0.55rem;
-    margin-top: 1.2rem;
-}
-
-.material-button {
-    flex: 1;
-    min-height: 38px;
+.instructor-icon {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.35rem;
-    padding: 0.55rem 0.7rem;
+    border-radius: 50%;
+    background: rgba(168, 85, 247, 0.09);
+    border: 1px solid rgba(168, 85, 247, 0.14);
+    color: #a78bfa;
+    font-size: 0.95rem;
+}
+
+.course-instructor div:last-child {
+    display: flex;
+    flex-direction: column;
+}
+
+.course-instructor span {
+    color: #64748b;
+    font-size: 0.62rem;
+}
+
+.course-instructor strong {
+    color: #cbd5e1;
+    font-size: 0.76rem;
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   COURSE ACTIONS
+========================================================= */
+
+.course-actions {
+    display: flex;
+    gap: 0.55rem;
+    margin-top: 1.3rem;
+}
+
+.course-button {
+    flex: 1;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.55rem 0.65rem;
     border-radius: 9px;
     text-decoration: none;
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     font-weight: 500;
     transition: all 0.22s ease;
 }
 
-    .material-button ion-icon {
+    .course-button ion-icon {
         font-size: 0.95rem;
     }
 
-.view-button {
+
+/* Materials */
+
+.materials-button {
     color: #38bdf8;
     background: rgba(56, 189, 248, 0.09);
     border: 1px solid rgba(56, 189, 248, 0.16);
 }
 
-    .view-button:hover {
+    .materials-button:hover {
         color: #7dd3fc;
         background: rgba(56, 189, 248, 0.15);
+        transform: translateY(-1px);
     }
 
-.download-button {
-    color: #a78bfa;
-    background: rgba(139, 92, 246, 0.09);
-    border: 1px solid rgba(139, 92, 246, 0.16);
-}
 
-    .download-button:hover {
-        color: #c4b5fd;
-        background: rgba(139, 92, 246, 0.15);
-    }
+/* Unenroll */
 
-.delete-button {
+.unenroll-button {
     color: #f87171;
     background: rgba(248, 113, 113, 0.08);
-    border: 1px solid rgba(248, 113, 113, 0.14);
+    border: 1px solid rgba(248, 113, 113, 0.15);
 }
 
-    .delete-button:hover {
-        color: #fca5a5;
+    .unenroll-button:hover {
+        color: #fecaca;
         background: rgba(248, 113, 113, 0.15);
+        border-color: rgba(248, 113, 113, 0.3);
+        transform: translateY(-1px);
     }
-/* ========================================================= EMPTY STATE ========================================================= */
+
+
+/* =========================================================
+   SEARCH EMPTY
+========================================================= */
+
+.search-empty {
+    display: none;
+    padding: 3rem 1.5rem;
+    margin-top: 1rem;
+    text-align: center;
+    background: rgba(15, 23, 42, 0.58);
+    border: 1px dashed rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
+}
+
+    .search-empty.show {
+        display: block;
+    }
+
+.empty-search-icon {
+    width: 58px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    border-radius: 15px;
+    background: rgba(56, 189, 248, 0.08);
+    color: #38bdf8;
+    font-size: 1.6rem;
+}
+
+.search-empty h3 {
+    color: #e2e8f0;
+    font-size: 1rem;
+}
+
+.search-empty p {
+    margin-top: 0.4rem;
+    color: #64748b;
+    font-size: 0.75rem;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
 
 .empty-state {
+    min-height: 330px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 300px;
     padding: 2.5rem;
     text-align: center;
     background: rgba(15, 23, 42, 0.58);
@@ -484,7 +643,36 @@ body {
     color: #64748b;
     font-size: 0.8rem;
 }
-/* ========================================================= BACK BUTTON ========================================================= */
+
+
+/* Browse Courses */
+
+.browse-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 1.2rem;
+    padding: 0.7rem 1rem;
+    border-radius: 9px;
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.09);
+    border: 1px solid rgba(56, 189, 248, 0.16);
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: all 0.22s ease;
+}
+
+    .browse-button:hover {
+        color: #7dd3fc;
+        background: rgba(56, 189, 248, 0.15);
+        transform: translateY(-1px);
+    }
+
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
 
 .back-section {
     margin-top: 2rem;
@@ -516,7 +704,11 @@ body {
         border-color: rgba(255, 255, 255, 0.16);
         transform: translateX(-2px);
     }
-/* ========================================================= FOOTER ========================================================= */
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
 
 .footer {
     width: 100%;
@@ -547,9 +739,14 @@ body {
     .footer-brand ion-icon {
         color: #38bdf8;
     }
-/* ========================================================= RESPONSIVE ========================================================= */
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
 
 @media (max-width: 1100px) {
+
     .navbar {
         padding: 0.8rem 1.25rem;
     }
@@ -559,7 +756,7 @@ body {
     }
 
     .navbar-navigation a {
-        padding: 0.55rem 0.55rem;
+        padding: 0.55rem;
         font-size: 0.7rem;
     }
 
@@ -572,15 +769,14 @@ body {
     }
 }
 
+
 @media (max-width: 850px) {
+
     .navbar {
         min-height: 68px;
     }
 
-    .navbar-brand {
-        display: none;
-    }
-
+    .navbar-brand,
     .navbar-navigation {
         display: none;
     }
@@ -665,7 +861,8 @@ body {
             font-size: 0.78rem;
         }
 
-            .mobile-navigation a:hover, .mobile-navigation a.active {
+            .mobile-navigation a:hover,
+            .mobile-navigation a.active {
                 color: #38bdf8;
                 background: rgba(56, 189, 248, 0.08);
             }
@@ -675,22 +872,20 @@ body {
         }
 
         .mobile-navigation .logout-link {
-            color: #f87171;
             margin-top: 0.3rem;
+            padding-top: 1rem;
+            color: #f87171;
             border-top: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 0;
-            padding-top: 1rem;
         }
-
-    .main-content {
-        padding-top: 2rem;
-    }
 }
 
+
 @media (max-width: 600px) {
+
     .main-content {
         width: calc(100% - 24px);
-        padding-bottom: 2.5rem;
+        padding-top: 2rem;
     }
 
     .page-header {
@@ -716,29 +911,29 @@ body {
         padding: 0.8rem;
     }
 
-    .role-badge {
-        font-size: 0.58rem;
-    }
-
-    .materials-grid {
+    .courses-grid {
         grid-template-columns: 1fr;
     }
 
     .section-heading {
         align-items: flex-start;
-        gap: 0.75rem;
+        gap: 0.7rem;
     }
 
         .section-heading h2 {
             font-size: 1.15rem;
         }
 
-    .material-actions {
-        flex-wrap: wrap;
+    .course-count {
+        font-size: 0.65rem;
     }
 
-    .material-button {
-        min-width: 0;
+    .course-actions {
+        flex-direction: column;
+    }
+
+    .course-button {
+        width: 100%;
     }
 
     .footer {
@@ -752,7 +947,9 @@ body {
     }
 }
 
+
 @media (max-width: 400px) {
+
     .mobile-user span {
         display: none;
     }
@@ -767,7 +964,11 @@ body {
         font-size: 1.3rem;
     }
 
-    .material-card {
-        padding: 1rem;
+    .user-info-text strong {
+        max-width: 150px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 }
+

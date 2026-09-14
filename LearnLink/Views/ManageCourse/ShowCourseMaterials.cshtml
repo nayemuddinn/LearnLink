@@ -5,189 +5,419 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teacher LearnLink</title>
-    <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
+
+    <title>Course Materials - LearnLink</title>
+
     <link href="@Url.Content("/Content/ShowCourseMaterials.css")" rel="stylesheet" />
-    <link href="@Url.Content("/Content/backbutton2.css")" rel="stylesheet" />
+
+    <script type="module"
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
+
 <body>
-    <div class="responsive-wrapper">
-        <div class="app">
-            <div class="app-header">
-                <div class="logo">
-                    <div class="logo-icon">
-                        <ion-icon name="school-outline"></ion-icon>
-                    </div>
-                    <div class="logo-title">
-                        <span>LearnLink</span>
-                        <span>@HttpContext.Current.Session["UserRole"]</span>
-                    </div>
-                </div>
-                <div class="app-header-navigation">
-                    <!-- Add any additional navigation items here if needed -->
+
+    <div class="page-wrapper">
+
+        <!-- ==================== NAVBAR ==================== -->
+        <header class="navbar">
+
+            <div class="navbar-brand">
+                <div class="brand-icon">
+                    <ion-icon name="school-outline"></ion-icon>
                 </div>
 
-
-                <div class="app-header-actions">
-                    <h3>Course Materials</h3>
-                    <div class="app-header-actions-buttons">
-                        <ion-icon size="large" name="person-circle"></ion-icon>
-                        <h3>@HttpContext.Current.Session["UserName"]</h3>
-                    </div>
-                </div>
-                <div class="app-header-mobile">
-                    <h3>Course Materials</h3>
-                    <ion-icon size="large" name="person-circle"></ion-icon>
-                    <h3>@HttpContext.Current.Session["UserName"]</h3>
+                <div class="brand-text">
+                    <span class="brand-name">LearnLink</span>
+                    <span class="brand-role">
+                        @HttpContext.Current.Session["UserRole"]
+                    </span>
                 </div>
             </div>
 
-            <div class="app-body">
-                @{
-                    if (Session["UserRole"].Equals("Student"))
-                    {
-                        <div class="app-body-navigation">
-                            <nav class="navigation">
-                                <a href="@Url.Action("AllCourse", "AllCourse")">
-                                    <i class="icon ion-md-book"></i>
-                                    <span>All Courses</span>
-                                </a>
-                                <a href="@Url.Action("ViewEnrolledCourses", "StudentEnrolledCourses")">
-                                    <i class="icon ion-md-person-add"></i>
-                                    <span>Enrolled Courses</span>
-                                </a>
-                                <a href="@Url.Action("Assessment", "Assessment")">
-                                    <i class="icon ion-md-checkmark-circle"></i>
-                                    <span>Assessments</span>
-                                </a>
-                                
-                                <a href="@Url.Action("editStudentProfile", "editStudentProfile")">
-                                    <i class="icon ion-md-person"></i>
-                                    <span>Edit Profile</span>
-                                </a>
-                                <a href="@Url.Action("login", "Login")">
-                                    <i class="icon ion-md-exit"></i>
-                                    <span>Log Out</span>
-                                </a>
-                            </nav>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="app-body-navigation">
-                            <nav class="navigation">
-                                <a href="@Url.Action("ManageCourse", "ManageCourse")">
-                                    <i class="icon ion-md-book"></i>
-                                    <span>Manage Courses</span>
-                                </a>
-                                <a href="@Url.Action("createCourse", "createCourse")">
-                                    <i class="icon ion-md-add-circle"></i>
-                                    <span>Create Courses</span>
-                                </a>
-                                <a href="@Url.Action("courseMaterials", "courseMaterials")">
-                                    <i class="icon ion-md-add-circle"></i>
-                                    <span>CourseMaterials</span>
-                                </a>
-                                <a href="@Url.Action("enrollStudents", "enrollStudents")">
-                                    <i class="icon ion-md-person-add"></i>
-                                    <span>Enroll Students</span>
-                                </a>
-                                <a href="@Url.Action("Assessment", "Assessment")">
-                                    <i class="icon ion-md-checkmark-circle"></i>
-                                    <span>Assessments</span>
-                                </a>
-                                
-                                <a href="@Url.Action("editteacherProfile", "editteacherProfile")">
-                                    <i class="icon ion-md-person"></i>
-                                    <span>Edit Profile</span>
-                                </a>
-                                <a href="@Url.Action("login", "Login")">
-                                    <i class="icon ion-md-exit"></i>
-                                    <span>Log Out</span>
-                                </a>
-                            </nav>
-                        </div>
-                    }
+            <nav class="navbar-navigation">
+
+                @if (Session["UserRole"] != null &&
+                     Session["UserRole"].Equals("Student"))
+                {
+                    <a href="@Url.Action("AllCourse", "AllCourse")">
+                        <ion-icon name="book-outline"></ion-icon>
+                        <span>All Courses</span>
+                    </a>
+
+                    <a href="@Url.Action("ViewEnrolledCourses", "StudentEnrolledCourses")">
+                        <ion-icon name="person-add-outline"></ion-icon>
+                        <span>Enrolled Courses</span>
+                    </a>
+
+                    <a href="@Url.Action("Assessment", "Assessment")">
+                        <ion-icon name="checkmark-circle-outline"></ion-icon>
+                        <span>Assessments</span>
+                    </a>
+
+                    <a href="@Url.Action("editStudentProfile", "editStudentProfile")">
+                        <ion-icon name="person-outline"></ion-icon>
+                        <span>Edit Profile</span>
+                    </a>
                 }
-                <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+                else
+                {
+                    <a href="@Url.Action("ManageCourse", "ManageCourse")">
+                        <ion-icon name="book-outline"></ion-icon>
+                        <span>Manage Courses</span>
+                    </a>
 
+                    <a href="@Url.Action("createCourse", "createCourse")">
+                        <ion-icon name="add-circle-outline"></ion-icon>
+                        <span>Create Courses</span>
+                    </a>
 
+                    <a href="@Url.Action("courseMaterials", "courseMaterials")"
+                       class="active">
+                        <ion-icon name="documents-outline"></ion-icon>
+                        <span>Course Materials</span>
+                    </a>
 
+                    <a href="@Url.Action("enrollStudents", "enrollStudents")">
+                        <ion-icon name="people-outline"></ion-icon>
+                        <span>Enroll Students</span>
+                    </a>
 
+                    <a href="@Url.Action("Assessment", "Assessment")">
+                        <ion-icon name="checkmark-circle-outline"></ion-icon>
+                        <span>Assessments</span>
+                    </a>
 
+                    <a href="@Url.Action("editteacherProfile", "editteacherProfile")">
+                        <ion-icon name="person-outline"></ion-icon>
+                        <span>Edit Profile</span>
+                    </a>
+                }
 
-                <div class="app-body-content">
-                    <div class="tiles">
-                        @if (Model != null && Model.Any())
-                        {
-                            foreach (var material in Model)
-                            {
-                                <div class="clicktile">
-                                    <div class="tile-header">
-                                        <i class="icon ion-md-document"></i>
-                                        <h5>
-                                            <span><ion-icon name="document-outline"></ion-icon> File Name: @material.Name</span><br />
-                                            <span><ion-icon name="information-circle-outline"></ion-icon> Content Type: @material.ContentType</span><br />
-                                            <span><ion-icon name="calendar-outline"></ion-icon> Upload Date: @material.UploadDate.ToString("yyyy-MM-dd")</span>
-                                        </h5>
+                <a href="@Url.Action("login", "Login")" class="logout-link">
+                    <ion-icon name="log-out-outline"></ion-icon>
+                    <span>Log Out</span>
+                </a>
 
-                                    </div>
-                                    <div class="button-container">
-                                        <a href="@Url.Action("ViewMaterial", "ManageCourse", new { fileId = material.FileID })" class="tile-buttons view">
-                                            <span>View</span>
-                                        </a>
-                                        <a href="@Url.Action("DownloadMaterial", "ManageCourse", new { fileId = material.FileID })" class="tile-buttons download">
-                                            <span>Download</span>
+            </nav>
 
-                                        </a>
-                                        @if (Session["UserRole"] != null && Session["UserRole"].Equals("Teacher"))
-                                        {
-                                            <a href="@Url.Action("DeleteMaterial", "ManageCourse", new { fileId = material.FileID,courseId=material.CourseID })" class="tile-buttons delete">
-                                                <span>Delete</span>
+            <!-- Mobile Header -->
+            <div class="mobile-header">
 
-                                            </a>
-                                        }
-
-                                    </div>
-
-                                </div>
-                            }
-                        }
-                        else
-                        {
-                            <div class="tile">
-                                <div class="tile-header">
-                                    <i class="icon ion-md-document"></i>
-                                    <h3>
-                                        <span>No Materials Available</span>
-                                    </h3>
-                                </div>
-                            </div>
-                        }
-
-
-
-
-                    </div>
-                    <br /><br />
-                    <div>
-
-                        <button type="button" class="btn btn-back" onclick="window.location.href='/ManageCourse/ManageCourse'">Back</button>
-                    </div>
+                <div class="mobile-title">
+                    <ion-icon name="documents-outline"></ion-icon>
+                    <span>Course Materials</span>
                 </div>
-            </div>
-            <div class="footer">
 
-                <br /><br />
-
-                
-                <div>
-                    &copy; 2024 LearnLink. All rights reserved.
+                <div class="mobile-user">
+                    <ion-icon name="person-circle-outline"></ion-icon>
+                    <span>@HttpContext.Current.Session["UserName"]</span>
                 </div>
+
+                <button type="button"
+                        class="mobile-menu-button"
+                        id="mobileMenuButton">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </button>
+
             </div>
+
+        </header>
+
+
+        <!-- ==================== MOBILE NAVIGATION ==================== -->
+        <div class="mobile-navigation" id="mobileNavigation">
+
+            @if (Session["UserRole"] != null &&
+                 Session["UserRole"].Equals("Student"))
+            {
+                <a href="@Url.Action("AllCourse", "AllCourse")">
+                    <ion-icon name="book-outline"></ion-icon>
+                    <span>All Courses</span>
+                </a>
+
+                <a href="@Url.Action("ViewEnrolledCourses", "StudentEnrolledCourses")">
+                    <ion-icon name="person-add-outline"></ion-icon>
+                    <span>Enrolled Courses</span>
+                </a>
+
+                <a href="@Url.Action("Assessment", "Assessment")">
+                    <ion-icon name="checkmark-circle-outline"></ion-icon>
+                    <span>Assessments</span>
+                </a>
+
+                <a href="@Url.Action("editStudentProfile", "editStudentProfile")">
+                    <ion-icon name="person-outline"></ion-icon>
+                    <span>Edit Profile</span>
+                </a>
+            }
+            else
+            {
+                <a href="@Url.Action("ManageCourse", "ManageCourse")">
+                    <ion-icon name="book-outline"></ion-icon>
+                    <span>Manage Courses</span>
+                </a>
+
+                <a href="@Url.Action("createCourse", "createCourse")">
+                    <ion-icon name="add-circle-outline"></ion-icon>
+                    <span>Create Courses</span>
+                </a>
+
+                <a href="@Url.Action("courseMaterials", "courseMaterials")"
+                   class="active">
+                    <ion-icon name="documents-outline"></ion-icon>
+                    <span>Course Materials</span>
+                </a>
+
+                <a href="@Url.Action("enrollStudents", "enrollStudents")">
+                    <ion-icon name="people-outline"></ion-icon>
+                    <span>Enroll Students</span>
+                </a>
+
+                <a href="@Url.Action("Assessment", "Assessment")">
+                    <ion-icon name="checkmark-circle-outline"></ion-icon>
+                    <span>Assessments</span>
+                </a>
+
+                <a href="@Url.Action("editteacherProfile", "editteacherProfile")">
+                    <ion-icon name="person-outline"></ion-icon>
+                    <span>Edit Profile</span>
+                </a>
+            }
+
+            <a href="@Url.Action("login", "Login")" class="logout-link">
+                <ion-icon name="log-out-outline"></ion-icon>
+                <span>Log Out</span>
+            </a>
+
         </div>
-        
+
+
+        <!-- ==================== MAIN CONTENT ==================== -->
+        <main class="main-content">
+
+            <!-- Page Header -->
+            <section class="page-header">
+
+                <div class="header-icon">
+                    <ion-icon name="documents-outline"></ion-icon>
+                </div>
+
+                <div>
+                    <span class="eyebrow">LEARNLINK</span>
+                    <h1>Course Materials</h1>
+                    <p>
+                        View, download, and manage course learning materials.
+                    </p>
+                </div>
+
+            </section>
+
+
+            <!-- User Information -->
+            <div class="user-info-card">
+
+                <div class="user-info-icon">
+                    <ion-icon name="person-circle-outline"></ion-icon>
+                </div>
+
+                <div class="user-info-text">
+                    <span>Logged in as</span>
+                    <strong>
+                        @HttpContext.Current.Session["UserName"]
+                    </strong>
+                </div>
+
+                <div class="role-badge">
+                    @HttpContext.Current.Session["UserRole"]
+                </div>
+
+            </div>
+
+
+            <!-- Materials -->
+            <section class="materials-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="section-label">AVAILABLE FILES</span>
+                        <h2>Course Materials</h2>
+                    </div>
+
+                    @if (Model != null && Model.Any())
+                    {
+                        <span class="material-count">
+                            @Model.Count @(Model.Count == 1 ? "Material" : "Materials")
+                        </span>
+                    }
+
+                </div>
+
+
+                @if (Model != null && Model.Any())
+                {
+                    <div class="materials-grid">
+
+                        @foreach (var material in Model)
+                        {
+                            <article class="material-card">
+
+                                <div class="material-card-top">
+
+                                    <div class="file-icon">
+                                        <ion-icon name="document-text-outline"></ion-icon>
+                                    </div>
+
+                                    <div class="file-type">
+                                        @material.ContentType
+                                    </div>
+
+                                </div>
+
+
+                                <div class="material-details">
+
+                                    <h3 title="@material.Name">
+                                        @material.Name
+                                    </h3>
+
+                                    <div class="material-meta">
+
+                                        <div class="meta-item">
+                                            <ion-icon name="information-circle-outline"></ion-icon>
+                                            <span>@material.ContentType</span>
+                                        </div>
+
+                                        <div class="meta-item">
+                                            <ion-icon name="calendar-outline"></ion-icon>
+                                            <span>
+                                                @material.UploadDate.ToString("yyyy-MM-dd")
+                                            </span>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="material-actions">
+
+                                    <a href="@Url.Action("ViewMaterial", "ManageCourse", new { fileId = material.FileID })"
+                                       class="material-button view-button">
+
+                                        <ion-icon name="eye-outline"></ion-icon>
+                                        <span>View</span>
+
+                                    </a>
+
+
+                                    <a href="@Url.Action("DownloadMaterial", "ManageCourse", new { fileId = material.FileID })"
+                                       class="material-button download-button">
+
+                                        <ion-icon name="download-outline"></ion-icon>
+                                        <span>Download</span>
+
+                                    </a>
+
+
+                                    @if (Session["UserRole"] != null &&
+                                         Session["UserRole"].Equals("Teacher"))
+                                    {
+                                        <a href="@Url.Action("DeleteMaterial", "ManageCourse", new { fileId = material.FileID, courseId = material.CourseID })"
+                                           class="material-button delete-button">
+
+                                            <ion-icon name="trash-outline"></ion-icon>
+                                            <span>Delete</span>
+
+                                        </a>
+                                    }
+
+                                </div>
+
+                            </article>
+                        }
+
+                    </div>
+                }
+                else
+                {
+                    <div class="empty-state">
+
+                        <div class="empty-icon">
+                            <ion-icon name="documents-outline"></ion-icon>
+                        </div>
+
+                        <h2>No Materials Available</h2>
+
+                        <p>
+                            There are currently no course materials available.
+                        </p>
+
+                    </div>
+                }
+
+            </section>
+
+
+            <!-- Back Button -->
+            <div class="back-section">
+
+                <button type="button"
+                        class="back-button"
+                        onclick="window.location.href='/ManageCourse/ManageCourse'">
+
+                    <ion-icon name="arrow-back-outline"></ion-icon>
+                    <span>Back to Courses</span>
+
+                </button>
+
+            </div>
+
+        </main>
+
+
+        <!-- ==================== FOOTER ==================== -->
+        <footer class="footer">
+
+            <div class="footer-content">
+
+                <div class="footer-brand">
+                    <ion-icon name="school-outline"></ion-icon>
+                    <span>LearnLink</span>
+                </div>
+
+                <span>
+                    &copy; 2024 LearnLink. All rights reserved.
+                </span>
+
+            </div>
+
+        </footer>
+
     </div>
-   
+
+
+    <script>
+                const mobileMenuButton = document.getElementById("mobileMenuButton");
+                const mobileNavigation = document.getElementById("mobileNavigation");
+
+                if (mobileMenuButton) {
+                    mobileMenuButton.addEventListener("click", function () {
+                        mobileNavigation.classList.toggle("show");
+
+                        const icon = this.querySelector("ion-icon");
+
+                        if (mobileNavigation.classList.contains("show")) {
+                            icon.setAttribute("name", "close-outline");
+                        } else {
+                            icon.setAttribute("name", "menu-outline");
+                        }
+                    });
+                }
+    </script>
+
 </body>
 </html>
+
