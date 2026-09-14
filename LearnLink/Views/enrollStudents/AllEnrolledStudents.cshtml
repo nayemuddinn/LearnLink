@@ -23,22 +23,54 @@
             <!-- Navigation Links -->
             <div class="navbar-menu">
                 <div class="nav-links">
-                    <a href="@Url.Action("ManageCourse", "ManageCourse")" class="nav-link">
-                        <ion-icon name="book-outline"></ion-icon>
-                        <span>Manage</span>
-                    </a>
-                    <a href="@Url.Action("createCourse", "createCourse")" class="nav-link">
-                        <ion-icon name="add-circle-outline"></ion-icon>
-                        <span>Create</span>
-                    </a>
-                    <a href="@Url.Action("courseMaterials", "courseMaterials")" class="nav-link">
-                        <ion-icon name="document-outline"></ion-icon>
-                        <span>Materials</span>
-                    </a>
-                    <a href="@Url.Action("enrollStudents", "enrollStudents")" class="nav-link active">
-                        <ion-icon name="people-outline"></ion-icon>
-                        <span>Enroll</span>
-                    </a>
+                    @{
+                        if (Session["UserRole"] != null && Session["UserRole"].Equals("Student"))
+                        {
+                            <a href="@Url.Action("AllCourse", "AllCourse")" class="nav-link">
+                                <ion-icon name="book-outline"></ion-icon>
+                                <span>All Courses</span>
+                            </a>
+                            <a href="@Url.Action("ViewEnrolledCourses", "StudentEnrolledCourses")" class="nav-link">
+                                <ion-icon name="school-outline"></ion-icon>
+                                <span>Enrolled Courses</span>
+                            </a>
+                            <a href="@Url.Action("Assessment", "Assessment")" class="nav-link">
+                                <ion-icon name="checkmark-circle-outline"></ion-icon>
+                                <span>Assessments</span>
+                            </a>
+                            <a href="@Url.Action("editStudentProfile", "editStudentProfile")" class="nav-link">
+                                <ion-icon name="person-outline"></ion-icon>
+                                <span>Edit Profile</span>
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("ManageCourse", "ManageCourse")" class="nav-link">
+                                <ion-icon name="book-outline"></ion-icon>
+                                <span>Manage Courses</span>
+                            </a>
+                            <a href="@Url.Action("createCourse", "createCourse")" class="nav-link">
+                                <ion-icon name="add-circle-outline"></ion-icon>
+                                <span>Create Courses</span>
+                            </a>
+                            <a href="@Url.Action("courseMaterials", "courseMaterials")" class="nav-link">
+                                <ion-icon name="document-text-outline"></ion-icon>
+                                <span>Course Materials</span>
+                            </a>
+                            <a href="@Url.Action("enrollStudents", "enrollStudents")" class="nav-link active">
+                                <ion-icon name="person-add-outline"></ion-icon>
+                                <span>Enroll Students</span>
+                            </a>
+                            <a href="@Url.Action("Assessment", "Assessment")" class="nav-link">
+                                <ion-icon name="checkmark-circle-outline"></ion-icon>
+                                <span>Assessments</span>
+                            </a>
+                            <a href="@Url.Action("editteacherProfile", "editteacherProfile")" class="nav-link">
+                                <ion-icon name="person-outline"></ion-icon>
+                                <span>Edit Profile</span>
+                            </a>
+                        }
+                    }
                 </div>
             </div>
 
@@ -98,16 +130,137 @@
 
             <!-- Search Form Section -->
             <div class="search-section">
-                <form method="get" action="@Url.Action("AllEnrolledStudents", "enrollStudents")" class="search-form">
-                    <div class="search-input-group">
-                        <ion-icon name="search-outline" class="search-icon"></ion-icon>
-                        <input type="text" name="searchTerm" placeholder="Search by ID, name, institution, or phone..." value..." value="@ViewBag.SearchTerm" class="search-input" autocomplete="off" />
-                        <button type="submit" class="search-btn">
-                            <ion-icon name="search-outline"></ion-icon>
-                            <span>Search</span>
-                        </button>
+
+                <form method="get"
+                      action="@Url.Action("AllEnrolledStudents", "enrollStudents")"
+                      class="search-form">
+
+                    <div class="search-controls">
+
+                        <!-- Search -->
+                        <div class="search-input-group">
+
+                            <ion-icon name="search-outline"
+                                      class="search-icon">
+                            </ion-icon>
+
+                            <input type="text"
+                                   name="searchTerm"
+                                   placeholder="Search by ID, name, institution, or phone..."
+                                   value="@ViewBag.SearchTerm"
+                                   class="search-input"
+                                   autocomplete="off" />
+
+                            <button type="submit"
+                                    class="search-btn">
+
+                                <ion-icon name="search-outline"></ion-icon>
+                                <span>Search</span>
+
+                            </button>
+
+                        </div>
+
+
+                        <!-- Show -->
+                        <div class="filter-group">
+
+                            <label for="pageSize">
+                                Show
+                            </label>
+
+                            <select id="pageSize"
+                                    name="pageSize"
+                                    class="filter-select"
+                                    onchange="this.form.submit()">
+
+                                <option value="10"
+                                        @(ViewBag.PageSize == 10 ? "selected" : "")>
+                                    10
+                                </option>
+
+                                <option value="100"
+                                        @(ViewBag.PageSize == 100 ? "selected" : "")>
+                                    100
+                                </option>
+
+                                <option value="1000"
+                                        @(ViewBag.PageSize == 1000 ? "selected" : "")>
+                                    1000
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- Sort By -->
+                        <div class="filter-group">
+
+                            <label for="sortBy">
+                                Sort By
+                            </label>
+
+                            <select id="sortBy"
+                                    name="sortBy"
+                                    class="filter-select"
+                                    onchange="this.form.submit()">
+
+                                <option value="CourseID"
+                                        @(ViewBag.SortBy == "CourseID" ? "selected" : "")>
+                                    Course ID
+                                </option>
+
+                                <option value="CourseName"
+                                        @(ViewBag.SortBy == "CourseName" ? "selected" : "")>
+                                    Course Name
+                                </option>
+
+                                <option value="StudentID"
+                                        @(ViewBag.SortBy == "StudentID" ? "selected" : "")>
+                                    Student ID
+                                </option>
+
+                                <option value="StudentName"
+                                        @(ViewBag.SortBy == "StudentName" ? "selected" : "")>
+                                    Student Name
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- Order -->
+                        <div class="filter-group">
+
+                            <label for="sortOrder">
+                                Order
+                            </label>
+
+                            <select id="sortOrder"
+                                    name="sortOrder"
+                                    class="filter-select"
+                                    onchange="this.form.submit()">
+
+                                <option value="ASC"
+                                        @(ViewBag.SortOrder == "ASC" ? "selected" : "")>
+                                    Ascending
+                                </option>
+
+                                <option value="DESC"
+                                        @(ViewBag.SortOrder == "DESC" ? "selected" : "")>
+                                    Descending
+                                </option>
+
+                            </select>
+
+                        </div>
+
                     </div>
+
                 </form>
+
             </div>
 
 
@@ -117,57 +270,108 @@
                     {
                         <div class="table-wrapper">
                             <table class="students-table">
-                                <thead>
-                                    <tr>
-                                        <th class="col-course">
-                                            <ion-icon name="book-outline"></ion-icon>
-                                            <span>Course</span>
-                                        </th>
-                                        <th class="col-student">
-                                            <ion-icon name="person-outline"></ion-icon>
-                                            <span>Student Name</span>
-                                        </th>
-                                        <th class="col-institution">
-                                            <ion-icon name="school-outline"></ion-icon>
-                                            <span>Institution</span>
-                                        </th>
-                                        <th class="col-phone">
-                                            <ion-icon name="call-outline"></ion-icon>
-                                            <span>Phone</span>
-                                        </th>
-                                        <th class="col-actions">Actions</th>
-                                    </tr>
-                                </thead>
+                               <thead>
+                                   <tr>
+                                       <th class="col-course-id">
+                                           <ion-icon name="key-outline"></ion-icon>
+                                           <span>Course ID</span>
+                                       </th>
+
+                                       <th class="col-course">
+                                           <ion-icon name="book-outline"></ion-icon>
+                                           <span>Course</span>
+                                       </th>
+
+                                       <th class="col-student">
+                                           <ion-icon name="person-outline"></ion-icon>
+                                           <span>Student Name</span>
+                                       </th>
+
+                                       <th class="col-institution">
+                                           <ion-icon name="school-outline"></ion-icon>
+                                           <span>Institution</span>
+                                       </th>
+
+                                       <th class="col-phone">
+                                           <ion-icon name="call-outline"></ion-icon>
+                                           <span>Phone</span>
+                                       </th>
+
+                                       <th class="col-actions">
+                                           Actions
+                                       </th>
+                                   </tr>
+                               </thead>
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
-                                        <tr class="table-row" data-course="@item.CourseName" data-student="@item.StudentName">
+                                        <tr class="table-row"
+                                            data-course="@item.CourseName"
+                                            data-student="@item.StudentName">
+
+                                            <td class="col-course-id">
+                                                <span class="course-id-badge">
+                                                    @item.CourseID
+                                                </span>
+                                            </td>
+
                                             <td class="col-course">
                                                 <div class="course-info">
-                                                    <div class="course-badge">@item.CourseID</div>
                                                     <div class="course-details">
-                                                        <p class="course-name">@item.CourseName</p>
+                                                        <p class="course-name">
+                                                            @item.CourseName
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </td>
+
                                             <td class="col-student">
                                                 <div class="student-info">
-                                                    <ion-icon name="person-circle" class="student-avatar"></ion-icon>
-                                                    <p class="student-name">@item.StudentName</p>
+                                                    <ion-icon name="person-circle"
+                                                              class="student-avatar">
+                                                    </ion-icon>
+
+                                                    <p class="student-name">
+                                                        @item.StudentName
+                                                    </p>
                                                 </div>
                                             </td>
+
                                             <td class="col-institution">
-                                                <span class="institution-text">@(string.IsNullOrEmpty(item.Institution) ? "-" : item.Institution)</span>
+                                                <span class="institution-text">
+                                                    @(string.IsNullOrEmpty(item.Institution)
+                    ? "-"
+                    : item.Institution)
+                                                </span>
                                             </td>
+
                                             <td class="col-phone">
-                                                <span class="phone-text">@(string.IsNullOrEmpty(item.Phone) ? "-" : item.Phone)</span>
+                                                <span class="phone-text">
+                                                    @(string.IsNullOrEmpty(item.Phone)
+                    ? "-"
+                    : item.Phone)
+                                                </span>
                                             </td>
+
                                             <td class="col-actions">
-                                                <a href="@Url.Action("UnenrollStudent", "enrollStudents", new { studentId = item.StudentID, courseId = item.CourseID, page=1})" class="btn btn-unenroll" title="Unenroll Student">
+                                                <a href="@Url.Action(
+                "UnenrollStudent",
+                "enrollStudents",
+                new
+                {
+                    studentId = item.StudentID,
+                    courseId = item.CourseID,
+                    page = 1
+                })"
+                                                   class="btn btn-unenroll"
+                                                   title="Unenroll Student">
+
                                                     <ion-icon name="trash-outline"></ion-icon>
                                                     <span>Unenroll</span>
+
                                                 </a>
                                             </td>
+
                                         </tr>
                                     }
                                 </tbody>

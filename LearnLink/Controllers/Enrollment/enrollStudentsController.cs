@@ -141,28 +141,109 @@ namespace LearnLink.Controllers.Enrollment
             return RedirectToAction("ViewEnrolledStudents", new { courseID = courseId });
         }
 
-        public ActionResult AllEnrolledStudents(string searchTerm)
+        public ActionResult AllEnrolledStudents(
+     string searchTerm,
+     int pageSize = 10,
+     string sortBy = "CourseID",
+     string sortOrder = "DESC")
         {
-            //System.Diagnostics.Debug.WriteLine("Hello from controller -> "+searchTerm);
-            List<EnrolledStudentCourse> enrolledStudentsCourses = new List<EnrolledStudentCourse>();
+            List<EnrolledStudentCourse> enrolledStudentsCourses =
+                new List<EnrolledStudentCourse>();
 
             int teacherId = Convert.ToInt32(Session["UserID"]);
+
+            // Validate page size
+            if (pageSize != 10 && pageSize != 100 && pageSize != 1000)
+            {
+                pageSize = 10;
+            }
+
+            // Validate sort column
+            string sortColumn;
+
+            switch (sortBy)
+            {
+                case "CourseID":
+                    sortColumn = "c.CourseID";
+                    break;
+
+                case "CourseName":
+                    sortColumn = "c.CourseName";
+                    break;
+
+                case "StudentID":
+                    sortColumn = "s.UserID";
+                    break;
+
+                case "StudentName":
+                    sortColumn = "s.Name";
+                    break;
+
+                default:
+                    sortColumn = "c.CourseID";
+                    sortBy = "CourseID";
+                    break;
+            }
+
+            // Validate sort order
+            if (sortOrder != "ASC" && sortOrder != "DESC")
+            {
+                sortOrder = "DESC";
+            }
 
             using (SqlConnection con = new SqlConnection(DBconnection.connStr))
             {
                 string query = @"
-            SELECT c.CourseID, c.CourseName, s.UserID AS StudentID, s.Name AS StudentName, s.Institution, s.Phone
+            SELECT TOP (@PageSize)
+                c.CourseID,
+                c.CourseName,
+                s.UserID AS StudentID,
+                s.Name AS StudentName,
+                s.Institution,
+                s.Phone
             FROM Enrollment e
-            JOIN Courses c ON e.CourseID = c.CourseID
-            JOIN Student s ON e.StudentID = s.UserID
+            INNER JOIN Courses c
+                ON e.CourseID = c.CourseID
+            INNER JOIN Student s
+                ON e.StudentID = s.UserID
             WHERE c.TeacherID = @TeacherID
             AND e.Status = 'Accepted'
-            ORDER BY c.CourseID, s.Name";
+        ";
+
+                // Search
+                if (!string.IsNullOrWhiteSpace(searchTerm))
+                {
+                    query += @"
+                AND (
+                    CAST(c.CourseID AS VARCHAR(20)) LIKE @SearchTerm
+                    OR c.CourseName LIKE @SearchTerm
+                    OR CAST(s.UserID AS VARCHAR(20)) LIKE @SearchTerm
+                    OR s.Name LIKE @SearchTerm
+                    OR s.Institution LIKE @SearchTerm
+                    OR s.Phone LIKE @SearchTerm
+                )
+            ";
+                }
+
+                // Sorting
+                query += $" ORDER BY {sortColumn} {sortOrder}";
 
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
-                    cmd.Parameters.AddWithValue("@TeacherID", teacherId);
+                    cmd.Parameters.Add("@TeacherID", System.Data.SqlDbType.Int)
+                        .Value = teacherId;
+
+                    cmd.Parameters.Add("@PageSize", System.Data.SqlDbType.Int)
+                        .Value = pageSize;
+
+                    if (!string.IsNullOrWhiteSpace(searchTerm))
+                    {
+                        cmd.Parameters.Add("@SearchTerm", System.Data.SqlDbType.VarChar)
+                            .Value = searchTerm.Trim() + "%";
+                    }
+
                     con.Open();
+
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
@@ -178,9 +259,15 @@ namespace LearnLink.Controllers.Enrollment
                             });
                         }
                     }
-                    con.Close();
                 }
             }
+
+            // Keep selected values after search/filter
+            ViewBag.SearchTerm = searchTerm;
+            ViewBag.PageSize = pageSize;
+            ViewBag.SortBy = sortBy;
+            ViewBag.SortOrder = sortOrder;
+
             return View(enrolledStudentsCourses);
         }
 
