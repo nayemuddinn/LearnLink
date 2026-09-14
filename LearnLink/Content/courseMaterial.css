@@ -1,0 +1,684 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #0f172a, #1e1b4b, #0f172a);
+  color: #f8fafc;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 0.8rem 2rem;
+}
+
+.navbar-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  font-size: 2rem;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.1);
+  padding: 8px;
+  border-radius: 12px;
+}
+
+.logo-text-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-text {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #f8fafc;
+}
+
+.role-badge {
+  font-size: 0.75rem;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.1);
+  padding: 2px 8px;
+  border-radius: 20px;
+  width: fit-content;
+  font-weight: 500;
+}
+
+.navbar-menu .nav-links {
+  display: flex;
+  gap: 8px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #94a3b8;
+  text-decoration: none;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+  .nav-link ion-icon {
+    font-size: 1.2rem;
+  }
+
+  .nav-link,
+  .nav-link.active {
+    color: #f8fafc;
+    background: rgba(255, 255, 255, 0.07);
+  }
+
+.navbar-user {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 6px 14px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.user-avatar {
+  font-size: 1.5rem;
+  color: #38bdf8;
+}
+
+.user-name {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.logout-btn {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #f87171;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.logout-btn {
+  background: rgba(239, 68, 68, 0.3);
+  color: #fff;
+}
+
+.navbar-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+  .navbar-toggle span {
+    width: 25px;
+    height: 3px;
+    background: #f8fafc;
+    border-radius: 2px;
+  }
+
+/* ================= MAIN CONTENT ================= */
+
+.main-content {
+  flex: 1;
+  padding: 3rem 2rem;
+}
+
+.page-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.page-header-title {
+  margin-bottom: 2rem;
+}
+
+  .page-header-title h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-header-title p {
+    color: #94a3b8;
+    font-size: 1rem;
+  }
+
+/* ================= UPLOAD CARD ================= */
+
+.upload-card {
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.upload-card {
+  border-color: rgba(56, 189, 248, 0.2);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+}
+
+/* ================= CARD HEADER ================= */
+
+.upload-card-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.upload-icon-wrapper {
+  width: 58px;
+  height: 58px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  color: #38bdf8;
+}
+
+  .upload-icon-wrapper ion-icon {
+    font-size: 1.9rem;
+  }
+
+.upload-card-header h2 {
+  color: #f8fafc;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.upload-card-header p {
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+/* ================= FORM ================= */
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+  .form-group label {
+    color: #f8fafc;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+.form-control {
+  width: 100%;
+  padding: 0.85rem 1rem 0.85rem 2.8rem;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 11px;
+  outline: none;
+  color: #f8fafc;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+  .form-control::placeholder {
+    color: #64748b;
+  }
+
+.form-control {
+  border-color: rgba(56, 189, 248, 0.25);
+}
+
+.form-control {
+  border-color: rgba(56, 189, 248, 0.55);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.08);
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.input-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #38bdf8;
+  font-size: 1.15rem;
+  z-index: 2;
+}
+
+/* ================= FILE UPLOAD ================= */
+
+.file-upload-area {
+  position: relative;
+  min-height: 220px;
+  border: 2px dashed rgba(56, 189, 248, 0.35);
+  border-radius: 15px;
+  background: rgba(56, 189, 248, 0.035);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+  .file-upload-area,
+  .file-upload-area.drag-over {
+    border-color: rgba(56, 189, 248, 0.7);
+    background: rgba(56, 189, 248, 0.08);
+  }
+
+    .file-upload-area input[type="file"] {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+      z-index: 5;
+    }
+
+.file-upload-content {
+  pointer-events: none;
+  padding: 2rem;
+}
+
+.file-upload-icon {
+  display: block;
+  font-size: 3.2rem;
+  color: #38bdf8;
+  margin-bottom: 1rem;
+}
+
+.file-upload-content h3 {
+  color: #f8fafc;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.file-upload-content p {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+
+.file-upload-content span {
+  color: #64748b;
+  font-size: 0.75rem;
+}
+
+/* ================= FILE INFO ================= */
+
+.file-size-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+  color: #64748b;
+  font-size: 0.78rem;
+}
+
+  .file-size-info ion-icon {
+    color: #38bdf8;
+    font-size: 1rem;
+  }
+
+.selected-file {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  margin-top: 5px;
+  border-radius: 10px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  color: #34d399;
+  font-size: 0.82rem;
+}
+
+  .selected-file.active {
+    display: flex;
+  }
+
+  .selected-file ion-icon {
+    font-size: 1.1rem;
+  }
+
+#selectedFileName {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ================= BUTTONS ================= */
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.btn-upload,
+.btn-cancel {
+  min-height: 44px;
+  padding: 0.7rem 1.2rem;
+  border-radius: 11px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-upload {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.btn-upload {
+  background: rgba(56, 189, 248, 0.25);
+  color: #fff;
+  border-color: rgba(56, 189, 248, 0.5);
+}
+
+.btn-cancel {
+  background: rgba(255, 255, 255, 0.05);
+  color: #cbd5e1;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-cancel {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+/* ================= BACK BUTTON ================= */
+
+.back-action {
+  margin-top: 2rem;
+}
+
+.btn-back {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #f8fafc;
+  padding: 0.75rem 1.3rem;
+  border-radius: 11px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.btn-back {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+  .btn-back ion-icon {
+    font-size: 1.1rem;
+  }
+
+/* ================= FOOTER ================= */
+
+.footer {
+  text-align: center;
+  padding: 2rem;
+  color: #64748b;
+  font-size: 0.85rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(15, 23, 42, 0.5);
+}
+
+.footer-content p {
+  margin: 0;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1200px) {
+
+  .navbar-menu .nav-links {
+    gap: 3px;
+  }
+
+  .nav-link {
+    padding: 0.55rem 0.65rem;
+    font-size: 0.82rem;
+  }
+
+    .nav-link ion-icon {
+      font-size: 1rem;
+    }
+}
+
+@media (max-width: 1000px) {
+
+  .navbar-user .user-name {
+    display: none;
+  }
+
+  .navbar-menu .nav-link span {
+    display: none;
+  }
+
+  .nav-link {
+    padding: 0.65rem 0.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .navbar {
+    padding: 0.8rem 1rem;
+  }
+
+  .navbar-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 12px;
+    background: rgba(15, 23, 42, 0.97);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+    .navbar-menu.active {
+      display: block;
+    }
+
+    .navbar-menu .nav-links {
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .navbar-menu .nav-link {
+      justify-content: flex-start;
+      width: 100%;
+      padding: 0.8rem 1rem;
+    }
+
+      .navbar-menu .nav-link span {
+        display: inline;
+      }
+
+  .navbar-toggle {
+    display: flex;
+  }
+
+  .main-content {
+    padding: 2rem 1rem;
+  }
+
+  .page-header-title {
+    margin-bottom: 1.5rem;
+  }
+
+    .page-header-title h1 {
+      font-size: 1.7rem;
+    }
+
+  .upload-card {
+    padding: 1.4rem;
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .btn-upload,
+  .btn-cancel {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .logo-text {
+    font-size: 1.1rem;
+  }
+
+  .role-badge {
+    font-size: 0.68rem;
+  }
+
+  .logo-icon {
+    font-size: 1.7rem;
+    padding: 7px;
+  }
+
+  .logout-btn {
+    width: 38px;
+    height: 38px;
+  }
+
+  .page-header-title h1 {
+    font-size: 1.5rem;
+  }
+
+  .page-header-title p {
+    font-size: 0.85rem;
+  }
+
+  .upload-card {
+    padding: 1.1rem;
+    border-radius: 16px;
+  }
+
+  .upload-card-header {
+    align-items: flex-start;
+  }
+
+  .upload-icon-wrapper {
+    width: 48px;
+    height: 48px;
+  }
+
+    .upload-icon-wrapper ion-icon {
+      font-size: 1.5rem;
+    }
+
+  .upload-card-header h2 {
+    font-size: 1.05rem;
+  }
+
+  .upload-card-header p {
+    font-size: 0.75rem;
+  }
+
+  .file-upload-area {
+    min-height: 190px;
+  }
+
+  .file-upload-content {
+    padding: 1rem;
+  }
+
+  .file-upload-icon {
+    font-size: 2.7rem;
+  }
+
+  .back-action {
+    margin-top: 1.5rem;
+  }
+
+  .btn-back {
+    width: 100%;
+    justify-content: center;
+  }
+}

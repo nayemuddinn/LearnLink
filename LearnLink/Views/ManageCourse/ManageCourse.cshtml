@@ -144,6 +144,11 @@
                                     <span>View Materials</span>
                                 </a>
 
+                                <a href="@Url.Action("ShowCourseMaterials", "ManageCourse", new { courseid = course.CourseID })" class="btn-action btn-view">
+                                    <ion-icon name="folder-open-outline"></ion-icon>
+                                    <span>Upload</span>
+                                </a>
+
                                 <a href="@Url.Action("CreateQuiz", "CreateQuiz", new { courseID = course.CourseID })" class="btn-action btn-quiz">
                                     <ion-icon name="create-outline"></ion-icon>
                                     <span>Create Quiz</span>

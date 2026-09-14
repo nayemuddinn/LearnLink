@@ -211,6 +211,7 @@
     <Content Include="Content\unenrollbutton.css" />
     <Content Include="Content\uploadquiz.css" />
     <Content Include="Content\viewbutton.css" />
+    <Content Include="Content\ViewEnrolledCourses.css" />
     <Content Include="Content\ViewQuizzes.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -221,6 +222,7 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\courseMaterial.css" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
