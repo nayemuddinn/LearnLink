@@ -120,6 +120,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Content\DBconnection.cs" />
+    <Compile Include="Controllers\Quizzes\QuizAnalytics.cs" />
     <Compile Include="Controllers\\Courses\\AllCourseController.cs" />
     <Compile Include="Controllers\\Account\\changeCredentialsController.cs" />
     <Compile Include="Controllers\\Courses\\CourseMaterialsController.cs" />
@@ -153,6 +154,7 @@
     <Compile Include="Models\EnrolledStudentCourse.cs" />
     <Compile Include="Models\Enrollment.cs" />
     <Compile Include="Models\Quiz.cs" />
+    <Compile Include="Models\QuizAnalytics.cs" />
     <Compile Include="Models\QuizEvaluation.cs" />
     <Compile Include="Models\QuizQuestions.cs" />
     <Compile Include="Models\User.cs" />
@@ -199,6 +201,7 @@
     <Content Include="Content\ManageCourse.css" />
     <Content Include="Content\mid.css" />
     <Content Include="Content\participation.css" />
+    <Content Include="Content\QuizAnalytics.css" />
     <Content Include="Content\ShowCourseMaterials.css" />
     <Content Include="Content\StartQuiz.css" />
     <Content Include="Content\studentallcourse.css" />
@@ -278,6 +281,7 @@
     <Content Include="Views\createCourse\createCourse.cshtml" />
     <Content Include="Views\StudentViewQuizzes\StartQuiz.cshtml" />
     <Content Include="Views\enrollStudents\AllEnrolledStudents.cshtml" />
+    <Content Include="Views\QuizAnalytics\index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
