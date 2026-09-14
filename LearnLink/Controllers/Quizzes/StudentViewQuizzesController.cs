@@ -11,7 +11,7 @@ namespace LearnLink.Controllers.Quizzes
 {
     public class StudentViewQuizzesController : Controller
     {
-        public ActionResult ViewQuizzes()
+        public ActionResult ViewQuizzes(string searchTerm, string filter = "all", string sort = "newest")
         {
             List<Quiz> quizzes = new List<Quiz>();
 
@@ -21,12 +21,99 @@ namespace LearnLink.Controllers.Quizzes
                 {
                     conn.Open();
 
-                    string queryQuizzes = "SELECT q.QuizID, q.CourseID, q.CourseName, q.TeacherID, q.Title, q.Duration, q.Description, q.CreationDate, q.Status, CASE WHEN qe.Score IS NOT NULL THEN qe.Score ELSE -1 " +
-                        "END AS Score FROM Quiz q INNER JOIN Enrollment e ON q.CourseID = e.CourseID LEFT JOIN QuizEvaluation qe ON q.QuizID = qe.QuizID AND qe.StudentID = @StudentID WHERE e.StudentID = @StudentID";
+                    string queryQuizzes = @"
+                SELECT 
+                    q.QuizID,
+                    q.CourseID,
+                    q.CourseName,
+                    q.TeacherID,
+                    t.Name AS TeacherName,
+                    q.Title,
+                    q.Duration,
+                    q.Description,
+                    q.CreationDate,
+                    q.Status,
+                    CASE 
+                        WHEN qe.Score IS NOT NULL THEN qe.Score
+                        ELSE -1
+                    END AS Score
+                FROM Quiz q
+                INNER JOIN Enrollment e
+                    ON q.CourseID = e.CourseID
+                LEFT JOIN Teacher t
+                    ON q.TeacherID = t.UserID
+                LEFT JOIN QuizEvaluation qe
+                    ON q.QuizID = qe.QuizID
+                    AND qe.StudentID = @StudentID
+                WHERE e.StudentID = @StudentID
+            ";
+
+                    if (!string.IsNullOrWhiteSpace(searchTerm))
+                    {
+                        queryQuizzes += @"
+                    AND (
+                        q.Title LIKE @SearchTerm
+                        OR q.CourseName LIKE @SearchTerm
+                        OR CAST(q.CourseID AS VARCHAR(20)) LIKE @SearchTerm
+                        OR CAST(q.TeacherID AS VARCHAR(20)) LIKE @SearchTerm
+                        OR t.Name LIKE @SearchTerm
+                        OR CONVERT(VARCHAR(30), q.CreationDate, 100) LIKE @SearchTerm
+                    )
+                ";
+                    }
+
+                    if (filter == "completed")
+                    {
+                        queryQuizzes += " AND qe.Score IS NOT NULL ";
+                    }
+                    else if (filter == "available")
+                    {
+                        queryQuizzes += " AND q.Status = 'Started' AND qe.Score IS NULL ";
+                    }
+                    else if (filter == "notcompleted")
+                    {
+                        queryQuizzes += " AND qe.Score IS NULL ";
+                    }
+                    else if (filter == "unavailable")
+                    {
+                        queryQuizzes += " AND q.Status <> 'Started' AND qe.Score IS NULL ";
+                    }
+
+                    if (sort == "oldest")
+                    {
+                        queryQuizzes += " ORDER BY q.CreationDate ASC ";
+                    }
+                    else if (sort == "name_asc")
+                    {
+                        queryQuizzes += " ORDER BY q.Title ASC ";
+                    }
+                    else if (sort == "name_desc")
+                    {
+                        queryQuizzes += " ORDER BY q.Title DESC ";
+                    }
+                    else if (sort == "course_asc")
+                    {
+                        queryQuizzes += " ORDER BY q.CourseName ASC ";
+                    }
+                    else if (sort == "course_desc")
+                    {
+                        queryQuizzes += " ORDER BY q.CourseName DESC ";
+                    }
+                    else
+                    {
+                        queryQuizzes += " ORDER BY q.CreationDate DESC ";
+                    }
 
                     using (SqlCommand cmd = new SqlCommand(queryQuizzes, conn))
                     {
-                        cmd.Parameters.AddWithValue("@StudentID", (int)Session["UserID"]);
+                        cmd.Parameters.Add("@StudentID", System.Data.SqlDbType.Int)
+                            .Value = (int)Session["UserID"];
+
+                        if (!string.IsNullOrWhiteSpace(searchTerm))
+                        {
+                            cmd.Parameters.Add("@SearchTerm", System.Data.SqlDbType.VarChar)
+                                .Value = "%" + searchTerm.Trim() + "%";
+                        }
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
@@ -34,16 +121,49 @@ namespace LearnLink.Controllers.Quizzes
                             {
                                 quizzes.Add(new Quiz
                                 {
-                                    QuizID = reader["QuizID"] != DBNull.Value ? Convert.ToInt32(reader["QuizID"]) : 0,
-                                    CourseID = reader["CourseID"] != DBNull.Value ? Convert.ToInt32(reader["CourseID"]) : 0,
-                                    CourseName = reader["CourseName"] != DBNull.Value ? reader["CourseName"].ToString() : "No Course Name",
-                                    TeacherID = reader["TeacherID"] != DBNull.Value ? Convert.ToInt32(reader["TeacherID"]) : 0,
-                                    Title = reader["Title"] != DBNull.Value ? reader["Title"].ToString() : "No Title",
-                                    Duration = reader["Duration"] != DBNull.Value ? Convert.ToInt32(reader["Duration"]) : 0,
-                                    Description = reader["Description"] != DBNull.Value ? reader["Description"].ToString() : "No Description",
-                                    CreationDate = reader["CreationDate"] != DBNull.Value ? Convert.ToDateTime(reader["CreationDate"]) : DateTime.MinValue,
-                                    Status = reader["Status"] != DBNull.Value ? reader["Status"].ToString() : "No Status",
-                                    Score = reader["Score"] != DBNull.Value ? Convert.ToInt32(reader["Score"]) : -1
+                                    QuizID = reader["QuizID"] != DBNull.Value
+                                        ? Convert.ToInt32(reader["QuizID"])
+                                        : 0,
+
+                                    CourseID = reader["CourseID"] != DBNull.Value
+                                        ? Convert.ToInt32(reader["CourseID"])
+                                        : 0,
+
+                                    CourseName = reader["CourseName"] != DBNull.Value
+                                        ? reader["CourseName"].ToString()
+                                        : "No Course Name",
+
+                                    TeacherID = reader["TeacherID"] != DBNull.Value
+                                        ? Convert.ToInt32(reader["TeacherID"])
+                                        : 0,
+
+                                    TeacherName = reader["TeacherName"] != DBNull.Value
+                                        ? reader["TeacherName"].ToString()
+                                        : "Unknown Teacher",
+
+                                    Title = reader["Title"] != DBNull.Value
+                                        ? reader["Title"].ToString()
+                                        : "No Title",
+
+                                    Duration = reader["Duration"] != DBNull.Value
+                                        ? Convert.ToInt32(reader["Duration"])
+                                        : 0,
+
+                                    Description = reader["Description"] != DBNull.Value
+                                        ? reader["Description"].ToString()
+                                        : "No Description",
+
+                                    CreationDate = reader["CreationDate"] != DBNull.Value
+                                        ? Convert.ToDateTime(reader["CreationDate"])
+                                        : DateTime.MinValue,
+
+                                    Status = reader["Status"] != DBNull.Value
+                                        ? reader["Status"].ToString()
+                                        : "No Status",
+
+                                    Score = reader["Score"] != DBNull.Value
+                                        ? Convert.ToInt32(reader["Score"])
+                                        : -1
                                 });
                             }
                         }
@@ -51,9 +171,17 @@ namespace LearnLink.Controllers.Quizzes
                 }
                 catch (Exception ex)
                 {
-                    Response.Write("<script>alert('An error occurred while fetching quizzes. Please try again. " + ex.Message + "');</script>");
+                    Response.Write(
+                        "<script>alert('An error occurred while fetching quizzes. Please try again. "
+                        + ex.Message +
+                        "');</script>"
+                    );
                 }
             }
+
+            ViewBag.SearchTerm = searchTerm;
+            ViewBag.Filter = filter;
+            ViewBag.Sort = sort;
 
             return View(quizzes);
         }

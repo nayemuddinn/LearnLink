@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 * {
@@ -15,7 +14,6 @@ body {
     display: flex;
     flex-direction: column;
 }
-
 
 .navbar {
     background: rgba(15, 23, 42, 0.75);
@@ -94,7 +92,8 @@ body {
         font-size: 1.2rem;
     }
 
-    .nav-link:hover, .nav-link.active {
+    .nav-link:hover,
+    .nav-link.active {
         color: #f8fafc;
         background: rgba(255, 255, 255, 0.07);
     }
@@ -158,7 +157,6 @@ body {
         border-radius: 2px;
     }
 
-/* --- Main Layout & Grid --- */
 .main-content {
     flex: 1;
     padding: 3rem 2rem;
@@ -185,13 +183,117 @@ body {
         font-size: 1rem;
     }
 
+/* Search / Filter / Sort */
+
+.search-section {
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.search-form {
+    width: 100%;
+}
+
+.search-input-group {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.4rem;
+    background: rgba(30, 41, 59, 0.5);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+}
+
+.search-icon {
+    flex: 0 0 auto;
+    margin-left: 0.7rem;
+    margin-right: 0.5rem;
+    color: #94a3b8;
+    font-size: 1.2rem;
+}
+
+.search-input {
+    min-width: 0;
+    width: 100%;
+    flex: 1;
+    padding: 0.7rem 0.5rem;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #f8fafc;
+    font-size: 0.9rem;
+}
+
+    .search-input::placeholder {
+        color: #64748b;
+    }
+
+.search-select {
+    flex: 0 0 auto;
+    width: 155px;
+    padding: 0.7rem 0.8rem;
+    background: rgba(15, 23, 42, 0.8);
+    color: #f8fafc;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 9px;
+    outline: none;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.82rem;
+}
+
+    .search-select:hover {
+        border-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .search-select:focus {
+        border-color: rgba(56, 189, 248, 0.5);
+    }
+
+    .search-select option {
+        background: #1e293b;
+        color: #f8fafc;
+    }
+
+.search-btn {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-left: auto;
+    padding: 0.7rem 1.1rem;
+    background: rgba(56, 189, 248, 0.15);
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 9px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+    .search-btn:hover {
+        background: rgba(56, 189, 248, 0.25);
+        color: #fff;
+    }
+
+    .search-btn ion-icon {
+        font-size: 1.1rem;
+    }
+
+/* Quiz Grid */
+
 .tiles-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
     gap: 25px;
 }
 
-/* --- Glassmorphism Card Style --- */
 .glass-card {
     background: rgba(30, 41, 59, 0.5);
     backdrop-filter: blur(16px);
@@ -231,23 +333,52 @@ body {
     border: 1px solid rgba(56, 189, 248, 0.2);
 }
 
-.card-titles h3 {
-    font-size: 1.2rem;
-    font-weight: 600;
+.card-titles {
+    min-width: 0;
+    flex: 1;
+}
+
+    .card-titles h3 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #f8fafc;
+        margin-bottom: 8px;
+        word-break: break-word;
+    }
+
+/* Course / Instructor */
+
+.quiz-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: #94a3b8;
+    font-size: 0.78rem;
+    line-height: 1.4;
+}
+
+    .quiz-meta div {
+        display: grid;
+        grid-template-columns: 95px minmax(0, 1fr);
+        align-items: center;
+        gap: 6px;
+    }
+
+.meta-label {
     color: #f8fafc;
-    margin-bottom: 4px;
-}
-
-.course-id-tag {
-    font-size: 0.8rem;
-    color: #38bdf8;
-    background: rgba(56, 189, 248, 0.1);
-    padding: 2px 8px;
-    border-radius: 6px;
     font-weight: 500;
+    white-space: nowrap;
 }
 
-/* --- Quiz Specific Details Grid --- */
+.quiz-meta div > span:last-child {
+    color: #94a3b8;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Card Body */
+
 .card-body {
     margin-bottom: 1.5rem;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -280,23 +411,9 @@ body {
     font-weight: 600;
 }
 
-.status-badge {
-    font-size: 0.8rem;
-    padding: 2px 0px;
-}
-
-.status-pending {
-    color: #fbbf24; /* Warning Yellow */
-}
-
-.status-active {
-    color: #34d399; /* Success Green */
-}
-
-/* --- Card Action Buttons --- */
 .card-actions {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 12px;
 }
 
@@ -317,7 +434,6 @@ body {
         font-size: 1.1rem;
     }
 
-/* Specific Button Colors based on purpose */
 .btn-start {
     background: rgba(56, 189, 248, 0.15);
     color: #38bdf8;
@@ -329,40 +445,8 @@ body {
         color: #fff;
     }
 
-.btn-upload {
-    background: rgba(167, 139, 250, 0.15);
-    color: #a78bfa;
-    border: 1px solid rgba(167, 139, 250, 0.3);
-}
+/* Empty State */
 
-    .btn-upload:hover {
-        background: rgba(167, 139, 250, 0.25);
-        color: #fff;
-    }
-
-.btn-view {
-    background: rgba(16, 185, 129, 0.15);
-    color: #34d399;
-    border: 1px solid rgba(16, 185, 129, 0.3);
-}
-
-    .btn-view:hover {
-        background: rgba(16, 185, 129, 0.25);
-        color: #fff;
-    }
-
-.btn-danger {
-    background: rgba(239, 68, 68, 0.15);
-    color: #f87171;
-    border: 1px solid rgba(239, 68, 68, 0.3);
-}
-
-    .btn-danger:hover {
-        background: rgba(239, 68, 68, 0.25);
-        color: #fff;
-    }
-
-/* --- Empty State --- */
 .empty-state {
     grid-column: 1 / -1;
     background: rgba(30, 41, 59, 0.3);
@@ -385,7 +469,8 @@ body {
         margin-bottom: 0.5rem;
     }
 
-/* --- Back Button --- */
+/* Back Button */
+
 .back-action {
     margin-top: 3rem;
 }
@@ -408,7 +493,8 @@ body {
         background: rgba(255, 255, 255, 0.1);
     }
 
-/* --- Footer --- */
+/* Footer */
+
 .footer {
     text-align: center;
     padding: 2rem;
@@ -418,22 +504,8 @@ body {
     background: rgba(15, 23, 42, 0.5);
 }
 
+/* Status */
 
-@media (max-width: 768px) {
-    .navbar-menu {
-        display: none;
-    }
-
-    .navbar-toggle {
-        display: flex;
-    }
-
-    .card-actions {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* --- Student Specific Banners --- */
 .status-banner {
     display: flex;
     align-items: center;
@@ -460,4 +532,120 @@ body {
 
 .status-banner ion-icon {
     font-size: 1.2rem;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+
+    .search-input-group {
+        flex-wrap: wrap;
+    }
+
+    .search-input {
+        flex: 1 1 250px;
+    }
+
+    .search-select {
+        flex: 1 1 140px;
+    }
+
+    .search-btn {
+        flex: 0 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .navbar-menu {
+        display: none;
+    }
+
+    .navbar-toggle {
+        display: flex;
+    }
+
+    .tiles-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .main-content {
+        padding: 2rem 1rem;
+    }
+
+    .page-header-title {
+        margin-bottom: 2rem;
+    }
+
+    .search-input-group {
+        width: 100%;
+    }
+
+    .search-input {
+        flex: 1 1 100%;
+    }
+
+    .search-select {
+        flex: 1 1 calc(50% - 4px);
+    }
+
+    .search-btn {
+        flex: 0 0 auto;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .navbar {
+        padding: 0.8rem 1rem;
+    }
+
+    .user-name {
+        display: none;
+    }
+
+    .navbar-user {
+        gap: 8px;
+    }
+
+    .page-header-title h1 {
+        font-size: 1.6rem;
+    }
+
+    .glass-card {
+        padding: 1.3rem;
+    }
+
+    .search-input-group {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+
+    .search-icon {
+        display: none;
+    }
+
+    .search-input {
+        width: 100%;
+        flex: none;
+    }
+
+    .search-select {
+        width: 100%;
+        flex: none;
+    }
+
+    .search-btn {
+        width: 100%;
+        margin-left: 0;
+    }
+
+        .search-btn span {
+            display: inline;
+        }
+
+    .quiz-meta div {
+        grid-template-columns: 95px minmax(0, 1fr);
+    }
 }

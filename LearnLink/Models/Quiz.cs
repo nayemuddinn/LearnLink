@@ -17,6 +17,7 @@ namespace LearnLink.Models
         public DateTime CreationDate { get; set; }
         public string Status { get; set; }
         public int Score { get; set; }
+        public string TeacherName { get; set; }
     }
 
 }
