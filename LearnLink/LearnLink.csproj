@@ -208,6 +208,7 @@
     <Content Include="Content\unenrollbutton.css" />
     <Content Include="Content\uploadquiz.css" />
     <Content Include="Content\viewbutton.css" />
+    <Content Include="Content\ViewQuizzes.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
