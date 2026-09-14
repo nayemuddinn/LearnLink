@@ -12,41 +12,125 @@ namespace LearnLink.Controllers.Teachers
     public class TeacherViewQuizzesController : Controller
     {
 
-        public ActionResult ViewQuizzes()
+        public ActionResult ViewQuizzes(string searchTerm, string filter = "all", string sort = "newest")
         {
-
             List<Quiz> quizzes = new List<Quiz>();
 
             using (SqlConnection con = new SqlConnection(DBconnection.connStr))
             {
-                string query = "SELECT QuizID, CourseID, TeacherID, CourseName, Title, Description, CreationDate,Duration, Status FROM Quiz WHERE TeacherID = @TeacherID ORDER BY QuizID DESC";
+                string query = @"
+            SELECT QuizID, CourseID, TeacherID, CourseName, Title, Description,
+                   CreationDate, Duration, Status
+            FROM Quiz
+            WHERE TeacherID = @TeacherID";
+
+                if (!string.IsNullOrWhiteSpace(searchTerm))
+                {
+                    query += @"
+                AND (
+                    CAST(CourseID AS VARCHAR) LIKE @SearchTerm
+                    OR CourseName LIKE @SearchTerm
+                    OR Title LIKE @SearchTerm
+                    OR CONVERT(VARCHAR, CreationDate, 23) LIKE @SearchTerm
+                    OR CONVERT(VARCHAR, CreationDate, 106) LIKE @SearchTerm
+                )";
+                }
+
+                if (filter == "notstarted")
+                {
+                    query += " AND Status = 'NotStarted'";
+                }
+                else if (filter == "started")
+                {
+                    query += " AND Status <> 'NotStarted'";
+                }
+
+                switch (sort)
+                {
+                    case "oldest":
+                        query += " ORDER BY CreationDate ASC";
+                        break;
+
+                    case "name_asc":
+                        query += " ORDER BY CourseName ASC";
+                        break;
+
+                    case "name_desc":
+                        query += " ORDER BY CourseName DESC";
+                        break;
+
+                    case "courseid_asc":
+                        query += " ORDER BY CourseID ASC";
+                        break;
+
+                    case "courseid_desc":
+                        query += " ORDER BY CourseID DESC";
+                        break;
+
+                    default:
+                        query += " ORDER BY CreationDate DESC";
+                        break;
+                }
 
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
                     cmd.Parameters.AddWithValue("@TeacherID", (int)Session["UserID"]);
+
+                    if (!string.IsNullOrWhiteSpace(searchTerm))
+                    {
+                        cmd.Parameters.AddWithValue("@SearchTerm", "%" + searchTerm.Trim() + "%");
+                    }
+
                     con.Open();
+
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
                             quizzes.Add(new Quiz
                             {
-                                QuizID = reader["QuizID"] != DBNull.Value ? Convert.ToInt32(reader["QuizID"]) : 0,
-                                CourseID = reader["CourseID"] != DBNull.Value ? Convert.ToInt32(reader["CourseID"]) : 0,
-                                Title = reader["Title"] != DBNull.Value ? reader["Title"].ToString() : "No Title",
-                                Description = reader["Description"] != DBNull.Value ? reader["Description"].ToString() : "No Description",
-                                CreationDate = reader["CreationDate"] != DBNull.Value ? Convert.ToDateTime(reader["CreationDate"]) : DateTime.MinValue,
-                                Duration = reader["Duration"] != DBNull.Value ? Convert.ToInt32(reader["Duration"]) : 0,
-                                CourseName = reader["CourseName"] != DBNull.Value ? reader["CourseName"].ToString() : "NoCourseName",
-                                Status = reader["Status"] != DBNull.Value ? reader["Status"].ToString() : "NotStarted"
+                                QuizID = reader["QuizID"] != DBNull.Value
+                                    ? Convert.ToInt32(reader["QuizID"])
+                                    : 0,
+
+                                CourseID = reader["CourseID"] != DBNull.Value
+                                    ? Convert.ToInt32(reader["CourseID"])
+                                    : 0,
+
+                                Title = reader["Title"] != DBNull.Value
+                                    ? reader["Title"].ToString()
+                                    : "No Title",
+
+                                Description = reader["Description"] != DBNull.Value
+                                    ? reader["Description"].ToString()
+                                    : "No Description",
+
+                                CreationDate = reader["CreationDate"] != DBNull.Value
+                                    ? Convert.ToDateTime(reader["CreationDate"])
+                                    : DateTime.MinValue,
+
+                                Duration = reader["Duration"] != DBNull.Value
+                                    ? Convert.ToInt32(reader["Duration"])
+                                    : 0,
+
+                                CourseName = reader["CourseName"] != DBNull.Value
+                                    ? reader["CourseName"].ToString()
+                                    : "NoCourseName",
+
+                                Status = reader["Status"] != DBNull.Value
+                                    ? reader["Status"].ToString()
+                                    : "NotStarted"
                             });
                         }
                     }
-                    con.Close();
                 }
             }
 
-            return View(quizzes); 
+            ViewBag.SearchTerm = searchTerm;
+            ViewBag.Filter = filter;
+            ViewBag.Sort = sort;
+
+            return View(quizzes);
         }
         public ActionResult DeleteQuiz(int id)
         {
