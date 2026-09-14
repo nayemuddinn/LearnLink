@@ -96,92 +96,107 @@
                 </div>
             </div>
 
-            <!-- Students Table Section -->
-            <div class="table-section">
-                @if (Model != null && Model.Count > 0)
-                {
-                    <div class="table-wrapper">
-                        <table class="students-table">
-                            <thead>
-                                <tr>
-                                    <th class="col-course">
-                                        <ion-icon name="book-outline"></ion-icon>
-                                        <span>Course</span>
-                                    </th>
-                                    <th class="col-student">
-                                        <ion-icon name="person-outline"></ion-icon>
-                                        <span>Student Name</span>
-                                    </th>
-                                    <th class="col-institution">
-                                        <ion-icon name="school-outline"></ion-icon>
-                                        <span>Institution</span>
-                                    </th>
-                                    <th class="col-phone">
-                                        <ion-icon name="call-outline"></ion-icon>
-                                        <span>Phone</span>
-                                    </th>
-                                    <th class="col-actions">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model)
-                                {
-                                    <tr class="table-row" data-course="@item.CourseName" data-student="@item.StudentName">
-                                        <td class="col-course">
-                                            <div class="course-info">
-                                                <div class="course-badge">@item.CourseID</div>
-                                                <div class="course-details">
-                                                    <p class="course-name">@item.CourseName</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="col-student">
-                                            <div class="student-info">
-                                                <ion-icon name="person-circle" class="student-avatar"></ion-icon>
-                                                <p class="student-name">@item.StudentName</p>
-                                            </div>
-                                        </td>
-                                        <td class="col-institution">
-                                            <span class="institution-text">@(string.IsNullOrEmpty(item.Institution) ? "-" : item.Institution)</span>
-                                        </td>
-                                        <td class="col-phone">
-                                            <span class="phone-text">@(string.IsNullOrEmpty(item.Phone) ? "-" : item.Phone)</span>
-                                        </td>
-                                        <td class="col-actions">
-                                            <a href="@Url.Action("UnenrollStudent", "enrollStudents", new { studentId = item.StudentID, courseId = item.CourseID, page=1})" class="btn btn-unenroll" title="Unenroll Student">
-                                                <ion-icon name="trash-outline"></ion-icon>
-                                                <span>Unenroll</span>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
+            <!-- Search Form Section -->
+            <div class="search-section">
+                <form method="get" action="@Url.Action("AllEnrolledStudents", "enrollStudents")" class="search-form">
+                    <div class="search-input-group">
+                        <ion-icon name="search-outline" class="search-icon"></ion-icon>
+                        <input type="text" name="searchTerm" placeholder="Search by ID, name, institution, or phone..." value..." value="@ViewBag.SearchTerm" class="search-input" autocomplete="off" />
+                        <button type="submit" class="search-btn">
+                            <ion-icon name="search-outline"></ion-icon>
+                            <span>Search</span>
+                        </button>
                     </div>
-                }
-                else
-                {
-                    <div class="empty-state">
-                        <div class="empty-icon">
-                            <ion-icon name="people-outline"></ion-icon>
+                </form>
+            </div>
+
+
+                <!-- Students Table Section -->
+                <div class="table-section">
+                    @if (Model != null && Model.Count > 0)
+                    {
+                        <div class="table-wrapper">
+                            <table class="students-table">
+                                <thead>
+                                    <tr>
+                                        <th class="col-course">
+                                            <ion-icon name="book-outline"></ion-icon>
+                                            <span>Course</span>
+                                        </th>
+                                        <th class="col-student">
+                                            <ion-icon name="person-outline"></ion-icon>
+                                            <span>Student Name</span>
+                                        </th>
+                                        <th class="col-institution">
+                                            <ion-icon name="school-outline"></ion-icon>
+                                            <span>Institution</span>
+                                        </th>
+                                        <th class="col-phone">
+                                            <ion-icon name="call-outline"></ion-icon>
+                                            <span>Phone</span>
+                                        </th>
+                                        <th class="col-actions">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr class="table-row" data-course="@item.CourseName" data-student="@item.StudentName">
+                                            <td class="col-course">
+                                                <div class="course-info">
+                                                    <div class="course-badge">@item.CourseID</div>
+                                                    <div class="course-details">
+                                                        <p class="course-name">@item.CourseName</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="col-student">
+                                                <div class="student-info">
+                                                    <ion-icon name="person-circle" class="student-avatar"></ion-icon>
+                                                    <p class="student-name">@item.StudentName</p>
+                                                </div>
+                                            </td>
+                                            <td class="col-institution">
+                                                <span class="institution-text">@(string.IsNullOrEmpty(item.Institution) ? "-" : item.Institution)</span>
+                                            </td>
+                                            <td class="col-phone">
+                                                <span class="phone-text">@(string.IsNullOrEmpty(item.Phone) ? "-" : item.Phone)</span>
+                                            </td>
+                                            <td class="col-actions">
+                                                <a href="@Url.Action("UnenrollStudent", "enrollStudents", new { studentId = item.StudentID, courseId = item.CourseID, page=1})" class="btn btn-unenroll" title="Unenroll Student">
+                                                    <ion-icon name="trash-outline"></ion-icon>
+                                                    <span>Unenroll</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
                         </div>
-                        <h2>No Enrolled Students</h2>
-                        <p>There are currently no students enrolled in your courses. Enrollments will appear here once students sign up.</p>
-                        <a href="@Url.Action("enrollStudents", "enrollStudents")" class="btn btn-primary">
-                            <ion-icon name="add-circle-outline"></ion-icon>
-                            <span>Start Enrolling Students</span>
+                    }
+                    else
+                    {
+                        <div class="empty-state">
+                            <div class="empty-icon">
+                                <ion-icon name="people-outline"></ion-icon>
+                            </div>
+                            <h2>No Enrolled Students</h2>
+                            <p>There are currently no students enrolled in your courses. Enrollments will appear here once students sign up.</p>
+                            <a href="@Url.Action("enrollStudents", "enrollStudents")" class="btn btn-primary">
+                                <ion-icon name="add-circle-outline"></ion-icon>
+                                <span>Start Enrolling Students</span>
+                            </a>
+                        </div>
+                    }
+
+                    <!-- Page Actions -->
+                    <div class="page-actions">
+                        <a href="@Url.Action("enrollStudents", "enrollStudents")" class="btn btn-secondary">
+                            <ion-icon name="arrow-back-outline"></ion-icon>
+                            <span>Back to Enrollment</span>
                         </a>
                     </div>
-                }
-
-                <!-- Page Actions -->
-                <div class="page-actions">
-                    <a href="@Url.Action("enrollStudents", "enrollStudents")" class="btn btn-secondary">
-                        <ion-icon name="arrow-back-outline"></ion-icon>
-                        <span>Back to Enrollment</span>
-                    </a>
                 </div>
-            </div>
         </div>
     </main>
 

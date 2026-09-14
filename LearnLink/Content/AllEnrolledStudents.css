@@ -368,14 +368,12 @@ body {
 }
 
 .students-table thead th {
-    padding: 1.25rem 1.5rem;
-    text-align: left;
-    font-weight: 600;
-    color: var(--text-primary);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    white-space: nowrap;
+        padding: 1.25rem 1.5rem;
+        text-align: left;
+        font-weight: 600;
+        color: var(--text-primary);
+        vertical-align: middle;
+        white-space: nowrap;
 }
 
 .students-table thead th ion-icon {

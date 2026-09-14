@@ -141,8 +141,9 @@ namespace LearnLink.Controllers.Enrollment
             return RedirectToAction("ViewEnrolledStudents", new { courseID = courseId });
         }
 
-        public ActionResult AllEnrolledStudents()
+        public ActionResult AllEnrolledStudents(string searchTerm)
         {
+            //System.Diagnostics.Debug.WriteLine("Hello from controller -> "+searchTerm);
             List<EnrolledStudentCourse> enrolledStudentsCourses = new List<EnrolledStudentCourse>();
 
             int teacherId = Convert.ToInt32(Session["UserID"]);
