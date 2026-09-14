@@ -324,13 +324,11 @@
                                     </a>
                                 }
 
-                                <a href="@Url.Action("studentParticipation", "TeacherViewQuizzes", new { id = quiz.QuizID })"
-                                   class="btn-action btn-view">
-
-                                    <ion-icon name="analytics-outline"></ion-icon>
-                                    <span>Analytics</span>
-
-                                </a>
+                            <a href="@Url.Action("Index", "QuizAnalytics", new { id = quiz.QuizID })"
+                               class="btn-action btn-view">
+                                <ion-icon name="analytics-outline"></ion-icon>
+                                <span>Analytics</span>
+                            </a>
 
                                 <a href="@Url.Action("DeleteQuiz", "TeacherViewQuizzes", new { id = quiz.QuizID })"
                                    class="btn-action btn-danger"

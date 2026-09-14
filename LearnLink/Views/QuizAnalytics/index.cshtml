@@ -1,0 +1,1327 @@
+@model LearnLink.Models.QuizAnalytics
+
+@{
+    ViewBag.Title = "Quiz Analytics";
+    Layout = null;
+
+    string userRole = Session["UserRole"] != null
+        ? Session["UserRole"].ToString()
+        : "";
+
+    string userName = Session["UserName"] != null
+        ? Session["UserName"].ToString()
+        : "Guest";
+
+    double averagePercentage = Model.TotalQuestions > 0
+        ? (Model.AverageScore / Model.TotalQuestions) * 100
+        : 0;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Quiz Analytics - LearnLink</title>
+
+    <link href="@Url.Content("~/Content/QuizAnalytics.css")" rel="stylesheet" />
+
+    <script type="module"
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+
+    <script nomodule
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <div class="navbar-container">
+
+            <div class="navbar-logo">
+
+                <ion-icon name="school-outline"
+                          class="logo-icon"></ion-icon>
+
+                <div class="logo-text-group">
+
+                    <span class="logo-text">
+                        LearnLink
+                    </span>
+
+                    <span class="role-badge">
+                        @userRole
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="navbar-menu">
+
+                <div class="nav-links">
+
+                    @if (userRole.Equals("Student"))
+                    {
+                        <a href="@Url.Action("AllCourse", "AllCourse")"
+                           class="nav-link">
+
+                            <ion-icon name="book-outline"></ion-icon>
+
+                            <span>
+                                All Courses
+                            </span>
+
+                        </a>
+
+                        <a href="@Url.Action("ViewEnrolledCourses", "StudentEnrolledCourses")"
+                           class="nav-link">
+
+                            <ion-icon name="school-outline"></ion-icon>
+
+                            <span>
+                                Enrolled Courses
+                            </span>
+
+                        </a>
+
+                        <a href="@Url.Action("Assessment", "Assessment")"
+                           class="nav-link active">
+
+                            <ion-icon name="checkmark-circle-outline"></ion-icon>
+
+                            <span>
+                                Assessments
+                            </span>
+
+                        </a>
+
+                        <a href="@Url.Action("editStudentProfile", "editStudentProfile")"
+                           class="nav-link">
+
+                            <ion-icon name="person-outline"></ion-icon>
+
+                            <span>
+                                Edit Profile
+                            </span>
+
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("ManageCourse", "ManageCourse")"
+                           class="nav-link">
+
+                            <ion-icon name="book-outline"></ion-icon>
+
+                            <span>
+                                Manage Courses
+                            </span>
+
+                        </a>
+
+                        <a href="@Url.Action("createCourse", "createCourse")"
+                           class="nav-link">
+
+                            <ion-icon name="add-circle-outline"></ion-icon>
+
+                            <span>
+                                Create Courses
+                            </span>
+
+                        </a>
+
+                        <a href="@Url.Action("courseMaterials", "courseMaterials")"
+                           class="nav-link">
+
+                            <ion-icon name="document-text-outline"></ion-icon>
+
+                            <span>
+                                Course Materials
+                            </span>
+
+                        </a>
+
+                        <a href="@Url.Action("enrollStudents", "enrollStudents")"
+                           class="nav-link">
+
+                            <ion-icon name="person-add-outline"></ion-icon>
+
+                            <span>
+                                Enroll Students
+                            </span>
+
+                        </a>
+
+                        <a href="@Url.Action("Assessment", "Assessment")"
+                           class="nav-link active">
+
+                            <ion-icon name="checkmark-circle-outline"></ion-icon>
+
+                            <span>
+                                Assessments
+                            </span>
+
+                        </a>
+
+                        <a href="@Url.Action("editteacherProfile", "editteacherProfile")"
+                           class="nav-link">
+
+                            <ion-icon name="person-outline"></ion-icon>
+
+                            <span>
+                                Edit Profile
+                            </span>
+
+                        </a>
+                    }
+
+                </div>
+
+            </div>
+
+
+            <div class="navbar-user">
+
+                <div class="user-info">
+
+                    <ion-icon name="person-circle"
+                              class="user-avatar"></ion-icon>
+
+                    <span class="user-name">
+                        @userName
+                    </span>
+
+                </div>
+
+                <a href="@Url.Action("login", "Login")"
+                   class="logout-btn"
+                   title="Log Out">
+
+                    <ion-icon name="log-out-outline"></ion-icon>
+
+                </a>
+
+            </div>
+
+
+            <div class="navbar-toggle">
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="main-content">
+
+        <div class="page-container">
+
+
+            <!-- PAGE HEADER -->
+
+            <div class="page-header-title">
+
+                <h1>
+                    Quiz Analytics
+                </h1>
+
+                <p>
+                    Review quiz performance and student submissions.
+                </p>
+
+            </div>
+
+
+            <!-- SUCCESS / ERROR MESSAGE -->
+
+            @if (TempData["FeedbackSuccess"] != null)
+            {
+                <div class="feedback-message success">
+                    @TempData["FeedbackSuccess"]
+                </div>
+            }
+
+            @if (TempData["FeedbackError"] != null)
+            {
+                <div class="feedback-message error">
+                    @TempData["FeedbackError"]
+                </div>
+            }
+
+
+            <!-- QUIZ OVERVIEW -->
+
+            <div class="glass-card quiz-overview-card">
+
+                <div class="card-header">
+
+                    <div class="card-icon-wrapper">
+
+                        <ion-icon name="analytics-outline"></ion-icon>
+
+                    </div>
+
+
+                    <div class="card-titles">
+
+                        <div class="quiz-info-row">
+
+                            <span class="quiz-id">
+                                Quiz ID: @Model.Quiz.QuizID
+                            </span>
+
+                            <span class="quiz-title">
+                                @Model.Quiz.Title
+                            </span>
+
+                            <span class="course-name">
+                                Course Name: @Model.Quiz.CourseName
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card-body">
+
+                    <div class="quiz-description">
+
+                        <span class="detail-label">
+                            Description
+                        </span>
+
+                        <p>
+                            @Model.Quiz.Description
+                        </p>
+
+                    </div>
+
+
+                    <div class="quiz-details-grid">
+
+                        <div class="detail-item">
+
+                            <span class="detail-label">
+                                Course
+                            </span>
+
+                            <span class="detail-value">
+                                @Model.Quiz.CourseName
+                            </span>
+
+                        </div>
+
+
+                        <div class="detail-item">
+
+                            <span class="detail-label">
+                                Questions
+                            </span>
+
+                            <span class="detail-value">
+                                @Model.TotalQuestions
+                            </span>
+
+                        </div>
+
+
+                        <div class="detail-item">
+
+                            <span class="detail-label">
+                                Duration
+                            </span>
+
+                            <span class="detail-value">
+                                @Model.Quiz.Duration min
+                            </span>
+
+                        </div>
+
+
+                        <div class="detail-item">
+
+                            <span class="detail-label">
+                                Created
+                            </span>
+
+                            <span class="detail-value">
+                                @Model.Quiz.CreationDate.ToString("MMM dd, yyyy")
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="quiz-status-row">
+
+                    <span class="detail-label">
+                        Status
+                    </span>
+
+                    <span class="status-badge @(Model.Quiz.Status == "NotStarted"
+                        ? "status-pending"
+                        : "status-active")">
+
+                        @Model.Quiz.Status
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- ANALYTICS SUMMARY -->
+
+            <div class="analytics-grid">
+
+
+                <div class="glass-card analytics-card">
+
+                    <div class="analytics-card-icon submissions-icon">
+
+                        <ion-icon name="people-outline"></ion-icon>
+
+                    </div>
+
+                    <div class="analytics-card-content">
+
+                        <span class="analytics-label">
+                            Total Submissions
+                        </span>
+
+                        <span class="analytics-value">
+                            @Model.TotalSubmissions
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="glass-card analytics-card">
+
+                    <div class="analytics-card-icon average-icon">
+
+                        <ion-icon name="stats-chart-outline"></ion-icon>
+
+                    </div>
+
+                    <div class="analytics-card-content">
+
+                        <span class="analytics-label">
+                            Average Score
+                        </span>
+
+                        <span class="analytics-value">
+                            @averagePercentage.ToString("0.##")%
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="glass-card analytics-card">
+
+                    <div class="analytics-card-icon highest-icon">
+
+                        <ion-icon name="trophy-outline"></ion-icon>
+
+                    </div>
+
+                    <div class="analytics-card-content">
+
+                        <span class="analytics-label">
+                            Highest Score
+                        </span>
+
+                        <span class="analytics-value">
+
+                            @(Model.TotalQuestions > 0
+                                ? ((double)Model.HighestScore / Model.TotalQuestions * 100).ToString("0.##") + "%"
+                                : "0%")
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="glass-card analytics-card">
+
+                    <div class="analytics-card-icon lowest-icon">
+
+                        <ion-icon name="trending-down-outline"></ion-icon>
+
+                    </div>
+
+                    <div class="analytics-card-content">
+
+                        <span class="analytics-label">
+                            Lowest Score
+                        </span>
+
+                        <span class="analytics-value">
+
+                            @(Model.TotalQuestions > 0
+                                ? ((double)Model.LowestScore / Model.TotalQuestions * 100).ToString("0.##") + "%"
+                                : "0%")
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- STUDENT SUBMISSIONS -->
+
+            <div class="submissions-section">
+
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h2>
+                            Student Submissions
+                        </h2>
+
+                        <p>
+                            Review individual student performance.
+                        </p>
+
+                    </div>
+
+                    <span class="submission-count">
+
+                        @Model.TotalSubmissions
+
+                        @(Model.TotalSubmissions == 1
+                            ? "Submission"
+                            : "Submissions")
+
+                    </span>
+
+                </div>
+
+
+                @if (Model.Evaluations != null &&
+                     Model.Evaluations.Count > 0)
+                {
+
+                    <div class="student-controls">
+
+                        <div class="student-search">
+
+                            <ion-icon name="search-outline"></ion-icon>
+
+                            <input type="text"
+                                   id="studentSearch"
+                                   placeholder="Search student..."
+                                   autocomplete="off" />
+
+                        </div>
+
+
+                        <select id="studentSort"
+                                class="student-sort">
+
+                            <option value="latest">
+                                Latest First
+                            </option>
+
+                            <option value="oldest">
+                                Oldest First
+                            </option>
+
+                            <option value="highest">
+                                Highest Score
+                            </option>
+
+                            <option value="lowest">
+                                Lowest Score
+                            </option>
+
+                            <option value="name">
+                                Student Name A-Z
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="student-grid"
+                         id="studentGrid">
+
+                        @foreach (var evaluation in Model.Evaluations)
+                        {
+
+                            double percentage =
+                                Model.TotalQuestions > 0
+                                    ? ((double)evaluation.Score /
+                                       Model.TotalQuestions) * 100
+                                    : 0;
+
+
+                            string performanceClass;
+
+
+                            if (percentage >= 80)
+                            {
+                                performanceClass =
+                                    "performance-excellent";
+                            }
+                            else if (percentage >= 60)
+                            {
+                                performanceClass =
+                                    "performance-good";
+                            }
+                            else if (percentage >= 40)
+                            {
+                                performanceClass =
+                                    "performance-average";
+                            }
+                            else
+                            {
+                                performanceClass =
+                                    "performance-low";
+                            }
+
+
+                            <div class="student-card"
+                                 data-student-name="@evaluation.StudentName"
+                                 data-score="@evaluation.Score"
+                                 data-submission-time="@evaluation.SubmissionTime.Ticks">
+
+
+                                <div class="student-card-header">
+
+                                    <div class="student-profile">
+
+                                        <div class="student-avatar">
+
+                                            <ion-icon name="person-outline"></ion-icon>
+
+                                        </div>
+
+
+                                        <div class="student-info">
+
+                                            <h3>
+                                                @evaluation.StudentName
+                                            </h3>
+
+                                            <span>
+                                                Student ID:
+                                                @evaluation.StudentID
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <span class="performance-badge @performanceClass">
+
+                                        @if (percentage >= 80)
+                                        {
+                                            <span>
+                                                Excellent
+                                            </span>
+                                        }
+                                        else if (percentage >= 60)
+                                        {
+                                            <span>
+                                                Good
+                                            </span>
+                                        }
+                                        else if (percentage >= 40)
+                                        {
+                                            <span>
+                                                Average
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span>
+                                                Needs Improvement
+                                            </span>
+                                        }
+
+                                    </span>
+
+                                </div>
+
+
+                                <div class="student-score-section">
+
+
+                                    <div class="score-info">
+
+                                        <div>
+
+                                            <span class="detail-label">
+                                                Score
+                                            </span>
+
+                                            <strong>
+                                                @evaluation.Score /
+                                                @Model.TotalQuestions
+                                            </strong>
+
+                                        </div>
+
+
+                                        <span class="score-percentage">
+                                            @percentage.ToString("0.##")%
+                                        </span>
+
+                                    </div>
+
+
+                                    <div class="progress-container">
+
+                                        <div class="progress-bar">
+
+                                            <div class="progress-fill @performanceClass"
+                                                 style="width: @Math.Min(percentage, 100).ToString("0.##", System.Globalization.CultureInfo.InvariantCulture)%;">
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="submission-details">
+
+                                    <div class="submission-time">
+
+                                        <ion-icon name="time-outline"></ion-icon>
+
+                                        <span>
+                                            @evaluation.SubmissionTime.ToString("MMM dd, yyyy • hh:mm tt")
+                                        </span>
+
+                                    </div>
+
+
+                                    @if (!string.IsNullOrWhiteSpace(
+                                        evaluation.Feedback))
+                                    {
+
+                                        <div class="feedback-preview">
+
+                                            <div class="feedback-title">
+
+                                                <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+
+                                                <span>
+                                                    Feedback
+                                                </span>
+
+                                            </div>
+
+                                            <p>
+                                                @evaluation.Feedback
+                                            </p>
+
+                                        </div>
+
+                                    }
+
+                                </div>
+
+
+                                <div class="student-card-actions">
+
+                                    <button type="button"
+                                            class="feedback-button"
+                                            onclick="openFeedbackModal(
+                                                @evaluation.SubmitID,
+                                                '@HttpUtility.JavaScriptStringEncode(evaluation.StudentName)',
+                                                '@HttpUtility.JavaScriptStringEncode(evaluation.Feedback ?? "")'
+                                            )">
+
+                                        <ion-icon name="chatbubble-outline"></ion-icon>
+
+                                        <span>
+
+                                            @(string.IsNullOrWhiteSpace(
+                                                evaluation.Feedback)
+                                                ? "Give Feedback"
+                                                : "Edit Feedback")
+
+                                        </span>
+
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        }
+
+                    </div>
+
+
+                    <div class="no-results"
+                         id="noResults">
+
+                        <ion-icon name="search-outline"></ion-icon>
+
+                        <h3>
+                            No Students Found
+                        </h3>
+
+                        <p>
+                            No student submissions match your search.
+                        </p>
+
+                    </div>
+
+                }
+                else
+                {
+
+                    <div class="empty-state">
+
+                        <ion-icon name="people-outline"></ion-icon>
+
+                        <h3>
+                            No Submissions Yet
+                        </h3>
+
+                        <p>
+                            No students have submitted this quiz yet.
+                        </p>
+
+                    </div>
+
+                }
+
+            </div>
+
+
+            <!-- BACK BUTTON -->
+
+            <div class="back-action">
+
+                <a href="@Url.Action("ViewQuizzes", "TeacherViewQuizzes")"
+                   class="btn-back">
+
+                    <ion-icon name="arrow-back-outline"></ion-icon>
+
+                    <span>
+                        Back to Quizzes
+                    </span>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <div class="footer-content">
+
+            <p>
+                &copy; 2026 LearnLink. All rights reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ================= FEEDBACK MODAL ================= -->
+
+    <div class="feedback-modal-overlay"
+         id="feedbackModalOverlay">
+
+        <div class="feedback-modal">
+
+
+            <div class="feedback-modal-header">
+
+                <div>
+
+                    <span class="modal-label">
+                        Student Feedback
+                    </span>
+
+                    <h3 id="feedbackStudentName">
+                        Student
+                    </h3>
+
+                </div>
+
+
+                <button type="button"
+                        class="close-modal"
+                        id="closeFeedbackModal">
+
+                    <ion-icon name="close-outline"></ion-icon>
+
+                </button>
+
+            </div>
+
+
+            <!-- NORMAL MVC FORM -->
+
+            <form id="feedbackForm"
+                  method="post"
+                  action="@Url.Action("SaveFeedback", "QuizAnalytics")">
+
+                <input type="hidden"
+                       id="feedbackSubmitID"
+                       name="submitID" />
+
+
+                <div class="feedback-form-group">
+
+                    <label for="feedbackText">
+                        Feedback
+                    </label>
+
+                    <textarea id="feedbackText"
+                              name="feedback"
+                              maxlength="500"
+                              placeholder="Write feedback for this student..."
+                              rows="6"
+                              required></textarea>
+
+
+                    <div class="character-count">
+
+                        <span id="characterCount">
+                            0
+                        </span>
+
+                        / 500
+
+                    </div>
+
+                </div>
+
+
+                <div class="feedback-modal-actions">
+
+                    <button type="button"
+                            class="cancel-feedback"
+                            id="cancelFeedback">
+
+                        Cancel
+
+                    </button>
+
+
+                    <button type="submit"
+                            class="save-feedback">
+
+                        <ion-icon name="checkmark-outline"></ion-icon>
+
+                        Save Feedback
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        /* ================= NAVBAR ================= */
+
+        const navbarToggle =
+            document.querySelector('.navbar-toggle');
+
+        if (navbarToggle) {
+
+            navbarToggle.addEventListener(
+                'click',
+                function () {
+
+                    document
+                        .querySelector('.navbar-menu')
+                        .classList.toggle('active');
+
+                }
+            );
+
+        }
+
+
+        /* ================= SEARCH ================= */
+
+        const studentSearch =
+            document.getElementById('studentSearch');
+
+        const studentSort =
+            document.getElementById('studentSort');
+
+        const studentGrid =
+            document.getElementById('studentGrid');
+
+        const noResults =
+            document.getElementById('noResults');
+
+
+        function updateStudentCards() {
+
+            if (!studentGrid) {
+                return;
+            }
+
+
+            const searchValue =
+                studentSearch
+                    ? studentSearch.value
+                        .toLowerCase()
+                        .trim()
+                    : "";
+
+
+            const sortValue =
+                studentSort
+                    ? studentSort.value
+                    : "latest";
+
+
+            const cards =
+                Array.from(
+                    studentGrid.querySelectorAll(
+                        '.student-card'
+                    )
+                );
+
+
+            cards.sort(function (a, b) {
+
+                if (sortValue === "highest") {
+
+                    return parseInt(b.dataset.score)
+                        - parseInt(a.dataset.score);
+
+                }
+
+
+                if (sortValue === "lowest") {
+
+                    return parseInt(a.dataset.score)
+                        - parseInt(b.dataset.score);
+
+                }
+
+
+                if (sortValue === "name") {
+
+                    return a.dataset.studentName
+                        .localeCompare(
+                            b.dataset.studentName
+                        );
+
+                }
+
+
+                if (sortValue === "oldest") {
+
+                    return parseInt(
+                        a.dataset.submissionTime
+                    )
+                        -
+                        parseInt(
+                            b.dataset.submissionTime
+                        );
+
+                }
+
+
+                return parseInt(
+                    b.dataset.submissionTime
+                )
+                    -
+                    parseInt(
+                        a.dataset.submissionTime
+                    );
+
+            });
+
+
+            let visibleCount = 0;
+
+
+            cards.forEach(function (card) {
+
+                const studentName =
+                    card.dataset.studentName
+                        .toLowerCase();
+
+
+                const matches =
+                    studentName.includes(
+                        searchValue
+                    );
+
+
+                card.style.display =
+                    matches
+                        ? ""
+                        : "none";
+
+
+                if (matches) {
+
+                    visibleCount++;
+
+                }
+
+
+                studentGrid.appendChild(card);
+
+            });
+
+
+            if (noResults) {
+
+                noResults.style.display =
+                    visibleCount === 0
+                        ? "block"
+                        : "none";
+
+            }
+
+        }
+
+
+        if (studentSearch) {
+
+            studentSearch.addEventListener(
+                'input',
+                updateStudentCards
+            );
+
+        }
+
+
+        if (studentSort) {
+
+            studentSort.addEventListener(
+                'change',
+                updateStudentCards
+            );
+
+        }
+
+
+        /* ================= FEEDBACK MODAL ================= */
+
+        const feedbackModalOverlay =
+            document.getElementById(
+                'feedbackModalOverlay'
+            );
+
+        const feedbackSubmitID =
+            document.getElementById(
+                'feedbackSubmitID'
+            );
+
+        const feedbackStudentName =
+            document.getElementById(
+                'feedbackStudentName'
+            );
+
+        const feedbackText =
+            document.getElementById(
+                'feedbackText'
+            );
+
+        const characterCount =
+            document.getElementById(
+                'characterCount'
+            );
+
+        const closeFeedbackModal =
+            document.getElementById(
+                'closeFeedbackModal'
+            );
+
+        const cancelFeedback =
+            document.getElementById(
+                'cancelFeedback'
+            );
+
+
+        function openFeedbackModal(
+            submitID,
+            studentName,
+            feedback
+        ) {
+
+            feedbackSubmitID.value =
+                submitID;
+
+
+            feedbackStudentName.textContent =
+                studentName;
+
+
+            feedbackText.value =
+                feedback || "";
+
+
+            updateCharacterCount();
+
+
+            feedbackModalOverlay.classList.add(
+                'show'
+            );
+
+
+            document.body.classList.add(
+                'modal-open'
+            );
+
+
+            setTimeout(function () {
+
+                feedbackText.focus();
+
+            }, 100);
+
+        }
+
+
+        function closeFeedbackModalFunction() {
+
+            feedbackModalOverlay.classList.remove(
+                'show'
+            );
+
+
+            document.body.classList.remove(
+                'modal-open'
+            );
+
+        }
+
+
+        function updateCharacterCount() {
+
+            characterCount.textContent =
+                feedbackText.value.length;
+
+        }
+
+
+        if (feedbackText) {
+
+            feedbackText.addEventListener(
+                'input',
+                updateCharacterCount
+            );
+
+        }
+
+
+        if (closeFeedbackModal) {
+
+            closeFeedbackModal.addEventListener(
+                'click',
+                closeFeedbackModalFunction
+            );
+
+        }
+
+
+        if (cancelFeedback) {
+
+            cancelFeedback.addEventListener(
+                'click',
+                closeFeedbackModalFunction
+            );
+
+        }
+
+
+        if (feedbackModalOverlay) {
+
+            feedbackModalOverlay.addEventListener(
+                'click',
+                function (event) {
+
+                    if (
+                        event.target ===
+                        feedbackModalOverlay
+                    ) {
+
+                        closeFeedbackModalFunction();
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        document.addEventListener(
+            'keydown',
+            function (event) {
+
+                if (
+                    event.key === 'Escape' &&
+                    feedbackModalOverlay.classList.contains(
+                        'show'
+                    )
+                ) {
+
+                    closeFeedbackModalFunction();
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+</html>
