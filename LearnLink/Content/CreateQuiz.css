@@ -1,0 +1,433 @@
+
+.main-content {
+    flex: 1;
+    padding: 3rem 2rem;
+}
+
+.page-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.page-header-title {
+    margin-bottom: 2.5rem;
+    text-align: center;
+}
+
+.page-header-title h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.page-header-title p {
+    font-size: 1rem;
+    color: #94a3b8;
+    font-weight: 400;
+}
+
+/* Form Wrapper */
+.form-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Old Classes conversion to new form styles */
+.card-container {
+    background: rgba(30, 27, 75, 0.4);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.card-container:hover {
+    border-color: rgba(56, 189, 248, 0.2);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+.card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.card-header h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #f8fafc;
+    margin: 0;
+}
+
+.card-header p {
+    font-size: 0.95rem;
+    color: #94a3b8;
+    margin: 0.5rem 0 0 0;
+}
+
+/* Form Section Styles */
+.form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.section-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #f8fafc;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-title::before {
+    content: '';
+    width: 4px;
+    height: 24px;
+    background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+    border-radius: 2px;
+}
+
+/* Form Row */
+.form-row {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.form-row.full {
+    flex-wrap: nowrap;
+}
+
+.form-row.full > .form-group {
+    flex: 1;
+}
+
+/* Form Group */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+    min-width: 200px;
+}
+
+.form-group.required > label::after {
+    content: ' *';
+    color: #f87171;
+}
+
+.form-group label {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #f8fafc;
+}
+
+.form-group.required label {
+    font-weight: 600;
+}
+
+/* Input Wrapper with Icon */
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 12px;
+    color: #38bdf8;
+    font-size: 1.2rem;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper input,
+.input-wrapper textarea {
+    padding-left: 40px;
+}
+
+/* Input and Textarea Styles */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+textarea {
+    width: 100%;
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 0.8rem 1rem;
+    color: #f8fafc;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]::placeholder,
+input[type="number"]::placeholder,
+input[type="email"]::placeholder,
+input[type="password"]::placeholder,
+textarea::placeholder {
+    color: #64748b;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+    outline: none;
+    background: rgba(15, 23, 42, 0.95);
+    border-color: rgba(56, 189, 248, 0.5);
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.1);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+    padding-left: 1rem;
+}
+
+/* Button Styles */
+.btn-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-start;
+    margin-top: 1rem;
+}
+
+.btn-group.centered {
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-primary,
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0.9rem 2rem;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.btn-primary {
+    background: rgba(56, 189, 248, 0.15);
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.btn-primary:hover {
+    background: rgba(56, 189, 248, 0.25);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(56, 189, 248, 0.2);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 10px rgba(56, 189, 248, 0.15);
+}
+
+.btn-secondary {
+    background: rgba(148, 163, 184, 0.1);
+    color: #cbd5e1;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.btn-secondary:hover {
+    background: rgba(148, 163, 184, 0.15);
+    color: #f8fafc;
+    transform: translateY(-2px);
+}
+
+.btn-secondary:active {
+    transform: translateY(0);
+}
+
+/* App Body Content */
+.app-body-content {
+    flex: 1;
+    padding: 2rem 0;
+}
+
+/* Footer Styles */
+.footer {
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 2rem;
+    text-align: center;
+    margin-top: auto;
+}
+
+.footer-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    color: #94a3b8;
+    font-size: 0.9rem;
+}
+
+/* ================= RESPONSIVE DESIGN ================= */
+
+@media (max-width: 1024px) {
+    .page-container {
+        max-width: 750px;
+        padding: 0 1rem;
+    }
+
+    .card-container {
+        padding: 2rem;
+    }
+
+    .page-header-title h1 {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        padding: 2rem 1rem;
+    }
+
+    .page-container {
+        max-width: 100%;
+    }
+
+    .page-header-title h1 {
+        font-size: 1.4rem;
+    }
+
+    .page-header-title p {
+        font-size: 0.9rem;
+    }
+
+    .card-container {
+        padding: 1.5rem;
+        border-radius: 16px;
+    }
+
+    .card-header {
+        gap: 12px;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+    }
+
+    .card-header h1 {
+        font-size: 1.3rem;
+    }
+
+    .form-row {
+        gap: 1rem;
+    }
+
+    .btn-group {
+        flex-direction: column;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+    }
+
+    .section-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-content {
+        padding: 1.5rem 0.75rem;
+    }
+
+    .page-header-title h1 {
+        font-size: 1.2rem;
+    }
+
+    .page-header-title p {
+        font-size: 0.85rem;
+    }
+
+    .card-container {
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 12px;
+    }
+
+    .card-header {
+        margin-bottom: 1rem;
+        padding-bottom: 0.75rem;
+        gap: 10px;
+    }
+
+    .card-header h1 {
+        font-size: 1.1rem;
+    }
+
+    .card-header p {
+        font-size: 0.8rem;
+    }
+
+    .form-group {
+        min-width: auto;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .input-icon {
+        font-size: 1rem;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    input[type="password"],
+    textarea {
+        padding: 0.7rem 0.8rem;
+        padding-left: 36px;
+        font-size: 0.85rem;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.85rem;
+    }
+
+    .section-title {
+        font-size: 0.95rem;
+    }
+
+    .section-title::before {
+        width: 3px;
+        height: 20px;
+    }
+}

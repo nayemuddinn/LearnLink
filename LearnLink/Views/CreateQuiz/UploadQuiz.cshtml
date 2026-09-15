@@ -1,5 +1,12 @@
 ﻿@model LearnLink.Models.QuizQuestion
 
+@{
+    ViewBag.Title = "Upload Quiz Questions";
+    Layout = null;
+    string userRole = Session["UserRole"] != null ? Session["UserRole"].ToString() : "";
+    string userName = Session["UserName"] != null ? Session["UserName"].ToString() : "Guest";
+}
+
 @if (TempData["Alert"] != null)
 {
     <script>
@@ -20,183 +27,267 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload Quiz Questions - LearnLink</title>
-    <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
-    <link href="@Url.Content("/Content/uploadquiz.css")" rel="stylesheet" />
-    <link href="@Url.Content("/Content/backbutton2.css")" rel="stylesheet" />
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            padding: 0 !important;
-        }
-        .responsive-wrapper {
-            width: 100% !important;
-            max-width: 100% !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            height: 100vh;
-        }
-        .app {
-            min-height: 100vh !important;
-            height: 100vh !important;
-            padding: 0 !important;
-            display: flex;
-            flex-direction: column;
-            border-radius: 0 !important;
-        }
-    </style>
+    <link href="@Url.Content("~/Content/CreateCourse.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/UploadQuiz.css")" rel="stylesheet" />
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
-    <div class="responsive-wrapper">
-        <div class="app" style="display: flex; flex-direction: column; height: 100vh; padding: 0;">
-            <div class="app-header" style="padding-bottom: 0.75rem; gap: 2rem; padding: 1rem 1.5rem 0.75rem 1.5rem;">
-                <div class="logo">
-                    <div class="logo-icon">
-                        <ion-icon name="school-outline"></ion-icon>
-                    </div>
-                    <div class="logo-title">
-                        <span style="font-size: 0.9rem;">LearnLink</span>
-                        <span style="font-size: 0.75rem;">@HttpContext.Current.Session["UserRole"]</span>
-                    </div>
-                </div>
-                <div class="app-header-navigation"></div>
 
-                <div class="app-header-actions" style="flex: 1;">
-                    <h3 style="margin: 0; font-size: 0.95rem; color: var(--c-text-secondary);">Upload Quiz Questions</h3>
-                    <div class="app-header-actions-buttons" style="margin-left: auto;">
-                        <ion-icon size="small" name="person-circle"></ion-icon>
-                        <span style="font-size: 0.85rem;">@HttpContext.Current.Session["UserName"]</span>
-                    </div>
-                </div>
-                <div class="app-header-mobile">
-                    <h3 style="font-size: 0.9rem;">Upload Quiz</h3>
-                    <ion-icon size="small" name="person-circle"></ion-icon>
-                    <span style="font-size: 0.8rem;">@HttpContext.Current.Session["UserName"]</span>
+    <!-- ================= NAVBAR ================= -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <ion-icon name="school-outline" class="logo-icon"></ion-icon>
+                <div class="logo-text-group">
+                    <span class="logo-text">LearnLink</span>
+                    <span class="role-badge">@userRole</span>
                 </div>
             </div>
 
-            <div class="app-body" style="display: grid; grid-template-columns: 180px 1fr; gap: 2rem; padding-top: 1.5rem; padding: 1.5rem; flex: 1; overflow: hidden;">
-                @{
-                    if (Session["UserRole"].Equals("Student"))
+            <div class="navbar-menu">
+                <div class="nav-links">
+                    @if (userRole.Equals("Student"))
                     {
-                        <div class="app-body-navigation">
-                            <nav class="navigation">
-                                <a href="@Url.Action("AllCourse", "AllCourse")"><i class="icon ion-md-book"></i><span>All Courses</span></a>
-                                <a href="@Url.Action("ViewEnrolledCourses", "StudentEnrolledCourses")"><i class="icon ion-md-person-add"></i><span>Enrolled Courses</span></a>
-                                <a href="@Url.Action("Assessment", "Assessment")"><i class="icon ion-md-checkmark-circle"></i><span>Assessments</span></a>
-                                <a href="@Url.Action("editStudentProfile", "editStudentProfile")"><i class="icon ion-md-person"></i><span>Edit Profile</span></a>
-                                <a href="@Url.Action("login", "Login")"><i class="icon ion-md-exit"></i><span>Log Out</span></a>
-                            </nav>
-                        </div>
+                        <a href="@Url.Action("AllCourse", "AllCourse")" class="nav-link">
+                            <ion-icon name="book-outline"></ion-icon>
+                            <span>All Courses</span>
+                        </a>
+                        <a href="@Url.Action("ViewEnrolledCourses", "StudentEnrolledCourses")" class="nav-link">
+                            <ion-icon name="school-outline"></ion-icon>
+                            <span>Enrolled Courses</span>
+                        </a>
+                        <a href="@Url.Action("Assessment", "Assessment")" class="nav-link">
+                            <ion-icon name="checkmark-circle-outline"></ion-icon>
+                            <span>Assessments</span>
+                        </a>
+                        <a href="@Url.Action("editStudentProfile", "editStudentProfile")" class="nav-link">
+                            <ion-icon name="person-outline"></ion-icon>
+                            <span>Edit Profile</span>
+                        </a>
                     }
                     else
                     {
-                        <div class="app-body-navigation">
-                            <nav class="navigation">
-                                <a href="@Url.Action("ManageCourse", "ManageCourse")"><i class="icon ion-md-book"></i><span>Manage Courses</span></a>
-                                <a href="@Url.Action("createCourse", "createCourse")"><i class="icon ion-md-add-circle"></i><span>Create Courses</span></a>
-                                <a href="@Url.Action("courseMaterials", "courseMaterials")"><i class="icon ion-md-add-circle"></i><span>CourseMaterials</span></a>
-                                <a href="@Url.Action("enrollStudents", "enrollStudents")"><i class="icon ion-md-person-add"></i><span>Enroll Students</span></a>
-                                <a href="@Url.Action("Assessment", "Assessment")"><i class="icon ion-md-checkmark-circle"></i><span>Assessments</span></a>
-                                <a href="@Url.Action("editteacherProfile", "editteacherProfile")"><i class="icon ion-md-person"></i><span>Edit Profile</span></a>
-                                <a href="@Url.Action("login", "Login")"><i class="icon ion-md-exit"></i><span>Log Out</span></a>
-                            </nav>
-                        </div>
+                        <a href="@Url.Action("ManageCourse", "ManageCourse")" class="nav-link">
+                            <ion-icon name="book-outline"></ion-icon>
+                            <span>Manage Courses</span>
+                        </a>
+                        <a href="@Url.Action("createCourse", "createCourse")" class="nav-link">
+                            <ion-icon name="add-circle-outline"></ion-icon>
+                            <span>Create Courses</span>
+                        </a>
+                        <a href="@Url.Action("courseMaterials", "courseMaterials")" class="nav-link">
+                            <ion-icon name="document-text-outline"></ion-icon>
+                            <span>Course Materials</span>
+                        </a>
+                        <a href="@Url.Action("enrollStudents", "enrollStudents")" class="nav-link">
+                            <ion-icon name="person-add-outline"></ion-icon>
+                            <span>Enroll Students</span>
+                        </a>
+                        <a href="@Url.Action("Assessment", "Assessment")" class="nav-link active">
+                            <ion-icon name="checkmark-circle-outline"></ion-icon>
+                            <span>Assessments</span>
+                        </a>
+                        <a href="@Url.Action("editteacherProfile", "editteacherProfile")" class="nav-link">
+                            <ion-icon name="person-outline"></ion-icon>
+                            <span>Edit Profile</span>
+                        </a>
                     }
-                }
-                <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
-                <div class="app-body-content" style="overflow-y: auto; display: flex; flex-direction: column;">
-                    <div style="flex: 1; display: flex; flex-direction: column;">
-                        @if (TempData["Alert"] != null)
-                        {
-                            <script>
-                                window.addEventListener('DOMContentLoaded', function () {
-                                    alert('@TempData["Alert"]');
-                                });
-                            </script>
-                        }
-
-                        @if (ViewBag.Message != null)
-                        {
-                            @ViewBag.Message
-                        }
-
-                        <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
-                            <div style="width: 100%; max-width: 700px;">
-                                <form class="quiz-form" action="@Url.Action("UploadQuiz", "CreateQuiz")" method="post" style="background: var(--c-gray-700); padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
-                                    @Html.HiddenFor(m => m.QuizID)
-
-                                    <h2 style="color: var(--c-text-primary); margin-top: 0; margin-bottom: 1.5rem;">Add Question to Quiz</h2>
-
-                                    <div class="input-box">
-                                        <label for="Question" style="color: var(--c-text-primary); font-weight: 600;">Question</label>
-                                        <textarea id="Question" name="Question" required placeholder="Type the full question here..." style="background: var(--c-gray-800); color: var(--c-text-primary); border: 1px solid var(--c-gray-600); padding: 0.75rem; border-radius: 8px; font-family: inherit; resize: vertical; min-height: 100px;"></textarea>
-                                    </div>
-
-                                    <div class="options-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem;">
-                                        <div class="input-box">
-                                            <label for="OptionA" style="color: var(--c-text-primary); font-weight: 600;">Option A</label>
-                                            <input id="OptionA" type="text" name="OptionA" required placeholder="Enter option A" style="background: var(--c-gray-800); color: var(--c-text-primary); border: 1px solid var(--c-gray-600); padding: 0.75rem; border-radius: 8px; font-family: inherit;" />
-                                        </div>
-                                        <div class="input-box">
-                                            <label for="OptionB" style="color: var(--c-text-primary); font-weight: 600;">Option B</label>
-                                            <input id="OptionB" type="text" name="OptionB" required placeholder="Enter option B" style="background: var(--c-gray-800); color: var(--c-text-primary); border: 1px solid var(--c-gray-600); padding: 0.75rem; border-radius: 8px; font-family: inherit;" />
-                                        </div>
-                                        <div class="input-box">
-                                            <label for="OptionC" style="color: var(--c-text-primary); font-weight: 600;">Option C</label>
-                                            <input id="OptionC" type="text" name="OptionC" required placeholder="Enter option C" style="background: var(--c-gray-800); color: var(--c-text-primary); border: 1px solid var(--c-gray-600); padding: 0.75rem; border-radius: 8px; font-family: inherit;" />
-                                        </div>
-                                        <div class="input-box">
-                                            <label for="OptionD" style="color: var(--c-text-primary); font-weight: 600;">Option D</label>
-                                            <input id="OptionD" type="text" name="OptionD" required placeholder="Enter option D" style="background: var(--c-gray-800); color: var(--c-text-primary); border: 1px solid var(--c-gray-600); padding: 0.75rem; border-radius: 8px; font-family: inherit;" />
-                                        </div>
-                                    </div>
-
-                                    <div class="input-box" style="margin-top: 1.5rem;">
-                                        <label style="color: var(--c-text-primary); font-weight: 600; display: block; margin-bottom: 1rem;">Select Correct Option</label>
-                                        <div class="radio-group" role="radiogroup" aria-label="Correct Option" style="display: flex; gap: 2rem; flex-wrap: wrap;">
-                                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; color: var(--c-text-primary);">
-                                                <input type="radio" name="CorrectOption" value="A" required style="width: 18px; height: 18px; cursor: pointer;" /> 
-                                                <span>Option A</span>
-                                            </label>
-                                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; color: var(--c-text-primary);">
-                                                <input type="radio" name="CorrectOption" value="B" style="width: 18px; height: 18px; cursor: pointer;" /> 
-                                                <span>Option B</span>
-                                            </label>
-                                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; color: var(--c-text-primary);">
-                                                <input type="radio" name="CorrectOption" value="C" style="width: 18px; height: 18px; cursor: pointer;" /> 
-                                                <span>Option C</span>
-                                            </label>
-                                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; color: var(--c-text-primary);">
-                                                <input type="radio" name="CorrectOption" value="D" style="width: 18px; height: 18px; cursor: pointer;" /> 
-                                                <span>Option D</span>
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="button-container" style="display: flex; gap: 1rem; margin-top: 2rem; justify-content: center;">
-                                        <button type="button" class="btn btn-back" onclick="window.location.href='/Assessment/Assessment'" style="background: var(--c-gray-600); color: var(--c-text-primary); padding: 0.75rem 1.5rem; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: background 0.3s ease;">Back</button>
-                                        <input type="submit" class="btn" value="Submit Question" style="background: var(--c-olive-500); color: var(--c-gray-900); padding: 0.75rem 2rem; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: transform 0.2s ease;" />
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
 
-            <div class="footer" style="padding: 1rem 1.5rem; border-top: 1px solid var(--c-gray-600); margin-top: auto;">
-                <br />
-                <div style="font-size: 0.75rem; color: var(--c-text-tertiary);">&copy; 2024 LearnLink. All rights reserved.</div>
+            <div class="navbar-user">
+                <div class="user-info">
+                    <ion-icon name="person-circle" class="user-avatar"></ion-icon>
+                    <span class="user-name">@userName</span>
+                </div>
+                <a href="@Url.Action("login", "Login")" class="logout-btn" title="Log Out">
+                    <ion-icon name="log-out-outline"></ion-icon>
+                </a>
+            </div>
+
+            <div class="navbar-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
-    </div>
+    </nav>
 
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- ================= MAIN CONTENT ================= -->
+    <main class="main-content">
+        <div class="page-container">
+
+            <!-- Page Header -->
+            <div class="page-header-title">
+                <h1>Upload Quiz Question</h1>
+                <p>Add a new multiple-choice question to your quiz</p>
+            </div>
+
+            <!-- Form Section -->
+            <div class="form-wrapper">
+                @using (Html.BeginForm("UploadQuiz", "CreateQuiz", FormMethod.Post))
+                {
+                    <!-- Question Card -->
+                    <div class="form-card">
+                        <div class="card-header">
+                            <div class="card-icon-wrapper">
+                                <ion-icon name="help-circle-outline"></ion-icon>
+                            </div>
+                            <div class="card-title-group">
+                                <h2>Question Details</h2>
+                                <p>Enter the question and provide four options</p>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <!-- Quiz ID (hidden) -->
+                            @Html.HiddenFor(m => m.QuizID)
+
+                            <!-- Question Text -->
+                            <div class="form-group">
+                                <div class="form-field-header">
+                                    <label for="Question" class="form-label">Question</label>
+                                    <span class="required-badge">Required</span>
+                                </div>
+                                <textarea id="Question" 
+                                          name="Question" 
+                                          class="form-textarea" 
+                                          placeholder="Enter your question here..."
+                                          required></textarea>
+                                <p class="field-hint">Be clear and specific with your question</p>
+                            </div>
+
+                            <!-- Options Grid -->
+                            <div class="options-section">
+                                <h3 class="section-subtitle">Answer Options</h3>
+
+                                <div class="options-grid">
+                                    <!-- Option A -->
+                                    <div class="form-group">
+                                        <div class="form-field-header">
+                                            <label for="OptionA" class="form-label">Option A</label>
+                                            <span class="required-badge">Required</span>
+                                        </div>
+                                        <input type="text" 
+                                               id="OptionA" 
+                                               name="OptionA" 
+                                               class="form-input" 
+                                               placeholder="Enter option A"
+                                               required />
+                                    </div>
+
+                                    <!-- Option B -->
+                                    <div class="form-group">
+                                        <div class="form-field-header">
+                                            <label for="OptionB" class="form-label">Option B</label>
+                                            <span class="required-badge">Required</span>
+                                        </div>
+                                        <input type="text" 
+                                               id="OptionB" 
+                                               name="OptionB" 
+                                               class="form-input" 
+                                               placeholder="Enter option B"
+                                               required />
+                                    </div>
+
+                                    <!-- Option C -->
+                                    <div class="form-group">
+                                        <div class="form-field-header">
+                                            <label for="OptionC" class="form-label">Option C</label>
+                                            <span class="required-badge">Required</span>
+                                        </div>
+                                        <input type="text" 
+                                               id="OptionC" 
+                                               name="OptionC" 
+                                               class="form-input" 
+                                               placeholder="Enter option C"
+                                               required />
+                                    </div>
+
+                                    <!-- Option D -->
+                                    <div class="form-group">
+                                        <div class="form-field-header">
+                                            <label for="OptionD" class="form-label">Option D</label>
+                                            <span class="required-badge">Required</span>
+                                        </div>
+                                        <input type="text" 
+                                               id="OptionD" 
+                                               name="OptionD" 
+                                               class="form-input" 
+                                               placeholder="Enter option D"
+                                               required />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Correct Answer -->
+                            <div class="form-group">
+                                <div class="form-field-header">
+                                    <label class="form-label">Select Correct Answer</label>
+                                    <span class="required-badge">Required</span>
+                                </div>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="CorrectOption" value="A" required />
+                                        <span>Option A</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="CorrectOption" value="B" />
+                                        <span>Option B</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="CorrectOption" value="C" />
+                                        <span>Option C</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="CorrectOption" value="D" />
+                                        <span>Option D</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">
+                            <ion-icon name="cloud-upload-outline"></ion-icon>
+                            <span>Submit Question</span>
+                        </button>
+                        <a href="@Url.Action("Assessment", "Assessment")" class="btn-secondary">
+                            <ion-icon name="arrow-back-outline"></ion-icon>
+                            <span>Cancel</span>
+                        </a>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 LearnLink. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            var toggleBtn = document.querySelector('.navbar-toggle');
+            var menu = document.querySelector('.navbar-menu');
+            if (toggleBtn !== null && menu !== null) {
+                toggleBtn.addEventListener('click', function () {
+                    if (menu !== null) {
+                        menu.classList.toggle('active');
+                    }
+                });
+            }
+        });
+    </script>
+
 </body>
 </html>
+                    

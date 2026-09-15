@@ -1,5 +1,8 @@
 @{
     ViewBag.Title = "Create Course";
+    Layout = null;
+    string userRole = Session["UserRole"] != null ? Session["UserRole"].ToString() : "";
+    string userName = Session["UserName"] != null ? Session["UserName"].ToString() : "Guest";
 }
 
 <!DOCTYPE html>
@@ -8,101 +11,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Course - LearnLink</title>
-    <link href="@Url.Content("/Content/CreateCourse.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/CreateCourse.css")" rel="stylesheet" />
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
-    <!-- Professional Top Navbar -->
+
+    <!-- ================= NAVBAR ================= -->
     <nav class="navbar">
         <div class="navbar-container">
-            <!-- Logo -->
+
             <div class="navbar-logo">
                 <ion-icon name="school-outline" class="logo-icon"></ion-icon>
-                <span class="logo-text">LearnLink</span>
+                <div class="logo-text-group">
+                    <span class="logo-text">LearnLink</span>
+                    <span class="role-badge">@userRole</span>
+                </div>
             </div>
 
-            <!-- Navigation Links -->
             <div class="navbar-menu">
                 <div class="nav-links">
-                    @{
-                        if (Session["UserRole"].Equals("Student"))
-                        {
-                            <a href="@Url.Action("AllCourse", "AllCourse")" class="nav-link">
-                                <ion-icon name="book-outline"></ion-icon>
-                                <span>All Courses</span>
-                            </a>
-                            <a href="@Url.Action("ViewEnrolledCourses", "StudentEnrolledCourses")" class="nav-link">
-                                <ion-icon name="school-outline"></ion-icon>
-                                <span>Enrolled</span>
-                            </a>
-                            <a href="@Url.Action("Assessment", "Assessment")" class="nav-link">
-                                <ion-icon name="checkmark-circle-outline"></ion-icon>
-                                <span>Assessments</span>
-                            </a>
-                        }
-                        else
-                        {
-                            <a href="@Url.Action("ManageCourse", "ManageCourse")" class="nav-link">
-                                <ion-icon name="book-outline"></ion-icon>
-                                <span>Manage</span>
-                            </a>
-                            <a href="@Url.Action("createCourse", "createCourse")" class="nav-link active">
-                                <ion-icon name="add-circle-outline"></ion-icon>
-                                <span>Create</span>
-                            </a>
-                            <a href="@Url.Action("courseMaterials", "courseMaterials")" class="nav-link">
-                                <ion-icon name="document-outline"></ion-icon>
-                                <span>Materials</span>
-                            </a>
-                            <a href="@Url.Action("enrollStudents", "enrollStudents")" class="nav-link">
-                                <ion-icon name="people-outline"></ion-icon>
-                                <span>Enroll</span>
-                            </a>
-                        }
+                    @if (userRole.Equals("Student"))
+                    {
+                        <a href="@Url.Action("AllCourse", "AllCourse")" class="nav-link">
+                            <ion-icon name="book-outline"></ion-icon>
+                            <span>All Courses</span>
+                        </a>
+                        <a href="@Url.Action("ViewEnrolledCourses", "StudentEnrolledCourses")" class="nav-link">
+                            <ion-icon name="school-outline"></ion-icon>
+                            <span>Enrolled Courses</span>
+                        </a>
+                        <a href="@Url.Action("Assessment", "Assessment")" class="nav-link">
+                            <ion-icon name="checkmark-circle-outline"></ion-icon>
+                            <span>Assessments</span>
+                        </a>
+                        <a href="@Url.Action("editStudentProfile", "editStudentProfile")" class="nav-link">
+                            <ion-icon name="person-outline"></ion-icon>
+                            <span>Edit Profile</span>
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("ManageCourse", "ManageCourse")" class="nav-link">
+                            <ion-icon name="book-outline"></ion-icon>
+                            <span>Manage Courses</span>
+                        </a>
+                        <a href="@Url.Action("createCourse", "createCourse")" class="nav-link active">
+                            <ion-icon name="add-circle-outline"></ion-icon>
+                            <span>Create Courses</span>
+                        </a>
+                        <a href="@Url.Action("courseMaterials", "courseMaterials")" class="nav-link">
+                            <ion-icon name="document-text-outline"></ion-icon>
+                            <span>Course Materials</span>
+                        </a>
+                        <a href="@Url.Action("enrollStudents", "enrollStudents")" class="nav-link">
+                            <ion-icon name="person-add-outline"></ion-icon>
+                            <span>Enroll Students</span>
+                        </a>
+                        <a href="@Url.Action("Assessment", "Assessment")" class="nav-link">
+                            <ion-icon name="checkmark-circle-outline"></ion-icon>
+                            <span>Assessments</span>
+                        </a>
+                        <a href="@Url.Action("editteacherProfile", "editteacherProfile")" class="nav-link">
+                            <ion-icon name="person-outline"></ion-icon>
+                            <span>Edit Profile</span>
+                        </a>
                     }
                 </div>
             </div>
 
-            <!-- User Profile & Logout -->
             <div class="navbar-user">
                 <div class="user-info">
                     <ion-icon name="person-circle" class="user-avatar"></ion-icon>
-                    <div class="user-details">
-                        <p class="user-name">@HttpContext.Current.Session["UserName"]</p>
-                        <p class="user-role">@HttpContext.Current.Session["UserRole"]</p>
-                    </div>
+                    <span class="user-name">@userName</span>
                 </div>
                 <a href="@Url.Action("login", "Login")" class="logout-btn" title="Log Out">
                     <ion-icon name="log-out-outline"></ion-icon>
                 </a>
             </div>
 
-            <!-- Mobile Menu Toggle -->
             <div class="navbar-toggle">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
+
         </div>
     </nav>
 
-    <!-- Main Content Area -->
+    <!-- ================= MAIN CONTENT ================= -->
     <main class="main-content">
         <div class="page-container">
+
             <!-- Page Header -->
-            <div class="page-header">
-                <div class="header-content">
-                    <div class="header-text">
-                        <h1>Create New Course</h1>
-                        <p>Design and publish a new course for your students. Fill in the course details below to get started.</p>
-                    </div>
-                    <div class="header-illustration">
-                        <div class="illustration-box">
-                            <ion-icon name="sparkles-outline"></ion-icon>
-                        </div>
-                    </div>
-                </div>
+            <div class="page-header-title">
+                <h1>Create New Course</h1>
+                <p>Design and publish a new course for your students.</p>
             </div>
 
             <!-- Form Section -->
@@ -112,10 +116,10 @@
                     <!-- Course Information Card -->
                     <div class="form-card">
                         <div class="card-header">
-                            <div class="card-icon">
+                            <div class="card-icon-wrapper">
                                 <ion-icon name="book-outline"></ion-icon>
                             </div>
-                            <div class="card-title">
+                            <div class="card-title-group">
                                 <h2>Course Information</h2>
                                 <p>Provide the basic details about your course</p>
                             </div>
@@ -128,135 +132,76 @@
                                     <label for="CourseName" class="form-label">Course Name</label>
                                     <span class="required-badge">Required</span>
                                 </div>
-                                <div class="input-group">
-                                    <input type="text" 
-                                           id="CourseName" 
-                                           name="CourseName" 
-                                           class="form-input" 
-                                           placeholder="e.g., Introduction to C# Programming" 
-                                           required>
-                                    <div class="input-border"></div>
-                                </div>
-                                <p class="field-hint">Choose a clear and descriptive name for your course that attracts students</p>
+                                <input type="text"
+                                       id="CourseName"
+                                       name="CourseName"
+                                       class="form-input"
+                                       placeholder="e.g., Introduction to C# Programming"
+                                       required>
+                                <p class="field-hint">Choose a clear and descriptive name</p>
                             </div>
 
                             <!-- Course Description -->
                             <div class="form-group">
                                 <div class="form-field-header">
-                                    <label for="CourseDescription" class="form-label">Description</label>
+                                    <label for="CourseDescription" class="form-label">Course Description</label>
                                     <span class="required-badge">Required</span>
                                 </div>
-                                <div class="input-group textarea-group">
-                                    <textarea id="CourseDescription" 
-                                              name="CourseDescription" 
-                                              class="form-textarea" 
-                                              placeholder="Describe what students will learn, the learning objectives, and key topics covered in your course..."
-                                              required></textarea>
-                                    <div class="input-border"></div>
-                                </div>
-                                <p class="field-hint">Write a compelling description that explains the course content and value</p>
+                                <textarea id="CourseDescription"
+                                          name="CourseDescription"
+                                          class="form-textarea"
+                                          placeholder="Describe what students will learn..."
+                                          rows="4"
+                                          required></textarea>
+                                <p class="field-hint">Provide a comprehensive overview of the course content</p>
                             </div>
 
-                            <!-- Prerequisites -->
+                            <!-- Course Prerequisites -->
                             <div class="form-group">
                                 <div class="form-field-header">
                                     <label for="CoursePrerequisite" class="form-label">Prerequisites</label>
                                     <span class="optional-badge">Optional</span>
                                 </div>
-                                <div class="input-group">
-                                    <input type="text" 
-                                           id="CoursePrerequisite" 
-                                           name="CoursePrerequisite" 
-                                           class="form-input" 
-                                           placeholder="e.g., Basic Programming Knowledge, Mathematics Fundamentals">
-                                    <div class="input-border"></div>
-                                </div>
+                                <input type="text"
+                                       id="CoursePrerequisite"
+                                       name="CoursePrerequisite"
+                                       class="form-input"
+                                       placeholder="e.g., Basic Programming Knowledge, Mathematics Fundamentals">
                                 <p class="field-hint">List any prerequisites students should have before enrolling</p>
-                            </div>
-
-                            <!-- Course Fee -->
-                            <div class="form-group">
-                                <div class="form-field-header">
-                                    <label for="CourseFee" class="form-label">Course Fee</label>
-                                    <span class="optional-badge">Optional</span>
-                                </div>
-                                <div class="input-group currency-group">
-                                    <span class="currency-symbol">$</span>
-                                    <input type="number" 
-                                           id="CourseFee" 
-                                           name="CourseFee" 
-                                           class="form-input currency-input" 
-                                           placeholder="0.00" 
-                                           step="0.01" 
-                                           min="0">
-                                    <div class="input-border"></div>
-                                </div>
-                                <p class="field-hint">Leave blank or enter 0 for free courses. Otherwise, enter the price in USD</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Form Actions -->
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-primary">
-                            <ion-icon name="add-circle-outline"></ion-icon>
+                        <button type="submit" class="btn-primary">
+                            <ion-icon name="checkmark-circle-outline"></ion-icon>
                             <span>Create Course</span>
                         </button>
-                        <a href="@Url.Action("ManageCourse", "ManageCourse")" class="btn btn-secondary">
+                        <a href="@Url.Action("ManageCourse", "ManageCourse")" class="btn-secondary">
                             <ion-icon name="arrow-back-outline"></ion-icon>
                             <span>Cancel</span>
                         </a>
                     </div>
                 }
             </div>
+
         </div>
     </main>
 
-    <!-- Footer -->
+    <!-- ================= FOOTER ================= -->
     <footer class="footer">
         <div class="footer-content">
-            <p>&copy; 2024 LearnLink. All rights reserved. Designed with care.</p>
+            <p>&copy; 2024 LearnLink. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        // Auto-expanding textarea functionality
-        const textareas = document.querySelectorAll('.form-textarea');
-
-        function autoExpandTextarea(textarea) {
-            // Reset height to auto to get the correct scrollHeight
-            textarea.style.height = 'auto';
-            // Set height to scrollHeight to make it expand
-            textarea.style.height = textarea.scrollHeight + 'px';
-        }
-
-        // Initialize textareas and add event listeners
-        textareas.forEach(textarea => {
-            // Set initial height
-            autoExpandTextarea(textarea);
-
-            // Auto-expand on input
-            textarea.addEventListener('input', function() {
-                autoExpandTextarea(this);
-            });
-
-            // Auto-expand on focus (in case content was set programmatically)
-            textarea.addEventListener('focus', function() {
-                setTimeout(() => autoExpandTextarea(this), 0);
-            });
-        });
-
         // Mobile menu toggle
-        document.querySelector('.navbar-toggle').addEventListener('click', function() {
+        document.querySelector('.navbar-toggle').addEventListener('click', function () {
             document.querySelector('.navbar-menu').classList.toggle('active');
         });
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function() {
-                document.querySelector('.navbar-menu').classList.remove('active');
-            });
-        });
     </script>
+
 </body>
 </html>

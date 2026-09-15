@@ -93,7 +93,7 @@ namespace LearnLink.Controllers.Courses
 
 
                 }
-                catch (SqlException sqlEx)
+                catch (SqlException ex)
                 {
                     Response.Write("<script>alert('Error uploading file to the database. Please try again');</script>");
                 }

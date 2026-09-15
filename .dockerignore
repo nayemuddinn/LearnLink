@@ -1,0 +1,15 @@
+.git
+.gitignore
+.vs
+.vscode
+bin
+obj
+*.user
+*.suo
+packages
+.DS_Store
+*.log
+dist
+publish
+*.md
+LICENSE

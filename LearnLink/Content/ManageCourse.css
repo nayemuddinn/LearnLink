@@ -1,4 +1,3 @@
-/* Import Google Font */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 * {
@@ -6,6 +5,10 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+}
+
+html, body {
+    height: 100%;
 }
 
 body {
@@ -16,7 +19,7 @@ body {
     flex-direction: column;
 }
 
-/* Navbar Styles (Consistent with LearnLink Theme) */
+/* ================= NAVBAR STYLES ================= */
 .navbar {
     background: rgba(15, 23, 42, 0.75);
     backdrop-filter: blur(16px);
@@ -90,14 +93,15 @@ body {
     transition: all 0.3s ease;
 }
 
-    .nav-link ion-icon {
-        font-size: 1.2rem;
-    }
+.nav-link ion-icon {
+    font-size: 1.2rem;
+}
 
-    .nav-link:hover, .nav-link.active {
-        color: #f8fafc;
-        background: rgba(255, 255, 255, 0.07);
-    }
+.nav-link:hover,
+.nav-link.active {
+    color: #f8fafc;
+    background: rgba(255, 255, 255, 0.07);
+}
 
 .navbar-user {
     display: flex;
@@ -139,10 +143,10 @@ body {
     transition: all 0.3s ease;
 }
 
-    .logout-btn:hover {
-        background: rgba(239, 68, 68, 0.3);
-        color: #fff;
-    }
+.logout-btn:hover {
+    background: rgba(239, 68, 68, 0.3);
+    color: #fff;
+}
 
 .navbar-toggle {
     display: none;
@@ -151,14 +155,14 @@ body {
     cursor: pointer;
 }
 
-    .navbar-toggle span {
-        width: 25px;
-        height: 3px;
-        background: #f8fafc;
-        border-radius: 2px;
-    }
+.navbar-toggle span {
+    width: 25px;
+    height: 3px;
+    background: #f8fafc;
+    border-radius: 2px;
+}
 
-/* Main Layout */
+/* ================= MAIN CONTENT ================= */
 .main-content {
     flex: 1;
     padding: 3rem 2rem;
@@ -173,26 +177,26 @@ body {
     margin-bottom: 2.5rem;
 }
 
-    .page-header-title h1 {
-        font-size: 2rem;
-        font-weight: 700;
-        color: #f8fafc;
-        margin-bottom: 0.5rem;
-    }
+.page-header-title h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 0.5rem;
+}
 
-    .page-header-title p {
-        color: #94a3b8;
-        font-size: 1rem;
-    }
+.page-header-title p {
+    color: #94a3b8;
+    font-size: 1rem;
+}
 
-/* Grid Layout for Teacher Course Tiles */
+/* ================= TILES GRID ================= */
 .tiles-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
     gap: 25px;
 }
 
-/* Glassmorphism Card Style */
+/* ================= GLASS CARD ================= */
 .glass-card {
     background: rgba(30, 41, 59, 0.5);
     backdrop-filter: blur(16px);
@@ -207,11 +211,11 @@ body {
     transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-    .glass-card:hover {
-        transform: translateY(-5px);
-        border-color: rgba(56, 189, 248, 0.3);
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 0 20px rgba(56, 189, 248, 0.1);
-    }
+.glass-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(56, 189, 248, 0.3);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 0 20px rgba(56, 189, 248, 0.1);
+}
 
 .card-header {
     display: flex;
@@ -254,20 +258,19 @@ body {
     padding-top: 1rem;
 }
 
-/* Description styling with line clamp */
 .description-item {
     margin-bottom: 0.8rem;
     color: #cbd5e1;
     font-size: 0.85rem;
     display: -webkit-box;
-    -webkit-line-clamp: 2; /* Limits to 2 lines */
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
 
-    .description-item ion-icon {
-        min-width: 1.1rem; /* Prevents icon from shrinking if text wraps */
-    }
+.description-item ion-icon {
+    min-width: 1.1rem;
+}
 
 .meta-item {
     display: flex;
@@ -277,30 +280,35 @@ body {
     font-size: 0.9rem;
 }
 
-    .meta-item ion-icon {
-        color: #cbd5e1;
-        font-size: 1.1rem;
-        margin-top: 2px;
-    }
+.meta-item ion-icon {
+    color: #cbd5e1;
+    font-size: 1.1rem;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
 
-/* Card Action Buttons */
+/* ================= CARD ACTIONS ================= */
 .card-actions {
-    display: flex;
-    gap: 12px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
 }
 
 .btn-action {
-    flex: 1;
-    padding: 0.75rem 1rem;
+    padding: 0.7rem 0.8rem;
     border-radius: 12px;
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 6px;
     transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    text-align: center;
 }
 
 .btn-view {
@@ -309,10 +317,11 @@ body {
     border: 1px solid rgba(56, 189, 248, 0.3);
 }
 
-    .btn-view:hover {
-        background: rgba(56, 189, 248, 0.25);
-        color: #fff;
-    }
+.btn-view:hover {
+    background: rgba(56, 189, 248, 0.25);
+    color: #fff;
+    transform: translateY(-2px);
+}
 
 .btn-quiz {
     background: rgba(16, 185, 129, 0.15);
@@ -320,12 +329,13 @@ body {
     border: 1px solid rgba(16, 185, 129, 0.3);
 }
 
-    .btn-quiz:hover {
-        background: rgba(16, 185, 129, 0.25);
-        color: #fff;
-    }
+.btn-quiz:hover {
+    background: rgba(16, 185, 129, 0.25);
+    color: #fff;
+    transform: translateY(-2px);
+}
 
-/* Empty State */
+/* ================= EMPTY STATE ================= */
 .empty-state {
     grid-column: 1 / -1;
     background: rgba(30, 41, 59, 0.3);
@@ -336,47 +346,165 @@ body {
     color: #94a3b8;
 }
 
+.empty-state ion-icon {
+    font-size: 3.5rem;
+    color: #64748b;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.empty-state h3 {
+    font-size: 1.5rem;
+    color: #f8fafc;
+    margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+    font-size: 1rem;
+    color: #94a3b8;
+}
+
+/* ================= FOOTER ================= */
+.footer {
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 2rem;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    color: #94a3b8;
+    font-size: 0.9rem;
+}
+
+/* ================= RESPONSIVE DESIGN ================= */
+@media (max-width: 1024px) {
+    .tiles-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+    }
+
+    .navbar-menu .nav-links {
+        gap: 4px;
+    }
+
+    .nav-link {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.85rem;
+    }
+
+    .nav-link ion-icon {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0.8rem 1rem;
+    }
+
+    .navbar-container {
+        gap: 1rem;
+    }
+
+    .logo-text {
+        font-size: 1rem;
+    }
+
+    .navbar-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(15, 23, 42, 0.95);
+        backdrop-filter: blur(16px);
+        flex-direction: column;
+        padding: 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .navbar-menu.active {
+        display: flex;
+    }
+
+    .navbar-menu .nav-links {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .navbar-toggle {
+        display: flex;
+    }
+
+    .main-content {
+        padding: 2rem 1rem;
+    }
+
+    .page-header-title h1 {
+        font-size: 1.5rem;
+    }
+
+    .tiles-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 15px;
+    }
+
+    .glass-card {
+        padding: 1.5rem;
+    }
+
+    .card-actions {
+        flex-direction: column;
+    }
+
+    .btn-action {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-header-title h1 {
+        font-size: 1.25rem;
+    }
+
+    .page-header-title p {
+        font-size: 0.9rem;
+    }
+
+    .tiles-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .empty-state {
+        padding: 3rem 1rem;
+    }
+
     .empty-state ion-icon {
-        font-size: 3.5rem;
-        color: #64748b;
-        margin-bottom: 1rem;
+        font-size: 2.5rem;
     }
 
     .empty-state h3 {
-        font-size: 1.3rem;
-        color: #f8fafc;
-        margin-bottom: 0.5rem;
+        font-size: 1.2rem;
     }
 
-/* Back Button */
-.back-action {
-    margin-top: 3rem;
-}
-
-.btn-back {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #f8fafc;
-    padding: 0.75rem 1.5rem;
-    border-radius: 12px;
-    cursor: pointer;
-    font-weight: 500;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.3s ease;
-}
-
-    .btn-back:hover {
-        background: rgba(255, 255, 255, 0.1);
+    .navbar-logo {
+        gap: 8px;
     }
 
-/* Footer */
-.footer {
-    text-align: center;
-    padding: 2rem;
-    color: #64748b;
-    font-size: 0.85rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    background: rgba(15, 23, 42, 0.5);
+    .logo-icon {
+        width: 30px;
+        height: 30px;
+        padding: 4px;
+        font-size: 1.5rem;
+    }
+
+    .user-name {
+        display: none;
+    }
 }

@@ -1,245 +1,537 @@
-﻿@model LearnLink.Models.User
+@model LearnLink.Models.User
 
 @{
     ViewBag.Title = "Edit Teacher Profile";
+    Layout = null;
+
+    string userRole = Session["UserRole"] != null ? Session["UserRole"].ToString() : "";
+    string userName = Session["UserName"] != null ? Session["UserName"].ToString() : "Guest";
+
 }
 
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Edit Profile - LearnLink</title>
-    <link href="@Url.Content("/Content/EditProfile.css")" rel="stylesheet" />
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <link href="@Url.Content("~/Content/EditStudentProfile.css")" rel="stylesheet" />
+
+    <script type="module"
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+
+    <script nomodule
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
 </head>
+
 <body>
-    <!-- Professional Top Navbar -->
+
+    <!-- ================= NAVBAR ================= -->
+
     <nav class="navbar">
+
         <div class="navbar-container">
-            <!-- Logo -->
+
             <div class="navbar-logo">
-                <ion-icon name="school-outline" class="logo-icon"></ion-icon>
-                <span class="logo-text">LearnLink</span>
+
+                <ion-icon name="school-outline"
+                          class="logo-icon"></ion-icon>
+
+                <div class="logo-text-group">
+
+                    <span class="logo-text">
+                        LearnLink
+                    </span>
+
+                    <span class="role-badge">
+                        @userRole
+                    </span>
+
+                </div>
+
             </div>
 
-            <!-- Navigation Links -->
+
             <div class="navbar-menu">
+
                 <div class="nav-links">
-                    <a href="@Url.Action("ManageCourse", "ManageCourse")" class="nav-link">
+
+                    <a href="@Url.Action("ManageCourse", "ManageCourse")"
+                       class="nav-link">
+
                         <ion-icon name="book-outline"></ion-icon>
-                        <span>Manage</span>
+
+                        <span>Manage Courses</span>
+
                     </a>
-                    <a href="@Url.Action("createCourse", "createCourse")" class="nav-link">
+
+
+                    <a href="@Url.Action("createCourse", "createCourse")"
+                       class="nav-link">
+
                         <ion-icon name="add-circle-outline"></ion-icon>
-                        <span>Create</span>
+
+                        <span>Create Courses</span>
+
                     </a>
-                    <a href="@Url.Action("courseMaterials", "courseMaterials")" class="nav-link">
-                        <ion-icon name="document-outline"></ion-icon>
-                        <span>Materials</span>
+
+
+                    <a href="@Url.Action("courseMaterials", "courseMaterials")"
+                       class="nav-link">
+
+                        <ion-icon name="document-text-outline"></ion-icon>
+
+                        <span>Course Materials</span>
+
                     </a>
-                    <a href="@Url.Action("enrollStudents", "enrollStudents")" class="nav-link">
-                        <ion-icon name="people-outline"></ion-icon>
-                        <span>Enroll</span>
+
+
+                    <a href="@Url.Action("enrollStudents", "enrollStudents")"
+                       class="nav-link">
+
+                        <ion-icon name="person-add-outline"></ion-icon>
+
+                        <span>Enroll Students</span>
+
                     </a>
+
+
+                    <a href="@Url.Action("editteacherProfile", "editteacherProfile")"
+                       class="nav-link active">
+
+                        <ion-icon name="person-outline"></ion-icon>
+
+                        <span>Edit Profile</span>
+
+                    </a>
+
                 </div>
+
             </div>
 
-            <!-- User Profile & Logout -->
+
             <div class="navbar-user">
+
                 <div class="user-info">
-                    <ion-icon name="person-circle" class="user-avatar"></ion-icon>
-                    <div class="user-details">
-                        <p class="user-name">@HttpContext.Current.Session["UserName"]</p>
-                        <p class="user-role">@HttpContext.Current.Session["UserRole"]</p>
-                    </div>
+
+                    <ion-icon name="person-circle"
+                              class="user-avatar"></ion-icon>
+
+                    <span class="user-name">
+                        @userName
+                    </span>
+
                 </div>
-                <a href="@Url.Action("login", "Login")" class="logout-btn" title="Log Out">
+
+
+                <a href="@Url.Action("login", "Login")"
+                   class="logout-btn"
+                   title="Log Out">
+
                     <ion-icon name="log-out-outline"></ion-icon>
+
                 </a>
+
             </div>
 
-            <!-- Mobile Menu Toggle -->
+
             <div class="navbar-toggle">
+
                 <span></span>
                 <span></span>
                 <span></span>
+
             </div>
+
         </div>
+
     </nav>
 
-    <!-- Main Content Area -->
+
+    <!-- ================= MAIN CONTENT ================= -->
+
     <main class="main-content">
+
         <div class="page-container">
+
+
             <!-- Page Header -->
-            <div class="page-header">
-                <div class="header-content">
-                    <div class="header-text">
-                        <h1>Edit Your Profile</h1>
-                        <p>Update your personal and professional information to keep your profile current and accurate.</p>
-                    </div>
-                    <div class="header-illustration">
-                        <div class="illustration-box">
-                            <ion-icon name="person-outline"></ion-icon>
-                        </div>
-                    </div>
-                </div>
+
+            <div class="page-header-title">
+
+                <h1>
+                    Edit Your Profile
+                </h1>
+
+                <p>
+                    Update your personal and professional information
+                    to keep your profile current and accurate.
+                </p>
+
             </div>
 
-            <!-- Form Section -->
+
+            <!-- Form -->
+
             <div class="form-wrapper">
+
                 @using (Html.BeginForm())
                 {
                     @Html.AntiForgeryToken()
 
-                    <!-- Success/Error Messages -->
+
+                    <!-- Success Message -->
+
                     if (ViewBag.SuccessMessage != null)
                     {
                         <div class="alert alert-success">
+
                             <ion-icon name="checkmark-circle-outline"></ion-icon>
-                            <span>@ViewBag.SuccessMessage</span>
+
+                            <span>
+                                @ViewBag.SuccessMessage
+                            </span>
+
                         </div>
                     }
+
+
+                    <!-- Error Message -->
 
                     if (ViewBag.ErrorMessage != null)
                     {
                         <div class="alert alert-error">
+
                             <ion-icon name="alert-circle-outline"></ion-icon>
-                            <span>@ViewBag.ErrorMessage</span>
+
+                            <span>
+                                @ViewBag.ErrorMessage
+                            </span>
+
                         </div>
                     }
 
-                    <!-- Personal Information Card -->
+
+                    <!-- ================= PERSONAL INFORMATION ================= -->
+
                     <div class="form-card">
+
                         <div class="card-header">
-                            <div class="card-icon">
+
+                            <div class="card-icon-wrapper">
+
                                 <ion-icon name="person-outline"></ion-icon>
+
                             </div>
-                            <div class="card-title">
-                                <h2>Personal Information</h2>
-                                <p>Your basic contact details</p>
+
+
+                            <div class="card-title-group">
+
+                                <h2>
+                                    Personal Information
+                                </h2>
+
+                                <p>
+                                    Your basic contact details
+                                </p>
+
                             </div>
+
                         </div>
 
+
                         <div class="card-body">
+
+
                             <!-- Full Name -->
+
                             <div class="form-group">
+
                                 <div class="form-field-header">
-                                    <label for="Name" class="form-label">Full Name</label>
-                                    <span class="required-badge">Required</span>
+
+                                    <label for="Name"
+                                           class="form-label">
+
+                                        Full Name
+
+                                    </label>
+
+                                    <span class="required-badge">
+                                        Required
+                                    </span>
+
                                 </div>
-                                <div class="input-group">
-                                    <ion-icon name="person-outline" class="input-icon-left"></ion-icon>
-                                    @Html.EditorFor(m => m.Name, new { htmlAttributes = new { @class = "form-input", placeholder = "Enter your full name", required = "required" } })
-                                </div>
-                                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "validation-error" })
+
+
+                                @Html.EditorFor(
+                                         m => m.Name,
+                                         new
+                                         {
+                                             htmlAttributes = new
+                                             {
+                                                 @class = "form-input",
+                                                 placeholder = "Enter your full name",
+                                                 required = "required"
+                                             }
+                                         }
+                                     )
+
+
+                                @Html.ValidationMessageFor(
+                                         m => m.Name,
+                                         "",
+                                         new
+                                         {
+                                             @class = "validation-error"
+                                         }
+                                     )
+
                             </div>
+
 
                             <!-- Email -->
+
                             <div class="form-group">
+
                                 <div class="form-field-header">
-                                    <label for="Email" class="form-label">Email Address</label>
-                                    <span class="required-badge">Required</span>
+
+                                    <label for="Email"
+                                           class="form-label">
+
+                                        Email Address
+
+                                    </label>
+
+                                    <span class="required-badge">
+                                        Required
+                                    </span>
+
                                 </div>
-                                <div class="input-group">
-                                    <ion-icon name="mail-outline" class="input-icon-left"></ion-icon>
-                                    @Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "form-input", placeholder = "Enter your email address", type = "email", required = "required" } })
-                                </div>
-                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "validation-error" })
+
+
+                                @Html.EditorFor(
+                                         m => m.Email,
+                                         new
+                                         {
+                                             htmlAttributes = new
+                                             {
+                                                 @class = "form-input",
+                                                 placeholder = "Enter your email address",
+                                                 type = "email",
+                                                 required = "required"
+                                             }
+                                         }
+                                     )
+
+
+                                @Html.ValidationMessageFor(
+                                         m => m.Email,
+                                         "",
+                                         new
+                                         {
+                                             @class = "validation-error"
+                                         }
+                                     )
+
                             </div>
 
-                            <!-- Phone Number -->
+
+                            <!-- Phone -->
+
                             <div class="form-group">
+
                                 <div class="form-field-header">
-                                    <label for="Phone" class="form-label">Phone Number</label>
-                                    <span class="optional-badge">Optional</span>
+
+                                    <label for="Phone"
+                                           class="form-label">
+
+                                        Phone Number
+
+                                    </label>
+
                                 </div>
-                                <div class="input-group">
-                                    <ion-icon name="call-outline" class="input-icon-left"></ion-icon>
-                                    @Html.EditorFor(m => m.Phone, new { htmlAttributes = new { @class = "form-input", placeholder = "Enter your phone number" } })
-                                </div>
-                                @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "validation-error" })
+
+
+                                @Html.EditorFor(
+                                         m => m.Phone,
+                                         new
+                                         {
+                                             htmlAttributes = new
+                                             {
+                                                 @class = "form-input",
+                                                 placeholder = "Enter your phone number"
+                                             }
+                                         }
+                                     )
+
+
+                                @Html.ValidationMessageFor(
+                                         m => m.Phone,
+                                         "",
+                                         new
+                                         {
+                                             @class = "validation-error"
+                                         }
+                                     )
+
                             </div>
+
                         </div>
+
                     </div>
 
-                    <!-- Professional Information Card -->
+
+                    <!-- ================= PROFESSIONAL INFORMATION ================= -->
+
                     <div class="form-card">
+
                         <div class="card-header">
-                            <div class="card-icon">
-                                <ion-icon name="school-outline"></ion-icon>
+
+                            <div class="card-icon-wrapper">
+
+                                <ion-icon name="briefcase-outline"></ion-icon>
+
                             </div>
-                            <div class="card-title">
-                                <h2>Professional Details</h2>
-                                <p>Your professional and institutional information</p>
+
+
+                            <div class="card-title-group">
+
+                                <h2>
+                                    Professional Details
+                                </h2>
+
+                                <p>
+                                    Your professional and institutional information
+                                </p>
+
                             </div>
+
                         </div>
+
 
                         <div class="card-body">
+
+
                             <!-- Address -->
+
                             <div class="form-group">
+
                                 <div class="form-field-header">
-                                    <label for="Address" class="form-label">Street Address</label>
-                                    <span class="optional-badge">Optional</span>
+
+                                    <label for="Address"
+                                           class="form-label">
+
+                                        Street Address
+
+                                    </label>
+
                                 </div>
-                                <div class="input-group">
-                                    <ion-icon name="location-outline" class="input-icon-left"></ion-icon>
-                                    @Html.EditorFor(m => m.Address, new { htmlAttributes = new { @class = "form-input", placeholder = "Enter your street address" } })
-                                </div>
-                                @Html.ValidationMessageFor(m => m.Address, "", new { @class = "validation-error" })
+
+
+                                @Html.EditorFor(
+                                         m => m.Address,
+                                         new
+                                         {
+                                             htmlAttributes = new
+                                             {
+                                                 @class = "form-input",
+                                                 placeholder = "Enter your street address"
+                                             }
+                                         }
+                                     )
+
+
+                                @Html.ValidationMessageFor(
+                                         m => m.Address,
+                                         "",
+                                         new
+                                         {
+                                             @class = "validation-error"
+                                         }
+                                     )
+
                             </div>
+
 
                             <!-- Institution -->
+
                             <div class="form-group">
+
                                 <div class="form-field-header">
-                                    <label for="Institution" class="form-label">Institution/Organization</label>
-                                    <span class="optional-badge">Optional</span>
+
+                                    <label for="Institution"
+                                           class="form-label">
+
+                                        Institution/Organization
+
+                                    </label>
+
                                 </div>
-                                <div class="input-group">
-                                    <ion-icon name="briefcase-outline" class="input-icon-left"></ion-icon>
-                                    @Html.EditorFor(m => m.Institution, new { htmlAttributes = new { @class = "form-input", placeholder = "Enter your institution or organization name" } })
-                                </div>
-                                @Html.ValidationMessageFor(m => m.Institution, "", new { @class = "validation-error" })
+
+
+                                @Html.EditorFor(
+                                         m => m.Institution,
+                                         new
+                                         {
+                                             htmlAttributes = new
+                                             {
+                                                 @class = "form-input",
+                                                 placeholder = "Enter your institution or organization name"
+                                             }
+                                         }
+                                     )
+
+
+                                @Html.ValidationMessageFor(
+                                         m => m.Institution,
+                                         "",
+                                         new
+                                         {
+                                             @class = "validation-error"
+                                         }
+                                     )
+
                             </div>
+
                         </div>
+
                     </div>
+
 
                     <!-- Form Actions -->
+
                     <div class="form-actions">
+
                         <button type="submit" class="btn btn-primary">
+
                             <ion-icon name="checkmark-done-outline"></ion-icon>
+
                             <span>Save Changes</span>
+
                         </button>
+
                         <a href="@Url.Action("Dashboard", "TeacherDashboard")" class="btn btn-secondary">
+
                             <ion-icon name="arrow-back-outline"></ion-icon>
+
                             <span>Cancel</span>
+
                         </a>
+
                     </div>
+
                 }
+
             </div>
+
         </div>
+
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <p>&copy; 2024 LearnLink. All rights reserved. Designed with care.</p>
-        </div>
-    </footer>
-
-    <script>
-        // Mobile menu toggle
-        document.querySelector('.navbar-toggle').addEventListener('click', function() {
-            document.querySelector('.navbar-menu').classList.toggle('active');
-        });
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function() {
-                document.querySelector('.navbar-menu').classList.remove('active');
-            });
-        });
-    </script>
 </body>
+
 </html>

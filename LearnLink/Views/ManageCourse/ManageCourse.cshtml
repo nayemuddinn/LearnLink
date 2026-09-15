@@ -1,4 +1,4 @@
-﻿@model List<LearnLink.Models.Course>
+@model List<LearnLink.Models.Course>
 
 @{
     ViewBag.Title = "Manage Courses";
@@ -18,9 +18,11 @@
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
-    <!-- Top Navigation Bar -->
+
+    <!-- ================= NAVBAR ================= -->
     <nav class="navbar">
         <div class="navbar-container">
+
             <div class="navbar-logo">
                 <ion-icon name="school-outline" class="logo-icon"></ion-icon>
                 <div class="logo-text-group">
@@ -31,53 +33,51 @@
 
             <div class="navbar-menu">
                 <div class="nav-links">
-                    @{
-                        if (userRole.Equals("Student"))
-                        {
-                            <a href="@Url.Action("AllCourse", "AllCourse")" class="nav-link">
-                                <ion-icon name="book-outline"></ion-icon>
-                                <span>All Courses</span>
-                            </a>
-                            <a href="@Url.Action("ViewEnrolledCourses", "StudentEnrolledCourses")" class="nav-link">
-                                <ion-icon name="school-outline"></ion-icon>
-                                <span>Enrolled Courses</span>
-                            </a>
-                            <a href="@Url.Action("Assessment", "Assessment")" class="nav-link">
-                                <ion-icon name="checkmark-circle-outline"></ion-icon>
-                                <span>Assessments</span>
-                            </a>
-                            <a href="@Url.Action("editStudentProfile", "editStudentProfile")" class="nav-link">
-                                <ion-icon name="person-outline"></ion-icon>
-                                <span>Edit Profile</span>
-                            </a>
-                        }
-                        else
-                        {
-                            <a href="@Url.Action("ManageCourse", "ManageCourse")" class="nav-link active">
-                                <ion-icon name="book-outline"></ion-icon>
-                                <span>Manage Courses</span>
-                            </a>
-                            <a href="@Url.Action("createCourse", "createCourse")" class="nav-link">
-                                <ion-icon name="add-circle-outline"></ion-icon>
-                                <span>Create Courses</span>
-                            </a>
-                            <a href="@Url.Action("courseMaterials", "courseMaterials")" class="nav-link">
-                                <ion-icon name="document-text-outline"></ion-icon>
-                                <span>Course Materials</span>
-                            </a>
-                            <a href="@Url.Action("enrollStudents", "enrollStudents")" class="nav-link">
-                                <ion-icon name="person-add-outline"></ion-icon>
-                                <span>Enroll Students</span>
-                            </a>
-                            <a href="@Url.Action("Assessment", "Assessment")" class="nav-link">
-                                <ion-icon name="checkmark-circle-outline"></ion-icon>
-                                <span>Assessments</span>
-                            </a>
-                            <a href="@Url.Action("editteacherProfile", "editteacherProfile")" class="nav-link">
-                                <ion-icon name="person-outline"></ion-icon>
-                                <span>Edit Profile</span>
-                            </a>
-                        }
+                    @if (userRole.Equals("Student"))
+                    {
+                        <a href="@Url.Action("AllCourse", "AllCourse")" class="nav-link">
+                            <ion-icon name="book-outline"></ion-icon>
+                            <span>All Courses</span>
+                        </a>
+                        <a href="@Url.Action("ViewEnrolledCourses", "StudentEnrolledCourses")" class="nav-link">
+                            <ion-icon name="school-outline"></ion-icon>
+                            <span>Enrolled Courses</span>
+                        </a>
+                        <a href="@Url.Action("Assessment", "Assessment")" class="nav-link">
+                            <ion-icon name="checkmark-circle-outline"></ion-icon>
+                            <span>Assessments</span>
+                        </a>
+                        <a href="@Url.Action("editStudentProfile", "editStudentProfile")" class="nav-link">
+                            <ion-icon name="person-outline"></ion-icon>
+                            <span>Edit Profile</span>
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("ManageCourse", "ManageCourse")" class="nav-link active">
+                            <ion-icon name="book-outline"></ion-icon>
+                            <span>Manage Courses</span>
+                        </a>
+                        <a href="@Url.Action("createCourse", "createCourse")" class="nav-link">
+                            <ion-icon name="add-circle-outline"></ion-icon>
+                            <span>Create Courses</span>
+                        </a>
+                        <a href="@Url.Action("courseMaterials", "courseMaterials")" class="nav-link">
+                            <ion-icon name="document-text-outline"></ion-icon>
+                            <span>Course Materials</span>
+                        </a>
+                        <a href="@Url.Action("enrollStudents", "enrollStudents")" class="nav-link">
+                            <ion-icon name="person-add-outline"></ion-icon>
+                            <span>Enroll Students</span>
+                        </a>
+                        <a href="@Url.Action("Assessment", "Assessment")" class="nav-link">
+                            <ion-icon name="checkmark-circle-outline"></ion-icon>
+                            <span>Assessments</span>
+                        </a>
+                        <a href="@Url.Action("editteacherProfile", "editteacherProfile")" class="nav-link">
+                            <ion-icon name="person-outline"></ion-icon>
+                            <span>Edit Profile</span>
+                        </a>
                     }
                 </div>
             </div>
@@ -97,10 +97,11 @@
                 <span></span>
                 <span></span>
             </div>
+
         </div>
     </nav>
 
-    <!-- Main Content Area -->
+    <!-- ================= MAIN CONTENT ================= -->
     <main class="main-content">
         <div class="page-container">
 
@@ -126,15 +127,13 @@
                             </div>
 
                             <div class="card-body">
-                  
                                 <div class="meta-item description-item">
                                     <ion-icon name="information-circle-outline"></ion-icon>
                                     <span>@course.CourseDescription</span>
                                 </div>
-
                                 <div class="meta-item">
-                                    <ion-icon name="alarm-outline"></ion-icon>
-                                    <span>Created On: @course.CourseCreateDate</span>
+                                    <ion-icon name="calendar-outline"></ion-icon>
+                                    <span>Created: @course.CourseCreateDate</span>
                                 </div>
                             </div>
 
@@ -143,12 +142,10 @@
                                     <ion-icon name="folder-open-outline"></ion-icon>
                                     <span>View Materials</span>
                                 </a>
-
                                 <a href="@Url.Action("ShowCourseMaterials", "ManageCourse", new { courseid = course.CourseID })" class="btn-action btn-view">
-                                    <ion-icon name="folder-open-outline"></ion-icon>
+                                    <ion-icon name="cloud-upload-outline"></ion-icon>
                                     <span>Upload</span>
                                 </a>
-
                                 <a href="@Url.Action("CreateQuiz", "CreateQuiz", new { courseID = course.CourseID })" class="btn-action btn-quiz">
                                     <ion-icon name="create-outline"></ion-icon>
                                     <span>Create Quiz</span>
@@ -167,21 +164,13 @@
                 }
             </div>
 
-            <!-- Back Action -->
-            <div class="back-action">
-                <button type="button" class="btn-back" onclick="window.location.href='@Url.Action("Dashboard", "TeacherDashboard")'">
-                    <ion-icon name="arrow-back-outline"></ion-icon>
-                    <span>Back to Dashboard</span>
-                </button>
-            </div>
-
         </div>
     </main>
 
-    <!-- Footer -->
+    <!-- ================= FOOTER ================= -->
     <footer class="footer">
         <div class="footer-content">
-            <p>&copy; 2026 LearnLink. All rights reserved.</p>
+            <p>&copy; 2024 LearnLink. All rights reserved.</p>
         </div>
     </footer>
 
@@ -191,5 +180,6 @@
             document.querySelector('.navbar-menu').classList.toggle('active');
         });
     </script>
+
 </body>
 </html>
