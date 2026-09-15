@@ -3,6 +3,15 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# API Keys and Sensitive Configuration Files
+Web.config
+Web.Local.config
+*.config.local
+appsettings.json
+appsettings.*.json
+*.pem
+*.key
+
 # User-specific files
 *.rsuser
 *.suo
@@ -366,3 +375,4 @@ DBconnection.cs
 copilot-instructions.md
 .env
 ui-guidelines.md
+

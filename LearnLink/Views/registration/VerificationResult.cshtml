@@ -1,0 +1,53 @@
+@{
+    ViewBag.Title = "Email Verification Result";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" style="margin-top: 50px; margin-bottom: 50px;">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body text-center p-5">
+                    @if (ViewBag.Message != null && ViewBag.Message.Contains("successfully"))
+                    {
+                        <div class="alert alert-success" role="alert">
+                            <i class="fas fa-check-circle" style="font-size: 48px; color: #28a745;"></i>
+                            <h4 class="alert-heading mt-3">Success!</h4>
+                            <p>@ViewBag.Message</p>
+                        </div>
+                        <a href="@Url.Action("Login", "Login")" class="btn btn-primary mt-3">Go to Login</a>
+                    }
+                    else
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            <i class="fas fa-exclamation-circle" style="font-size: 48px; color: #dc3545;"></i>
+                            <h4 class="alert-heading mt-3">Verification Failed</h4>
+                            <p>@(ViewBag.Message ?? "An error occurred during email verification.")</p>
+                        </div>
+                        <p class="text-muted">
+                            <small>If you believe this is an error, please contact support or try registering again.</small>
+                        </p>
+                        <a href="@Url.Action("reg", "Registration")" class="btn btn-primary mt-3">Register Again</a>
+                        <a href="@Url.Action("Index", "Home")" class="btn btn-secondary mt-3">Go Home</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        border: none;
+        border-radius: 8px;
+    }
+
+    .btn {
+        margin: 5px;
+    }
+
+    .alert {
+        border: none;
+        background-color: #f8f9fa;
+    }
+</style>

@@ -120,6 +120,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Content\DBconnection.cs" />
+    <Compile Include="Content\EmailService.cs" />
+    <Compile Include="Controllers\Account\EmailService.cs" />
     <Compile Include="Controllers\Quizzes\QuizAnalytics.cs" />
     <Compile Include="Controllers\\Courses\\AllCourseController.cs" />
     <Compile Include="Controllers\\Account\\changeCredentialsController.cs" />
@@ -230,6 +232,7 @@
     <Content Include=".env" />
     <Content Include="docker-build.sh" />
     <Content Include="docker-build.ps1" />
+    <Content Include="EMAIL_VERIFICATION_FIX_GUIDE.md" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -291,6 +294,9 @@
     <Content Include="Views\createCourse\createCourse.cshtml" />
     <Content Include="Views\CreateQuiz\CreateQuiz.cshtml" />
     <Content Include="Views\editteacherProfile\editteacherProfile.cshtml" />
+    <Content Include="Views\Registration\VerificationResult.cshtml" />
+    <Content Include="Web.config.example" />
+    <Content Include="SETUP.md" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
