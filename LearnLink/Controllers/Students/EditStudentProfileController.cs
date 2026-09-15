@@ -30,10 +30,22 @@ namespace LearnLink.Controllers.Students
         {
             if (ModelState.IsValid)
             {
-                int userId = (int)Session["UserID"];
-                UpdateStudentProfile(userId, model);
-                TempData["SuccessMessage"] = "Profile updated successfully.";
-                return RedirectToAction("Dashboard", "StudentDashboard");
+                try
+                {
+                    int userId = (int)Session["UserID"];
+                    UpdateStudentProfile(userId, model);
+                    ViewBag.SuccessMessage = "Profile updated successfully. Your changes have been saved.";
+                    return View(model);
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.ErrorMessage = "An error occurred while updating your profile. Please try again.";
+                    return View(model);
+                }
+            }
+            else
+            {
+                ViewBag.ErrorMessage = "Please fill in all required fields correctly.";
             }
             return View(model);
         }

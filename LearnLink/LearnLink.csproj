@@ -169,7 +169,7 @@
     <Content Include="Content\CreateQuiz.css" />
     <Content Include="Content\custom-ui.css" />
     <Content Include="Content\dashboard.css" />
-    <Content Include="Content\EditProfile.css" />
+    <Content Include="Content\EditStudentProfile.css" />
     <Content Include="Content\enrollnewstudent.css" />
     <Content Include="Content\Enroll_Student.css" />
     <Content Include="Content\AllCourses.css" />
@@ -193,7 +193,7 @@
     <Content Include="Content\course.css" />
     <Content Include="Content\courseDescription.css" />
     <Content Include="Content\CourseManage.css" />
-    <Content Include="Content\editpofile.css" />
+    <Content Include="Content\editprofile.css" />
     <Content Include="Content\forgotPassword.css" />
     <Content Include="Content\fullscreen-unified.css" />
     <Content Include="Content\homepage.css" />
@@ -257,7 +257,6 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\editStudentProfile\editStudentProfile.cshtml" />
-    <Content Include="Views\editteacherProfile\editteacherProfile.cshtml" />
     <Content Include="Views\giveFeedback\giveFeedback.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Registration\reg.cshtml" />
@@ -291,6 +290,7 @@
     <Content Include="Views\ManageCourse\ManageCourse.cshtml" />
     <Content Include="Views\createCourse\createCourse.cshtml" />
     <Content Include="Views\CreateQuiz\CreateQuiz.cshtml" />
+    <Content Include="Views\editteacherProfile\editteacherProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

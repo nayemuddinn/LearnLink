@@ -1,530 +1,181 @@
 @{
     ViewBag.Title = "Course Materials";
-    Layout = null;
-
-    string userRole = Session["UserRole"] != null
-        ? Session["UserRole"].ToString()
-        : "";
-
-    string userName = Session["UserName"] != null
-        ? Session["UserName"].ToString()
-        : "Guest";
-
 }
 
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Course Materials - LearnLink</title>
-
-    <link href="@Url.Content("~/Content/CourseMaterial.css")"
-          rel="stylesheet" />
-
-    <script type="module"
-            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-
-    <script nomodule
-            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-
+    <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
+    <link href="@Url.Content("/Content/backbutton2.css")" rel="stylesheet" />
 </head>
-
 <body>
-
-    <!-- ================= NAVBAR ================= -->
-
-    <nav class="navbar">
-
-        <div class="navbar-container">
-
-            <!-- LOGO -->
-
-            <div class="navbar-logo">
-
-                <ion-icon name="school-outline"
-                          class="logo-icon">
-                </ion-icon>
-
-                <div class="logo-text-group">
-
-                    <span class="logo-text">
-                        LearnLink
-                    </span>
-
-                    <span class="role-badge">
-                        @userRole
-                    </span>
-
+    <div class="responsive-wrapper">
+        <div class="app">
+            <div class="app-header" style="padding: 1rem 0; gap: 2rem;">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <ion-icon name="school-outline"></ion-icon>
+                    </div>
+                    <div class="logo-title">
+                        <span style="font-size: 0.9rem;">LearnLink</span>
+                        <span style="font-size: 0.75rem;">@HttpContext.Current.Session["UserRole"]</span>
+                    </div>
                 </div>
-
+                <div class="app-header-navigation">
+                    <!-- Add any additional navigation items here if needed -->
+                </div>
+                <div class="app-header-actions" style="flex: 1;">
+                    <h3 style="margin: 0; font-size: 0.95rem; color: var(--c-text-secondary);">Upload Course Materials</h3>
+                    <div class="app-header-actions-buttons" style="margin-left: auto;">
+                        <ion-icon size="small" name="person-circle"></ion-icon>
+                        <span style="font-size: 0.85rem;">@HttpContext.Current.Session["UserName"]</span>
+                    </div>
+                </div>
+                <div class="app-header-mobile">
+                    <h3 style="font-size: 0.9rem;">Upload Materials</h3>
+                    <ion-icon size="small" name="person-circle"></ion-icon>
+                    <span style="font-size: 0.8rem;">@HttpContext.Current.Session["UserName"]</span>
+                </div>
             </div>
 
-
-            <!-- NAVIGATION -->
-
-            <div class="navbar-menu">
-
-                <div class="nav-links">
-
-                    @if (userRole.Equals("Student"))
+            <div class="app-body" style="display: grid; grid-template-columns: 180px 1fr; gap: 2rem; padding-top: 1.5rem;">
+                @{
+                    if (Session["UserRole"].Equals("Student"))
                     {
-                        <a href="@Url.Action("AllCourse", "AllCourse")"
-                           class="nav-link">
+                        <div class="app-body-navigation">
+                            <nav class="navigation">
+                                <a href="@Url.Action("AllCourse", "AllCourse")">
+                                    <i class="icon ion-md-book"></i>
+                                    <span>All Courses</span>
+                                </a>
+                                <a href="@Url.Action("ViewEnrolledCourses", "StudentEnrolledCourses")">
+                                    <i class="icon ion-md-person-add"></i>
+                                    <span>Enrolled Courses</span>
+                                </a>
+                                <a href="@Url.Action("Assessment", "Assessment")">
+                                    <i class="icon ion-md-checkmark-circle"></i>
+                                    <span>Assessments</span>
+                                </a>
 
-                            <ion-icon name="book-outline"></ion-icon>
-
-                            <span>
-                                All Courses
-                            </span>
-
-                        </a>
-
-                        <a href="@Url.Action("ViewEnrolledCourses", "StudentEnrolledCourses")"
-                           class="nav-link">
-
-                            <ion-icon name="school-outline"></ion-icon>
-
-                            <span>
-                                Enrolled Courses
-                            </span>
-
-                        </a>
-
-                        <a href="@Url.Action("Assessment", "Assessment")"
-                           class="nav-link">
-
-                            <ion-icon name="checkmark-circle-outline"></ion-icon>
-
-                            <span>
-                                Assessments
-                            </span>
-
-                        </a>
-
-                        <a href="@Url.Action("editStudentProfile", "editStudentProfile")"
-                           class="nav-link">
-
-                            <ion-icon name="person-outline"></ion-icon>
-
-                            <span>
-                                Edit Profile
-                            </span>
-
-                        </a>
+                                <a href="@Url.Action("editStudentProfile", "editStudentProfile")">
+                                    <i class="icon ion-md-person"></i>
+                                    <span>Edit Profile</span>
+                                </a>
+                                <a href="@Url.Action("login", "Login")">
+                                    <i class="icon ion-md-exit"></i>
+                                    <span>Log Out</span>
+                                </a>
+                            </nav>
+                        </div>
                     }
                     else
                     {
-                        <a href="@Url.Action("ManageCourse", "ManageCourse")"
-                           class="nav-link">
+                        <div class="app-body-navigation">
+                            <nav class="navigation">
+                                <a href="@Url.Action("ManageCourse", "ManageCourse")">
+                                    <i class="icon ion-md-book"></i>
+                                    <span>Manage Courses</span>
+                                </a>
+                                <a href="@Url.Action("createCourse", "createCourse")">
+                                    <i class="icon ion-md-add-circle"></i>
+                                    <span>Create Courses</span>
+                                </a>
+                                <a href="@Url.Action("courseMaterials", "courseMaterials")">
+                                    <i class="icon ion-md-add-circle"></i>
+                                    <span>CourseMaterials</span>
+                                </a>
+                                <a href="@Url.Action("enrollStudents", "enrollStudents")">
+                                    <i class="icon ion-md-person-add"></i>
+                                    <span>Enroll Students</span>
+                                </a>
+                                <a href="@Url.Action("Assessment", "Assessment")">
+                                    <i class="icon ion-md-checkmark-circle"></i>
+                                    <span>Assessments</span>
+                                </a>
 
-                            <ion-icon name="book-outline"></ion-icon>
-
-                            <span>
-                                Manage Courses
-                            </span>
-
-                        </a>
-
-                        <a href="@Url.Action("createCourse", "createCourse")"
-                           class="nav-link">
-
-                            <ion-icon name="add-circle-outline"></ion-icon>
-
-                            <span>
-                                Create Courses
-                            </span>
-
-                        </a>
-
-                        <a href="@Url.Action("courseMaterials", "courseMaterials")"
-                           class="nav-link active">
-
-                            <ion-icon name="document-text-outline"></ion-icon>
-
-                            <span>
-                                Course Materials
-                            </span>
-
-                        </a>
-
-                        <a href="@Url.Action("enrollStudents", "enrollStudents")"
-                           class="nav-link">
-
-                            <ion-icon name="person-add-outline"></ion-icon>
-
-                            <span>
-                                Enroll Students
-                            </span>
-
-                        </a>
-
-                        <a href="@Url.Action("Assessment", "Assessment")"
-                           class="nav-link">
-
-                            <ion-icon name="checkmark-circle-outline"></ion-icon>
-
-                            <span>
-                                Assessments
-                            </span>
-
-                        </a>
-
-                        <a href="@Url.Action("editteacherProfile", "editteacherProfile")"
-                           class="nav-link">
-
-                            <ion-icon name="person-outline"></ion-icon>
-
-                            <span>
-                                Edit Profile
-                            </span>
-
-                        </a>
+                                <a href="@Url.Action("editteacherProfile", "editteacherProfile")">
+                                    <i class="icon ion-md-person"></i>
+                                    <span>Edit Profile</span>
+                                </a>
+                                <a href="@Url.Action("login", "Login")">
+                                    <i class="icon ion-md-exit"></i>
+                                    <span>Log Out</span>
+                                </a>
+                            </nav>
+                        </div>
                     }
-
-                </div>
-
-            </div>
-
-
-            <!-- USER -->
-
-            <div class="navbar-user">
-
-                <div class="user-info">
-
-                    <ion-icon name="person-circle"
-                              class="user-avatar">
-                    </ion-icon>
-
-                    <span class="user-name">
-                        @userName
-                    </span>
-
-                </div>
-
-                <a href="@Url.Action("login", "Login")"
-                   class="logout-btn"
-                   title="Log Out">
-
-                    <ion-icon name="log-out-outline"></ion-icon>
-
-                </a>
-
-            </div>
-
-
-            <!-- MOBILE TOGGLE -->
-
-            <div class="navbar-toggle">
-
-                <span></span>
-                <span></span>
-                <span></span>
-
-            </div>
-
-        </div>
-
-    </nav>
-
-
-    <!-- ================= MAIN CONTENT ================= -->
-
-    <main class="main-content">
-
-        <div class="page-container">
-
-            <!-- PAGE HEADER -->
-
-            <div class="page-header-title">
-
-                <h1>
-                    Upload Course Materials
-                </h1>
-
-                <p>
-                    Add learning resources to your course.
-                </p>
-
-            </div>
-
-
-            <!-- ================= UPLOAD CARD ================= -->
-
-            <div class="upload-card">
-
-                <div class="upload-card-header">
-
-                    <div class="upload-icon-wrapper">
-
-                        <ion-icon name="cloud-upload-outline"></ion-icon>
-
-                    </div>
-
-                    <div>
-
-                        <h2>
-                            Material Upload
-                        </h2>
-
-                        <p>
-                            Upload documents and learning resources for your course.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                @using (Html.BeginForm(
-                    "CourseMaterials",
-                    "courseMaterials",
-                    FormMethod.Post,
-                    new { enctype = "multipart/form-data" }))
-                {
-                    <div class="form-section">
-
-                        <!-- COURSE ID -->
-
-                        <div class="form-group">
-
-                            <label for="courseID">
-                                Course ID
-                            </label>
-
-                            <div class="input-wrapper">
-
-                                <ion-icon name="book-outline"
-                                          class="input-icon">
-                                </ion-icon>
-
-                                @Html.TextBox(
-                                         "courseID",
-                                         "",
-                                         new
-                                         {
-                                             @class = "form-control",
-                                             placeholder = "Enter course ID",
-                                             required = "required"
-                                         })
-
-                            </div>
-
-                        </div>
-
-
-                        <!-- FILE -->
-
-                        <div class="form-group">
-
-                            <label for="fileUpload">
-                                Select File
-                            </label>
-
-                            <div class="file-upload-area">
-
-                                <input type="file"
-                                       name="fileUpload"
-                                       id="fileUpload"
-                                       required
-                                       accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.txt" />
-
-                                <div class="file-upload-content">
-
-                                    <ion-icon name="cloud-upload-outline"
-                                              class="file-upload-icon">
-                                    </ion-icon>
-
-                                    <h3>
-                                        Drag and drop your file here
-                                    </h3>
-
-                                    <p>
-                                        or click to browse
-                                    </p>
-
-                                    <span>
-                                        PDF, DOC, DOCX, PPT, PPTX, XLS, XLSX, TXT
-                                    </span>
-
-                                </div>
-
-                            </div>
-
-                            <div class="file-size-info">
-
-                                <ion-icon name="information-circle-outline"></ion-icon>
-
-                                <span>
-                                    Maximum file size: 50MB
-                                </span>
-
-                            </div>
-
-                            <div id="selectedFile"
-                                 class="selected-file">
-
-                                <ion-icon name="document-outline"></ion-icon>
-
-                                <span id="selectedFileName"></span>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- ACTIONS -->
-
-                    <div class="form-actions">
-
-                        <button type="submit"
-                                class="btn-upload">
-
-                            <ion-icon name="cloud-upload-outline"></ion-icon>
-
-                            <span>
-                                Upload Material
-                            </span>
-
-                        </button>
-
-                        <a href="@Url.Action("ManageCourse", "ManageCourse")"
-                           class="btn-cancel">
-
-                            <ion-icon name="arrow-back-outline"></ion-icon>
-
-                            <span>
-                                Cancel
-                            </span>
-
-                        </a>
-
-                    </div>
                 }
 
+                <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+                <div class="app-body-content">
+                    <div style="max-width: 700px; margin: 0 auto;">
+                        <div class="card-container">
+                            <div class="card-header">
+                                <h1>Upload Course Materials</h1>
+                                <p>Add learning resources to your course</p>
+                            </div>
+
+                            @using (Html.BeginForm("CourseMaterials", "courseMaterials", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <div class="form-section">
+                                    <h3 class="section-title">Material Upload</h3>
+
+                                    <div class="form-row full">
+                                        <div class="form-group required">
+                                            <label for="courseID">Course ID</label>
+                                            <div class="input-wrapper">
+                                                <span class="input-icon"><ion-icon name="book-outline"></ion-icon></span>
+                                                @Html.TextBox("courseID", "", new { @class = "form-control", placeholder = "Enter course ID", required = "required" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row full">
+                                        <div class="form-group required">
+                                            <label for="fileUpload">Select File</label>
+                                            <div style="position: relative; border: 2px dashed var(--accent-blue); border-radius: 8px; padding: 20px; text-align: center; cursor: pointer; background: rgba(59, 130, 246, 0.05); transition: all 0.3s ease;">
+                                                <input type="file" name="fileUpload" id="fileUpload" required accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.txt" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer;" />
+                                                <div style="pointer-events: none;">
+                                                    <ion-icon name="cloud-upload-outline" style="font-size: 48px; color: var(--accent-blue); display: block; margin-bottom: 12px;"></ion-icon>
+                                                    <p style="margin: 0 0 4px 0; color: var(--primary-text); font-weight: 600;">Drag and drop your file here</p>
+                                                    <p style="margin: 0; color: var(--secondary-text); font-size: 0.9rem;">or click to browse (PDF, DOC, PPT, XLS, TXT)</p>
+                                                </div>
+                                            </div>
+                                            <p style="margin: 12px 0 0 0; color: var(--secondary-text); font-size: 0.85rem;">Maximum file size: 50MB</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="btn-group centered">
+                                    <button type="submit" class="btn-primary">
+                                        <ion-icon name="cloud-upload-outline"></ion-icon>
+                                        Upload Material
+                                    </button>
+                                    <a href="@Url.Action("ManageCourse", "ManageCourse")" class="btn-secondary">
+                                        <ion-icon name="arrow-back-outline"></ion-icon>
+                                        Cancel
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
             </div>
 
-
-            <!-- BACK -->
-
-            <div class="back-action">
-
-                <button type="button"
-                        class="btn-back"
-                        onclick="window.location.href='@Url.Action("ManageCourse", "ManageCourse")'">
-
-                    <ion-icon name="arrow-back-outline"></ion-icon>
-
-                    <span>
-                        Back to Manage Courses
-                    </span>
-
-                </button>
-
+            <div class="footer">
+                <br /><br />
+                <div>
+                    &copy; 2024 LearnLink. All rights reserved.
+                </div>
             </div>
-
         </div>
+    </div>
 
-    </main>
-
-
-    <!-- ================= FOOTER ================= -->
-
-    <footer class="footer">
-
-        <div class="footer-content">
-
-            <p>
-                &copy; 2026 LearnLink. All rights reserved.
-            </p>
-
-        </div>
-
-    </footer>
-
-
-    <!-- ================= JAVASCRIPT ================= -->
-
-    <script>
-
-            /* ================= NAVBAR ================= */
-
-            document
-                .querySelector('.navbar-toggle')
-                .addEventListener('click', function () {
-
-                    document
-                        .querySelector('.navbar-menu')
-                        .classList
-                        .toggle('active');
-
-                });
-
-
-            /* ================= FILE SELECTION ================= */
-
-            document
-                .getElementById('fileUpload')
-                .addEventListener('change', function () {
-
-                    var selectedFile = document.getElementById('selectedFile');
-                    var selectedFileName = document.getElementById('selectedFileName');
-
-                    if (this.files && this.files.length > 0) {
-
-                        selectedFileName.textContent = this.files[0].name;
-
-                        selectedFile.classList.add('active');
-
-                    }
-                    else {
-
-                        selectedFile.classList.remove('active');
-
-                        selectedFileName.textContent = '';
-
-                    }
-
-                });
-
-
-            /* ================= DRAG & DROP VISUAL EFFECT ================= */
-
-            var fileUploadArea =
-                document.querySelector('.file-upload-area');
-
-            var fileInput =
-                document.getElementById('fileUpload');
-
-
-            fileUploadArea.addEventListener('dragover', function (event) {
-
-                event.preventDefault();
-
-                fileUploadArea.classList.add('drag-over');
-
-            });
-
-
-            fileUploadArea.addEventListener('dragleave', function () {
-
-                fileUploadArea.classList.remove('drag-over');
-
-            });
-
-
-            fileUploadArea.addEventListener('drop', function () {
-
-                fileUploadArea.classList.remove('drag-over');
-
-            });
-
-    </script>
-
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
