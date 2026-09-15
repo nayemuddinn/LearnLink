@@ -104,6 +104,10 @@ ALTER TABLE student ADD IsVerified BIT NOT NULL DEFAULT 0, VerificationToken VAR
 ALTER TABLE teacher ADD IsVerified BIT NOT NULL DEFAULT 0, VerificationToken VARCHAR(255);
 
 
+ALTER TABLE student ADD ResetToken NVARCHAR(MAX), ResetTokenExpiry DATETIME;
+ALTER TABLE teacher ADD ResetToken NVARCHAR(MAX), ResetTokenExpiry DATETIME;
+
+
 
 
 
