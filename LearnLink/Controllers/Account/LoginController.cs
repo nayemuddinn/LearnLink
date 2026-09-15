@@ -20,8 +20,18 @@ namespace LearnLink.Controllers.Account
             string connStr = DBconnection.connStr;
             string role = user.Role;
 
-            // Validate role before using it in SQL
-            if (role != "Teacher" && role != "Student")
+            // Normalize or validate role to match lowercase table names ("teacher" or "student")
+            string tableName = null;
+            if (role != null && role.Equals("Teacher", StringComparison.OrdinalIgnoreCase))
+            {
+                tableName = "teacher";
+            }
+            else if (role != null && role.Equals("Student", StringComparison.OrdinalIgnoreCase))
+            {
+                tableName = "student";
+            }
+
+            if (tableName == null)
             {
                 return Json(new
                 {
@@ -36,9 +46,10 @@ namespace LearnLink.Controllers.Account
                 {
                     conn.Open();
 
+                    // Added IsVerified to the SELECT columns
                     string query =
-                        "SELECT name, password, userID FROM " +
-                        role +
+                        "SELECT name, password, userID, IsVerified FROM " +
+                        tableName +
                         " WHERE Email = @Email";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -49,9 +60,20 @@ namespace LearnLink.Controllers.Account
                         {
                             if (reader.Read())
                             {
-                                string storedPassword =
-                                    reader["Password"].ToString();
+                                string storedPassword = reader["Password"].ToString();
+                                bool isVerified = Convert.ToBoolean(reader["IsVerified"]);
 
+                                // 1. CHECK IF EMAIL IS VERIFIED
+                                if (!isVerified)
+                                {
+                                    return Json(new
+                                    {
+                                        success = false,
+                                        message = "Your email is not verified. Please check your inbox for the verification link."
+                                    });
+                                }
+
+                                // 2. VERIFY PASSWORD
                                 bool passwordCorrect =
                                     PasswordHasher.VerifyPassword(
                                         user.Password,
@@ -61,25 +83,20 @@ namespace LearnLink.Controllers.Account
                                 if (passwordCorrect)
                                 {
                                     Session["UserRole"] = role;
-                                    Session["UserName"] =
-                                        reader["Name"].ToString();
+                                    Session["UserName"] = reader["Name"].ToString();
                                     Session["UserEmail"] = user.Email;
                                     Session["UserID"] = reader["UserID"];
 
                                     string redirectUrl = "";
 
-                                    if (role.Equals(
-                                        "teacher",
-                                        StringComparison.OrdinalIgnoreCase))
+                                    if (tableName.Equals("teacher", StringComparison.OrdinalIgnoreCase))
                                     {
                                         redirectUrl = Url.Action(
                                             "Dashboard",
                                             "TeacherDashboard"
                                         );
                                     }
-                                    else if (role.Equals(
-                                        "student",
-                                        StringComparison.OrdinalIgnoreCase))
+                                    else if (tableName.Equals("student", StringComparison.OrdinalIgnoreCase))
                                     {
                                         redirectUrl = Url.Action(
                                             "Dashboard",

@@ -31,8 +31,8 @@ namespace LearnLink.Controllers.Teachers
             {
                 int userId = (int)Session["UserID"];
                 UpdateTeacherProfile(userId, model);
-                ViewBag.SuccessMessage = "Profile updated successfully.";
-                return View(model);
+                TempData["SuccessMessage"] = "Profile updated successfully.";
+                return RedirectToAction("Dashboard", "TeacherDashboard");
             }
             return View(model);
         }
