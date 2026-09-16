@@ -87,6 +87,10 @@ namespace LearnLink.Controllers.Account
                                     Session["UserEmail"] = user.Email;
                                     Session["UserID"] = reader["UserID"];
 
+                                    // Set persistent cookies for "remember me" functionality
+                                    int userId = Convert.ToInt32(reader["UserID"]);
+                                    CookieHelper.SetLoginCookies(userId, role, reader["Name"].ToString(), user.Email);
+
                                     string redirectUrl = "";
 
                                     if (tableName.Equals("teacher", StringComparison.OrdinalIgnoreCase))

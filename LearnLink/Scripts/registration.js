@@ -501,66 +501,41 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function showPopup(type, message) {
 
-    const popup =
-        document.getElementById("registrationPopup");
+    const toast = document.getElementById("glass-toast");
+    const toastMsg = document.getElementById("toastMessage");
+    const toastIcon = toast ? toast.querySelector("ion-icon") : null;
 
-    const popupMessage =
-        document.getElementById("registrationPopupMessage");
-
-    const popupIcon =
-        document.getElementById("registrationPopupIcon");
-
-
-    if (!popup || !popupMessage || !popupIcon) {
-
-        console.error(
-            "Registration popup elements not found."
-        );
-
+    if (!toast || !toastMsg || !toastIcon) {
+        console.error("Toast elements not found.");
         return;
     }
 
+    toastMsg.textContent = message;
 
-    popupMessage.textContent = message;
-
-
-    popup.classList.remove(
-        "popup-success",
-        "popup-error"
-    );
-
-
+    // Update icon based on type
     if (type === "success") {
-
-        popup.classList.add("popup-success");
-
-        popupIcon.textContent = "✓";
-
+        toastIcon.setAttribute("name", "checkmark-circle");
+        toast.classList.remove("error-toast");
     } else {
-
-        popup.classList.add("popup-error");
-
-        popupIcon.textContent = "!";
+        toastIcon.setAttribute("name", "alert-circle");
+        toast.classList.add("error-toast");
     }
 
+    // Show toast
+    toast.classList.add("show");
 
-    popup.classList.add("popup-show");
-
-
+    // Auto-hide after 4 seconds
     setTimeout(function () {
-
-        popup.classList.remove("popup-show");
-
-    }, 5000);
+        toast.classList.remove("show");
+    }, 4000);
 }
 
 
 function closeRegistrationPopup() {
 
-    const popup =
-        document.getElementById("registrationPopup");
+    const toast = document.getElementById("glass-toast");
 
-    if (popup) {
-        popup.classList.remove("popup-show");
+    if (toast) {
+        toast.classList.remove("show");
     }
 }

@@ -121,7 +121,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Content\DBconnection.cs" />
     <Compile Include="Content\EmailService.cs" />
+    <Compile Include="Controllers\Account\CookieHelper.cs" />
     <Compile Include="Controllers\Account\EmailService.cs" />
+    <Compile Include="Controllers\Account\LogoutController.cs" />
+    <Compile Include="Controllers\CookieAuthenticationFilter.cs" />
     <Compile Include="Controllers\Quizzes\QuizAnalytics.cs" />
     <Compile Include="Controllers\\Courses\\AllCourseController.cs" />
     <Compile Include="Controllers\\Account\\changeCredentialsController.cs" />
