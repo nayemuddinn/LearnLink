@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace LearnLink.Controllers.Students
 {
-    [CustomAuthorize]
+    [CustomAuthorize(Roles = "Student")]
     public class EditStudentProfileController : Controller
     {
         // GET: editStudentProfile

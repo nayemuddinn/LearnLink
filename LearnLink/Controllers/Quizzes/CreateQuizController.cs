@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace LearnLink.Controllers.Quizzes
 {
-    [CustomAuthorize]
+    [CustomAuthorize(Roles = "Teacher")]
     public class CreateQuizController : Controller
     {
 

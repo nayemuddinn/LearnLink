@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace LearnLink.Controllers.Courses
 {
-    [CustomAuthorize]
+    [CustomAuthorize(Roles = "Teacher")]
     public class CreateCourseController : Controller
     {
         public ActionResult CreateCourse()

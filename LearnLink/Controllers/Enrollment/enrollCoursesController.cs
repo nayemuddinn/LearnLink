@@ -12,7 +12,7 @@ using System.Web.Mvc;
 
 namespace LearnLink.Controllers.Enrollment
 {
-    [CustomAuthorize]
+    [CustomAuthorize(Roles = "Student")]
     public class enrollCoursesController : Controller
     {
         public string getStatus(int courseId)

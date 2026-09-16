@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace LearnLink.Controllers.Enrollment
 {
-    [CustomAuthorize]
+    [CustomAuthorize(Roles = "Teacher")]
     public class enrollStudentsController : Controller
     {
         // GET: enrollStudents

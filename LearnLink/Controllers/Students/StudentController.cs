@@ -6,26 +6,21 @@ using LearnLink.Models;
 
 namespace LearnLink.Controllers.Students
 {
-    [CustomAuthorize]
+    [CustomAuthorize(Roles = "Student")]
     public class StudentController : Controller
     {
-        //private ApplicationDbContext db = new ApplicationDbContext();
-
-        // GET: Student/Courses
+        
         public ActionResult Courses()
         {
           //  var courses = db.Courses.ToList();
             return View();
         }
 
-        // Other actions for students can be added here
+     
 
         protected override void Dispose(bool disposing)
         {
-           /* if (disposing)
-            {
-                db.Dispose();
-            }*/
+          
             base.Dispose(disposing);
         }
     }

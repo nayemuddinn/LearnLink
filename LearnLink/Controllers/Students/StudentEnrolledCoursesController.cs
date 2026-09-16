@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace LearnLink.Controllers.Students
 {
-    [CustomAuthorize]
+    [CustomAuthorize(Roles = "Student")]
     public class StudentEnrolledCoursesController : Controller
     {
 
