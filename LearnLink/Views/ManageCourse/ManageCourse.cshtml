@@ -151,7 +151,12 @@
                                     <span>Create Quiz</span>
                                 </a>
 
-                               
+                                <a href="@Url.Action("deleteCourse", "ManageCourse", new { courseID = course.CourseID })" class="btn-action btn-delete">
+                                    <ion-icon name="create-outline"></ion-icon>
+                                    <span>Delete</span>
+                                </a>
+
+
                             </div>
                         </div>
                     }
@@ -177,11 +182,11 @@
     </footer>
 
     @*<script>
-                // Mobile menu toggle
-                document.querySelector('.navbar-toggle').addEventListener('click', function () {
-                    document.querySelector('.navbar-menu').classList.toggle('active');
-                });
-    </script>*@
+                    // Mobile menu toggle
+                    document.querySelector('.navbar-toggle').addEventListener('click', function () {
+                        document.querySelector('.navbar-menu').classList.toggle('active');
+                    });
+        </script>*@
 
 
 </body>
