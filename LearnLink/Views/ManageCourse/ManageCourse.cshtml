@@ -142,7 +142,7 @@
                                     <ion-icon name="folder-open-outline"></ion-icon>
                                     <span>View Materials</span>
                                 </a>
-                                <a href="@Url.Action("ShowCourseMaterials", "ManageCourse", new { courseid = course.CourseID })" class="btn-action btn-view">
+                                <a href="@Url.Action("CourseMaterials", "CourseMaterials", new { courseid = course.CourseID })" class="btn-action btn-view">
                                     <ion-icon name="cloud-upload-outline"></ion-icon>
                                     <span>Upload</span>
                                 </a>
@@ -150,6 +150,8 @@
                                     <ion-icon name="create-outline"></ion-icon>
                                     <span>Create Quiz</span>
                                 </a>
+
+                               
                             </div>
                         </div>
                     }
@@ -170,16 +172,17 @@
     <!-- ================= FOOTER ================= -->
     <footer class="footer">
         <div class="footer-content">
-            <p>&copy; 2024 LearnLink. All rights reserved.</p>
+            <p>&copy; 2026 LearnLink. All rights reserved.</p>
         </div>
     </footer>
 
-    <script>
-        // Mobile menu toggle
-        document.querySelector('.navbar-toggle').addEventListener('click', function () {
-            document.querySelector('.navbar-menu').classList.toggle('active');
-        });
-    </script>
+    @*<script>
+                // Mobile menu toggle
+                document.querySelector('.navbar-toggle').addEventListener('click', function () {
+                    document.querySelector('.navbar-menu').classList.toggle('active');
+                });
+    </script>*@
+
 
 </body>
 </html>

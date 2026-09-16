@@ -1,6 +1,6 @@
 using LearnLink.Content;
 using LearnLink.Models;
-using LearnLink.Services; // Namespace for your EmailService
+using LearnLink.Services; 
 using System;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
@@ -18,11 +18,11 @@ namespace LearnLink.Controllers.Account
         }
 
         [HttpPost]
-        public async Task<ActionResult> reg(User user) // Marked async to support await EmailService
+        public async Task<ActionResult> reg(User user) 
         {
             try
             {
-                // Basic validations & password strength checks remain the same...
+               
                 if (user == null)
                     return Json(new { success = false, message = "Invalid registration data." });
 

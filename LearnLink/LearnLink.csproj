@@ -171,6 +171,7 @@
     <Content Include="Content\auth.css" />
     <Content Include="Content\backbutton2.css" />
     <Content Include="Content\backbutton3.css" />
+    <Content Include="Content\CourseMaterials.css" />
     <Content Include="Content\CreateCourse.css" />
     <Content Include="Content\CreateQuiz.css" />
     <Content Include="Content\custom-ui.css" />
@@ -290,7 +291,6 @@
     <Content Include="Views\changeCredentials\changeCredentials.cshtml" />
     <Content Include="Views\StudentViewQuizzes\ViewQuizzes.cshtml" />
     <Content Include="Views\TeacherViewQuizzes\ViewQuizzes.cshtml" />
-    <Content Include="Views\courseMaterials\CourseMaterials.cshtml" />
     <Content Include="Views\StudentViewQuizzes\StartQuiz.cshtml" />
     <Content Include="Views\enrollStudents\AllEnrolledStudents.cshtml" />
     <Content Include="Views\QuizAnalytics\index.cshtml" />
@@ -303,6 +303,7 @@
     <Content Include="SETUP.md" />
     <Content Include="Views\forgotPassword\ResetPassword.cshtml" />
     <Content Include="Views\StudentEnrolledCourses\ViewEnrolledCourses.cshtml" />
+    <Content Include="Views\courseMaterials\CourseMaterials.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
