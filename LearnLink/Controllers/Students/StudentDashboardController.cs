@@ -1,3 +1,4 @@
+using LearnLink.App_Start;
 using LearnLink.Models;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Web.Mvc;
 
 namespace LearnLink.Controllers.Students
 {
+    [CustomAuthorize(Roles = "Student")]
     public class StudentDashboardController : Controller
     {
         public ActionResult Dashboard()

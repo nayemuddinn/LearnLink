@@ -1,3 +1,4 @@
+using LearnLink.App_Start;
 using LearnLink.Content;
 using LearnLink.Models;
 using System;
@@ -8,6 +9,7 @@ using System.Web.Mvc;
 
 namespace LearnLink.Controllers.Courses
 {
+    [CustomAuthorize(Roles = "Teacher")]
     public class ManageCourseController : Controller
     {
         string constr = DBconnection.connStr;
@@ -146,6 +148,23 @@ namespace LearnLink.Controllers.Courses
             }
             return RedirectToAction("ShowCourseMaterials", new { courseid = courseId });
         }
+
+        //will implement later
+        //public ActionResult DeleteCourse(int courseId)
+        //{
+        //    using (SqlConnection con = new SqlConnection(DBconnection.connStr))
+        //    {
+        //        string query = "DELETE FROM Courses WHERE courseID = @courseId";
+        //        using (SqlCommand cmd = new SqlCommand(query, con))
+        //        {
+        //            cmd.Parameters.AddWithValue("@courseId", courseId);
+        //            con.Open();
+        //            cmd.ExecuteNonQuery();
+        //            con.Close();
+        //        }
+        //    }
+        //    return RedirectToAction("ManageCourse");
+        //}
 
 
     }

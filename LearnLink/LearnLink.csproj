@@ -117,11 +117,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\CustomAuthorizeAttribute.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Content\DBconnection.cs" />
     <Compile Include="Content\EmailService.cs" />
+    <Compile Include="Controllers\Account\CookieHelper.cs" />
     <Compile Include="Controllers\Account\EmailService.cs" />
+    <Compile Include="Controllers\Account\LogoutController.cs" />
+    <Compile Include="Controllers\CookieAuthenticationFilter.cs" />
     <Compile Include="Controllers\Quizzes\QuizAnalytics.cs" />
     <Compile Include="Controllers\\Courses\\AllCourseController.cs" />
     <Compile Include="Controllers\\Account\\changeCredentialsController.cs" />
@@ -167,6 +171,7 @@
     <Content Include="Content\auth.css" />
     <Content Include="Content\backbutton2.css" />
     <Content Include="Content\backbutton3.css" />
+    <Content Include="Content\CourseMaterials.css" />
     <Content Include="Content\CreateCourse.css" />
     <Content Include="Content\CreateQuiz.css" />
     <Content Include="Content\custom-ui.css" />
@@ -278,7 +283,6 @@
     <Content Include="Views\enrollStudents\ViewEnrolledStudents.cshtml" />
     <Content Include="Views\enrollCourses\ReEnrollCourse.cshtml" />
     <Content Include="Views\enrollCourses\EnrollCourse.cshtml" />
-    <Content Include="Views\StudentEnrolledCourses\ViewEnrolledCourses.cshtml" />
     <Content Include="Views\StudentEnrolledCourses\Unenroll.cshtml" />
     <Content Include="Views\CreateQuiz\UploadQuiz.cshtml" />
     <Content Include="Views\Assessment\Assessment.cshtml" />
@@ -287,7 +291,6 @@
     <Content Include="Views\changeCredentials\changeCredentials.cshtml" />
     <Content Include="Views\StudentViewQuizzes\ViewQuizzes.cshtml" />
     <Content Include="Views\TeacherViewQuizzes\ViewQuizzes.cshtml" />
-    <Content Include="Views\courseMaterials\CourseMaterials.cshtml" />
     <Content Include="Views\StudentViewQuizzes\StartQuiz.cshtml" />
     <Content Include="Views\enrollStudents\AllEnrolledStudents.cshtml" />
     <Content Include="Views\QuizAnalytics\index.cshtml" />
@@ -299,6 +302,8 @@
     <Content Include="Web.config.example" />
     <Content Include="SETUP.md" />
     <Content Include="Views\forgotPassword\ResetPassword.cshtml" />
+    <Content Include="Views\StudentEnrolledCourses\ViewEnrolledCourses.cshtml" />
+    <Content Include="Views\courseMaterials\CourseMaterials.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

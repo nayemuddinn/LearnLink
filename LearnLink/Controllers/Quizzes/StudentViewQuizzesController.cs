@@ -1,3 +1,4 @@
+using LearnLink.App_Start;
 using LearnLink.Content;
 using LearnLink.Models;
 using System;
@@ -9,6 +10,7 @@ using System.Web.Mvc;
 
 namespace LearnLink.Controllers.Quizzes
 {
+    [CustomAuthorize(Roles = "Student")]
     public class StudentViewQuizzesController : Controller
     {
         public ActionResult ViewQuizzes(string searchTerm, string filter = "all", string sort = "newest")

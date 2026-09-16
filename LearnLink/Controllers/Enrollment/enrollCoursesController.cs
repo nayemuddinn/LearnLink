@@ -1,3 +1,4 @@
+using LearnLink.App_Start;
 using LearnLink.Content;
 using LearnLink.Models;
 using System;
@@ -11,6 +12,7 @@ using System.Web.Mvc;
 
 namespace LearnLink.Controllers.Enrollment
 {
+    [CustomAuthorize(Roles = "Student")]
     public class enrollCoursesController : Controller
     {
         public string getStatus(int courseId)

@@ -11,7 +11,72 @@ namespace LearnLink.Controllers.Account
         [HttpGet]
         public ActionResult Login()
         {
+           
+            if (Session["UserID"] != null && Session["UserRole"] != null)
+            {
+                System.Diagnostics.Debug.WriteLine(" User already has active session, redirecting to dashboard");
+                return RedirectToDashboard();
+            }
+
+    
+            if (CookieHelper.HasValidLoginCookies())
+            {
+                System.Diagnostics.Debug.WriteLine("✓ Valid cookies found, attempting to restore session");
+                bool restored = CookieHelper.RestoreSessionFromCookies(Session);
+
+                if (restored && Session["UserID"] != null && Session["UserRole"] != null)
+                {
+                    System.Diagnostics.Debug.WriteLine("✓ Session restored from cookies successfully");
+                    return RedirectToDashboard();
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("✗ Failed to restore session from cookies");
+                }
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("No valid cookies found");
+            }
+
             return View();
+        }
+
+      
+        private ActionResult RedirectToDashboard()
+        {
+            try
+            {
+                string userRole = Session["UserRole"]?.ToString();
+
+                if (string.IsNullOrEmpty(userRole))
+                {
+                    System.Diagnostics.Debug.WriteLine("✗ UserRole is null/empty, redirecting to Login");
+                    return RedirectToAction("Login", "Login");
+                }
+
+                // Redirect based on role
+                if (userRole.Equals("Teacher", StringComparison.OrdinalIgnoreCase))
+                {
+                    System.Diagnostics.Debug.WriteLine($" Redirecting Teacher to TeacherDashboard");
+                    return RedirectToAction("Dashboard", "TeacherDashboard");
+                }
+                else if (userRole.Equals("Student", StringComparison.OrdinalIgnoreCase))
+                {
+                    System.Diagnostics.Debug.WriteLine($" Redirecting Student to StudentDashboard");
+                    return RedirectToAction("Dashboard", "StudentDashboard");
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine($" Unknown role: {userRole}");
+                    return RedirectToAction("Login", "Login");
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($" Error in RedirectToDashboard: {ex.Message}");
+                return RedirectToAction("Login", "Login");
+            }
         }
 
         [HttpPost]
@@ -86,6 +151,10 @@ namespace LearnLink.Controllers.Account
                                     Session["UserName"] = reader["Name"].ToString();
                                     Session["UserEmail"] = user.Email;
                                     Session["UserID"] = reader["UserID"];
+
+                                    // Set persistent cookies for "remember me" functionality
+                                    int userId = Convert.ToInt32(reader["UserID"]);
+                                    CookieHelper.SetLoginCookies(userId, role, reader["Name"].ToString(), user.Email);
 
                                     string redirectUrl = "";
 

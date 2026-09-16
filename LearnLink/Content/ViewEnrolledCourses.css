@@ -1,974 +1,481 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
     background: linear-gradient(135deg, #0f172a, #1e1b4b, #0f172a);
     color: #f8fafc;
     min-height: 100vh;
-}
-
-.page-wrapper {
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
-
 .navbar {
-    width: 100%;
-    min-height: 76px;
-    display: flex;
-    align-items: center;
-    padding: 0.8rem 2rem;
-    background: rgba(15, 23, 42, 0.78);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     position: sticky;
     top: 0;
     z-index: 1000;
+    padding: 0.8rem 2rem;
 }
 
-
-/* Brand */
-
-.navbar-brand {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    min-width: 210px;
-}
-
-.brand-icon {
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 12px;
-    background: linear-gradient( 135deg, rgba(56, 189, 248, 0.2), rgba(168, 85, 247, 0.2) );
-    border: 1px solid rgba(56, 189, 248, 0.25);
-    color: #38bdf8;
-    font-size: 1.45rem;
-}
-
-.brand-text {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.15;
-}
-
-.brand-name {
-    color: #ffffff;
-    font-size: 1.15rem;
-    font-weight: 700;
-}
-
-.brand-role {
-    margin-top: 3px;
-    color: #38bdf8;
-    font-size: 0.65rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-}
-
-
-/* Navigation */
-
-.navbar-navigation {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.25rem;
-}
-
-    .navbar-navigation a {
-        display: flex;
-        align-items: center;
-        gap: 0.45rem;
-        padding: 0.65rem 0.75rem;
-        border-radius: 9px;
-        color: #94a3b8;
-        text-decoration: none;
-        font-size: 0.78rem;
-        font-weight: 500;
-        transition: all 0.25s ease;
-    }
-
-        .navbar-navigation a ion-icon {
-            font-size: 1rem;
-        }
-
-        .navbar-navigation a:hover {
-            color: #f8fafc;
-            background: rgba(255, 255, 255, 0.06);
-            transform: translateY(-1px);
-        }
-
-        .navbar-navigation a.active {
-            color: #38bdf8;
-            background: rgba(56, 189, 248, 0.1);
-            border: 1px solid rgba(56, 189, 248, 0.15);
-        }
-
-    .navbar-navigation .logout-link {
-        color: #f87171;
-    }
-
-        .navbar-navigation .logout-link:hover {
-            color: #fca5a5;
-            background: rgba(248, 113, 113, 0.08);
-        }
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-.mobile-header {
-    display: none;
-}
-
-.mobile-navigation {
-    display: none;
-}
-
-
-/* =========================================================
-   MAIN CONTENT
-========================================================= */
-
-.main-content {
-    width: min(1200px, calc(100% - 40px));
+.navbar-container {
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 3rem 0 4rem;
-    flex: 1;
-}
-
-
-/* =========================================================
-   PAGE HEADER
-========================================================= */
-
-.page-header {
     display: flex;
     align-items: center;
-    gap: 1.2rem;
-    margin-bottom: 2rem;
+    justify-content: space-between;
 }
 
-.header-icon {
-    width: 64px;
-    height: 64px;
-    flex-shrink: 0;
+.navbar-logo {
     display: flex;
     align-items: center;
-    justify-content: center;
-    border-radius: 18px;
-    background: linear-gradient( 135deg, rgba(56, 189, 248, 0.18), rgba(168, 85, 247, 0.18) );
-    border: 1px solid rgba(56, 189, 248, 0.22);
-    color: #38bdf8;
-    font-size: 1.9rem;
+    gap: 12px;
 }
 
-.eyebrow {
-    display: block;
-    margin-bottom: 0.25rem;
-    color: #38bdf8;
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-}
-
-.page-header h1 {
-    color: #ffffff;
-    font-size: clamp(1.7rem, 3vw, 2.35rem);
-    font-weight: 700;
-}
-
-.page-header p {
-    margin-top: 0.35rem;
-    color: #94a3b8;
-    font-size: 0.9rem;
-}
-
-
-/* =========================================================
-   USER CARD
-========================================================= */
-
-.user-info-card {
-    display: flex;
-    align-items: center;
-    gap: 0.9rem;
-    padding: 1rem 1.2rem;
-    margin-bottom: 2.5rem;
-    background: rgba(15, 23, 42, 0.58);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 15px;
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-}
-
-.user-info-icon {
-    width: 42px;
-    height: 42px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
+.logo-icon {
+    font-size: 2rem;
     color: #38bdf8;
     background: rgba(56, 189, 248, 0.1);
-    font-size: 1.65rem;
+    padding: 8px;
+    border-radius: 12px;
 }
 
-.user-info-text {
+.logo-text-group {
     display: flex;
     flex-direction: column;
 }
 
-    .user-info-text span {
-        color: #64748b;
-        font-size: 0.7rem;
-    }
-
-    .user-info-text strong {
-        color: #e2e8f0;
-        font-size: 0.85rem;
-        font-weight: 600;
-    }
+.logo-text {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #f8fafc;
+}
 
 .role-badge {
-    margin-left: auto;
-    padding: 0.35rem 0.75rem;
-    border-radius: 999px;
-    background: rgba(56, 189, 248, 0.1);
-    border: 1px solid rgba(56, 189, 248, 0.18);
+    font-size: 0.75rem;
     color: #38bdf8;
-    font-size: 0.68rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-}
-
-
-/* =========================================================
-   SECTION HEADER
-========================================================= */
-
-.courses-section {
-    width: 100%;
-}
-
-.section-heading {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 1.2rem;
-}
-
-.section-label {
-    display: block;
-    margin-bottom: 0.25rem;
-    color: #64748b;
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.13em;
-}
-
-.section-heading h2 {
-    color: #ffffff;
-    font-size: 1.35rem;
-    font-weight: 600;
-}
-
-.course-count {
-    padding: 0.4rem 0.75rem;
-    border-radius: 999px;
-    color: #cbd5e1;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    font-size: 0.72rem;
-}
-
-
-/* =========================================================
-   SEARCH
-========================================================= */
-
-.search-container {
-    margin-bottom: 1.25rem;
-}
-
-.search-box {
-    width: 100%;
-    min-height: 48px;
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
-    padding: 0 1rem;
-    background: rgba(15, 23, 42, 0.68);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    transition: all 0.25s ease;
-}
-
-    .search-box:focus-within {
-        border-color: rgba(56, 189, 248, 0.4);
-        box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.06);
-    }
-
-    .search-box ion-icon {
-        color: #64748b;
-        font-size: 1.15rem;
-    }
-
-    .search-box:focus-within ion-icon {
-        color: #38bdf8;
-    }
-
-    .search-box input {
-        width: 100%;
-        height: 46px;
-        border: none;
-        outline: none;
-        background: transparent;
-        color: #f8fafc;
-        font-family: 'Poppins', sans-serif;
-        font-size: 0.78rem;
-    }
-
-        .search-box input::placeholder {
-            color: #64748b;
-        }
-
-
-/* =========================================================
-   COURSE GRID
-========================================================= */
-
-.courses-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-    gap: 1.2rem;
-}
-
-
-/* =========================================================
-   COURSE CARD
-========================================================= */
-
-.course-card {
-    position: relative;
-    padding: 1.35rem;
-    background: rgba(15, 23, 42, 0.68);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 18px;
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    overflow: hidden;
-    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-}
-
-    .course-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 2px;
-        background: linear-gradient( 90deg, #38bdf8, #a855f7 );
-        opacity: 0.75;
-    }
-
-    .course-card:hover {
-        transform: translateY(-5px);
-        border-color: rgba(56, 189, 248, 0.22);
-        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28), 0 0 25px rgba(56, 189, 248, 0.04);
-    }
-
-
-/* Course Top */
-
-.course-card-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1.2rem;
-}
-
-.course-icon {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 14px;
     background: rgba(56, 189, 248, 0.1);
-    border: 1px solid rgba(56, 189, 248, 0.15);
-    color: #38bdf8;
-    font-size: 1.45rem;
+    padding: 2px 8px;
+    border-radius: 20px;
+    width: fit-content;
+    font-weight: 500;
 }
 
-.course-id {
-    padding: 0.35rem 0.6rem;
-    border-radius: 7px;
-    background: rgba(168, 85, 247, 0.08);
-    border: 1px solid rgba(168, 85, 247, 0.14);
-    color: #c4b5fd;
-    font-size: 0.68rem;
-    font-weight: 600;
+.navbar-menu .nav-links {
+    display: flex;
+    gap: 8px;
 }
 
-
-/* Course Information */
-
-.course-label {
-    display: block;
-    margin-bottom: 0.3rem;
-    color: #64748b;
-    font-size: 0.62rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-}
-
-.course-information h3 {
-    min-height: 48px;
-    color: #f8fafc;
-    font-size: 1.05rem;
-    font-weight: 600;
-    line-height: 1.45;
-    word-break: break-word;
-}
-
-
-/* Instructor */
-
-.course-instructor {
+.nav-link {
     display: flex;
     align-items: center;
-    gap: 0.7rem;
-    margin-top: 1.15rem;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.instructor-icon {
-    width: 36px;
-    height: 36px;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background: rgba(168, 85, 247, 0.09);
-    border: 1px solid rgba(168, 85, 247, 0.14);
-    color: #a78bfa;
+    gap: 8px;
+    color: #94a3b8;
+    text-decoration: none;
+    padding: 0.6rem 1rem;
+    border-radius: 10px;
+    font-weight: 500;
     font-size: 0.95rem;
+    transition: all 0.3s ease;
 }
 
-.course-instructor div:last-child {
-    display: flex;
-    flex-direction: column;
-}
+    .nav-link ion-icon {
+        font-size: 1.2rem;
+    }
 
-.course-instructor span {
-    color: #64748b;
-    font-size: 0.62rem;
-}
+    .nav-link:hover,
+    .nav-link.active {
+        color: #f8fafc;
+        background: rgba(255, 255, 255, 0.07);
+    }
 
-.course-instructor strong {
-    color: #cbd5e1;
-    font-size: 0.76rem;
-    font-weight: 500;
-}
-
-
-/* =========================================================
-   COURSE ACTIONS
-========================================================= */
-
-.course-actions {
-    display: flex;
-    gap: 0.55rem;
-    margin-top: 1.3rem;
-}
-
-.course-button {
-    flex: 1;
-    min-height: 40px;
+.navbar-user {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 0.4rem;
-    padding: 0.55rem 0.65rem;
-    border-radius: 9px;
-    text-decoration: none;
-    font-size: 0.7rem;
-    font-weight: 500;
-    transition: all 0.22s ease;
+    gap: 15px;
 }
 
-    .course-button ion-icon {
-        font-size: 0.95rem;
-    }
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 6px 14px;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
 
-
-/* Materials */
-
-.materials-button {
+.user-avatar {
+    font-size: 1.5rem;
     color: #38bdf8;
-    background: rgba(56, 189, 248, 0.09);
-    border: 1px solid rgba(56, 189, 248, 0.16);
 }
 
-    .materials-button:hover {
-        color: #7dd3fc;
-        background: rgba(56, 189, 248, 0.15);
-        transform: translateY(-1px);
-    }
+.user-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
 
-
-/* Unenroll */
-
-.unenroll-button {
+.logout-btn {
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.3);
     color: #f87171;
-    background: rgba(248, 113, 113, 0.08);
-    border: 1px solid rgba(248, 113, 113, 0.15);
-}
-
-    .unenroll-button:hover {
-        color: #fecaca;
-        background: rgba(248, 113, 113, 0.15);
-        border-color: rgba(248, 113, 113, 0.3);
-        transform: translateY(-1px);
-    }
-
-
-/* =========================================================
-   SEARCH EMPTY
-========================================================= */
-
-.search-empty {
-    display: none;
-    padding: 3rem 1.5rem;
-    margin-top: 1rem;
-    text-align: center;
-    background: rgba(15, 23, 42, 0.58);
-    border: 1px dashed rgba(255, 255, 255, 0.12);
-    border-radius: 18px;
-}
-
-    .search-empty.show {
-        display: block;
-    }
-
-.empty-search-icon {
-    width: 58px;
-    height: 58px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 1rem;
-    border-radius: 15px;
-    background: rgba(56, 189, 248, 0.08);
-    color: #38bdf8;
-    font-size: 1.6rem;
-}
-
-.search-empty h3 {
-    color: #e2e8f0;
-    font-size: 1rem;
-}
-
-.search-empty p {
-    margin-top: 0.4rem;
-    color: #64748b;
-    font-size: 0.75rem;
-}
-
-
-/* =========================================================
-   EMPTY STATE
-========================================================= */
-
-.empty-state {
-    min-height: 330px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2.5rem;
-    text-align: center;
-    background: rgba(15, 23, 42, 0.58);
-    border: 1px dashed rgba(255, 255, 255, 0.12);
-    border-radius: 18px;
-}
-
-.empty-icon {
-    width: 68px;
-    height: 68px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1rem;
-    border-radius: 18px;
-    background: rgba(56, 189, 248, 0.08);
-    border: 1px solid rgba(56, 189, 248, 0.12);
-    color: #38bdf8;
-    font-size: 2rem;
-}
-
-.empty-state h2 {
-    color: #e2e8f0;
-    font-size: 1.15rem;
-    font-weight: 600;
-}
-
-.empty-state p {
-    margin-top: 0.4rem;
-    color: #64748b;
-    font-size: 0.8rem;
-}
-
-
-/* Browse Courses */
-
-.browse-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    margin-top: 1.2rem;
-    padding: 0.7rem 1rem;
-    border-radius: 9px;
-    color: #38bdf8;
-    background: rgba(56, 189, 248, 0.09);
-    border: 1px solid rgba(56, 189, 248, 0.16);
     text-decoration: none;
-    font-size: 0.75rem;
-    font-weight: 500;
-    transition: all 0.22s ease;
+    transition: all 0.3s ease;
 }
 
-    .browse-button:hover {
-        color: #7dd3fc;
-        background: rgba(56, 189, 248, 0.15);
-        transform: translateY(-1px);
+    .logout-btn:hover {
+        background: rgba(239, 68, 68, 0.3);
+        color: #fff;
     }
 
-
-/* =========================================================
-   BACK BUTTON
-========================================================= */
-
-.back-section {
-    margin-top: 2rem;
+.main-content {
+    flex: 1;
+    padding: 3rem 2rem;
 }
 
-.back-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.7rem 1rem;
-    border-radius: 9px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.04);
-    color: #cbd5e1;
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.78rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.22s ease;
+.page-container {
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
-    .back-button ion-icon {
+.page-header-title {
+    margin-bottom: 2.5rem;
+}
+
+    .page-header-title h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #f8fafc;
+        margin-bottom: 0.5rem;
+    }
+
+    .page-header-title p {
+        color: #94a3b8;
         font-size: 1rem;
     }
 
-    .back-button:hover {
-        color: #ffffff;
-        background: rgba(255, 255, 255, 0.08);
-        border-color: rgba(255, 255, 255, 0.16);
-        transform: translateX(-2px);
-    }
+/* Search / Filter */
 
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-.footer {
+.search-section {
     width: 100%;
-    margin-top: auto;
-    padding: 1.3rem 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-    background: rgba(15, 23, 42, 0.45);
+    margin-bottom: 2rem;
 }
 
-.footer-content {
-    width: min(1200px, 100%);
-    margin: 0 auto;
+.search-input-group {
+    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    color: #64748b;
-    font-size: 0.7rem;
+    gap: 8px;
+    padding: 0.4rem;
+    background: rgba(30, 41, 59, 0.5);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
 }
 
-.footer-brand {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
+.search-icon {
+    flex: 0 0 auto;
+    margin-left: 0.7rem;
+    margin-right: 0.5rem;
     color: #94a3b8;
-    font-weight: 600;
+    font-size: 1.2rem;
 }
 
-    .footer-brand ion-icon {
-        color: #38bdf8;
-    }
-
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
-@media (max-width: 1100px) {
-
-    .navbar {
-        padding: 0.8rem 1.25rem;
-    }
-
-    .navbar-brand {
-        min-width: 175px;
-    }
-
-    .navbar-navigation a {
-        padding: 0.55rem;
-        font-size: 0.7rem;
-    }
-
-        .navbar-navigation a ion-icon {
-            display: none;
-        }
-
-    .main-content {
-        width: min(100% - 30px, 1000px);
-    }
+.search-input {
+    min-width: 0;
+    width: 100%;
+    flex: 1;
+    padding: 0.7rem 0.5rem;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #f8fafc;
+    font-size: 0.9rem;
 }
 
-
-@media (max-width: 850px) {
-
-    .navbar {
-        min-height: 68px;
+    .search-input::placeholder {
+        color: #64748b;
     }
 
-    .navbar-brand,
-    .navbar-navigation {
-        display: none;
+/* Course Grid */
+
+.tiles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 25px;
+}
+
+.glass-card {
+    background: rgba(30, 41, 59, 0.5);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 1.8rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .glass-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(56, 189, 248, 0.3);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 0 20px rgba(56, 189, 248, 0.1);
     }
 
-    .mobile-header {
-        width: 100%;
-        display: flex;
-        align-items: center;
-    }
+.card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 1.2rem;
+}
 
-    .mobile-title {
-        display: flex;
-        align-items: center;
-        gap: 0.55rem;
-        color: #f8fafc;
-        font-size: 0.9rem;
+.card-icon-wrapper {
+    background: rgba(56, 189, 248, 0.1);
+    color: #38bdf8;
+    font-size: 1.8rem;
+    padding: 12px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+.card-titles {
+    min-width: 0;
+    flex: 1;
+}
+
+    .card-titles h3 {
+        font-size: 1.2rem;
         font-weight: 600;
+        color: #f8fafc;
+        margin-bottom: 8px;
+        word-break: break-word;
     }
 
-        .mobile-title ion-icon {
-            color: #38bdf8;
-            font-size: 1.2rem;
-        }
+/* Course / Instructor Metadata */
 
-    .mobile-user {
-        display: flex;
-        align-items: center;
-        gap: 0.35rem;
-        margin-left: auto;
-        margin-right: 0.8rem;
-        color: #94a3b8;
-        font-size: 0.7rem;
-    }
-
-        .mobile-user ion-icon {
-            color: #38bdf8;
-            font-size: 1.25rem;
-        }
-
-    .mobile-menu-button {
-        width: 38px;
-        height: 38px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 9px;
-        background: rgba(255, 255, 255, 0.05);
-        color: #cbd5e1;
-        cursor: pointer;
-        font-size: 1.25rem;
-    }
-
-    .mobile-navigation {
-        position: fixed;
-        top: 68px;
-        left: 0;
-        width: 100%;
-        padding: 0.8rem;
-        display: none;
-        flex-direction: column;
-        gap: 0.3rem;
-        background: rgba(15, 23, 42, 0.97);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        backdrop-filter: blur(18px);
-        -webkit-backdrop-filter: blur(18px);
-        z-index: 999;
-    }
-
-        .mobile-navigation.show {
-            display: flex;
-        }
-
-        .mobile-navigation a {
-            display: flex;
-            align-items: center;
-            gap: 0.65rem;
-            padding: 0.75rem;
-            border-radius: 9px;
-            color: #94a3b8;
-            text-decoration: none;
-            font-size: 0.78rem;
-        }
-
-            .mobile-navigation a:hover,
-            .mobile-navigation a.active {
-                color: #38bdf8;
-                background: rgba(56, 189, 248, 0.08);
-            }
-
-        .mobile-navigation ion-icon {
-            font-size: 1rem;
-        }
-
-        .mobile-navigation .logout-link {
-            margin-top: 0.3rem;
-            padding-top: 1rem;
-            color: #f87171;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 0;
-        }
+.quiz-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: #94a3b8;
+    font-size: 0.78rem;
+    line-height: 1.4;
 }
 
+    .quiz-meta div {
+        display: grid;
+        grid-template-columns: 95px minmax(0, 1fr);
+        align-items: center;
+        gap: 6px;
+    }
+
+.meta-label {
+    color: #f8fafc;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.quiz-meta div > span:last-child {
+    color: #94a3b8;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Card Body */
+
+.card-body {
+    margin-bottom: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 1rem;
+}
+
+.card-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.btn-action {
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.3s ease;
+}
+
+    .btn-action ion-icon {
+        font-size: 1.1rem;
+    }
+
+.btn-start {
+    background: rgba(56, 189, 248, 0.15);
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+    .btn-start:hover {
+        background: rgba(56, 189, 248, 0.25);
+        color: #fff;
+    }
+
+.btn-unenroll {
+    background: rgba(248, 113, 113, 0.15);
+    color: #f87171;
+    border: 1px solid rgba(248, 113, 113, 0.3);
+}
+
+    .btn-unenroll:hover {
+        background: rgba(248, 113, 113, 0.25);
+        color: #fca5a5;
+    }
+
+/* Empty State */
+
+.empty-state {
+    grid-column: 1 / -1;
+    background: rgba(30, 41, 59, 0.3);
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 4rem 2rem;
+    text-align: center;
+    color: #94a3b8;
+}
+
+    .empty-state ion-icon {
+        font-size: 3.5rem;
+        color: #64748b;
+        margin-bottom: 1rem;
+    }
+
+    .empty-state h3 {
+        font-size: 1.3rem;
+        color: #f8fafc;
+        margin-bottom: 0.5rem;
+    }
+
+    .empty-state p {
+        margin-bottom: 1rem;
+        font-size: 0.95rem;
+    }
+
+/* Responsive */
+
+@media (max-width: 900px) {
+
+    .navbar-container {
+        gap: 1rem;
+    }
+
+    .navbar-menu {
+        flex: 1;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+
+    .nav-link {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.85rem;
+    }
+
+        .nav-link ion-icon {
+            font-size: 1.1rem;
+        }
+
+    .navbar-user {
+        gap: 10px;
+    }
+
+    .user-info {
+        padding: 5px 10px;
+        font-size: 0.8rem;
+    }
+
+    .logout-btn {
+        width: 36px;
+        height: 36px;
+    }
+
+    .tiles-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+    }
+
+}
 
 @media (max-width: 600px) {
 
-    .main-content {
-        width: calc(100% - 24px);
-        padding-top: 2rem;
+    .navbar {
+        padding: 0.6rem 1rem;
     }
 
-    .page-header {
-        align-items: flex-start;
+    .navbar-container {
+        flex-direction: column;
+        gap: 1rem;
     }
 
-    .header-icon {
-        width: 52px;
-        height: 52px;
-        border-radius: 14px;
+    .navbar-logo {
+        gap: 8px;
+    }
+
+    .logo-text {
+        font-size: 1.1rem;
+    }
+
+    .nav-links {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .page-header-title h1 {
         font-size: 1.5rem;
     }
 
-    .page-header h1 {
-        font-size: 1.45rem;
+    .page-header-title p {
+        font-size: 0.9rem;
     }
 
-    .page-header p {
-        font-size: 0.75rem;
+    .tiles-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
     }
 
-    .user-info-card {
-        padding: 0.8rem;
-    }
-
-    .courses-grid {
+    .card-actions {
         grid-template-columns: 1fr;
     }
 
-    .section-heading {
-        align-items: flex-start;
-        gap: 0.7rem;
+    .main-content {
+        padding: 2rem 1rem;
     }
 
-        .section-heading h2 {
-            font-size: 1.15rem;
-        }
-
-    .course-count {
-        font-size: 0.65rem;
-    }
-
-    .course-actions {
-        flex-direction: column;
-    }
-
-    .course-button {
-        width: 100%;
-    }
-
-    .footer {
-        padding: 1rem;
-    }
-
-    .footer-content {
-        flex-direction: column;
-        gap: 0.5rem;
-        text-align: center;
-    }
 }
-
-
-@media (max-width: 400px) {
-
-    .mobile-user span {
-        display: none;
-    }
-
-    .page-header {
-        gap: 0.8rem;
-    }
-
-    .header-icon {
-        width: 46px;
-        height: 46px;
-        font-size: 1.3rem;
-    }
-
-    .user-info-text strong {
-        max-width: 150px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-}
-
