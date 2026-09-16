@@ -1,3 +1,4 @@
+using LearnLink.App_Start;
 using LearnLink.Content;
 using LearnLink.Models;
 using Microsoft.Ajax.Utilities;
@@ -10,6 +11,7 @@ using System.Web.Mvc;
 
 namespace LearnLink.Controllers.Quizzes
 {
+    [CustomAuthorize]
     public class CreateQuizController : Controller
     {
 

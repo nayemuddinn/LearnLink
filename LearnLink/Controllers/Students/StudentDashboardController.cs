@@ -8,9 +8,9 @@ using System.Web.Mvc;
 
 namespace LearnLink.Controllers.Students
 {
+    [CustomAuthorize]
     public class StudentDashboardController : Controller
     {
-        [CustomAuthorize]
         public ActionResult Dashboard()
         {
 

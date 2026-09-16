@@ -1,10 +1,12 @@
 // StudentController.cs
+using LearnLink.App_Start;
 using System.Linq;
 using System.Web.Mvc;
 using LearnLink.Models;
 
 namespace LearnLink.Controllers.Students
 {
+    [CustomAuthorize]
     public class StudentController : Controller
     {
         //private ApplicationDbContext db = new ApplicationDbContext();

@@ -3,10 +3,7 @@ using System.Web.Mvc;
 
 namespace LearnLink.App_Start
 {
-    /// <summary>
-    /// Custom authorization attribute that checks if user is logged in
-    /// Redirects to Login page if user is not authenticated
-    /// </summary>
+
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false)]
     public class CustomAuthorizeAttribute : ActionFilterAttribute
     {

@@ -1,3 +1,4 @@
+using LearnLink.App_Start;
 using LearnLink.Content;
 using LearnLink.Models;
 using System;
@@ -8,6 +9,7 @@ using System.Web.Mvc;
 
 namespace LearnLink.Controllers.Courses
 {
+    [CustomAuthorize]
     public class ManageCourseController : Controller
     {
         string constr = DBconnection.connStr;
