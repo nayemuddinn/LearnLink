@@ -233,6 +233,7 @@
     <Content Include="docker-build.sh" />
     <Content Include="docker-build.ps1" />
     <Content Include="EMAIL_VERIFICATION_FIX_GUIDE.md" />
+    <Content Include="EMAIL_VERIFICATION_TESTING.md" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -297,6 +298,7 @@
     <Content Include="Views\Registration\VerificationResult.cshtml" />
     <Content Include="Web.config.example" />
     <Content Include="SETUP.md" />
+    <Content Include="Views\forgotPassword\ResetPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
