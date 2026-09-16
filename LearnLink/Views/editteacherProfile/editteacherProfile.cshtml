@@ -315,7 +315,8 @@
                                                  @class = "form-input",
                                                  placeholder = "Enter your email address",
                                                  type = "email",
-                                                 required = "required"
+                                                 required = "required",
+                                                 disabled = "disabled"
                                              }
                                          }
                                      )
@@ -487,6 +488,131 @@
                                              @class = "validation-error"
                                          }
                                      )
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ================= SECURITY SETTINGS ================= -->
+
+                    <div class="form-card">
+
+                        <div class="card-header">
+
+                            <div class="card-icon-wrapper">
+
+                                <ion-icon name="lock-closed-outline"></ion-icon>
+
+                            </div>
+
+
+                            <div class="card-title-group">
+
+                                <h2>
+                                    Change Password
+                                </h2>
+
+                                <p>
+                                    Update your password to keep your account secure
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="card-body">
+
+
+                            <!-- Current Password -->
+
+                            <div class="form-group">
+
+                                <div class="form-field-header">
+
+                                    <label for="CurrentPassword"
+                                           class="form-label">
+
+                                        Current Password
+
+                                    </label>
+
+                                    <span class="optional-badge">
+                                        Optional
+                                    </span>
+
+                                </div>
+
+
+                                <input type="password"
+                                       id="CurrentPassword"
+                                       name="CurrentPassword"
+                                       class="form-input"
+                                       placeholder="Enter your current password" />
+
+
+                            </div>
+
+
+                            <!-- New Password -->
+
+                            <div class="form-group">
+
+                                <div class="form-field-header">
+
+                                    <label for="NewPassword"
+                                           class="form-label">
+
+                                        New Password
+
+                                    </label>
+
+                                    <span class="optional-badge">
+                                        Optional
+                                    </span>
+
+                                </div>
+
+
+                                <input type="password"
+                                       id="NewPassword"
+                                       name="NewPassword"
+                                       class="form-input"
+                                       placeholder="Enter your new password" />
+
+
+                            </div>
+
+
+                            <!-- Confirm New Password -->
+
+                            <div class="form-group">
+
+                                <div class="form-field-header">
+
+                                    <label for="ConfirmNewPassword"
+                                           class="form-label">
+
+                                        Confirm New Password
+
+                                    </label>
+
+                                    <span class="optional-badge">
+                                        Optional
+                                    </span>
+
+                                </div>
+
+
+                                <input type="password"
+                                       id="ConfirmNewPassword"
+                                       name="ConfirmNewPassword"
+                                       class="form-input"
+                                       placeholder="Confirm your new password" />
+
 
                             </div>
 

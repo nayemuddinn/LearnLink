@@ -18,9 +18,10 @@ namespace LearnLink.Controllers.Courses
     {
         string connStr = DBconnection.connStr;
 
-        public ActionResult CourseMaterials()
+        public ActionResult CourseMaterials(int? courseid)
         {
-
+            // Pass the courseid to the view if it exists
+            ViewBag.SelectedCourseID = courseid;
             return View();
         }
         [HttpPost]
