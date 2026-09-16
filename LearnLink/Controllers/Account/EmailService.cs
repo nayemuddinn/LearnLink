@@ -109,5 +109,77 @@ namespace LearnLink.Services
                 throw;
             }
         }
+
+        public static async Task<bool> SendPasswordResetEmailAsync(string toEmail, string resetLink)
+        {
+            try
+            {
+                var smtpHost = "smtp-relay.brevo.com";
+                var smtpPort = 587;
+                var smtpUser = ConfigurationManager.AppSettings["SmtpUser"];
+                var smtpPass = ConfigurationManager.AppSettings["SmtpPass"];
+                var fromEmail = ConfigurationManager.AppSettings["MailFrom"];
+
+                if (string.IsNullOrWhiteSpace(smtpUser) || string.IsNullOrWhiteSpace(smtpPass) || string.IsNullOrWhiteSpace(fromEmail))
+                {
+                    throw new Exception("SMTP configuration settings are missing in Web.config");
+                }
+
+                using (var client = new SmtpClient(smtpHost, smtpPort))
+                {
+                    client.Credentials = new NetworkCredential(smtpUser, smtpPass);
+                    client.EnableSsl = true;
+                    client.Timeout = 10000;
+
+                    using (var mailMessage = new MailMessage())
+                    {
+                        mailMessage.From = new MailAddress(fromEmail, "LearnLink");
+                        mailMessage.To.Add(new MailAddress(toEmail));
+                        mailMessage.Subject = "Reset Your LearnLink Password";
+                        mailMessage.IsBodyHtml = true;
+                        mailMessage.Body = $@"
+                    <html>
+                        <head>
+                            <style>
+                                body {{ font-family: Arial, sans-serif; color: #333; }}
+                                .container {{ max-width: 600px; margin: 0 auto; padding: 20px; }}
+                                .header {{ background-color: #4CAF50; color: white; padding: 20px; border-radius: 5px; text-align: center; }}
+                                .content {{ padding: 20px; border: 1px solid #ddd; margin-top: 10px; }}
+                                .button {{ display: inline-block; background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin-top: 20px; }}
+                                .footer {{ margin-top: 20px; font-size: 12px; color: #888; text-align: center; }}
+                            </style>
+                        </head>
+                        <body>
+                            <div class='container'>
+                                <div class='header'>
+                                    <h2>Password Reset Request</h2>
+                                </div>
+                                <div class='content'>
+                                    <p>You requested a password reset for your LearnLink account. Click the button below to set a new password:</p>
+                                    <p><a href='{resetLink}' class='button'>Reset Password</a></p>
+                                    <p>Or copy and paste this link in your browser:</p>
+                                    <p><small>{resetLink}</small></p>
+                                    <p>This link will expire in 1 hour.</p>
+                                </div>
+                                <div class='footer'>
+                                    <p>If you did not request this, please ignore this email.</p>
+                                    <p>&copy; 2024 LearnLink. All rights reserved.</p>
+                                </div>
+                            </div>
+                        </body>
+                    </html>";
+
+                        await client.SendMailAsync(mailMessage);
+                    }
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Password reset email sending failed: {ex.Message}");
+                throw;
+            }
+        }
     }
 }
