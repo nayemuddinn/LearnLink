@@ -20,7 +20,7 @@ namespace LearnLink.Controllers.Courses
 
         public ActionResult CourseMaterials(int? courseid)
         {
-            // Pass the courseid to the view if it exists
+            
             ViewBag.SelectedCourseID = courseid;
             return View();
         }

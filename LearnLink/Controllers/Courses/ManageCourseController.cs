@@ -45,6 +45,7 @@ namespace LearnLink.Controllers.Courses
             return View(courses);
         }
 
+        [CustomAuthorize(Roles = "Teacher,Student")]
         public ActionResult ShowCourseMaterials(int courseid)
         {
             List<CourseMaterials> materials = new List<CourseMaterials>();
