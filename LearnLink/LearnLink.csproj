@@ -282,7 +282,6 @@
     <Content Include="Views\enrollStudents\ViewEnrolledStudents.cshtml" />
     <Content Include="Views\enrollCourses\ReEnrollCourse.cshtml" />
     <Content Include="Views\enrollCourses\EnrollCourse.cshtml" />
-    <Content Include="Views\StudentEnrolledCourses\ViewEnrolledCourses.cshtml" />
     <Content Include="Views\StudentEnrolledCourses\Unenroll.cshtml" />
     <Content Include="Views\CreateQuiz\UploadQuiz.cshtml" />
     <Content Include="Views\Assessment\Assessment.cshtml" />
@@ -303,6 +302,7 @@
     <Content Include="Web.config.example" />
     <Content Include="SETUP.md" />
     <Content Include="Views\forgotPassword\ResetPassword.cshtml" />
+    <Content Include="Views\StudentEnrolledCourses\ViewEnrolledCourses.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

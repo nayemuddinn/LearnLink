@@ -11,14 +11,14 @@ namespace LearnLink.Controllers.Misc
     {
         public ActionResult Index()
         {
-            // Check if user is logged in via session
+            
             if (Session["UserID"] != null && Session["UserRole"] != null)
             {
                 System.Diagnostics.Debug.WriteLine("✓ User has active session, redirecting to dashboard");
                 return RedirectToDashboard();
             }
 
-            // Check if user has valid cookies and restore session
+        
             if (CookieHelper.HasValidLoginCookies())
             {
                 System.Diagnostics.Debug.WriteLine("✓ Valid cookies found, attempting to restore session");
