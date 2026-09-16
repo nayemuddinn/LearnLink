@@ -30,7 +30,8 @@ namespace LearnLink.Controllers.Account
                     HttpOnly = true,
                     Secure = HttpContext.Current.Request.IsSecureConnection,
                     Expires = DateTime.Now.AddDays(COOKIE_EXPIRATION_DAYS),
-                    SameSite = SameSiteMode.Lax
+                    SameSite = SameSiteMode.Lax,
+                    Path = "/"
                 };
 
                 HttpCookie userRoleCookie = new HttpCookie(USER_ROLE_COOKIE, EncryptData(userRole))
@@ -38,7 +39,8 @@ namespace LearnLink.Controllers.Account
                     HttpOnly = true,
                     Secure = HttpContext.Current.Request.IsSecureConnection,
                     Expires = DateTime.Now.AddDays(COOKIE_EXPIRATION_DAYS),
-                    SameSite = SameSiteMode.Lax
+                    SameSite = SameSiteMode.Lax,
+                    Path = "/"
                 };
 
                 HttpCookie userNameCookie = new HttpCookie(USER_NAME_COOKIE, EncryptData(userName))
@@ -46,7 +48,8 @@ namespace LearnLink.Controllers.Account
                     HttpOnly = true,
                     Secure = HttpContext.Current.Request.IsSecureConnection,
                     Expires = DateTime.Now.AddDays(COOKIE_EXPIRATION_DAYS),
-                    SameSite = SameSiteMode.Lax
+                    SameSite = SameSiteMode.Lax,
+                    Path = "/"
                 };
 
                 HttpCookie userEmailCookie = new HttpCookie(USER_EMAIL_COOKIE, EncryptData(userEmail))
@@ -54,13 +57,16 @@ namespace LearnLink.Controllers.Account
                     HttpOnly = true,
                     Secure = HttpContext.Current.Request.IsSecureConnection,
                     Expires = DateTime.Now.AddDays(COOKIE_EXPIRATION_DAYS),
-                    SameSite = SameSiteMode.Lax
+                    SameSite = SameSiteMode.Lax,
+                    Path = "/"
                 };
 
                 response.Cookies.Add(userIdCookie);
                 response.Cookies.Add(userRoleCookie);
                 response.Cookies.Add(userNameCookie);
                 response.Cookies.Add(userEmailCookie);
+
+                System.Diagnostics.Debug.WriteLine($"✓ Login cookies set successfully for UserID={userId}");
             }
             catch (Exception ex)
             {
@@ -75,7 +81,7 @@ namespace LearnLink.Controllers.Account
             {
                 HttpRequest request = HttpContext.Current.Request;
 
-                // Check if cookies exist
+               
                 HttpCookie userIdCookie = request.Cookies[USER_ID_COOKIE];
                 HttpCookie userRoleCookie = request.Cookies[USER_ROLE_COOKIE];
                 HttpCookie userNameCookie = request.Cookies[USER_NAME_COOKIE];
@@ -129,38 +135,50 @@ namespace LearnLink.Controllers.Account
             }
         }
 
-        /// <summary>
-        /// Clear all login-related cookies
-        /// </summary>
+      
         public static void ClearLoginCookies()
         {
             try
             {
                 HttpResponse response = HttpContext.Current.Response;
+                HttpRequest request = HttpContext.Current.Request;
 
-                // Expire all login cookies
-                HttpCookie[] cookiesToClear = new[]
-                {
-                    new HttpCookie(USER_ID_COOKIE) { Expires = DateTime.Now.AddDays(-1) },
-                    new HttpCookie(USER_ROLE_COOKIE) { Expires = DateTime.Now.AddDays(-1) },
-                    new HttpCookie(USER_NAME_COOKIE) { Expires = DateTime.Now.AddDays(-1) },
-                    new HttpCookie(USER_EMAIL_COOKIE) { Expires = DateTime.Now.AddDays(-1) }
-                };
+                System.Diagnostics.Debug.WriteLine(">>> Starting ClearLoginCookies()");
 
-                foreach (var cookie in cookiesToClear)
+            
+                string[] cookieNames = { USER_ID_COOKIE, USER_ROLE_COOKIE, USER_NAME_COOKIE, USER_EMAIL_COOKIE };
+
+                foreach (var cookieName in cookieNames)
                 {
+                   
+                    if (request.Cookies[cookieName] != null)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"  - Clearing cookie: {cookieName}");
+                    }
+
+                 
+                    HttpCookie cookie = new HttpCookie(cookieName)
+                    {
+                        Value = string.Empty,
+                        Expires = DateTime.Now.AddDays(-1),
+                        HttpOnly = true,
+                        Secure = request.IsSecureConnection,
+                        SameSite = SameSiteMode.Lax,
+                        Path = "/"
+                    };
+
                     response.Cookies.Add(cookie);
+                    System.Diagnostics.Debug.WriteLine($"  ✓ Set-Cookie response header sent for: {cookieName}");
                 }
+
+                System.Diagnostics.Debug.WriteLine(">>> ClearLoginCookies() completed successfully");
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Error clearing login cookies: {ex.Message}");
+                System.Diagnostics.Debug.WriteLine($">>> ERROR in ClearLoginCookies(): {ex.Message}");
             }
         }
 
-        /// <summary>
-        /// Encrypt sensitive data using DPAPI (Data Protection API)
-        /// </summary>
         private static string EncryptData(string plainText)
         {
             try
@@ -172,13 +190,11 @@ namespace LearnLink.Controllers.Account
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine($"Error encrypting data: {ex.Message}");
-                return plainText; // Return plaintext as fallback
+                return plainText;
             }
         }
 
-        /// <summary>
-        /// Decrypt sensitive data using DPAPI
-        /// </summary>
+        
         private static string DecryptData(string encryptedText)
         {
             try
@@ -194,9 +210,7 @@ namespace LearnLink.Controllers.Account
             }
         }
 
-        /// <summary>
-        /// Check if user has valid login cookies
-        /// </summary>
+
         public static bool HasValidLoginCookies()
         {
             try
