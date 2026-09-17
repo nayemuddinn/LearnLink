@@ -55,6 +55,11 @@
                     }
                     else
                     {
+                        <a href="@Url.Action("Dashboard", "TeacherDashboard")" class="nav-link">
+                            <ion-icon name="book-outline"></ion-icon>
+                            <span>Dashboard</span>
+                        </a>
+
                         <a href="@Url.Action("ManageCourse", "ManageCourse")" class="nav-link">
                             <ion-icon name="book-outline"></ion-icon>
                             <span>Manage Courses</span>
@@ -121,7 +126,7 @@
                                         <div class="form-group required">
                                             <label for="CourseID">Course ID</label>
                                             <div class="input-wrapper">
-                                                <span class="input-icon"><ion-icon name="book-outline"></ion-icon></span>
+                                                @*<span class="input-icon"><ion-icon name="book-outline"></ion-icon></span>*@
                                                 <input type="text" id="CourseID" name="CourseID" placeholder="Select a course ID" value="@Request["courseID"]" required>
                                             </div>
                                         </div>
@@ -131,7 +136,7 @@
                                         <div class="form-group required">
                                             <label for="Title">Quiz Title</label>
                                             <div class="input-wrapper">
-                                                <span class="input-icon"><ion-icon name="document-text-outline"></ion-icon></span>
+                                                @*<span class="input-icon"><ion-icon name="document-text-outline"></ion-icon></span>*@
                                                 <input type="text" id="Title" name="Title" placeholder="e.g., Chapter 1 Assessment" required>
                                             </div>
                                         </div>
@@ -150,7 +155,7 @@
                                         <div class="form-group required">
                                             <label for="Duration">Duration (minutes)</label>
                                             <div class="input-wrapper">
-                                                <span class="input-icon"><ion-icon name="time-outline"></ion-icon></span>
+                                                @*<span class="input-icon"><ion-icon name="time-outline"></ion-icon></span>*@
                                                 <input type="number" id="Duration" name="Duration" placeholder="45" min="1" required>
                                             </div>
                                         </div>
@@ -179,7 +184,7 @@
     <!-- ================= FOOTER ================= -->
     <footer class="footer">
         <div class="footer-content">
-            <p>&copy; 2024 LearnLink. All rights reserved.</p>
+            <p>&copy; 2026 LearnLink. All rights reserved.</p>
         </div>
     </footer>
 

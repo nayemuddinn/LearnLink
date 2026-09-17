@@ -18,9 +18,10 @@ namespace LearnLink.Controllers.Courses
     {
         string connStr = DBconnection.connStr;
 
-        public ActionResult CourseMaterials()
+        public ActionResult CourseMaterials(int? courseid)
         {
-
+            
+            ViewBag.SelectedCourseID = courseid;
             return View();
         }
         [HttpPost]

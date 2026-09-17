@@ -42,9 +42,10 @@ namespace LearnLink.Controllers.Courses
                 }
             }
 
-            return View(courses); 
+            return View(courses);
         }
 
+        [CustomAuthorize(Roles = "Teacher,Student")]
         public ActionResult ShowCourseMaterials(int courseid)
         {
             List<CourseMaterials> materials = new List<CourseMaterials>();
@@ -108,6 +109,7 @@ namespace LearnLink.Controllers.Courses
             return material;
         }
 
+        [CustomAuthorize(Roles = "Teacher,Student")]
         public ActionResult ViewMaterial(int fileId)
         {
             CourseMaterials material = getMaterial(fileId);
@@ -125,6 +127,8 @@ namespace LearnLink.Controllers.Courses
 
 
         }
+
+        [CustomAuthorize(Roles = "Teacher,Student")]
         public ActionResult DownloadMaterial(int fileId)
         {
             CourseMaterials material = getMaterial(fileId);
@@ -149,22 +153,61 @@ namespace LearnLink.Controllers.Courses
             return RedirectToAction("ShowCourseMaterials", new { courseid = courseId });
         }
 
-        //will implement later
-        //public ActionResult DeleteCourse(int courseId)
-        //{
-        //    using (SqlConnection con = new SqlConnection(DBconnection.connStr))
-        //    {
-        //        string query = "DELETE FROM Courses WHERE courseID = @courseId";
-        //        using (SqlCommand cmd = new SqlCommand(query, con))
-        //        {
-        //            cmd.Parameters.AddWithValue("@courseId", courseId);
-        //            con.Open();
-        //            cmd.ExecuteNonQuery();
-        //            con.Close();
-        //        }
-        //    }
-        //    return RedirectToAction("ManageCourse");
-        //}
+
+
+        public ActionResult deleteCourse(int courseId)
+        {
+            using (SqlConnection con = new SqlConnection(DBconnection.connStr))
+            {
+
+                string query = @"
+            BEGIN TRANSACTION;
+            BEGIN TRY
+                -- 1. Delete Quiz Evaluations related to this course's quizzes
+                DELETE FROM QuizEvaluation 
+                WHERE QuizID IN (SELECT QuizID FROM Quiz WHERE CourseID = @courseId);
+
+                -- 2. Delete Quizzes (QuizQuestions will auto-delete due to CASCADE)
+                DELETE FROM Quiz WHERE CourseID = @courseId;
+
+                -- 3. Delete Course Materials
+                DELETE FROM courseMaterials WHERE CourseID = @courseId;
+
+                -- 4. Delete Enrollments
+                DELETE FROM Enrollment WHERE CourseID = @courseId;
+
+                -- 5. Finally, delete the Course
+                DELETE FROM Courses WHERE CourseID = @courseId;
+
+                COMMIT TRANSACTION;
+            END TRY
+            BEGIN CATCH
+                ROLLBACK TRANSACTION;
+                THROW; -- Re-throw the error so it can be logged or handled
+            END CATCH";
+
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@courseId", courseId);
+
+                    try
+                    {
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        TempData["ErrorMessage"] = "Error deleting course: " + ex.Message;
+                    }
+                    finally
+                    {
+                        con.Close();
+                    }
+                }
+            }
+
+            return RedirectToAction("ManageCourse");
+        }
 
 
     }

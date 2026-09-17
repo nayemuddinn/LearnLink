@@ -68,6 +68,11 @@
 
                     @if (userRole.Equals("Student"))
                     {
+                        <a href="@Url.Action("Dashboard", "StudentDashboard")" class="nav-link">
+                            <ion-icon name="book-outline"></ion-icon>
+                            <span>Dashboard</span>
+                        </a>
+
                         <a href="@Url.Action("AllCourse", "AllCourse")"
                            class="nav-link">
 
@@ -107,13 +112,18 @@
                             <ion-icon name="person-outline"></ion-icon>
 
                             <span>
-                                Edit Profile
+                                 Profile
                             </span>
 
                         </a>
                     }
                     else
                     {
+                        <a href="@Url.Action("Dashboard", "TeacherDashboard")" class="nav-link">
+                            <ion-icon name="book-outline"></ion-icon>
+                            <span>Dashboard</span>
+                        </a>
+
                         <a href="@Url.Action("ManageCourse", "ManageCourse")"
                            class="nav-link">
 
@@ -142,7 +152,7 @@
                             <ion-icon name="document-text-outline"></ion-icon>
 
                             <span>
-                                Course Materials
+                                Upload Materials
                             </span>
 
                         </a>
@@ -175,7 +185,7 @@
                             <ion-icon name="person-outline"></ion-icon>
 
                             <span>
-                                Edit Profile
+                                Profile
                             </span>
 
                         </a>

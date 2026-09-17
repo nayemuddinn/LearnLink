@@ -18,7 +18,7 @@ namespace LearnLink.Models
         public string Institution { get; set; }
         public string Role { get; set; }
         public string PIN { get; set; }
-        public string UserRole { get; set; } 
+        public string UserRole { get; set; }
 
     }
 }

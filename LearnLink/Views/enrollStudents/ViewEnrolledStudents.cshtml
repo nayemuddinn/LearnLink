@@ -48,35 +48,45 @@
                     if (Session["UserRole"].Equals("Student"))
                     {
                         <div class="app-body-navigation">
-                            <nav class="navigation">
-                                <a href="@Url.Action("AllCourse", "AllCourse")">
-                                    <i class="icon ion-md-book"></i>
-                                    <span>All Courses</span>
-                                </a>
-                                <a href="@Url.Action("ViewEnrolledCourses", "StudentEnrolledCourses")">
-                                    <i class="icon ion-md-person-add"></i>
-                                    <span>Enrolled Courses</span>
-                                </a>
-                                <a href="@Url.Action("Assessment", "Assessment")">
-                                    <i class="icon ion-md-checkmark-circle"></i>
-                                    <span>Assessments</span>
-                                </a>
-                                
-                                <a href="@Url.Action("editStudentProfile", "editStudentProfile")">
-                                    <i class="icon ion-md-person"></i>
-                                    <span> Profile</span>
-                                </a>
-                                <a href="@Url.Action("Logout", "Logout")">
-                                    <i class="icon ion-md-exit"></i>
-                                    <span>Log Out</span>
-                                </a>
-                            </nav>
+                                            <nav class="navigation">
+                                                <a href="@Url.Action("Dashboard", "StudentDashboard")" class="nav-link">
+                                                    <ion-icon name="book-outline"></ion-icon>
+                                                    <span>Dashboard</span>
+                                                </a>
+
+                                                <a href="@Url.Action("AllCourse", "AllCourse")">
+                                                    <i class="icon ion-md-book"></i>
+                                                    <span>All Courses</span>
+                                                </a>
+                                                <a href="@Url.Action("ViewEnrolledCourses", "StudentEnrolledCourses")">
+                                                    <i class="icon ion-md-person-add"></i>
+                                                    <span>Enrolled Courses</span>
+                                                </a>
+                                                <a href="@Url.Action("Assessment", "Assessment")">
+                                                    <i class="icon ion-md-checkmark-circle"></i>
+                                                    <span>Assessments</span>
+                                                </a>
+
+                                                <a href="@Url.Action("editStudentProfile", "editStudentProfile")">
+                                                    <i class="icon ion-md-person"></i>
+                                                    <span> Profile</span>
+                                                </a>
+                                                <a href="@Url.Action("Logout", "Logout")">
+                                                    <i class="icon ion-md-exit"></i>
+                                                    <span>Log Out</span>
+                                                </a>
+                                            </nav>
                         </div>
                     }
                     else
                     {
                         <div class="app-body-navigation">
                             <nav class="navigation">
+                                <a href="@Url.Action("Dashboard", "TeacherDashboard")" class="nav-link">
+                                    <ion-icon name="book-outline"></ion-icon>
+                                    <span>Dashboard</span>
+                                </a>
+
                                 <a href="@Url.Action("ManageCourse", "ManageCourse")">
                                     <i class="icon ion-md-book"></i>
                                     <span>Manage Courses</span>
@@ -97,10 +107,10 @@
                                     <i class="icon ion-md-checkmark-circle"></i>
                                     <span>Assessments</span>
                                 </a>
-                                
+
                                 <a href="@Url.Action("editteacherProfile", "editteacherProfile")">
                                     <i class="icon ion-md-person"></i>
-                                    <span>Edit Profile</span>
+                                    <span> Profile</span>
                                 </a>
                                 <a href="@Url.Action("Logout", "Logout")">
                                     <i class="icon ion-md-exit"></i>
@@ -141,11 +151,7 @@
                             }
                         </tbody>
                     </table>
-                    <br /><br />
-                    <div>
-
-                        <button type="button" class="btn btn-back" onclick="window.location.href='/ManageCourse/ManageCourse'">Back</button>
-                    </div>
+                    
                 </div>
 
             </div>
@@ -153,7 +159,7 @@
             <div class="footer">
                 
                 <div>
-                    &copy; 2024 LearnLink. All rights reserved.
+                    &copy; 2026 LearnLink. All rights reserved.
                 </div>
             </div>
         </div>

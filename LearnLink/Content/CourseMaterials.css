@@ -186,6 +186,7 @@ body {
     max-width: 1400px;
     margin: 0 auto;
     width: 100%;
+    background: linear-gradient( 135deg, rgba(15, 23, 60, 0.35), rgba(76, 29, 110, 0.35) );
 }
 
 .page-header-title {

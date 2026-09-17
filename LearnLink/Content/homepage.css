@@ -539,3 +539,302 @@ body.homepage {
         font-size: 0.85rem;
     }
 }
+
+/* ========== ABOUT PAGE STYLES ========== */
+
+/* About Hero Section */
+.about-hero {
+    background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+    padding: 120px 48px;
+    text-align: center;
+    color: #fff;
+}
+
+.about-hero .hero-content h1 {
+    font-size: 3rem;
+    margin: 0 0 16px 0;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-teal) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.about-hero .hero-content p {
+    font-size: 1.25rem;
+    margin: 0;
+    color: var(--secondary-text);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Mission & Vision Cards */
+.mission-vision-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    padding: 80px 48px;
+    background: var(--primary-bg);
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.mission-card {
+    background: var(--secondary-bg);
+    padding: 48px 32px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.mission-card:hover {
+    border-color: var(--accent-blue);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.1);
+}
+
+.mission-icon {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.mission-card h3 {
+    font-size: 1.5rem;
+    margin: 20px 0 16px 0;
+    color: var(--primary-text);
+}
+
+.mission-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--secondary-text);
+    margin: 0;
+}
+
+/* Why LearnLink Section */
+.why-learnlink-section {
+    background: var(--secondary-bg);
+    padding: 80px 48px;
+    text-align: center;
+}
+
+.why-learnlink-section h2 {
+    font-size: 2.5rem;
+    margin: 0 0 12px 0;
+    color: var(--primary-text);
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    color: var(--secondary-text);
+    margin: 0 0 48px 0;
+}
+
+/* Why Grid */
+.why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.why-card {
+    background: var(--primary-bg);
+    padding: 32px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.why-card:hover {
+    border-color: var(--accent-teal);
+    box-shadow: 0 8px 24px rgba(6, 182, 212, 0.1);
+}
+
+.why-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: center;
+}
+
+.why-card h4 {
+    font-size: 1.25rem;
+    margin: 12px 0;
+    color: var(--primary-text);
+}
+
+.why-card p {
+    font-size: 0.95rem;
+    color: var(--secondary-text);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Story Section */
+.story-section {
+    padding: 80px 48px;
+    background: var(--primary-bg);
+}
+
+.story-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.story-section h2 {
+    font-size: 2.5rem;
+    margin: 0 0 32px 0;
+    text-align: center;
+    color: var(--primary-text);
+    background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.story-section p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--secondary-text);
+    margin: 0 0 24px 0;
+    text-align: justify;
+}
+
+.story-section p:last-child {
+    margin-bottom: 0;
+}
+
+/* Core Features Section */
+.core-features-section {
+    background: var(--secondary-bg);
+    padding: 80px 48px;
+    text-align: center;
+}
+
+.core-features-section h2 {
+    font-size: 2.5rem;
+    margin: 0 0 12px 0;
+    color: var(--primary-text);
+}
+
+.features-compact {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+    max-width: 1400px;
+    margin: 48px auto 0;
+    text-align: left;
+}
+
+.feature-compact-item {
+    background: var(--primary-bg);
+    padding: 32px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.feature-compact-item h4 {
+    font-size: 1.25rem;
+    margin: 0 0 20px 0;
+    color: var(--accent-blue);
+}
+
+.feature-compact-item ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.feature-compact-item li {
+    font-size: 0.95rem;
+    color: var(--secondary-text);
+    margin: 0 0 12px 0;
+    padding-left: 24px;
+    position: relative;
+    line-height: 1.5;
+}
+
+.feature-compact-item li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--accent-teal);
+    font-weight: bold;
+}
+
+.feature-compact-item li:last-child {
+    margin-bottom: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .mission-vision-section,
+    .why-grid,
+    .features-compact {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .about-hero .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .about-hero .hero-content p {
+        font-size: 1rem;
+    }
+
+    .story-section h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .mission-vision-section,
+    .why-grid,
+    .features-compact {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 40px 24px;
+    }
+
+    .about-hero {
+        padding: 60px 24px;
+    }
+
+    .about-hero .hero-content h1 {
+        font-size: 1.75rem;
+    }
+
+    .story-section {
+        padding: 60px 24px;
+    }
+
+    .story-section p {
+        text-align: left;
+        font-size: 0.95rem;
+    }
+
+    .mission-card,
+    .why-card,
+    .feature-compact-item {
+        padding: 24px 16px;
+    }
+
+    .section-subtitle {
+        font-size: 1rem;
+    }
+
+    .core-features-section {
+        padding: 60px 24px;
+    }
+
+    .feature-compact-item h4 {
+        font-size: 1.1rem;
+    }
+}

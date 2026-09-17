@@ -41,6 +41,11 @@
                 @if (Session["UserRole"] != null &&
                      Session["UserRole"].Equals("Student"))
                 {
+                    <a href="@Url.Action("Dashboard", "StudentDashboard")" class="nav-link">
+                        <ion-icon name="book-outline"></ion-icon>
+                        <span>Dashboard</span>
+                    </a>
+
                     <a href="@Url.Action("AllCourse", "AllCourse")">
                         <ion-icon name="book-outline"></ion-icon>
                         <span>All Courses</span>
@@ -63,6 +68,11 @@
                 }
                 else
                 {
+                    <a href="@Url.Action("Dashboard", "TeacherDashboard")" class="nav-link">
+                        <ion-icon name="book-outline"></ion-icon>
+                        <span>Dashboard</span>
+
+                    </a>
                     <a href="@Url.Action("ManageCourse", "ManageCourse")">
                         <ion-icon name="book-outline"></ion-icon>
                         <span>Manage Courses</span>
@@ -215,25 +225,6 @@
             </section>
 
 
-            <!-- User Information -->
-            <div class="user-info-card">
-
-                <div class="user-info-icon">
-                    <ion-icon name="person-circle-outline"></ion-icon>
-                </div>
-
-                <div class="user-info-text">
-                    <span>Logged in as</span>
-                    <strong>
-                        @HttpContext.Current.Session["UserName"]
-                    </strong>
-                </div>
-
-                <div class="role-badge">
-                    @HttpContext.Current.Session["UserRole"]
-                </div>
-
-            </div>
 
 
             <!-- Materials -->
@@ -361,19 +352,6 @@
             </section>
 
 
-            <!-- Back Button -->
-            <div class="back-section">
-
-                <button type="button"
-                        class="back-button"
-                        onclick="window.location.href='/ManageCourse/ManageCourse'">
-
-                    <ion-icon name="arrow-back-outline"></ion-icon>
-                    <span>Back to Courses</span>
-
-                </button>
-
-            </div>
 
         </main>
 
@@ -389,7 +367,7 @@
                 </div>
 
                 <span>
-                    &copy; 2024 LearnLink. All rights reserved.
+                    &copy; 2026 LearnLink. All rights reserved.
                 </span>
 
             </div>

@@ -1,11 +1,11 @@
-﻿@model LearnLink.Models.User
+@model LearnLink.Models.User
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Dashboard - LearnLink</title>
+    <title>Student LearnLink</title>
     <link href="@Url.Content("/Content/dashboard.css")" rel="stylesheet" />
 </head>
 <body>
@@ -24,8 +24,6 @@
                 <div class="app-header-navigation">
                     <!-- Add any additional navigation items here if needed -->
                 </div>
-
-
                 <div class="app-header-actions">
                     <h3>Dashboard</h3>
                     <div class="app-header-actions-buttons">
@@ -48,7 +46,7 @@
                             <nav class="navigation">
                                 <a href="@Url.Action("AllCourse", "AllCourse")">
                                     <i class="icon ion-md-book"></i>
-                                    <span>All Courses</span>
+                                    <span>Courses</span>
                                 </a>
                                 <a href="@Url.Action("ViewEnrolledCourses", "StudentEnrolledCourses")">
                                     <i class="icon ion-md-person-add"></i>
@@ -58,14 +56,12 @@
                                     <i class="icon ion-md-checkmark-circle"></i>
                                     <span>Assessments</span>
                                 </a>
-
+                                
                                 <a href="@Url.Action("editStudentProfile", "editStudentProfile")">
                                     <i class="icon ion-md-person"></i>
                                     <span> Profile</span>
                                 </a>
-
-
-                                <a href="@Url.Action("Logout", "Logout")">
+                                <a href="@Url.Action("logout", "logout")">
                                     <i class="icon ion-md-exit"></i>
                                     <span>Log Out</span>
                                 </a>
@@ -121,7 +117,7 @@
                                         </button>
                                     </a>
                                 </div>
-
+                                
                                 <div class="tile">
                                     <div class="tile-header">
                                         <i class="icon ion-md-person"></i>
@@ -155,7 +151,7 @@
                                 </a>
                                 <a href="@Url.Action("courseMaterials", "courseMaterials")">
                                     <i class="icon ion-md-add-circle"></i>
-                                    <span>Upload Materials</span>
+                                    <span>CourseMaterials</span>
                                 </a>
                                 <a href="@Url.Action("enrollStudents", "enrollStudents")">
                                     <i class="icon ion-md-person-add"></i>
@@ -165,12 +161,12 @@
                                     <i class="icon ion-md-checkmark-circle"></i>
                                     <span>Assessments</span>
                                 </a>
-
+                                
                                 <a href="@Url.Action("editteacherProfile", "editteacherProfile")">
                                     <i class="icon ion-md-person"></i>
-                                    <span> Profile</span>
+                                    <span>Edit Profile</span>
                                 </a>
-                                <a href="@Url.Action("Logout", "Logout")">
+                                <a href="@Url.Action("login", "Login")">
                                     <i class="icon ion-md-exit"></i>
                                     <span>Log Out</span>
                                 </a>
@@ -242,17 +238,18 @@
                                     <div class="tile-header">
                                         <i class="icon ion-md-checkmark-circle"></i>
                                         <h3>
-                                            <span>Assessment</span>
+                                            <span>Review Courses</span>
                                             <span>Assess and grade</span>
                                         </h3>
                                     </div>
-                                    <a href="@Url.Action("Assessment", "Assessment")">
-                                        <span>Manage Quizzes</span>
+                                    <a href="@Url.Action("reviewAssessments", "reviewAssessments")">
+                                        <span>Review Now</span>
                                         <button class="icon-button">
                                             <i class="icon ion-md-arrow-forward"></i>
                                         </button>
                                     </a>
                                 </div>
+                                
                                 <div class="tile">
                                     <div class="tile-header">
                                         <i class="icon ion-md-person"></i>
@@ -277,17 +274,16 @@
 
 
 
-
-
             </div>
-            <div class="footer">
-                <br /><br />
+            <br /><br />
 
+            <div class="footer">
+                
                 <div>
-                    &copy; 2024 LearnLink. All rights reserved.
+                    &copy; 2026 LearnLink. All rights reserved.
                 </div>
             </div>
         </div>
-
+    </div>
 </body>
 </html>

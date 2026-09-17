@@ -239,6 +239,7 @@
     <Content Include="docker-build.ps1" />
     <Content Include="EMAIL_VERIFICATION_FIX_GUIDE.md" />
     <Content Include="EMAIL_VERIFICATION_TESTING.md" />
+    <Content Include="README.md" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -270,7 +271,6 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Registration\reg.cshtml" />
     <Content Include="Views\seeFeedback\seeFeedback.cshtml" />
-    <Content Include="Views\StudentDashboard\Dashboard.cshtml" />
     <Content Include="Views\TeacherDashboard\Dashboard.cshtml" />
     <Content Include="Views\ManageCourse\ShowCourseMaterials.cshtml" />
     <Content Include="Views\ManageCourse\ViewMaterial.cshtml" />
@@ -304,6 +304,7 @@
     <Content Include="Views\forgotPassword\ResetPassword.cshtml" />
     <Content Include="Views\StudentEnrolledCourses\ViewEnrolledCourses.cshtml" />
     <Content Include="Views\courseMaterials\CourseMaterials.cshtml" />
+    <Content Include="Views\StudentDashboard\Dashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
