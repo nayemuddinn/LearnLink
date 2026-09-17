@@ -3,11 +3,11 @@
 ![ASP.NET MVC](https://img.shields.io/badge/ASP.NET%20MVC-5.2-blue?style=flat-square)
 ![.NET Framework](https://img.shields.io/badge/.NET%20Framework-4.7.2-informational?style=flat-square)
 ![SQL Server](https://img.shields.io/badge/SQL%20Server-MSSQL-red?style=flat-square)
-![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
+
 
 A role-based Learning Management System for course delivery, enrollment, and assessment, built on ASP.NET MVC 5 and SQL Server.
 
-[Overview](#overview) · [Features](#features) · [Tech Stack](#tech-stack) · [Architecture](#architecture) · [Database Schema](#database-schema) · [API Reference](#api-reference) · [Getting Started](#getting-started) · [Configuration](#configuration) · [Security](#security) · [Testing](#testing) · [Contributing](#contributing) 
+[Overview](#overview) · [Features](#features) · [Tech Stack](#tech-stack) · [Architecture](#architecture) · [Database Schema](#database-schema)  · [Getting Started](#getting-started) · [Configuration](#configuration) · [Security](#security) · [Testing](#testing) · [Contributing](#contributing) 
 
 ---
 
@@ -148,84 +148,6 @@ student / teacher              Enrollment                     Courses
 
 
 ```
-## API Reference
-
-All endpoints are ASP.NET MVC controller actions. Unless noted, responses are HTML views or redirects rather than JSON.
-
-### Authentication and account
-
-| Method | Route | Description | Access |
-|---|---|---|---|
-| POST | `/Login/Login` | Authenticate and start a session | Public |
-| POST | `/Registration/reg` | Register as teacher or student | Public |
-| GET | `/Logout/Logout` | End the current session | Authenticated |
-| POST | `/forgotPassword/forgotPassword` | Send a password reset email | Public |
-| POST | `/changeCredentials/changeCredentials` | Change password | Authenticated |
-
-### Courses
-
-| Method | Route | Description | Access |
-|---|---|---|---|
-| GET | `/AllCourse/AllCourse` | List and search all courses | Public |
-| GET / POST | `/CreateCourse/CreateCourse` | Display form / create a course | Teacher |
-| GET | `/ManageCourse/ManageCourse` | List a teacher's own courses | Teacher |
-| POST | `/ManageCourse/UpdateCourse` | Update a course | Teacher |
-| POST | `/ManageCourse/DeleteCourse` | Delete a course | Teacher |
-
-### Course materials
-
-| Method | Route | Description | Access |
-|---|---|---|---|
-| GET | `/CourseMaterials/CourseMaterials` | List materials for a course | Authenticated |
-| POST | `/CourseMaterials/UploadMaterial` | Upload a file (PDF, image, document) | Teacher |
-| GET | `/CourseMaterials/DownloadMaterial` | Download a file | Authenticated |
-| POST | `/CourseMaterials/DeleteMaterial` | Delete a file | Teacher |
-
-### Enrollment
-
-| Method | Route | Description | Access |
-|---|---|---|---|
-| GET / POST | `/enrollCourses/EnrollCourse` | Display form / request enrollment | Student |
-| GET | `/StudentEnrolledCourses/ViewEnrolledCourses` | List approved courses | Student |
-| POST | `/StudentEnrolledCourses/Unenroll` | Withdraw from a course | Student |
-| GET | `/enrollStudents/enrollNewStudents` | List pending enrollment requests | Teacher |
-| POST | `/enrollStudents/ApproveEnrollment` | Approve a request | Teacher |
-| POST | `/enrollStudents/RejectEnrollment` | Reject a request | Teacher |
-| POST | `/enrollStudents/RemoveStudent` | Remove an enrolled student | Teacher |
-
-### Quizzes
-
-| Method | Route | Description | Access |
-|---|---|---|---|
-| GET / POST | `/CreateQuiz/CreateQuiz` | Display form / create a quiz | Teacher |
-| GET / POST | `/CreateQuiz/UploadQuiz` | Display form / add a question | Teacher |
-| GET | `/TeacherViewQuizzes/ViewQuizzes` | List quizzes created by the teacher | Teacher |
-| GET | `/StudentViewQuizzes/ViewQuizzes` | List quizzes available to the student | Student |
-| GET | `/StudentViewQuizzes/StartQuiz` | Start an attempt | Student |
-| POST | `/StudentViewQuizzes/SubmitQuiz` | Submit answers for auto-grading | Student |
-| GET | `/QuizAnalytics/index` | View submission count, average score, pass rate | Teacher |
-| POST | `/QuizAnalytics/ProvideFeedback` | Attach feedback to a submission | Teacher |
-
-### Dashboards, profiles, and feedback
-
-| Method | Route | Description | Access |
-|---|---|---|---|
-| GET | `/TeacherDashboard/Dashboard` | Teacher summary view | Teacher |
-| GET | `/StudentDashboard/Dashboard` | Student summary view | Student |
-| GET / POST | `/EditTeacherProfile/editteacherProfile` | View / update teacher profile | Teacher |
-| GET / POST | `/EditStudentProfile/editStudentProfile` | View / update student profile | Student |
-| GET / POST | `/giveFeedback/giveFeedback` | Display form / submit feedback | Authenticated |
-| GET | `/seeFeedback/seeFeedback` | View submitted feedback | Teacher |
-
-### Business rules enforced server-side
-
-- An enrollment request cannot be submitted twice for the same course.
-- A quiz can be attempted once per student; resubmission is blocked.
-- Only one quiz may be active for a student at a time.
-- Deleting a quiz cascades to its questions (`ON DELETE CASCADE`).
-- Quiz answers are graded automatically on submission; scores and timestamps are recorded in `QuizEvaluation`.
-
----
 
 ## Getting Started
 
