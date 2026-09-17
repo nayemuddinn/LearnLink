@@ -109,6 +109,7 @@ namespace LearnLink.Controllers.Courses
             return material;
         }
 
+        [CustomAuthorize(Roles = "Teacher,Student")]
         public ActionResult ViewMaterial(int fileId)
         {
             CourseMaterials material = getMaterial(fileId);
@@ -126,6 +127,8 @@ namespace LearnLink.Controllers.Courses
 
 
         }
+
+        [CustomAuthorize(Roles = "Teacher,Student")]
         public ActionResult DownloadMaterial(int fileId)
         {
             CourseMaterials material = getMaterial(fileId);

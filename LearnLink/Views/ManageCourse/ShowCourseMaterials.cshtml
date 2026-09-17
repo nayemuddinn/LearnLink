@@ -225,25 +225,6 @@
             </section>
 
 
-            <!-- User Information -->
-            <div class="user-info-card">
-
-                <div class="user-info-icon">
-                    <ion-icon name="person-circle-outline"></ion-icon>
-                </div>
-
-                <div class="user-info-text">
-                    <span>Logged in as</span>
-                    <strong>
-                        @HttpContext.Current.Session["UserName"]
-                    </strong>
-                </div>
-
-                <div class="role-badge">
-                    @HttpContext.Current.Session["UserRole"]
-                </div>
-
-            </div>
 
 
             <!-- Materials -->
@@ -371,19 +352,6 @@
             </section>
 
 
-            <!-- Back Button -->
-            <div class="back-section">
-
-                <button type="button"
-                        class="back-button"
-                        onclick="window.location.href='/ManageCourse/ManageCourse'">
-
-                    <ion-icon name="arrow-back-outline"></ion-icon>
-                    <span>Back to Courses</span>
-
-                </button>
-
-            </div>
 
         </main>
 
