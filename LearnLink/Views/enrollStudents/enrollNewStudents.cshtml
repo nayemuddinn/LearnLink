@@ -27,6 +27,11 @@
                     @{
                         if (Session["UserRole"] != null && Session["UserRole"].Equals("Student"))
                         {
+                            <a href="@Url.Action("Dashboard", "StudentDashboard")" class="nav-link">
+                                <ion-icon name="book-outline"></ion-icon>
+                                <span>Dashboard</span>
+                            </a>
+
                             <a href="@Url.Action("AllCourse", "AllCourse")" class="nav-link">
                                 <ion-icon name="book-outline"></ion-icon>
                                 <span>All Courses</span>
@@ -46,6 +51,11 @@
                         }
                         else
                         {
+                            <a href="@Url.Action("Dashboard", "TeacherDashboard")" class="nav-link">
+                                <ion-icon name="book-outline"></ion-icon>
+                                <span>Dashboard</span>
+                            </a>
+
                             <a href="@Url.Action("ManageCourse", "ManageCourse")" class="nav-link">
                                 <ion-icon name="book-outline"></ion-icon>
                                 <span>Manage Courses</span>

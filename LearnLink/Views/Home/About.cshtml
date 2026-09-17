@@ -1,9 +1,162 @@
 ﻿@{
-    ViewBag.Title = "About";
+    ViewBag.Title = "About - LearnLink";
 }
-<main aria-labelledby="title">
-    <h2 id="title">@ViewBag.Title.</h2>
-    <h3>@ViewBag.Message</h3>
 
-    <p>Use this area to provide additional information.</p>
+<main class="homepage-content">
+    <!-- About Hero Section -->
+    <section class="about-hero">
+        <div class="hero-content">
+            <h1>About LearnLink</h1>
+            <p>Empowering educators and learners through innovative educational technology</p>
+        </div>
+    </section>
+
+    <!-- Mission & Vision Section -->
+    <section class="mission-vision-section">
+        <div class="mission-card">
+            <div class="mission-icon">
+                <ion-icon name="bulb-outline" style="color: var(--accent-orange); font-size: 2.5rem;"></ion-icon>
+            </div>
+            <h3>Our Mission</h3>
+            <p>To revolutionize education by providing a seamless, accessible platform that bridges the gap between educators and learners, making quality education available to everyone, everywhere.</p>
+        </div>
+
+        <div class="mission-card">
+            <div class="mission-icon">
+                <ion-icon name="star-outline" style="color: var(--accent-purple); font-size: 2.5rem;"></ion-icon>
+            </div>
+            <h3>Our Vision</h3>
+            <p>To create a world where learning is borderless, collaborative, and personalized—where every student has access to world-class education and every educator has the tools to inspire success.</p>
+        </div>
+
+        <div class="mission-card">
+            <div class="mission-icon">
+                <ion-icon name="heart-outline" style="color: var(--accent-blue); font-size: 2.5rem;"></ion-icon>
+            </div>
+            <h3>Our Values</h3>
+            <p>We believe in accessibility, innovation, collaboration, and integrity. We're committed to providing secure, reliable, and user-centric solutions that empower educational institutions worldwide.</p>
+        </div>
+    </section>
+
+    <!-- Why LearnLink Section -->
+    <section class="why-learnlink-section">
+        <h2>Why Choose LearnLink?</h2>
+        <p class="section-subtitle">Built for modern education, trusted by educators and students</p>
+
+        <div class="why-grid">
+            <div class="why-card">
+                <div class="why-icon">
+                    <ion-icon name="shield-checkmark-outline" style="color: #06b6d4;"></ion-icon>
+                </div>
+                <h4>Secure & Reliable</h4>
+                <p>Enterprise-grade security with encrypted data, role-based access control, and regular backups to protect your educational data.</p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon">
+                    <ion-icon name="settings-outline" style="color: #a855f7;"></ion-icon>
+                </div>
+                <h4>Easy to Use</h4>
+                <p>Intuitive interface designed for both tech-savvy educators and students new to digital learning platforms.</p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon">
+                    <ion-icon name="phone-portrait-outline" style="color: #f97316;"></ion-icon>
+                </div>
+                <h4>Mobile Friendly</h4>
+                <p>Fully responsive design works seamlessly across all devices—desktop, tablet, and mobile phones.</p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon">
+                    <ion-icon name="trending-up-outline" style="color: #3b82f6;"></ion-icon>
+                </div>
+                <h4>Data-Driven Insights</h4>
+                <p>Comprehensive analytics and reporting tools help educators track student progress and make informed decisions.</p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon">
+                    <ion-icon name="layers-outline" style="color: #06b6d4;"></ion-icon>
+                </div>
+                <h4>Scalable Solution</h4>
+                <p>From small classrooms to large institutions, LearnLink scales to meet your institution's growth.</p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon">
+                    <ion-icon name="help-circle-outline" style="color: #a855f7;"></ion-icon>
+                </div>
+                <h4>Dedicated Support</h4>
+                <p>Our support team is here to help with setup, training, and troubleshooting whenever you need assistance.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="story-section">
+        <div class="story-container">
+            <h2>Our Story</h2>
+            <p>LearnLink was created with a simple yet powerful belief: technology should enhance education, not complicate it. Following a gap in the market for truly user-friendly learning management systems, our team of educators and developers came together to build a platform that puts both teachers and students first.</p>
+
+            <p>We started by listening to educators' challenges—managing multiple classes, uploading materials, creating assessments, and tracking progress across different tools. We also heard from students about the need for a platform that's easy to navigate, supports various learning styles, and keeps them engaged.</p>
+
+            <p>Today, LearnLink is trusted by educators and students across institutions. We continue to innovate, adding features that directly address real educational needs while maintaining the simplicity and elegance our users love.</p>
+        </div>
+    </section>
+
+   
+    <section class="core-features-section">
+        <h2>Core Capabilities</h2>
+        <p class="section-subtitle">Everything you need in one platform</p>
+
+        <div class="features-compact">
+            <div class="feature-compact-item">
+                <h4>For Teachers</h4>
+                <ul>
+                    <li>Course creation and management</li>
+                    <li>Material upload and organization</li>
+                    <li>Quiz creation with auto-grading</li>
+                    <li>Student enrollment management</li>
+                    <li>Performance analytics and reporting</li>
+                </ul>
+            </div>
+
+            <div class="feature-compact-item">
+                <h4>For Students</h4>
+                <ul>
+                    <li>Course discovery and enrollment</li>
+                    <li>Material access and download</li>
+                    <li>Interactive quiz participation</li>
+                    <li>Progress tracking</li>
+                    <li>Performance analytics</li>
+                </ul>
+            </div>
+
+            <div class="feature-compact-item">
+                <h4>Security & Integration</h4>
+                <ul>
+                    <li>Email verification system</li>
+                    <li>Secure authentication</li>
+                    <li>Data encryption</li>
+                    <li>Role-based access control</li>
+                    <li>Comprehensive audit logs</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Ready to Transform Your Learning Experience?</h2>
+        <p>Join educators and students who are already experiencing the LearnLink difference</p>
+        <a href="@Url.Action("login", "Login")" class="cta-btn">Get Started Today</a>
+    </section>
+
 </main>
+
+<!-- Footer -->
+<footer class="homepage-footer">
+    <p>&copy; 2026 LearnLink. All rights reserved. Empowering education through technology.</p>
+</footer>
